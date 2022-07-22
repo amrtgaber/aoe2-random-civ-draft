@@ -1,0 +1,36 @@
+/* GENERAL COLORS */
+$bg-color: #181a1b;
+$aoe2-letter-color: #b88a4f;
+$aoe2-numeral-color: #880101;
+
+/* FONTS */
+$font-color: #eeeeee;
+$font-size: calc(10px + 2vmin);
+
+/* SPACING */
+
+/* dimensions */
+$full-screen-width: 100vw;
+$full-screen-height: 100vh;
+
+/* padding */
+$base-padding: 4px;
+
+// padding levels
+$padding-tiny: 1;
+$padding-small: 2;
+$padding-medium: 4;
+$padding-large: 6;
+$padding-giant: 8;
+$padding-ludicrous: 10;
+
+@function calc-padding($paddingLevel) {
+  @return $base-padding * $paddingLevel;
+}
+
+/* BORDERS */
+$thickness-tiny: 1px;
+$thickness-small: 2px;
+$thickness-medium: 4px;
+
+$neutral-light-border: #444444;

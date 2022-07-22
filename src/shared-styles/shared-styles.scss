@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap');
+@import './style-lib.scss';
+
+body {
+  font-family: 'EB Garamond', serif;
+  font-size: $font-size;
+  background-color: $bg-color;
+}
+
+a {
+  text-decoration: none;
+}

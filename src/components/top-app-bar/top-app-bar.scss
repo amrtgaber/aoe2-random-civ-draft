@@ -1,0 +1,21 @@
+@import '../../shared-styles/shared-styles';
+
+.top-app-bar {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  width: $full-screen-width;
+  height: 100px;
+
+  border-bottom: $thickness-tiny solid $neutral-light-border;
+}
+
+.logo {
+  grid-column-start: 1;
+  padding: calc-padding($padding-large);
+  color: $aoe2-letter-color;
+
+  .numeral {
+    color: $aoe2-numeral-color;
+  }
+}

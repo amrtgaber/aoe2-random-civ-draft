@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import './top-app-bar.scss';
+
 export interface ITopAppBarProps {
 }
 
@@ -7,7 +9,7 @@ const TopAppBar: FC <ITopAppBarProps> = props => {
   return (
     <div className='top-app-bar'>
       <a className='logo' href='/'>
-        Aoe2 Pick Civ Randomizer
+        AoE<span className='numeral'>II</span> Random Civ Picker
       </a>
     </div>
   );
