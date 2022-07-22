@@ -7,7 +7,7 @@ const TopAppBar: FC <ITopAppBarProps> = props => {
   return (
     <div className='top-app-bar'>
       <a className='logo' href='/'>
-        AoE2 Pick Civ Randomizer
+        Aoe2 Pick Civ Randomizer
       </a>
     </div>
   );
