@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import TopAppBar from './';
 
 test('renders top app bar', () => {
-  const { container } = render(<TopAppBar />);
-  const topAppBarEl = container.querySelector('.top-app-bar');
+  const { container: topAppBarContainer } = render(<TopAppBar />);
+  const topAppBarEl = topAppBarContainer.querySelector('.top-app-bar');
   expect(topAppBarEl).toBeInTheDocument();
 });
