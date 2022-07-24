@@ -9,4 +9,11 @@ body {
 
 a {
   text-decoration: none;
+  color: $font-color;
+
+  &.button {
+    padding: calc-padding($padding-medium);
+    border: $thickness-small solid $neutral-light-border;
+    border-radius: 8px;
+  }
 }
