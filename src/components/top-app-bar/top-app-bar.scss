@@ -1,11 +1,11 @@
-@import '../../shared-styles/shared-styles';
+@import '../../shared-styles/style-lib';
 
 .top-app-bar {
   display: grid;
   grid-template-columns: 1fr 3fr;
 
   width: $full-screen-width;
-  height: 100px;
+  height: 72px; // TODO: needs further adjusting and turn into variable
 
   border-bottom: $thickness-tiny solid $neutral-light-border;
 }

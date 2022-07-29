@@ -2,8 +2,12 @@
 @import './style-lib.scss';
 
 body {
+  margin: 0;
   font-family: 'EB Garamond', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: $font-size;
+  color: $font-color;
   background-color: $bg-color;
 }
 
@@ -16,4 +20,9 @@ a {
     border: $thickness-small solid $neutral-light-border;
     border-radius: 8px;
   }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
