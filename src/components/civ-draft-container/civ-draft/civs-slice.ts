@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../store';
+import { RootState, AppThunk } from '../../../store';
 
 export interface CivsState {
   list: string[];
@@ -39,6 +39,6 @@ export const civsSlice = createSlice({
 
 export const {} = civsSlice.actions;
 
-export const selectCivs = (state: RootState) => state.civs.list;
+export const selectCivs = (state: RootState) => state.civs;
 
 export default civsSlice.reducer;

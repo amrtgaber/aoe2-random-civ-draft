@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import civsReducer from '../components/civ-list/civs-slice';
+import civsReducer from '../components/civ-draft-container/civ-draft/civs-slice';
 
 export const store = configureStore({
   reducer: {
