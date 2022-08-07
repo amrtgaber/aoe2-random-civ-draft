@@ -5,7 +5,7 @@ import CivDraftContainer from './components/civ-draft-container';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <TopAppBar />
       <CivDraftContainer />
       <CivDraftParameters />

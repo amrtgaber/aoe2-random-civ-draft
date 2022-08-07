@@ -6,7 +6,7 @@ export interface ICivDraftResultProps {}
 
 const CivDraftResult: FC<ICivDraftResultProps> = (props) => {
   return (
-    <div className="civ-draft-result">
+    <div className='civ-draft-result'>
       Civ draft result will be rendered here
     </div>
   );

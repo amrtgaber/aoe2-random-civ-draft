@@ -2,11 +2,11 @@
 
 .civ-draft-container {
   display: grid;
-  grid-template-columns: 1fr 5fr;
-  justify-content: center;
-
   width: $full-screen-width;
   height: 200px;
-  
+  justify-content: center;
+
   border-bottom: $thickness-tiny solid $neutral-light-border;
+
+  grid-template-columns: 1fr 5fr;
 }

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { getCivs, selectCivs } from './civs-slice';
 
 import './civ-draft.scss';
@@ -14,7 +14,7 @@ const CivDraft: FC<ICivDraftProps> = (props) => {
     dispatch(getCivs);
   });
 
-  return <div className="civ-draft">Civ draft will be rendered here</div>;
+  return <div className='civ-draft'>Civ draft will be rendered here</div>;
 };
 
 export default CivDraft;

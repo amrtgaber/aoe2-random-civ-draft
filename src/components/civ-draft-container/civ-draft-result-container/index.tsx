@@ -8,7 +8,7 @@ export interface ICivDraftResultContainerProps {}
 
 const CivDraftResultContainer: FC<ICivDraftResultContainerProps> = (props) => {
   return (
-    <div className="civ-draft-result-container">
+    <div className='civ-draft-result-container'>
       <DraftCivButton />
       <CivDraftResult />
     </div>

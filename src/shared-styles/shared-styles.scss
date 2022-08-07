@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap');
-@import './style-lib.scss';
+@import 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap';
+@import './style-lib';
 
 body {
   margin: 0;
+  background-color: $bg-color;
+  color: $font-color;
   font-family: 'EB Garamond', serif;
+  font-size: $font-size;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: $font-size;
-  color: $font-color;
-  background-color: $bg-color;
 }
 
 a {
-  text-decoration: none;
   color: $font-color;
+  text-decoration: none;
 
   &.button {
     padding: calc-padding($padding-medium);

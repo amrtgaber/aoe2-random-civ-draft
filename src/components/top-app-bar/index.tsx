@@ -2,10 +2,9 @@ import { FC } from 'react';
 
 import './top-app-bar.scss';
 
-export interface ITopAppBarProps {
-}
+export interface ITopAppBarProps {}
 
-const TopAppBar: FC <ITopAppBarProps> = props => {
+const TopAppBar: FC<ITopAppBarProps> = (props) => {
   return (
     <div className='top-app-bar'>
       <a className='logo' href='/'>
@@ -13,6 +12,6 @@ const TopAppBar: FC <ITopAppBarProps> = props => {
       </a>
     </div>
   );
-}
+};
 
 export default TopAppBar;

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../../store';
+import { AppThunk, RootState } from '../../../store';
 
 export interface CivsState {
   list: string[];

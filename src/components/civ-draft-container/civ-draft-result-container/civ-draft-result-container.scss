@@ -2,8 +2,7 @@
 
 .civ-draft-result-container {
   display: grid;
-  grid-template-rows: 1fr 3fr;
   justify-content: center;
-
   padding: calc-padding($padding-medium);
+  grid-template-rows: 1fr 3fr;
 }

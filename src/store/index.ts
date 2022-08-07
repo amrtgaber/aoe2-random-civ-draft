@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import civsReducer from '../components/civ-draft-container/civ-draft/civs-slice';
 
 export const store = configureStore({
