@@ -1,22 +1,28 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../../../store';
+import { RootState } from '../../../store';
+import { getCivs, ICiv } from '../../../api/civs-api';
+
+export enum FetchStatus {
+  INIT,
+  LOADING,
+  FAILED,
+  FULFILLED,
+}
 
 export interface CivsState {
-  list: string[];
-  status: 'idle' | 'loading' | 'failed';
+  list: ICiv[];
+  status: FetchStatus;
 }
 
 const initialState: CivsState = {
-  list: [],
-  status: 'idle',
+  list: [] as ICiv[],
+  status: FetchStatus.INIT,
 };
 
-export const getCivs = createAsyncThunk('civs/fetch', async () => {
-  // @TODO: implement
-  // const response = await fetch(`${apiUrl}/civs`);
-  // const civs = await response.json();
-  return [];
-});
+export const fetchCivs = createAsyncThunk(
+  'civs/fetch',
+  async () => await getCivs()
+);
 
 export const civsSlice = createSlice({
   name: 'civs',
@@ -24,20 +30,18 @@ export const civsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getCivs.pending, (state) => {
-        state.status = 'loading';
+      .addCase(fetchCivs.pending, (state) => {
+        state.status = FetchStatus.LOADING;
       })
-      .addCase(getCivs.fulfilled, (state, action) => {
-        state.status = 'idle';
+      .addCase(fetchCivs.fulfilled, (state, action: PayloadAction<ICiv[]>) => {
         state.list = action.payload;
+        state.status = FetchStatus.FULFILLED;
       })
-      .addCase(getCivs.rejected, (state) => {
-        state.status = 'failed';
+      .addCase(fetchCivs.rejected, (state) => {
+        state.status = FetchStatus.FAILED;
       });
   },
 });
-
-export const {} = civsSlice.actions;
 
 export const selectCivs = (state: RootState) => state.civs;
 
