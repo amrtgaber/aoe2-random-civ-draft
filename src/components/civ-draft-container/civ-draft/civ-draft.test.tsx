@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import CivDraft from '.';
+import { CivDraft } from '.';
 import { store } from '../../../store';
 
 test('renders civ draft', () => {

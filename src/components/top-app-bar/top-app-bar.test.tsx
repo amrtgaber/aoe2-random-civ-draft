@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import TopAppBar from './';
+import { TopAppBar } from './';
 
 test('renders top app bar', () => {
   const { container: topAppBarContainer } = render(<TopAppBar />);

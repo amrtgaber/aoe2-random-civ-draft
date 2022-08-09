@@ -4,7 +4,7 @@ import './top-app-bar.scss';
 
 export interface ITopAppBarProps {}
 
-const TopAppBar: FC<ITopAppBarProps> = (props) => {
+export const TopAppBar: FC<ITopAppBarProps> = (props) => {
   return (
     <div className='top-app-bar'>
       <a className='logo' href='/'>
@@ -13,5 +13,3 @@ const TopAppBar: FC<ITopAppBarProps> = (props) => {
     </div>
   );
 };
-
-export default TopAppBar;

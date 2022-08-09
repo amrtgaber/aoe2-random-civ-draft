@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import CivDraftResult from '.';
+import { CivDraftResult } from '.';
 
 test('renders civ draft results', () => {
   const { container: civDraftResultContainer } = render(<CivDraftResult />);

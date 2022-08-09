@@ -2,13 +2,13 @@ import { FC, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { fetchCivs, FetchStatus, selectCivs } from './civs-slice';
+import { Civ } from './civ';
 
 import './civ-draft.scss';
-import { Civ } from './civ';
 
 export interface ICivDraftProps {}
 
-const CivDraft: FC<ICivDraftProps> = (props) => {
+export const CivDraft: FC<ICivDraftProps> = (props) => {
   const { list: civs, status } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -30,5 +30,3 @@ const CivDraft: FC<ICivDraftProps> = (props) => {
     </div>
   );
 };
-
-export default CivDraft;

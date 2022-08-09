@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import DraftCivButton from '.';
+import { DraftCivButton } from '.';
 
 test('renders draft civ button', () => {
   const { container: draftCivButtonContainer } = render(<DraftCivButton />);
