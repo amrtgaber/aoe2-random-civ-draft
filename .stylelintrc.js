@@ -11,5 +11,8 @@ module.exports = {
     'scss/at-rule-no-unknown': true,
     'declaration-empty-line-before': null,
     'scss/dollar-variable-empty-line-before': null,
+    'import-notation': null,
+    'no-empty-source': null,
+    'block-no-empty': null,
   },
 };

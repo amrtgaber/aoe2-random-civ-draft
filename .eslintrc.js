@@ -21,6 +21,9 @@ module.exports = {
   rules: {
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
+    'no-empty-source': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     'sort-imports': [
       'warn',
       {
