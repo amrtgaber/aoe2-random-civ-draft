@@ -1,9 +1,14 @@
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+
+import { store } from '../../../store';
 import { CivDraftResultContainer } from '.';
 
 test('renders civ draft result container', () => {
   const { container: civDraftResultContainerContainer } = render(
-    <CivDraftResultContainer />
+    <Provider store={store}>
+      <CivDraftResultContainer />
+    </Provider>
   );
   const civDraftResultContainerEl =
     civDraftResultContainerContainer.querySelector(
