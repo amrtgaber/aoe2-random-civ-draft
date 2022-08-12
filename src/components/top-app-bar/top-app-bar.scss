@@ -2,18 +2,18 @@
 
 .top-app-bar {
   display: grid;
+  grid-template-columns: 1fr 3fr;
+
   width: $full-screen-width;
   height: 72px; // TODO: needs further adjusting and turn into variable
 
   border-bottom: $thickness-tiny solid $neutral-light-border;
-
-  grid-template-columns: 1fr 3fr;
 }
 
 .logo {
-  padding: calc-padding($padding-large);
-  color: $aoe2-letter-color;
   grid-column-start: 1;
+  color: $aoe2-letter-color;
+  padding: calc-padding($padding-large);
 
   .numeral {
     color: $aoe2-numeral-color;

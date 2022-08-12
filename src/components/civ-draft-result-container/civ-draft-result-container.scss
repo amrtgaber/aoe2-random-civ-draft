@@ -2,10 +2,12 @@
 
 .civ-draft-result-container {
   display: grid;
-  align-items: center;
-  justify-content: center;
-  padding: calc-padding($padding-medium);
-  border-bottom: $thickness-tiny solid $neutral-light-border;
   grid-template-rows: 1fr 1fr;
+  justify-content: center;
   justify-items: center;
+  align-items: center;
+
+  padding: calc-padding($padding-medium);
+
+  border-bottom: $thickness-tiny solid $neutral-light-border;
 }
