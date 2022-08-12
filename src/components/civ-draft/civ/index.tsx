@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ICiv } from '../../../../api/civs-api';
+import { ICiv } from '../../../api/civs-api';
 
 import './civ.scss';
 

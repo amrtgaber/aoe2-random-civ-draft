@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useAppSelector } from '../../../../hooks';
+import { useAppSelector } from '../../../hooks';
 import { DraftResultStatus, selectDraftResult } from './draft-result-slice';
 
 import './civ-draft-result.scss';

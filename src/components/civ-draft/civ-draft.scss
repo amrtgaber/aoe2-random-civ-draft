@@ -1,8 +1,10 @@
-@import '../../../shared-styles/style-lib';
+@import '../../shared-styles/style-lib';
 
 .civ-draft {
   display: grid;
+  align-items: center;
   justify-content: center;
+  border-bottom: $thickness-tiny solid $neutral-light-border;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }

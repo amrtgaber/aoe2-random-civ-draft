@@ -1,4 +1,4 @@
-import { ICiv } from '../../../api/civs-api';
+import { ICiv } from '../../api/civs-api';
 import civsReducer, { FetchStatus } from './civs-slice';
 
 import { CivsState } from './civs-slice';

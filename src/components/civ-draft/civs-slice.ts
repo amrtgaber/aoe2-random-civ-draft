@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store';
-import { getCivs, ICiv } from '../../../api/civs-api';
+import { RootState } from '../../store';
+import { getCivs, ICiv } from '../../api/civs-api';
 
 export enum FetchStatus {
   INIT,

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchCivs, FetchStatus, selectCivs } from './civs-slice';
 import { Civ } from './civ';
 
