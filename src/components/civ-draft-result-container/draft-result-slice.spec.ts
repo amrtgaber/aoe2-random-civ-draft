@@ -1,13 +1,11 @@
-import { ICiv } from '../../../api/civs-api';
+import { ICiv } from '../../api/civs-api';
 import draftResultReducer, {
   draftCiv,
   DraftResultState,
-  DraftResultStatus,
 } from './draft-result-slice';
 
 const initialState: DraftResultState = {
   civ: null,
-  status: DraftResultStatus.INIT,
 };
 
 describe('civs reducer', () => {
@@ -23,7 +21,6 @@ describe('civs reducer', () => {
       draftResultReducer(initialState, draftCiv({ civName: 'Aztecs', id: 1 }))
     ).toEqual<DraftResultState>({
       civ,
-      status: DraftResultStatus.DRAFTED,
     });
   });
 });

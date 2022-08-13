@@ -3,9 +3,14 @@
 .civ-draft {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
   justify-content: center;
   align-items: center;
+  align-content: center;
 
-  border-bottom: $thickness-tiny solid $bg-color-light;
+  border-bottom: $border-thickness-tiny solid $bg-color-light;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

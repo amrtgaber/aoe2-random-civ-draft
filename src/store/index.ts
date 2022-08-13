@@ -1,6 +1,6 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import civsReducer from '../components/civ-draft/civs-slice';
-import draftResultReducer from '../components/civ-draft-result-container/civ-draft-result/draft-result-slice';
+import draftResultReducer from '../components/civ-draft-result-container/draft-result-slice';
 
 export const store = configureStore({
   reducer: {

@@ -25,7 +25,7 @@ a {
     color: $button-letter-color;
     background-color: $button-bg-color;
 
-    border: $thickness-tiny solid $button-letter-color;
+    border: $border-thickness-tiny solid $button-letter-color;
 
     &:hover {
       color: $button-letter-color-hover;

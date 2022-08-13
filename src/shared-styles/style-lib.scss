@@ -65,9 +65,9 @@ $vertical-margin-ludicrous: 10;
 }
 
 /* BORDERS */
-$thickness-tiny: 1px;
-$thickness-small: 2px;
-$thickness-medium: 4px;
+$border-thickness-tiny: 1px;
+$border-thickness-small: 2px;
+$border-thickness-medium: 4px;
 
 /* BREAKPOINTS */
 @mixin for-phone-only {

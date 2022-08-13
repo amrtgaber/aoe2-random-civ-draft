@@ -1,20 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store';
-import { ICiv } from '../../../api/civs-api';
-
-export enum DraftResultStatus {
-  INIT,
-  DRAFTED,
-}
+import { RootState } from '../../store';
+import { ICiv } from '../../api/civs-api';
 
 export interface DraftResultState {
   civ: ICiv | null;
-  status: DraftResultStatus;
 }
 
 const initialState: DraftResultState = {
   civ: null,
-  status: DraftResultStatus.INIT,
 };
 
 export const draftResultSlice = createSlice({
@@ -23,7 +16,6 @@ export const draftResultSlice = createSlice({
   reducers: {
     draftCiv: (state, action: PayloadAction<ICiv>) => {
       state.civ = action.payload;
-      state.status = DraftResultStatus.DRAFTED;
     },
   },
 });
