@@ -7,9 +7,12 @@ export interface ITopAppBarProps {}
 export const TopAppBar: FC<ITopAppBarProps> = (props) => {
   return (
     <div className='top-app-bar'>
-      <a className='logo' href='/'>
-        AoE<span className='numeral'>II</span> Random Civ Draft
-      </a>
+      <div className='logo-container'>
+        <a className='logo' href='/'>
+          Age of Empires <span className='numeral'>II</span> Random Civilization
+          Draft
+        </a>
+      </div>
     </div>
   );
 };

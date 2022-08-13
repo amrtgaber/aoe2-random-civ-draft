@@ -1,7 +1,8 @@
 /* GENERAL COLORS */
 $bg-color: #181a1b;
-$aoe2-letter-color: #b88a4f;
-$aoe2-numeral-color: #880101;
+$bg-color-lighter: #222426;
+$aoe2-letter-color: #d0a061;
+$aoe2-numeral-color: #a80b0b;
 
 /* FONTS */
 $font-color: #eee;
@@ -50,3 +51,34 @@ $thickness-small: 2px;
 $thickness-medium: 4px;
 
 $neutral-light-border: #444;
+
+/* BREAKPOINTS */
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
