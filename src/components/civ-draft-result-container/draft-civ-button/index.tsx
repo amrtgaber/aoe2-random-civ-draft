@@ -21,7 +21,8 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
   const handleDraftCiv = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     if (status === FetchStatus.FULFILLED) {
-      dispatch(draftCiv(calculateDraftResult()));
+      const draftResult = calculateDraftResult();
+      dispatch(draftCiv(draftResult));
     } else {
       console.log('Please wait for civ draft to load before drafting a civ.');
     }

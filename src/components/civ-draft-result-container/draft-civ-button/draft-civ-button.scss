@@ -1,6 +1,15 @@
 @import '../../../shared-styles/style-lib';
 
 .draft-civ-button {
-  width: max-content;
-  margin-top: calc-vertical-margin($vertical-margin-small);
+  @include for-phone-only {
+    width: 100px;
+    height: 20px;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 200px;
+    height: 40px;
+
+    margin-top: calc-vertical-margin($vertical-margin-small);
+  }
 }
