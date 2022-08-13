@@ -10,5 +10,6 @@ module.exports = {
     'import-notation': null,
     'no-empty-source': null,
     'block-no-empty': null,
+    'length-zero-no-unit': null,
   },
 };

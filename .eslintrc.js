@@ -24,6 +24,7 @@ module.exports = {
     'no-empty-source': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
     'sort-imports': [
       'warn',
       {
