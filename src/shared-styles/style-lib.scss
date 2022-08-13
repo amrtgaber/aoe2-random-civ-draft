@@ -1,18 +1,30 @@
 /* GENERAL COLORS */
-$bg-color: #181a1b;
-$bg-color-lighter: #222426;
+$white: #fff;
+$black: #000;
 
-$aoe2-letter-color: #d0a061;
-$aoe2-numeral-color: #a80b0b;
+$bg-color: #161616;
+$bg-color-light: #2e2e2e;
 
-$aoe2-button-letter-color: #eeb76f;
-$aoe2-button-bg-color: #7d0808;
-$aoe2-button-letter-hover-color: #f8c27c;
-$aoe2-button-bg-active-color: #500505;
-$aoe2-button-bg-hover-color: #881313;
+$primary-color-amber: #ffca28;
+$primary-color-amber-dark: #c79a00;
+$primary-color-amber-light: #fffd61;
+$primary-color-amber-text: black;
+
+$primary-color-red: #7f0000;
+$primary-color-red-dark: #4e0000;
+$primary-color-red-light: #9a0d0d;
+$primary-color-red-text: white;
+
+/* button colors */
+$button-letter-color: $primary-color-amber;
+$button-letter-color-active: $primary-color-amber-dark;
+$button-letter-color-hover: $primary-color-amber-light;
+$button-bg-color: $primary-color-red;
+$button-bg-color-active: $primary-color-red-dark;
+$button-bg-color-hover: $primary-color-red-light;
 
 /* FONTS */
-$font-color: #eee;
+$font-color: $white;
 $font-size: calc(10px + 1vmin);
 
 /* SPACING */
@@ -56,8 +68,6 @@ $vertical-margin-ludicrous: 10;
 $thickness-tiny: 1px;
 $thickness-small: 2px;
 $thickness-medium: 4px;
-
-$neutral-light-border: #444;
 
 /* BREAKPOINTS */
 @mixin for-phone-only {
