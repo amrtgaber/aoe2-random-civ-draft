@@ -23,7 +23,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
       {status === FetchStatus.LOADING
         ? 'loading...'
         : civs.map((civ) => (
-            <Civ key={civ.id} civ={civ} isInteractive={true}></Civ>
+            <Civ key={civ.id} civ={civ} isPoolable={true}></Civ>
           ))}
     </div>
   );

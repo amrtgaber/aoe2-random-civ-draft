@@ -18,7 +18,7 @@ export const CivDraftResultContainer: FC<ICivDraftResultContainerProps> = (
     <div className='civ-draft-result-container'>
       <DraftCivButton />
       {civ ? (
-        <Civ civ={civ} isInteractive={false}></Civ>
+        <Civ civ={civ} isPoolable={false}></Civ>
       ) : (
         <div>Click Draft Civ to draft a civ</div>
       )}
