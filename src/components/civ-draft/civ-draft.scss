@@ -8,7 +8,8 @@
   align-items: center;
   align-content: center;
 
-  border-bottom: $border-thickness-tiny solid $bg-color-light;
+  // border-bottom: $border-thickness-tiny solid $bg-color-light;
+  background-color: $black;
 
   @include for-phone-only {
     grid-template-columns: repeat(3, 1fr);

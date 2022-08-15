@@ -11,5 +11,7 @@ module.exports = {
     'no-empty-source': null,
     'block-no-empty': null,
     'length-zero-no-unit': null,
+    'no-descending-specificity': null,
+    'scss/double-slash-comment-empty-line-before': null,
   },
 };

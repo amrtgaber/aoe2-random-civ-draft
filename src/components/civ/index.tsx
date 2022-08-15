@@ -10,7 +10,7 @@ export interface ICivProps {
 
 export const Civ: FC<ICivProps> = (props) => {
   const name = props.civ.civName;
-  const classNames = `civ-info ${props.isPoolable ? 'is-poolable' : ''}`;
+  const classNames = `civ-info ${props.isPoolable ? 'poolable' : 'drafted'}`;
   const animated = true;
   const imageUrl = animated
     ? `/assets/images/units-animated/${name.toLowerCase()}.apng`

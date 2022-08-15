@@ -12,41 +12,46 @@
 }
 
 .civ-info {
+  position: relative;
   width: 96px;
   height: 96px;
 
   background-color: $black;
-  border: $border-thickness-small inset $primary-color-amber;
-  border-radius: 4px;
+  // border: $border-thickness-small inset $primary-color-amber;
+  border-radius: 8px;
 
-  &.is-poolable {
+  &.drafted {
+    .civ-tech-tree {
+      display: inline-block;
+    }
+  }
+
+  &.poolable {
     &:hover {
       cursor: pointer;
       transform: scale(1.1);
-      background: linear-gradient($black, rgba($white, 0.1));
+      background: linear-gradient($black, rgba($white, 0.3));
 
-      // &::after {
-      //   content: '';
-      //   background: linear-gradient($black, rgba($white, 0.5));
-      //   position: absolute;
-      //   bottom: 0px;
-      //   height: 100%;
-      //   width: 100%;
-      //   left: 0px;
-      //   opacity: 0.5;
-      //   z-index: 0;
-      // }
+      .civ-tech-tree {
+        display: inline-block;
+      }
     }
 
     &.in-pool {
-      background-color: $primary-color-red-light;
+      background: linear-gradient($black, rgba($white, 0.5));
       transform: scale(1.1);
+      border: $border-thickness-tiny inset $white;
+      // border-color: $white;
+
+      &:hover {
+        background-color: $black;
+      }
     }
   }
 }
 
 .civ-tech-tree {
-  display: inline-block;
+  display: none;
   position: absolute;
   top: 0px;
   right: 5px;
@@ -57,7 +62,6 @@
   width: 96px;
   height: 96px;
   text-align: center;
-  z-index: 2;
 }
 
 .civ-name {
@@ -69,7 +73,7 @@
   font-size: calc(10px + 0.75vmin);
   text-align: center;
   font-weight: 700;
-  z-index: 3;
+  background-color: rgba($black, 0.4);
 }
 
 .civ-image,
