@@ -39,15 +39,19 @@ export const Civ: FC<ICivProps> = (props) => {
   const mainContent = useRef<HTMLDivElement>(null);
 
   const handleAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
-    console.log('animation end event');
     const el = event.target as HTMLDivElement;
     el.classList.remove('highlight-drafted');
   };
 
-  const handleToggleInPool = (event: MouseEvent<HTMLDivElement>) => {
-    if (isDrafted) return;
+  const handleToggleInPool = (
+    event: MouseEvent<HTMLDivElement | HTMLAnchorElement>
+  ) => {
+    const el = event.target as HTMLDivElement | HTMLAnchorElement;
 
-    const el = event.target as HTMLDivElement;
+    if (isDrafted || el.tagName === 'A') {
+      return;
+    }
+
     if (isInPool) {
       el.classList.remove('in-pool');
       dispatch(removeCiv(civ));
