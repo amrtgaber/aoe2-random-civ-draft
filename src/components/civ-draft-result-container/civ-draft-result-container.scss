@@ -8,9 +8,10 @@
   justify-items: center;
   align-items: center;
 
-  height: 300px;
+  height: 310px;
 
   @include for-phone-only {
     height: 220px;
+    align-items: baseline;
   }
 }

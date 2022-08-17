@@ -25,15 +25,18 @@ a {
     color: $button-letter-color;
     background-color: $button-bg-color;
 
-    border: $border-thickness-tiny solid $button-letter-color;
+    border-radius: $border-radius-medium;
+
+    &:hover,
+    &:active {
+      border: $border-thickness-tiny solid $button-letter-color;
+    }
 
     &:hover {
-      color: $button-letter-color-hover;
       background-color: $button-bg-color-hover;
     }
 
     &:active {
-      color: $button-letter-color-active;
       background-color: $button-bg-color-active;
     }
   }

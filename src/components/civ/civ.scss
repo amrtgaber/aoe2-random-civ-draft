@@ -13,6 +13,18 @@
   margin: calc-padding($padding-small);
 }
 
+@keyframes highlight-drafted-civ {
+  from {
+    opacity: 0.1;
+    margin-bottom: -30px;
+  }
+
+  to {
+    opacity: 1;
+    margin-bottom: calc-vertical-margin($vertical-margin-medium);
+  }
+}
+
 .civ-main-content {
   position: relative;
   width: 96px;
@@ -28,6 +40,10 @@
 
     .civ-tech-tree {
       display: inline-block;
+    }
+
+    &.highlight-drafted {
+      animation: highlight-drafted-civ 500ms ease-out;
     }
   }
 
@@ -84,6 +100,8 @@
   text-align: center;
 
   background-color: rgba($black, 0.6);
+
+  border-radius: $border-radius-medium;
 }
 
 .civ-image,

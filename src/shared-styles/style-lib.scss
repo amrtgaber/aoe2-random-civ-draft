@@ -11,7 +11,7 @@ $primary-color-amber-light: #fffd61;
 $primary-color-amber-text: black;
 
 $primary-color-red: #7f0000;
-$primary-color-red-dark: #4e0000;
+$primary-color-red-dark: #5f0000;
 $primary-color-red-light: #9a0d0d;
 $primary-color-red-text: white;
 
@@ -19,6 +19,7 @@ $primary-color-red-text: white;
 $button-letter-color: $primary-color-amber;
 $button-letter-color-active: $primary-color-amber-dark;
 $button-letter-color-hover: $primary-color-amber-light;
+
 $button-bg-color: $primary-color-red;
 $button-bg-color-active: $primary-color-red-dark;
 $button-bg-color-hover: $primary-color-red-light;
@@ -93,7 +94,7 @@ $border-radius-medium: 8px;
 }
 
 @mixin for-desktop-up {
-  @media (min-width: 1200px) {
+  @media (min-width: 1300px) {
     @content;
   }
 }
