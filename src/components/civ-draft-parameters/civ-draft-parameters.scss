@@ -5,4 +5,49 @@
 }
 
 .civ-draft-parameters {
+  display: grid;
+
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+
+  @include for-phone-only {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include for-desktop-up {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+    margin: auto;
+  }
+
+  .button {
+    cursor: pointer;
+    padding: calc-padding($padding-medium);
+
+    font-size: calc(10px + 1vmin);
+    text-align: center;
+
+    color: $button-letter-color;
+    background-color: $black;
+
+    border: $border-thickness-tiny solid $primary-color-amber;
+    border-radius: $border-radius-medium;
+
+    &:hover {
+      background-color: rgba($black, 0.3);
+    }
+
+    &:active {
+      background-color: $black;
+    }
+
+    @include for-tablet-portrait-up {
+      width: 80%;
+    }
+  }
 }

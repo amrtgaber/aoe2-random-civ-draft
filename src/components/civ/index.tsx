@@ -1,8 +1,8 @@
 import { AnimationEvent, FC, MouseEvent, useEffect, useRef } from 'react';
 import { ICiv } from '../../api/civs-api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addCiv, removeCiv } from '../civ-draft-parameters/civ-pool-slice';
-import { selectDraftResult } from '../civ-draft-result-container/draft-result-slice';
+import { addCivToPool, removeCivFromPool } from '../../store/civs-slice';
+import { selectDraftResult } from '../../store/draft-result-slice';
 
 import './civ.scss';
 
@@ -54,10 +54,10 @@ export const Civ: FC<ICivProps> = (props) => {
 
     if (isInPool) {
       el.classList.remove('in-pool');
-      dispatch(removeCiv(civ));
+      dispatch(removeCivFromPool(civ));
     } else {
       el.classList.add('in-pool');
-      dispatch(addCiv(civ));
+      dispatch(addCivToPool(civ));
     }
   };
 

@@ -1,8 +1,5 @@
 import { ICiv } from '../../api/civs-api';
-import draftResultReducer, {
-  draftCiv,
-  DraftResultState,
-} from './draft-result-slice';
+import draftResultReducer, { draftCiv, DraftResultState } from '.';
 
 const initialState: DraftResultState = {
   civ: null,

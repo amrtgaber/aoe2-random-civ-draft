@@ -2,23 +2,21 @@ import { FC, MouseEvent } from 'react';
 
 import { ICiv } from '../../../api/civs-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { selectCivPool } from '../../civ-draft-parameters/civ-pool-slice';
-import { FetchStatus, selectCivs } from '../../civ-draft/civs-slice';
-import { draftCiv } from '../draft-result-slice';
+import { FetchStatus, selectCivs } from '../../../store/civs-slice';
+import { draftCiv } from '../../../store/draft-result-slice';
 
 import './draft-civ-button.scss';
 
 export interface IDraftCivButtonProps {}
 
 export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
-  const { list: allCivs, status } = useAppSelector(selectCivs);
-  const { pool } = useAppSelector(selectCivPool);
+  const { allCivs, civPool, status } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
   const calculateDraftResult = (): ICiv => {
-    const civPool = pool.length > 0 ? pool : allCivs;
-    const randomIndex = Math.floor(Math.random() * civPool.length);
-    return civPool[randomIndex];
+    const pool = civPool.length > 0 ? civPool : allCivs;
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    return pool[randomIndex];
   };
 
   const handleDraftCiv = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -32,11 +30,7 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
   };
 
   return (
-    <a
-      className='button draft-civ-button'
-      onClick={(e) => handleDraftCiv(e)}
-      href='/'
-    >
+    <a className='button draft-civ-button' onClick={(e) => handleDraftCiv(e)}>
       Draft Civ
     </a>
   );

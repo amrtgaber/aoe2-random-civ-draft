@@ -1,6 +1,31 @@
 @import '../../../shared-styles/style-lib';
 
 .draft-civ-button {
+  cursor: pointer;
+  padding: calc-padding($padding-medium);
+
+  font-size: calc(10px + 1.3vmin);
+  font-weight: 500;
+  text-align: center;
+
+  color: $button-letter-color;
+  background-color: $button-bg-color;
+
+  border-radius: $border-radius-medium;
+
+  &:hover,
+  &:active {
+    border: $border-thickness-tiny solid $button-letter-color;
+  }
+
+  &:hover {
+    background-color: $button-bg-color-hover;
+  }
+
+  &:active {
+    background-color: $button-bg-color-active;
+  }
+
   @include for-phone-only {
     width: 100px;
     height: 20px;
@@ -9,7 +34,5 @@
   @include for-tablet-portrait-up {
     width: 200px;
     height: 40px;
-
-    margin-top: calc-vertical-margin($vertical-margin-small);
   }
 }
