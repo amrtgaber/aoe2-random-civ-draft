@@ -1,0 +1,12 @@
+@import '../../shared-styles/style-lib';
+
+.separator {
+  background: url('../../../public/assets/images/game-images/seperator.png')
+    center/40% no-repeat;
+  height: 60px;
+
+  @include for-phone-only {
+    background-size: 100%;
+    height: 40px;
+  }
+}

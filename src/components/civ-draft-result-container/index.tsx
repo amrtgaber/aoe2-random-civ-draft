@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks';
 import { selectDraftResult } from '../../store/draft-result-slice';
 
 import './civ-draft-result-container.scss';
+import { Separator } from '../separator';
 
 export interface ICivDraftResultContainerProps {}
 
@@ -15,17 +16,20 @@ export const CivDraftResultContainer: FC<ICivDraftResultContainerProps> = (
   const { civ } = useAppSelector(selectDraftResult);
 
   return (
-    <div className='civ-draft-result-container'>
-      <DraftCivButton />
-      {civ ? (
-        <Civ civ={civ} isDrafted={true} isInPool={false}></Civ>
-      ) : (
-        <img
-          className='undrafted-image'
-          src='/assets/images/units-animated/random.apng'
-          alt='image of dice'
-        />
-      )}
-    </div>
+    <>
+      <Separator />
+      <div className='civ-draft-result-container'>
+        <DraftCivButton />
+        {civ ? (
+          <Civ civ={civ} isDrafted={true} isInPool={false}></Civ>
+        ) : (
+          <img
+            className='undrafted-image'
+            src='/assets/images/units-animated/random.apng'
+            alt='image of dice'
+          />
+        )}
+      </div>
+    </>
   );
 };

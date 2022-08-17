@@ -6,8 +6,7 @@
   justify-items: center;
   align-items: center;
 
-  width: $full-screen-width;
-  height: 72px; // TODO: needs further adjusting and turn into variable
+  margin-top: calc-vertical-margin($vertical-margin-medium);
 }
 
 .logo-container {
@@ -15,9 +14,20 @@
 }
 
 .logo {
+  img {
+    display: block;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
+}
+
+.app-title {
+  margin-top: calc-vertical-margin($vertical-margin-medium);
+
   color: $primary-color-amber;
 
-  .numeral {
-    color: $primary-color-red-light;
-  }
+  font-size: calc(10px + 1.2vmin);
+  font-variant: small-caps;
+  text-align: center;
 }

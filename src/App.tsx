@@ -4,6 +4,7 @@ import { CivDraft } from './components/civ-draft';
 import { CivDraftParameters } from './components/civ-draft-parameters';
 
 import './App.scss';
+import { Footer } from './components/footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <CivDraftResultContainer />
       <CivDraft />
       <CivDraftParameters />
+      <Footer />
     </div>
   );
 }

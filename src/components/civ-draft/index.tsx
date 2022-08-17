@@ -6,6 +6,7 @@ import { ICiv } from '../../api/civs-api';
 import { Civ } from '../civ';
 
 import './civ-draft.scss';
+import { Separator } from '../separator';
 
 export interface ICivDraftProps {}
 
@@ -25,6 +26,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
 
   return (
     <>
+      <Separator />
       <h2 className='civ-draft-title'>Civ Pool</h2>
       <p className='civ-draft-tip'>
         Click a civ to add or remove it from the civ pool

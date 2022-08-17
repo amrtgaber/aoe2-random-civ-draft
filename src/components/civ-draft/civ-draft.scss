@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.civ-draft-title {
+  margin-top: calc-vertical-margin($vertical-margin-small);
+}
+
 .civ-draft-tip {
   margin-top: -20px;
 }

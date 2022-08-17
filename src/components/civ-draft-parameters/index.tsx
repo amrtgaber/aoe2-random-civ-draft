@@ -6,6 +6,7 @@ import {
   selectCivs,
   updateCivPool,
 } from '../../store/civs-slice';
+import { Separator } from '../separator';
 
 import './civ-draft-parameters.scss';
 
@@ -30,6 +31,9 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
 
   return (
     <>
+      <div className='civ-draft-parameters-separator'>
+        <Separator />
+      </div>
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
       <div className='civ-draft-parameters'>
         <a
