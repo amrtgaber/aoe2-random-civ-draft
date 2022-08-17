@@ -32,6 +32,7 @@
 
   background-color: $black;
   border-radius: $border-radius-medium;
+  border: $border-thickness-tiny solid #888;
 
   &.drafted {
     margin-top: calc-vertical-margin($vertical-margin-medium);
@@ -100,7 +101,7 @@
 
   width: 100%;
 
-  font-size: calc(10px + 0.6vmin);
+  font-size: calc(10px + 0.5vmin);
   font-weight: 700;
   text-align: center;
 
