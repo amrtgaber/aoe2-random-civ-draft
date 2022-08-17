@@ -18,9 +18,13 @@ export const CivDraftResultContainer: FC<ICivDraftResultContainerProps> = (
     <div className='civ-draft-result-container'>
       <DraftCivButton />
       {civ ? (
-        <Civ civ={civ} isPoolable={false}></Civ>
+        <Civ civ={civ} isDrafted={true}></Civ>
       ) : (
-        <div>Click Draft Civ to draft a civ</div>
+        <img
+          className='undrafted-image'
+          src='/assets/images/units-animated/random.apng'
+          alt='image of dice'
+        />
       )}
     </div>
   );

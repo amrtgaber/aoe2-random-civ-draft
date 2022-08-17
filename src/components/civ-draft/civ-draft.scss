@@ -1,15 +1,22 @@
 @import '../../shared-styles/style-lib';
 
+.civ-draft-title,
+.civ-draft-tip {
+  text-align: center;
+}
+
+.civ-draft-tip {
+  margin-top: -20px;
+}
+
 .civ-draft {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
+
   justify-items: center;
   justify-content: center;
   align-items: center;
   align-content: center;
-
-  // border-bottom: $border-thickness-tiny solid $bg-color-light;
-  background-color: $black;
 
   @include for-phone-only {
     grid-template-columns: repeat(3, 1fr);

@@ -6,8 +6,11 @@ export interface ICivDraftParametersProps {}
 
 export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
   return (
-    <div className='civ-draft-parameters'>
-      Civ draft parameters will be rendered here
-    </div>
+    <>
+      <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
+      <div className='civ-draft-parameters'>
+        Civ pool settings will be rendered here
+      </div>
+    </>
   );
 };

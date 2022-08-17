@@ -3,9 +3,14 @@
 .civ-draft-result-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
+
   justify-content: center;
   justify-items: center;
   align-items: center;
 
-  padding: calc-padding($padding-medium);
+  height: 300px;
+
+  @include for-phone-only {
+    height: 220px;
+  }
 }

@@ -19,12 +19,18 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   });
 
   return (
-    <div className='civ-draft'>
-      {status === FetchStatus.LOADING
-        ? 'loading...'
-        : civs.map((civ) => (
-            <Civ key={civ.id} civ={civ} isPoolable={true}></Civ>
-          ))}
-    </div>
+    <>
+      <h2 className='civ-draft-title'>Civ Pool</h2>
+      <p className='civ-draft-tip'>
+        Click a civ to add or remove it from the selection pool
+      </p>
+      <div className='civ-draft'>
+        {status === FetchStatus.LOADING
+          ? 'loading...'
+          : civs.map((civ) => (
+              <Civ key={civ.id} civ={civ} isDrafted={false}></Civ>
+            ))}
+      </div>
+    </>
   );
 };

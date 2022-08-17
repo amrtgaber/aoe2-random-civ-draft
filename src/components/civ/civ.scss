@@ -2,25 +2,30 @@
 
 .civ-container {
   display: grid;
+
   justify-content: center;
   justify-items: center;
   align-items: center;
 
   width: 100%;
   height: 100%;
+
   margin: calc-padding($padding-small);
 }
 
-.civ-info {
+.civ-main-content {
   position: relative;
   width: 96px;
   height: 96px;
 
   background-color: $black;
-  // border: $border-thickness-small inset $primary-color-amber;
-  border-radius: 8px;
+  border-radius: $border-radius-medium;
 
   &.drafted {
+    margin-top: calc-vertical-margin($vertical-margin-medium);
+    margin-bottom: calc-vertical-margin($vertical-margin-medium);
+    transform: scale(1.3);
+
     .civ-tech-tree {
       display: inline-block;
     }
@@ -30,7 +35,7 @@
     &:hover {
       cursor: pointer;
       transform: scale(1.1);
-      background: linear-gradient($black, rgba($white, 0.3));
+      background: linear-gradient($black, rgba($primary-color-red-light, 0.3));
 
       .civ-tech-tree {
         display: inline-block;
@@ -38,10 +43,9 @@
     }
 
     &.in-pool {
-      background: linear-gradient($black, rgba($white, 0.5));
+      background: linear-gradient($black, rgba($primary-color-red-light, 0.5));
       transform: scale(1.1);
-      border: $border-thickness-tiny inset $white;
-      // border-color: $white;
+      border: $border-thickness-tiny solid $primary-color-amber;
 
       &:hover {
         background-color: $black;
@@ -52,10 +56,12 @@
 
 .civ-tech-tree {
   display: none;
+
   position: absolute;
   top: 0px;
   right: 5px;
-  color: $white;
+
+  font-size: calc(10px + 0.6vmin);
 }
 
 .civ-image {
@@ -66,14 +72,18 @@
 
 .civ-name {
   display: inline-block;
+
   position: absolute;
   left: 0px;
   bottom: 0px;
+
   width: 100%;
-  font-size: calc(10px + 0.75vmin);
-  text-align: center;
+
+  font-size: calc(10px + 0.6vmin);
   font-weight: 700;
-  background-color: rgba($black, 0.4);
+  text-align: center;
+
+  background-color: rgba($black, 0.6);
 }
 
 .civ-image,
