@@ -32,6 +32,11 @@
   }
 
   @include for-tablet-portrait-up {
+    width: 250px;
+    height: 30px;
+  }
+
+  @include for-big-desktop-up {
     width: 200px;
     height: 40px;
   }
