@@ -18,7 +18,7 @@ export const CivDraftResultContainer: FC<ICivDraftResultContainerProps> = (
     <div className='civ-draft-result-container'>
       <DraftCivButton />
       {civ ? (
-        <Civ civ={civ} isDrafted={true}></Civ>
+        <Civ civ={civ} isDrafted={true} isInPool={false}></Civ>
       ) : (
         <img
           className='undrafted-image'

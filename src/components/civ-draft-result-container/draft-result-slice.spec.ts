@@ -6,6 +6,7 @@ import draftResultReducer, {
 
 const initialState: DraftResultState = {
   civ: null,
+  draftCount: 0,
 };
 
 describe('civs reducer', () => {
@@ -21,6 +22,7 @@ describe('civs reducer', () => {
       draftResultReducer(initialState, draftCiv({ civName: 'Aztecs', id: 1 }))
     ).toEqual<DraftResultState>({
       civ,
+      draftCount: 1,
     });
   });
 });

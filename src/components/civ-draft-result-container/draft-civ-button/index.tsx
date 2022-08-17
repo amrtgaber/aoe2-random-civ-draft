@@ -2,6 +2,7 @@ import { FC, MouseEvent } from 'react';
 
 import { ICiv } from '../../../api/civs-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { selectCivPool } from '../../civ-draft-parameters/civ-pool-slice';
 import { FetchStatus, selectCivs } from '../../civ-draft/civs-slice';
 import { draftCiv } from '../draft-result-slice';
 
@@ -10,12 +11,14 @@ import './draft-civ-button.scss';
 export interface IDraftCivButtonProps {}
 
 export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
-  const { list: civs, status } = useAppSelector(selectCivs);
+  const { list: allCivs, status } = useAppSelector(selectCivs);
+  const { pool } = useAppSelector(selectCivPool);
   const dispatch = useAppDispatch();
 
   const calculateDraftResult = (): ICiv => {
-    const randomIndex = Math.floor(Math.random() * civs.length);
-    return civs[randomIndex];
+    const civPool = pool.length > 0 ? pool : allCivs;
+    const randomIndex = Math.floor(Math.random() * civPool.length);
+    return civPool[randomIndex];
   };
 
   const handleDraftCiv = (event: MouseEvent<HTMLAnchorElement>) => {

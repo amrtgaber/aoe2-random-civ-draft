@@ -4,10 +4,12 @@ import { ICiv } from '../../api/civs-api';
 
 export interface DraftResultState {
   civ: ICiv | null;
+  draftCount: number;
 }
 
 const initialState: DraftResultState = {
   civ: null,
+  draftCount: 0,
 };
 
 export const draftResultSlice = createSlice({
@@ -16,6 +18,7 @@ export const draftResultSlice = createSlice({
   reducers: {
     draftCiv: (state, action: PayloadAction<ICiv>) => {
       state.civ = action.payload;
+      state.draftCount++;
     },
   },
 });

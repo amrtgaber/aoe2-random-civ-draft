@@ -1,17 +1,40 @@
 import { AnimationEvent, FC, MouseEvent, useEffect, useRef } from 'react';
 import { ICiv } from '../../api/civs-api';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addCiv, removeCiv } from '../civ-draft-parameters/civ-pool-slice';
+import { selectDraftResult } from '../civ-draft-result-container/draft-result-slice';
 
 import './civ.scss';
 
 export interface ICivProps {
   civ: ICiv;
   isDrafted: boolean;
+  isInPool: boolean;
 }
 
 export const Civ: FC<ICivProps> = (props) => {
-  const name = props.civ.civName;
+  const { civ, isDrafted, isInPool } = props;
+  const name = civ.civName;
   const imageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
-  const classNames = props.isDrafted ? 'drafted highlight-drafted' : 'poolable';
+  const { draftCount } = useAppSelector(selectDraftResult);
+
+  const dispatch = useAppDispatch();
+
+  const getClassNames = (): string => {
+    let classNames = '';
+
+    if (isDrafted) {
+      classNames += 'drafted highlight-drafted';
+    } else {
+      classNames += 'poolable';
+    }
+
+    if (isInPool) {
+      classNames += ' in-pool';
+    }
+
+    return classNames;
+  };
 
   const mainContent = useRef<HTMLDivElement>(null);
 
@@ -22,23 +45,29 @@ export const Civ: FC<ICivProps> = (props) => {
   };
 
   const handleToggleInPool = (event: MouseEvent<HTMLDivElement>) => {
-    if (props.isDrafted) return;
+    if (isDrafted) return;
 
     const el = event.target as HTMLDivElement;
-    el.classList.toggle('in-pool');
+    if (isInPool) {
+      el.classList.remove('in-pool');
+      dispatch(removeCiv(civ));
+    } else {
+      el.classList.add('in-pool');
+      dispatch(addCiv(civ));
+    }
   };
 
   useEffect(() => {
-    if (props.isDrafted && mainContent.current) {
+    if (isDrafted && mainContent.current) {
       mainContent.current.classList.add('highlight-drafted');
     }
-  }, [props.civ]);
+  }, [draftCount]);
 
   return (
     <div className='civ-container'>
       <div
         ref={mainContent}
-        className={`civ-main-content ${classNames}`}
+        className={`civ-main-content ${getClassNames()}`}
         onClick={(e) => handleToggleInPool(e)}
         onAnimationEnd={(e) => handleAnimationEnd(e)}
       >
