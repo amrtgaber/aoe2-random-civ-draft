@@ -74,10 +74,15 @@
   display: none;
 
   position: absolute;
-  top: 0px;
+  top: 5px;
   right: 5px;
 
   font-size: calc(10px + 0.6vmin);
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .civ-image {

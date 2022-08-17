@@ -16,6 +16,7 @@ export const Civ: FC<ICivProps> = (props) => {
   const { civ, isDrafted, isInPool } = props;
   const name = civ.civName;
   const imageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
+  const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
   const { draftCount } = useAppSelector(selectDraftResult);
 
   const dispatch = useAppDispatch();
@@ -81,7 +82,7 @@ export const Civ: FC<ICivProps> = (props) => {
           target='_blank'
           rel='noreferrer'
         >
-          📜
+          <img src={techTreeImageUrl} alt={`${name} tech tree`} />
         </a>
         <img className='civ-image' src={imageUrl} alt={`${name} unique unit`} />
         <span className='civ-name'>{name}</span>
