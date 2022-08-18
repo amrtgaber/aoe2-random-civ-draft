@@ -69,7 +69,7 @@ export const Civ: FC<ICivProps> = (props) => {
   }, [draftCount]);
 
   return (
-    <div className='civ-container'>
+    <div className={`civ-container ${isDrafted ? 'drafted-container' : ''}`}>
       <div
         ref={mainContent}
         className={`civ-main-content ${getClassNames()}`}

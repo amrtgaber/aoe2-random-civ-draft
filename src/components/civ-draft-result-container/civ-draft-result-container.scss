@@ -8,10 +8,16 @@
   justify-items: center;
   align-items: center;
 
-  height: 310px;
-
   @include for-phone-only {
     height: 220px;
     align-items: baseline;
+  }
+
+  @include for-tablet-portrait-up {
+    height: 260px;
+  }
+
+  @include for-big-desktop-up {
+    height: 310px;
   }
 }
