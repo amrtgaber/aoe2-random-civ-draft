@@ -1,4 +1,5 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+
 import civsReducer from '../store/civs-slice';
 import draftResultReducer from './draft-result-slice';
 

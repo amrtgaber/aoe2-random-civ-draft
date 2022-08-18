@@ -1,0 +1,17 @@
+@import './color';
+
+$font-color: $white;
+
+$font-size-zero: 0px;
+$font-size-tiny: 4px;
+$font-size-base: 10px;
+$font-size-small: 14px;
+$font-size-medium: 18px;
+$font-size-large: 20px;
+$font-size-giant: 22px;
+$font-size-ludicrous: 26px;
+$font-size-extreme: 30px;
+
+@function calc-font-size($font-level) {
+  @return calc(#{$font-level} + 1vmin);
+}

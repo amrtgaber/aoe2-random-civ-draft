@@ -16,11 +16,44 @@ export interface ICivProps {
 export const Civ: FC<ICivProps> = (props) => {
   const { civ, isDrafted, isInPool } = props;
   const name = civ.civName;
-  const imageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
-  const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
+
+  const civEl = useRef<HTMLDivElement>(null);
 
   const { draftCount } = useAppSelector(selectDraftResult);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    animateDraftResult();
+  }, [draftCount]);
+
+  const animateDraftResult = () => {
+    if (isDrafted && civEl.current) {
+      civEl.current.classList.add('highlight-drafted');
+    }
+  };
+
+  const handleAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
+    const el = event.target as HTMLDivElement;
+    el.classList.remove('highlight-drafted');
+  };
+
+  const handleToggleInPool = (
+    event: MouseEvent<HTMLDivElement | HTMLImageElement>
+  ) => {
+    const el = event.target as HTMLDivElement | HTMLImageElement;
+
+    if (isDrafted || el instanceof HTMLImageElement) {
+      return;
+    }
+
+    if (isInPool) {
+      el.classList.remove('in-pool');
+      dispatch(removeCivFromPool(civ));
+    } else {
+      el.classList.add('in-pool');
+      dispatch(addCivToPool(civ));
+    }
+  };
 
   const getClassNames = (): string => {
     let classNames = '';
@@ -38,41 +71,13 @@ export const Civ: FC<ICivProps> = (props) => {
     return classNames;
   };
 
-  const mainContent = useRef<HTMLDivElement>(null);
-
-  const handleAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
-    const el = event.target as HTMLDivElement;
-    el.classList.remove('highlight-drafted');
-  };
-
-  const handleToggleInPool = (
-    event: MouseEvent<HTMLDivElement | HTMLAnchorElement>
-  ) => {
-    const el = event.target as HTMLDivElement | HTMLAnchorElement;
-
-    if (isDrafted || el.tagName === 'A') {
-      return;
-    }
-
-    if (isInPool) {
-      el.classList.remove('in-pool');
-      dispatch(removeCivFromPool(civ));
-    } else {
-      el.classList.add('in-pool');
-      dispatch(addCivToPool(civ));
-    }
-  };
-
-  useEffect(() => {
-    if (isDrafted && mainContent.current) {
-      mainContent.current.classList.add('highlight-drafted');
-    }
-  }, [draftCount]);
+  const unitImageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
+  const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
 
   return (
     <div className={`civ-container ${isDrafted ? 'drafted-container' : ''}`}>
       <div
-        ref={mainContent}
+        ref={civEl}
         className={`civ-main-content ${getClassNames()}`}
         onClick={(e) => handleToggleInPool(e)}
         onAnimationEnd={(e) => handleAnimationEnd(e)}
@@ -83,9 +88,13 @@ export const Civ: FC<ICivProps> = (props) => {
           target='_blank'
           rel='noreferrer'
         >
-          <img src={techTreeImageUrl} alt={`${name} tech tree`} />
+          <img src={techTreeImageUrl} alt={`${name} emblem`} />
         </a>
-        <img className='civ-image' src={imageUrl} alt={`${name} unique unit`} />
+        <img
+          className='civ-unit-image'
+          src={unitImageUrl}
+          alt={`${name} unique unit`}
+        />
         <span className='civ-name'>{name}</span>
       </div>
     </div>

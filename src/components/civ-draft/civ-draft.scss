@@ -1,4 +1,4 @@
-@import '../../shared-styles/style-lib';
+@import '../../shared-styles/lib';
 
 .civ-draft-title,
 .civ-draft-tip {
@@ -15,10 +15,7 @@
 
 .civ-draft {
   display: grid;
-
-  justify-items: center;
-  justify-content: center;
-  align-content: center;
+  @include grid-alignment-center;
 
   @include for-phone-only {
     grid-template-columns: repeat(3, 1fr);

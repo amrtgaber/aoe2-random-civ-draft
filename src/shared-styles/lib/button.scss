@@ -1,0 +1,15 @@
+@import './color';
+
+$button-letter-color: $primary-color-amber;
+$button-letter-color-active: $primary-color-amber-dark;
+$button-letter-color-hover: $primary-color-amber-light;
+
+$button-filled-bg-color: $primary-color-red;
+$button-filled-bg-color-active: $primary-color-red-dark;
+$button-filled-bg-color-hover: $primary-color-red-light;
+
+$button-outline-bg-color: $black;
+$button-outline-bg-color-active: $black;
+$button-outline-bg-color-hover: #0b0b0b;
+
+$button-border-color: $button-letter-color;

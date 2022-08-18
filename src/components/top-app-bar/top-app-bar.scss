@@ -1,10 +1,9 @@
-@import '../../shared-styles/style-lib';
+@import '../../shared-styles/lib';
 
 .top-app-bar {
   display: grid;
   grid-template-columns: 1fr;
-  justify-items: center;
-  align-items: center;
+  @include grid-alignment-center;
 
   margin-top: calc-vertical-margin($vertical-margin-medium);
 }
@@ -27,7 +26,7 @@
 
   color: $primary-color-amber;
 
-  font-size: calc(10px + 1.2vmin);
+  font-size: calc-font-size($font-size-small);
   font-variant: small-caps;
   text-align: center;
 }

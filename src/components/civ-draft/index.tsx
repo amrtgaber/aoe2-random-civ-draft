@@ -10,9 +10,9 @@ import {
 } from '../../store/civs-slice';
 import { ICiv } from '../../api/civs-api';
 import { Civ } from '../civ';
+import { Separator } from '../separator';
 
 import './civ-draft.scss';
-import { Separator } from '../separator';
 
 export interface ICivDraftProps {}
 
@@ -21,33 +21,41 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const civPoolFromParams: string[] = searchParams.get('civPool')
+  const civPoolQueryParams: string[] = searchParams.get('civPool')
     ? searchParams.get('civPool')!.split(',')
     : [];
 
-  const isInPool = (civ: ICiv): boolean => {
-    return !!civPool.find((civInPool) => civInPool.civName === civ.civName);
-  };
-
   useEffect(() => {
-    if (status === FetchStatus.FULFILLED) {
-      const newCivPool = civPool.map((civ) => civ.civName);
-      setSearchParams({ civPool: newCivPool.join(',') }, { replace: true });
-    }
-  }, [civPool]);
+    initCivDraft();
+  }, [status]);
 
-  useEffect(() => {
+  const initCivDraft = () => {
     if (status === FetchStatus.INIT) {
       dispatch(fetchCivs()).catch((error) => console.log(error));
     }
 
     if (status === FetchStatus.FULFILLED) {
       const newCivPool = allCivs.filter((civ) =>
-        civPoolFromParams.includes(civ.civName)
+        civPoolQueryParams.includes(civ.civName)
       );
       dispatch(updateCivPool(newCivPool));
     }
-  }, [status]);
+  };
+
+  useEffect(() => {
+    updateCivPoolQueryParams();
+  }, [civPool]);
+
+  const updateCivPoolQueryParams = () => {
+    if (status === FetchStatus.FULFILLED) {
+      const newCivPool = civPool.map((civ) => civ.civName);
+      setSearchParams({ civPool: newCivPool.join(',') }, { replace: true });
+    }
+  };
+
+  const isInPool = (civ: ICiv): boolean => {
+    return !!civPool.find((civInPool) => civInPool.civName === civ.civName);
+  };
 
   return (
     <>

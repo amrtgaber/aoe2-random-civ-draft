@@ -24,8 +24,6 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
     if (status === FetchStatus.FULFILLED) {
       const draftResult = calculateDraftResult();
       dispatch(draftCiv(draftResult));
-    } else {
-      console.log('Please wait for civ draft to load before drafting a civ.');
     }
   };
 

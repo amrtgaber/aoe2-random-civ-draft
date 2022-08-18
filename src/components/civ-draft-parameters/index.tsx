@@ -1,4 +1,5 @@
 import { FC, MouseEvent } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   addAllCivsToPool,

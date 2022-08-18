@@ -1,15 +1,13 @@
+@import '~sanitize.css';
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap');
-@import './style-lib';
+@import './lib';
 
 body {
   margin: 0;
   background-color: $bg-color;
-  // background: $bg-color
-  //   url('../../public/assets/images/game-images/dialog_popup.png');
-  // background-size: cover;
   color: $font-color;
   font-family: 'EB Garamond', serif;
-  font-size: $font-size;
+  font-size: calc-font-size($font-size-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,4 +1,4 @@
-@import '../../shared-styles/style-lib';
+@import '../../shared-styles/lib';
 
 .civ-draft-parameters-separator {
   margin-top: calc-vertical-margin($vertical-margin-medium);
@@ -10,21 +10,10 @@
 
 .civ-draft-parameters {
   display: grid;
-
-  justify-content: center;
-  justify-items: center;
-  align-content: center;
-
-  @include for-phone-only {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @include for-tablet-portrait-up {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+  grid-template-columns: 1fr 1fr 1fr;
+  @include grid-alignment-center;
 
   @include for-desktop-up {
-    grid-template-columns: 1fr 1fr 1fr;
     width: 80%;
     margin: auto;
   }
@@ -33,21 +22,20 @@
     cursor: pointer;
     padding: calc-padding($padding-medium);
 
-    font-size: calc(10px + 1vmin);
     text-align: center;
 
     color: $button-letter-color;
-    background-color: $black;
+    background-color: $button-outline-bg-color;
 
     border: $border-thickness-tiny solid $primary-color-amber;
     border-radius: $border-radius-medium;
 
     &:hover {
-      background-color: #0b0b0b;
+      background-color: $button-outline-bg-color-hover;
     }
 
     &:active {
-      background-color: $black;
+      background-color: $button-outline-bg-color-active;
     }
 
     @include for-tablet-portrait-up {
