@@ -1,4 +1,5 @@
 import { AnimationEvent, FC, MouseEvent, useEffect, useRef } from 'react';
+
 import { ICiv } from '../../api/civs-api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addCivToPool, removeCivFromPool } from '../../store/civs-slice';
@@ -17,8 +18,8 @@ export const Civ: FC<ICivProps> = (props) => {
   const name = civ.civName;
   const imageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
   const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
-  const { draftCount } = useAppSelector(selectDraftResult);
 
+  const { draftCount } = useAppSelector(selectDraftResult);
   const dispatch = useAppDispatch();
 
   const getClassNames = (): string => {

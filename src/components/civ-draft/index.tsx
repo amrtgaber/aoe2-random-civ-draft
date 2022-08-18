@@ -1,7 +1,13 @@
 import { FC, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCivs, FetchStatus, selectCivs } from '../../store/civs-slice';
+import {
+  fetchCivs,
+  FetchStatus,
+  selectCivs,
+  updateCivPool,
+} from '../../store/civs-slice';
 import { ICiv } from '../../api/civs-api';
 import { Civ } from '../civ';
 
@@ -14,13 +20,32 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   const { allCivs, civPool, status } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const civPoolFromParams = searchParams.get('civPool')
+    ? searchParams.get('civPool')!.split(',')
+    : [];
+
   const isInPool = (civ: ICiv): boolean => {
     return !!civPool.find((civInPool) => civInPool.civName === civ.civName);
   };
 
   useEffect(() => {
+    if (status === FetchStatus.FULFILLED) {
+      const civPoolParam = civPool.map((civ) => civ.civName);
+      setSearchParams({ civPool: civPoolParam.join(',') });
+    }
+  }, [civPool]);
+
+  useEffect(() => {
     if (status === FetchStatus.INIT) {
       dispatch(fetchCivs()).catch((error) => console.log(error));
+    }
+
+    if (status === FetchStatus.FULFILLED) {
+      const civsInPool = allCivs.filter((civ) =>
+        civPoolFromParams.includes(civ.civName)
+      );
+      dispatch(updateCivPool(civsInPool));
     }
   }, [status]);
 
