@@ -6,7 +6,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "lint:all": "npm run lint && npm run stylelint",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

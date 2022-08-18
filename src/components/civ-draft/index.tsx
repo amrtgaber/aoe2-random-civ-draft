@@ -31,8 +31,8 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
 
   useEffect(() => {
     if (status === FetchStatus.FULFILLED) {
-      const civPoolParam = civPool.map((civ) => civ.civName);
-      setSearchParams({ civPool: civPoolParam.join(',') });
+      const newCivPool = civPool.map((civ) => civ.civName);
+      setSearchParams({ civPool: newCivPool.join(',') }, { replace: true });
     }
   }, [civPool]);
 
@@ -42,10 +42,10 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
     }
 
     if (status === FetchStatus.FULFILLED) {
-      const civsInPool = allCivs.filter((civ) =>
+      const newCivPool = allCivs.filter((civ) =>
         civPoolFromParams.includes(civ.civName)
       );
-      dispatch(updateCivPool(civsInPool));
+      dispatch(updateCivPool(newCivPool));
     }
   }, [status]);
 
