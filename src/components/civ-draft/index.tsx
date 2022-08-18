@@ -21,7 +21,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const civPoolFromParams = searchParams.get('civPool')
+  const civPoolFromParams: string[] = searchParams.get('civPool')
     ? searchParams.get('civPool')!.split(',')
     : [];
 
