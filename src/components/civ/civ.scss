@@ -110,11 +110,22 @@ $civ-unit-image-size: 96px;
 
   width: 100%;
 
-  font-size: calc-font-size($font-size-tiny);
   font-weight: 700;
   text-align: center;
 
   background-color: rgba($black, 0.6);
 
   border-radius: $border-radius-medium;
+
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-base-ex);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-base);
+  }
+
+  @include for-desktop-up {
+    font-size: calc-font-size($font-size-tiny);
+  }
 }
