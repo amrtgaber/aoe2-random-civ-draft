@@ -17,17 +17,37 @@
   display: grid;
   @include grid-alignment-center;
 
-  @include for-phone-only {
-    grid-template-columns: repeat(3, 1fr);
+  &.draft-loading {
+    grid-template-rows: 1fr 2fr;
+    height: 300px;
   }
 
-  @include for-tablet-portrait-up {
-    grid-template-columns: repeat(9, 1fr);
-  }
+  &.draft-loaded {
+    @include for-phone-only {
+      grid-template-columns: repeat(3, 1fr);
+    }
 
-  @include for-big-desktop-up {
-    grid-template-columns: repeat(14, 1fr);
-    width: 80%;
-    margin: auto;
+    @include for-tablet-portrait-up {
+      grid-template-columns: repeat(9, 1fr);
+    }
+
+    @include for-big-desktop-up {
+      grid-template-columns: repeat(14, 1fr);
+      width: 80%;
+      margin: auto;
+    }
   }
+}
+
+.loading-text,
+.loading-video {
+  margin-top: -10%;
+}
+
+.loading-text {
+  font-size: calc-font-size($font-size-large);
+}
+
+.loading-video {
+  height: 200px;
 }

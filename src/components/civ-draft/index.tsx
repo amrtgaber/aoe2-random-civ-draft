@@ -64,17 +64,31 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
       <p className='civ-draft-tip'>
         Click a civ to add or remove it from the civ pool
       </p>
-      <div className='civ-draft'>
-        {status === FetchStatus.LOADING
-          ? 'loading...'
-          : allCivs.map((civ) => (
-              <Civ
-                key={civ.id}
-                civ={civ}
-                isDrafted={false}
-                isInPool={isInPool(civ)}
-              ></Civ>
-            ))}
+      <div
+        className={`civ-draft ${
+          status === FetchStatus.LOADING ? 'draft-loading' : 'draft-loaded'
+        }`}
+      >
+        {status === FetchStatus.LOADING ? (
+          <>
+            <p className='loading-text'>...loading...</p>
+            <video className='loading-video' autoPlay loop muted>
+              <source
+                src='/assets/videos/wonder-collapse/notre-dame-collapse.mp4'
+                type='video/mp4'
+              />
+            </video>
+          </>
+        ) : (
+          allCivs.map((civ) => (
+            <Civ
+              key={civ.id}
+              civ={civ}
+              isDrafted={false}
+              isInPool={isInPool(civ)}
+            ></Civ>
+          ))
+        )}
       </div>
     </>
   );
