@@ -24,7 +24,7 @@ $vertical-margin-small: 2;
 $vertical-margin-medium: 4;
 $vertical-margin-large: 6;
 $vertical-margin-giant: 8;
-$vertical-margin-ludicrous: 10;
+$vertical-margin-ludicrous: 20;
 
 @function calc-vertical-margin($vertical-margin-level) {
   @return $base-vertical-margin * $vertical-margin-level;

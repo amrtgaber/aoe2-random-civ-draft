@@ -2,8 +2,24 @@
 
 .footer {
   height: 100px;
+  margin-top: calc-vertical-margin($vertical-margin-ludicrous);
 
-  @include for-phone-only {
-    height: 50px;
+  .credits-title {
+    text-align: center;
+  }
+
+  .credits-text {
+    width: 80%;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: calc-font-size($font-size-tiny);
+    text-align: center;
+  }
+
+  a {
+    text-decoration: underline;
+    color: $primary-color-amber;
   }
 }
