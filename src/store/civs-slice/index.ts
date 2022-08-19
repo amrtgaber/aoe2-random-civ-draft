@@ -16,7 +16,7 @@ export interface CivsState {
   status: FetchStatus;
 }
 
-const initialState: CivsState = {
+export const initialState: CivsState = {
   allCivs: [] as ICiv[],
   civPool: [] as ICiv[],
   status: FetchStatus.INIT,

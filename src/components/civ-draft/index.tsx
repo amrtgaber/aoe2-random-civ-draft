@@ -31,6 +31,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
 
   const initCivDraft = () => {
     if (status === FetchStatus.INIT) {
+      /* istanbul ignore next */
       dispatch(fetchCivs()).catch((error) => console.log(error));
     }
 
