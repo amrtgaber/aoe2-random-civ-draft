@@ -27,15 +27,16 @@
     color: $button-letter-color;
     background-color: $button-outline-bg-color;
 
-    border: $border-thickness-tiny solid $primary-color-amber;
     border-radius: $border-radius-medium;
 
     &:hover {
       background-color: $button-outline-bg-color-hover;
+      border: $border-thickness-tiny solid $primary-color-amber;
     }
 
     &:active {
       background-color: $button-outline-bg-color-active;
+      border: $border-thickness-tiny solid $primary-color-amber-dark;
     }
 
     @include for-tablet-portrait-up {

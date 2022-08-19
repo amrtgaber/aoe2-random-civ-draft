@@ -2,7 +2,18 @@
 
 .footer {
   height: 100px;
-  margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+
+  @include for-phone-only {
+    margin-top: calc-vertical-margin($vertical-margin-medium);
+  }
+
+  @include for-tablet-landscape-up {
+    margin-top: calc-vertical-margin($vertical-margin-large);
+  }
+
+  @include for-big-desktop-up {
+    margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+  }
 
   .credits-title {
     text-align: center;
@@ -16,6 +27,10 @@
 
     font-size: calc-font-size($font-size-tiny);
     text-align: center;
+
+    @include for-phone-only {
+      font-size: calc-font-size($font-size-base);
+    }
   }
 
   a {

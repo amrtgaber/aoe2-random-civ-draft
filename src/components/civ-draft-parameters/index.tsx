@@ -7,6 +7,7 @@ import {
   selectCivs,
   updateCivPool,
 } from '../../store/civs-slice';
+import { SaveCivPool } from '../save-civ-pool';
 import { Separator } from '../separator';
 
 import './civ-draft-parameters.scss';
@@ -36,6 +37,7 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
         <Separator />
       </div>
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
+      <SaveCivPool />
       <div className='civ-draft-parameters'>
         <a
           className='button add-all-civs-button'

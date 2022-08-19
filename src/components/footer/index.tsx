@@ -35,8 +35,8 @@ export const Footer: FC<IFooterProps> = (props) => {
           projects.
         </p>
         <p>
-          Age of Empires © Microsoft Corporation. Age of Empires II Random
-          Civilization Draft for Age of Empires was created under
+          Age of Empires II © Microsoft Corporation. Age of Empires II Random
+          Civilization Draft for Age of Empires II was created under
           Microsoft&apos;s &quot;
           <a href='https://www.xbox.com/en-us/developers/rules'>
             Game Content Usage Rules
