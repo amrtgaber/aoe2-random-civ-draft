@@ -1,8 +1,6 @@
 @import '../../shared-styles/lib';
 
 .footer {
-  height: 100px;
-
   @include for-phone-only {
     margin-top: calc-vertical-margin($vertical-margin-medium);
   }
