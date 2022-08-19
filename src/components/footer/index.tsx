@@ -12,7 +12,7 @@ export const Footer: FC<IFooterProps> = (props) => {
       <h2 className='credits-title'>Credits</h2>
       <div className='credits-text'>
         <p>
-          Created by Amr Gaber (2022) •{' '}
+          Created by Amr Gaber (in game name: debrijja) (2022) •{' '}
           <a
             href='https://github.com/amrtgaber/aoe2-random-civ-draft/tree/main'
             target='_blank'
