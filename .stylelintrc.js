@@ -13,5 +13,6 @@ module.exports = {
     'length-zero-no-unit': null,
     'no-descending-specificity': null,
     'scss/double-slash-comment-empty-line-before': null,
+    'color-function-notation': null,
   },
 };
