@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import civsReducer, { FetchStatus } from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
 import { SaveCivPool } from '.';
+import { TEST_CIVS } from '../../shared-test-data';
 
 describe('save civ pool component', () => {
   describe('renders save civ pool', () => {
@@ -35,10 +36,7 @@ describe('save civ pool component', () => {
         },
         preloadedState: {
           civs: {
-            allCivs: [
-              { civName: 'Aztecs', id: 1 },
-              { civName: 'Vikings', id: 2 },
-            ],
+            allCivs: TEST_CIVS,
             civPool: [],
             status: FetchStatus.FULFILLED,
           },

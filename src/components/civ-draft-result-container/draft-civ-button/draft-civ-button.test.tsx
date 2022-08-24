@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import civsReducer, { FetchStatus } from '../../../store/civs-slice';
 import draftResultReducer from '../../../store/draft-result-slice';
 import { DraftCivButton } from '.';
+import { TEST_CIVS } from '../../../shared-test-data';
 
 describe('draft civ button component', () => {
   describe('renders draft civ button', () => {
@@ -35,10 +36,7 @@ describe('draft civ button component', () => {
         },
         preloadedState: {
           civs: {
-            allCivs: [
-              { civName: 'Aztecs', id: 1 },
-              { civName: 'Vikings', id: 2 },
-            ],
+            allCivs: TEST_CIVS,
             civPool: [],
             status: FetchStatus.FULFILLED,
           },
@@ -83,11 +81,8 @@ describe('draft civ button component', () => {
         },
         preloadedState: {
           civs: {
-            allCivs: [
-              { civName: 'Aztecs', id: 1 },
-              { civName: 'Vikings', id: 2 },
-            ],
-            civPool: [{ civName: 'Aztecs', id: 1 }],
+            allCivs: TEST_CIVS,
+            civPool: [TEST_CIVS[0]],
             status: FetchStatus.FULFILLED,
           },
         },

@@ -17,12 +17,54 @@ describe('civs api', () => {
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Vikings',
+            units: [
+              { id: 1, unitName: 'archer' },
+              { id: 2, unitName: 'skirmisher' },
+            ],
+            techs: [
+              { id: 1, techName: 'loom' },
+              { id: 2, techName: 'wheelbarrow' },
+            ],
+            buildings: [
+              { id: 1, buildingName: 'castle' },
+              { id: 2, buildingName: 'house' },
+            ],
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Aztecs',
+            units: [
+              { id: 1, unitName: 'archer' },
+              { id: 2, unitName: 'skirmisher' },
+            ],
+            techs: [
+              { id: 1, techName: 'loom' },
+              { id: 2, techName: 'wheelbarrow' },
+            ],
+            buildings: [
+              { id: 1, buildingName: 'castle' },
+              { id: 2, buildingName: 'house' },
+            ],
+          },
+          {
+            id: 2,
+            createdAt: '2022-08-18T20:26:39.368Z',
+            updatedAt: '2022-08-18T20:26:39.372Z',
+            civName: 'Malians',
+            units: [
+              { id: 1, unitName: 'archer' },
+              { id: 2, unitName: 'skirmisher' },
+            ],
+            techs: [
+              { id: 1, techName: 'loom' },
+              { id: 2, techName: 'wheelbarrow' },
+            ],
+            buildings: [
+              { id: 1, buildingName: 'castle' },
+              { id: 2, buildingName: 'house' },
+            ],
           },
         ])
       );
@@ -30,7 +72,8 @@ describe('civs api', () => {
       const civs = await getCivs();
 
       expect(civs[0].civName).toBe('Aztecs');
-      expect(civs[1].civName).toBe('Vikings');
+      expect(civs[1].civName).toBe('Malians');
+      expect(civs[2].civName).toBe('Vikings');
     });
   });
 });

@@ -6,6 +6,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import civsReducer, { FetchStatus } from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
 import { CivDraft } from '.';
+import { TEST_CIVS } from '../../shared-test-data';
 
 describe('civ draft component', () => {
   test('renders civ draft', () => {
@@ -37,10 +38,7 @@ describe('civ draft component', () => {
         },
         preloadedState: {
           civs: {
-            allCivs: [
-              { civName: 'Aztecs', id: 1 },
-              { civName: 'Vikings', id: 2 },
-            ],
+            allCivs: TEST_CIVS,
             civPool: [],
             status: FetchStatus.FULFILLED,
           },
@@ -68,10 +66,7 @@ describe('civ draft component', () => {
         },
         preloadedState: {
           civs: {
-            allCivs: [
-              { civName: 'Aztecs', id: 1 },
-              { civName: 'Vikings', id: 2 },
-            ],
+            allCivs: TEST_CIVS,
             civPool: [],
             status: FetchStatus.FULFILLED,
           },

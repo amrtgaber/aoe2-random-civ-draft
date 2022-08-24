@@ -1,4 +1,5 @@
 import { ICiv } from '../../api/civs-api';
+import { TEST_CIVS } from '../../shared-test-data';
 import draftResultReducer, { draftCiv, DraftResultState } from '.';
 
 const initialState: DraftResultState = {
@@ -14,9 +15,9 @@ describe('civs reducer', () => {
   });
 
   it('should handle draft civ action', () => {
-    const civ: ICiv = { civName: 'Aztecs', id: 1 };
+    const civ: ICiv = TEST_CIVS[0];
     expect(
-      draftResultReducer(initialState, draftCiv({ civName: 'Aztecs', id: 1 }))
+      draftResultReducer(initialState, draftCiv(civ))
     ).toEqual<DraftResultState>({
       civ,
       draftCount: 1,

@@ -1,8 +1,17 @@
 import { API_URL } from '.';
+import { IBuilding } from './buildings-api';
+import { ITech } from './techs-api';
+import { IUnit } from './units-api';
 
 export interface ICiv {
-  civName: string;
   id: number;
+  civName: string;
+}
+
+export interface ICivTechTree extends ICiv {
+  units: IUnit[];
+  techs: ITech[];
+  buildings: IBuilding[];
 }
 
 export async function getCivs(): Promise<ICiv[]> {
@@ -11,8 +20,8 @@ export async function getCivs(): Promise<ICiv[]> {
 
   return civs
     .map((civ) => {
-      const { civName, id } = civ;
-      return { civName, id };
+      const { id, civName } = civ;
+      return { id, civName };
     })
     .sort((civ1, civ2) => (civ1.civName > civ2.civName ? 1 : -1));
 }
