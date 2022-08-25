@@ -204,7 +204,7 @@ describe('units reducer', () => {
       const endState = unitsReducer(startState, clearFilters());
 
       expect(endState.unitAllFilter.length).toBe(0);
-      expect(endState.unitAllFilter.length).toBe(0);
+      expect(endState.unitAnyFilter.length).toBe(0);
     });
   });
 });

@@ -204,7 +204,7 @@ describe('techs reducer', () => {
       const endState = techsReducer(startState, clearFilters());
 
       expect(endState.techAllFilter.length).toBe(0);
-      expect(endState.techAllFilter.length).toBe(0);
+      expect(endState.techAnyFilter.length).toBe(0);
     });
   });
 });

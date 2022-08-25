@@ -204,7 +204,7 @@ describe('buildings reducer', () => {
       const endState = buildingsReducer(startState, clearFilters());
 
       expect(endState.buildingAllFilter.length).toBe(0);
-      expect(endState.buildingAllFilter.length).toBe(0);
+      expect(endState.buildingAnyFilter.length).toBe(0);
     });
   });
 });
