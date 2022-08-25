@@ -8,22 +8,18 @@ import { IBuildingTechTree } from '../../api/buildings-api';
 
 export interface DraftParametersState {
   filteredCivPool: ICiv[];
-  unitAllFilter: IUnitTechTree[];
-  unitAnyFilter: IUnitTechTree[];
-  techAllFilter: ITechTechTree[];
-  techAnyFilter: ITechTechTree[];
-  buildingAllFilter: IBuildingTechTree[];
-  buildingAnyFilter: IBuildingTechTree[];
+  unitsFilter: IUnitTechTree[];
+  techsFilter: ITechTechTree[];
+  buildingsFilter: IBuildingTechTree[];
+  isAllFilter: boolean;
 }
 
 export const initialState: DraftParametersState = {
   filteredCivPool: [] as ICiv[],
-  unitAllFilter: [] as IUnitTechTree[],
-  unitAnyFilter: [] as IUnitTechTree[],
-  techAllFilter: [] as ITechTechTree[],
-  techAnyFilter: [] as ITechTechTree[],
-  buildingAllFilter: [] as IBuildingTechTree[],
-  buildingAnyFilter: [] as IBuildingTechTree[],
+  unitsFilter: [] as IUnitTechTree[],
+  techsFilter: [] as ITechTechTree[],
+  buildingsFilter: [] as IBuildingTechTree[],
+  isAllFilter: true,
 };
 
 function filterCivPool(filters: DraftParametersState): ICiv[] {
@@ -34,85 +30,53 @@ export const draftParametersSlice = createSlice({
   name: 'draftParameters',
   initialState,
   reducers: {
-    updateUnitAllFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
-      state.unitAllFilter = action.payload;
+    updateUnitsFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
+      state.unitsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
-    clearUnitAllFilter: (state) => {
-      state.unitAllFilter = [];
+    clearUnitsFilter: (state) => {
+      state.unitsFilter = [];
       state.filteredCivPool = filterCivPool(state);
     },
-    updateUnitAnyFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
-      state.unitAnyFilter = action.payload;
+    updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
+      state.techsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
-    clearUnitAnyFilter: (state) => {
-      state.unitAnyFilter = [];
+    clearTechsFilter: (state) => {
+      state.techsFilter = [];
       state.filteredCivPool = filterCivPool(state);
     },
-    updateTechAllFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techAllFilter = action.payload;
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearTechAllFilter: (state) => {
-      state.techAllFilter = [];
-      state.filteredCivPool = filterCivPool(state);
-    },
-    updateTechAnyFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techAnyFilter = action.payload;
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearTechAnyFilter: (state) => {
-      state.techAnyFilter = [];
-      state.filteredCivPool = filterCivPool(state);
-    },
-    updateBuildingAllFilter: (
+    updateBuildingsFilter: (
       state,
       action: PayloadAction<IBuildingTechTree[]>
     ) => {
-      state.buildingAllFilter = action.payload;
+      state.buildingsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
-    clearBuildingAllFilter: (state) => {
-      state.buildingAllFilter = [];
-      state.filteredCivPool = filterCivPool(state);
-    },
-    updateBuildingAnyFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree[]>
-    ) => {
-      state.buildingAnyFilter = action.payload;
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearBuildingAnyFilter: (state) => {
-      state.buildingAnyFilter = [];
+    clearBuildingsFilter: (state) => {
+      state.buildingsFilter = [];
       state.filteredCivPool = filterCivPool(state);
     },
     clearFilters: (state) => {
-      state.unitAllFilter = [];
-      state.unitAnyFilter = [];
-      state.techAllFilter = [];
-      state.techAnyFilter = [];
-      state.buildingAllFilter = [];
-      state.buildingAnyFilter = [];
+      state.unitsFilter = [];
+      state.techsFilter = [];
+      state.buildingsFilter = [];
       state.filteredCivPool = [];
+    },
+    updateIsAllFilter: (state, action: PayloadAction<boolean>) => {
+      state.isAllFilter = action.payload;
+      state.filteredCivPool = filterCivPool(state);
     },
   },
 });
 
 export const {
-  updateUnitAllFilter,
-  clearUnitAllFilter,
-  updateUnitAnyFilter,
-  clearUnitAnyFilter,
-  updateTechAllFilter,
-  clearTechAllFilter,
-  updateTechAnyFilter,
-  clearTechAnyFilter,
-  updateBuildingAllFilter,
-  clearBuildingAllFilter,
-  updateBuildingAnyFilter,
-  clearBuildingAnyFilter,
+  updateUnitsFilter,
+  clearUnitsFilter,
+  updateTechsFilter,
+  clearTechsFilter,
+  updateBuildingsFilter,
+  clearBuildingsFilter,
   clearFilters,
 } = draftParametersSlice.actions;
 

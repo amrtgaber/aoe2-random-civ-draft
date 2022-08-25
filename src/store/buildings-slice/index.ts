@@ -12,15 +12,13 @@ export enum FetchStatus {
 
 export interface BuildingsState {
   allBuildings: IBuildingTechTree[];
-  buildingAllFilter: IBuildingTechTree[];
-  buildingAnyFilter: IBuildingTechTree[];
+  buildingsFilter: IBuildingTechTree[];
   status: FetchStatus;
 }
 
 export const initialState: BuildingsState = {
   allBuildings: [] as IBuildingTechTree[],
-  buildingAllFilter: [] as IBuildingTechTree[],
-  buildingAnyFilter: [] as IBuildingTechTree[],
+  buildingsFilter: [] as IBuildingTechTree[],
   status: FetchStatus.INIT,
 };
 
@@ -33,55 +31,25 @@ export const buildingsSlice = createSlice({
   name: 'buildings',
   initialState,
   reducers: {
-    addBuildingToAllFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree>
-    ) => {
-      state.buildingAllFilter.push(action.payload);
+    addBuildingToFilter: (state, action: PayloadAction<IBuildingTechTree>) => {
+      state.buildingsFilter.push(action.payload);
     },
-    removeBuildingFromAllFilter: (
+    removeBuildingFromFilter: (
       state,
       action: PayloadAction<IBuildingTechTree>
     ) => {
-      state.buildingAllFilter = state.buildingAllFilter.filter(
+      state.buildingsFilter = state.buildingsFilter.filter(
         (building) => building.buildingName !== action.payload.buildingName
       );
     },
-    updateBuildingAllFilter: (
+    updateBuildingsFilter: (
       state,
       action: PayloadAction<IBuildingTechTree[]>
     ) => {
-      state.buildingAllFilter = action.payload;
+      state.buildingsFilter = action.payload;
     },
-    clearAllFilter: (state) => {
-      state.buildingAllFilter = [];
-    },
-    addBuildingToAnyFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree>
-    ) => {
-      state.buildingAnyFilter.push(action.payload);
-    },
-    removeBuildingFromAnyFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree>
-    ) => {
-      state.buildingAnyFilter = state.buildingAnyFilter.filter(
-        (building) => building.buildingName !== action.payload.buildingName
-      );
-    },
-    updateBuildingAnyFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree[]>
-    ) => {
-      state.buildingAnyFilter = action.payload;
-    },
-    clearAnyFilter: (state) => {
-      state.buildingAnyFilter = [];
-    },
-    clearFilters: (state) => {
-      state.buildingAllFilter = [];
-      state.buildingAnyFilter = [];
+    clearBuildingsFilter: (state) => {
+      state.buildingsFilter = [];
     },
   },
   extraReducers: (builder) => {
@@ -103,15 +71,10 @@ export const buildingsSlice = createSlice({
 });
 
 export const {
-  addBuildingToAllFilter,
-  removeBuildingFromAllFilter,
-  updateBuildingAllFilter,
-  clearAllFilter,
-  addBuildingToAnyFilter,
-  removeBuildingFromAnyFilter,
-  updateBuildingAnyFilter,
-  clearAnyFilter,
-  clearFilters,
+  addBuildingToFilter,
+  removeBuildingFromFilter,
+  updateBuildingsFilter,
+  clearBuildingsFilter,
 } = buildingsSlice.actions;
 
 export const selectBuildings = (state: RootState) => state.buildings;

@@ -6,21 +6,15 @@ import { ITechTechTree } from '../../api/techs-api';
 import { IBuildingTechTree } from '../../api/buildings-api';
 
 import draftParametersReducer, {
-  clearBuildingAllFilter,
-  clearBuildingAnyFilter,
+  clearBuildingsFilter,
   clearFilters,
-  clearTechAllFilter,
-  clearTechAnyFilter,
-  clearUnitAllFilter,
-  clearUnitAnyFilter,
+  clearTechsFilter,
+  clearUnitsFilter,
   DraftParametersState,
   initialState,
-  updateBuildingAllFilter,
-  updateBuildingAnyFilter,
-  updateTechAllFilter,
-  updateTechAnyFilter,
-  updateUnitAllFilter,
-  updateUnitAnyFilter,
+  updateBuildingsFilter,
+  updateTechsFilter,
+  updateUnitsFilter,
 } from '.';
 
 const TEST_CIVS: ICiv[] = [
@@ -103,16 +97,14 @@ describe('draftParameters reducer', () => {
     ).toEqual<DraftParametersState>(initialState);
   });
 
-  describe('draftParameter unit filters', () => {
-    it('should update unit all filter', () => {
+  describe('draftParameter units filter', () => {
+    it('should update units filter', () => {
       const startState: DraftParametersState = {
         filteredCivPool: [],
-        unitAllFilter: [],
-        unitAnyFilter: [],
-        techAllFilter: [],
-        techAnyFilter: [],
-        buildingAllFilter: [],
-        buildingAnyFilter: [],
+        unitsFilter: [],
+        techsFilter: [],
+        buildingsFilter: [],
+        isAllFilter: true,
       };
 
       const units = [...TEST_UNITS];
@@ -122,10 +114,10 @@ describe('draftParameters reducer', () => {
 
       const endState = draftParametersReducer(
         startState,
-        updateUnitAllFilter([units[0], units[1]])
+        updateUnitsFilter([units[0], units[1]])
       );
 
-      expect(endState.unitAllFilter.length).toBe(2);
+      expect(endState.unitsFilter.length).toBe(2);
       // expect(endState.filteredCivPool.length).toBe(1);
       // expect(endState.filteredCivPool[0].id).toBe(1);
     });
@@ -135,23 +127,18 @@ describe('draftParameters reducer', () => {
     it('should clear all the filters', () => {
       const startState: DraftParametersState = {
         filteredCivPool: TEST_CIVS,
-        unitAllFilter: [TEST_UNITS[0]],
-        unitAnyFilter: [TEST_UNITS[1]],
-        techAllFilter: [TEST_TECHS[0]],
-        techAnyFilter: [TEST_TECHS[1]],
-        buildingAllFilter: [TEST_BUILDINGS[0]],
-        buildingAnyFilter: [TEST_BUILDINGS[1]],
+        unitsFilter: [TEST_UNITS[0]],
+        techsFilter: [TEST_TECHS[0]],
+        buildingsFilter: [TEST_BUILDINGS[0]],
+        isAllFilter: true,
       };
 
       const endState = draftParametersReducer(startState, clearFilters());
 
       expect(endState.filteredCivPool.length).toBe(0);
-      expect(endState.unitAllFilter.length).toBe(0);
-      expect(endState.unitAnyFilter.length).toBe(0);
-      expect(endState.techAllFilter.length).toBe(0);
-      expect(endState.techAnyFilter.length).toBe(0);
-      expect(endState.buildingAllFilter.length).toBe(0);
-      expect(endState.buildingAnyFilter.length).toBe(0);
+      expect(endState.unitsFilter.length).toBe(0);
+      expect(endState.techsFilter.length).toBe(0);
+      expect(endState.buildingsFilter.length).toBe(0);
     });
   });
 });

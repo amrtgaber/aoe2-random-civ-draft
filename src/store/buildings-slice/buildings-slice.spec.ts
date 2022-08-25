@@ -4,30 +4,25 @@ import fetchMock from 'jest-fetch-mock';
 import { TEST_CIVS } from '../../shared-test-data';
 import { IBuildingTechTree } from '../../api/buildings-api';
 import buildingsReducer, {
-  addBuildingToAllFilter,
-  addBuildingToAnyFilter,
+  addBuildingToFilter,
   BuildingsState,
-  clearAllFilter,
-  clearAnyFilter,
-  clearFilters,
+  clearBuildingsFilter,
   fetchBuildings,
   FetchStatus,
   initialState,
-  removeBuildingFromAllFilter,
-  removeBuildingFromAnyFilter,
-  updateBuildingAllFilter,
-  updateBuildingAnyFilter,
+  removeBuildingFromFilter,
+  updateBuildingsFilter,
 } from '.';
 
 const TEST_BUILDINGS: IBuildingTechTree[] = [
   {
     id: 1,
-    buildingName: 'house',
+    buildingName: 'castle',
     civs: TEST_CIVS,
   },
   {
     id: 2,
-    buildingName: 'castle',
+    buildingName: 'house',
     civs: TEST_CIVS,
   },
 ];
@@ -66,145 +61,62 @@ describe('buildings reducer', () => {
     });
   });
 
-  describe('building all filter', () => {
-    it('should add building to all filter', () => {
+  describe('building filter', () => {
+    it('should add building to filter', () => {
       const startState: BuildingsState = {
         allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: [],
+        buildingsFilter: [],
         status: FetchStatus.FULFILLED,
       };
 
       const endState = buildingsReducer(
         startState,
-        addBuildingToAllFilter(TEST_BUILDINGS[0])
+        addBuildingToFilter(TEST_BUILDINGS[0])
       );
 
-      expect(endState.buildingAllFilter.length).toBe(1);
+      expect(endState.buildingsFilter.length).toBe(1);
     });
 
-    it('should remove building from all filter', () => {
+    it('should remove building from filter', () => {
       const startState: BuildingsState = {
         allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [TEST_BUILDINGS[0]],
-        buildingAnyFilter: [],
+        buildingsFilter: [TEST_BUILDINGS[0]],
         status: FetchStatus.FULFILLED,
       };
 
       const endState = buildingsReducer(
         startState,
-        removeBuildingFromAllFilter(TEST_BUILDINGS[0])
+        removeBuildingFromFilter(TEST_BUILDINGS[0])
       );
 
-      expect(endState.buildingAllFilter.length).toBe(0);
+      expect(endState.buildingsFilter.length).toBe(0);
     });
 
-    it('should update all filter', () => {
+    it('should update filter', () => {
       const startState: BuildingsState = {
         allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: [],
+        buildingsFilter: [],
         status: FetchStatus.FULFILLED,
       };
 
       const endState = buildingsReducer(
         startState,
-        updateBuildingAllFilter(TEST_BUILDINGS)
+        updateBuildingsFilter(TEST_BUILDINGS)
       );
 
-      expect(endState.buildingAllFilter.length).toBe(2);
+      expect(endState.buildingsFilter.length).toBe(2);
     });
 
-    it('should clear all filter', () => {
+    it('should clear building filter', () => {
       const startState: BuildingsState = {
         allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: TEST_BUILDINGS,
-        buildingAnyFilter: [],
+        buildingsFilter: TEST_BUILDINGS,
         status: FetchStatus.FULFILLED,
       };
 
-      const endState = buildingsReducer(startState, clearAllFilter());
+      const endState = buildingsReducer(startState, clearBuildingsFilter());
 
-      expect(endState.buildingAllFilter.length).toBe(0);
-    });
-  });
-
-  describe('building any filter', () => {
-    it('should add building to any filter', () => {
-      const startState: BuildingsState = {
-        allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: [],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = buildingsReducer(
-        startState,
-        addBuildingToAnyFilter(TEST_BUILDINGS[0])
-      );
-
-      expect(endState.buildingAnyFilter.length).toBe(1);
-    });
-
-    it('should remove building from any filter', () => {
-      const startState: BuildingsState = {
-        allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: [TEST_BUILDINGS[0]],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = buildingsReducer(
-        startState,
-        removeBuildingFromAnyFilter(TEST_BUILDINGS[0])
-      );
-
-      expect(endState.buildingAnyFilter.length).toBe(0);
-    });
-
-    it('should update any filter', () => {
-      const startState: BuildingsState = {
-        allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: [],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = buildingsReducer(
-        startState,
-        updateBuildingAnyFilter(TEST_BUILDINGS)
-      );
-
-      expect(endState.buildingAnyFilter.length).toBe(2);
-    });
-
-    it('should clear any filter', () => {
-      const startState: BuildingsState = {
-        allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [],
-        buildingAnyFilter: TEST_BUILDINGS,
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = buildingsReducer(startState, clearAnyFilter());
-
-      expect(endState.buildingAnyFilter.length).toBe(0);
-    });
-  });
-
-  describe('clear filters', () => {
-    it('should clear all the filters', () => {
-      const startState: BuildingsState = {
-        allBuildings: TEST_BUILDINGS,
-        buildingAllFilter: [TEST_BUILDINGS[0]],
-        buildingAnyFilter: [TEST_BUILDINGS[1]],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = buildingsReducer(startState, clearFilters());
-
-      expect(endState.buildingAllFilter.length).toBe(0);
-      expect(endState.buildingAnyFilter.length).toBe(0);
+      expect(endState.buildingsFilter.length).toBe(0);
     });
   });
 });

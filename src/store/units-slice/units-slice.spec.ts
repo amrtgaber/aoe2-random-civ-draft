@@ -4,19 +4,14 @@ import fetchMock from 'jest-fetch-mock';
 import { TEST_CIVS } from '../../shared-test-data';
 import { IUnitTechTree } from '../../api/units-api';
 import unitsReducer, {
-  addUnitToAllFilter,
-  addUnitToAnyFilter,
-  clearAllFilter,
-  clearAnyFilter,
-  clearFilters,
+  addUnitToFilter,
+  clearUnitsFilter,
   FetchStatus,
   fetchUnits,
   initialState,
-  removeUnitFromAllFilter,
-  removeUnitFromAnyFilter,
+  removeUnitFromFilter,
   UnitsState,
-  updateUnitAllFilter,
-  updateUnitAnyFilter,
+  updateUnitsFilter,
 } from '.';
 
 const TEST_UNITS: IUnitTechTree[] = [
@@ -66,145 +61,56 @@ describe('units reducer', () => {
     });
   });
 
-  describe('unit all filter', () => {
-    it('should add unit to all filter', () => {
+  describe('unit filter', () => {
+    it('should add unit to filter', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: [],
+        unitsFilter: [],
+        status: FetchStatus.FULFILLED,
+      };
+
+      const endState = unitsReducer(startState, addUnitToFilter(TEST_UNITS[0]));
+
+      expect(endState.unitsFilter.length).toBe(1);
+    });
+
+    it('should remove unit from filter', () => {
+      const startState: UnitsState = {
+        allUnits: TEST_UNITS,
+        unitsFilter: [TEST_UNITS[0]],
         status: FetchStatus.FULFILLED,
       };
 
       const endState = unitsReducer(
         startState,
-        addUnitToAllFilter(TEST_UNITS[0])
+        removeUnitFromFilter(TEST_UNITS[0])
       );
 
-      expect(endState.unitAllFilter.length).toBe(1);
+      expect(endState.unitsFilter.length).toBe(0);
     });
 
-    it('should remove unit from all filter', () => {
+    it('should update filter', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
-        unitAllFilter: [TEST_UNITS[0]],
-        unitAnyFilter: [],
+        unitsFilter: [],
         status: FetchStatus.FULFILLED,
       };
 
-      const endState = unitsReducer(
-        startState,
-        removeUnitFromAllFilter(TEST_UNITS[0])
-      );
+      const endState = unitsReducer(startState, updateUnitsFilter(TEST_UNITS));
 
-      expect(endState.unitAllFilter.length).toBe(0);
+      expect(endState.unitsFilter.length).toBe(2);
     });
 
-    it('should update all filter', () => {
+    it('should clear unit filter', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: [],
+        unitsFilter: TEST_UNITS,
         status: FetchStatus.FULFILLED,
       };
 
-      const endState = unitsReducer(
-        startState,
-        updateUnitAllFilter(TEST_UNITS)
-      );
+      const endState = unitsReducer(startState, clearUnitsFilter());
 
-      expect(endState.unitAllFilter.length).toBe(2);
-    });
-
-    it('should clear all filter', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: TEST_UNITS,
-        unitAnyFilter: [],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(startState, clearAllFilter());
-
-      expect(endState.unitAllFilter.length).toBe(0);
-    });
-  });
-
-  describe('unit any filter', () => {
-    it('should add unit to any filter', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: [],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(
-        startState,
-        addUnitToAnyFilter(TEST_UNITS[0])
-      );
-
-      expect(endState.unitAnyFilter.length).toBe(1);
-    });
-
-    it('should remove unit from any filter', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: [TEST_UNITS[0]],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(
-        startState,
-        removeUnitFromAnyFilter(TEST_UNITS[0])
-      );
-
-      expect(endState.unitAnyFilter.length).toBe(0);
-    });
-
-    it('should update any filter', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: [],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(
-        startState,
-        updateUnitAnyFilter(TEST_UNITS)
-      );
-
-      expect(endState.unitAnyFilter.length).toBe(2);
-    });
-
-    it('should clear any filter', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: [],
-        unitAnyFilter: TEST_UNITS,
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(startState, clearAnyFilter());
-
-      expect(endState.unitAnyFilter.length).toBe(0);
-    });
-  });
-
-  describe('clear filters', () => {
-    it('should clear all the filters', () => {
-      const startState: UnitsState = {
-        allUnits: TEST_UNITS,
-        unitAllFilter: [TEST_UNITS[0]],
-        unitAnyFilter: [TEST_UNITS[1]],
-        status: FetchStatus.FULFILLED,
-      };
-
-      const endState = unitsReducer(startState, clearFilters());
-
-      expect(endState.unitAllFilter.length).toBe(0);
-      expect(endState.unitAnyFilter.length).toBe(0);
+      expect(endState.unitsFilter.length).toBe(0);
     });
   });
 });

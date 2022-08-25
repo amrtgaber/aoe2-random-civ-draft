@@ -12,15 +12,13 @@ export enum FetchStatus {
 
 export interface UnitsState {
   allUnits: IUnitTechTree[];
-  unitAllFilter: IUnitTechTree[];
-  unitAnyFilter: IUnitTechTree[];
+  unitsFilter: IUnitTechTree[];
   status: FetchStatus;
 }
 
 export const initialState: UnitsState = {
   allUnits: [] as IUnitTechTree[],
-  unitAllFilter: [] as IUnitTechTree[],
-  unitAnyFilter: [] as IUnitTechTree[],
+  unitsFilter: [] as IUnitTechTree[],
   status: FetchStatus.INIT,
 };
 
@@ -33,37 +31,19 @@ export const unitsSlice = createSlice({
   name: 'units',
   initialState,
   reducers: {
-    addUnitToAllFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitAllFilter.push(action.payload);
+    addUnitToFilter: (state, action: PayloadAction<IUnitTechTree>) => {
+      state.unitsFilter.push(action.payload);
     },
-    removeUnitFromAllFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitAllFilter = state.unitAllFilter.filter(
+    removeUnitFromFilter: (state, action: PayloadAction<IUnitTechTree>) => {
+      state.unitsFilter = state.unitsFilter.filter(
         (unit) => unit.unitName !== action.payload.unitName
       );
     },
-    updateUnitAllFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
-      state.unitAllFilter = action.payload;
+    updateUnitsFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
+      state.unitsFilter = action.payload;
     },
-    clearAllFilter: (state) => {
-      state.unitAllFilter = [];
-    },
-    addUnitToAnyFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitAnyFilter.push(action.payload);
-    },
-    removeUnitFromAnyFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitAnyFilter = state.unitAnyFilter.filter(
-        (unit) => unit.unitName !== action.payload.unitName
-      );
-    },
-    updateUnitAnyFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
-      state.unitAnyFilter = action.payload;
-    },
-    clearAnyFilter: (state) => {
-      state.unitAnyFilter = [];
-    },
-    clearFilters: (state) => {
-      state.unitAllFilter = [];
-      state.unitAnyFilter = [];
+    clearUnitsFilter: (state) => {
+      state.unitsFilter = [];
     },
   },
   extraReducers: (builder) => {
@@ -85,15 +65,10 @@ export const unitsSlice = createSlice({
 });
 
 export const {
-  addUnitToAllFilter,
-  removeUnitFromAllFilter,
-  updateUnitAllFilter,
-  clearAllFilter,
-  addUnitToAnyFilter,
-  removeUnitFromAnyFilter,
-  updateUnitAnyFilter,
-  clearAnyFilter,
-  clearFilters,
+  addUnitToFilter,
+  removeUnitFromFilter,
+  updateUnitsFilter,
+  clearUnitsFilter,
 } = unitsSlice.actions;
 
 export const selectUnits = (state: RootState) => state.units;

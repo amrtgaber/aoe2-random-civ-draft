@@ -12,15 +12,13 @@ export enum FetchStatus {
 
 export interface TechsState {
   allTechs: ITechTechTree[];
-  techAllFilter: ITechTechTree[];
-  techAnyFilter: ITechTechTree[];
+  techsFilter: ITechTechTree[];
   status: FetchStatus;
 }
 
 export const initialState: TechsState = {
   allTechs: [] as ITechTechTree[],
-  techAllFilter: [] as ITechTechTree[],
-  techAnyFilter: [] as ITechTechTree[],
+  techsFilter: [] as ITechTechTree[],
   status: FetchStatus.INIT,
 };
 
@@ -33,37 +31,19 @@ export const techsSlice = createSlice({
   name: 'techs',
   initialState,
   reducers: {
-    addTechToAllFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techAllFilter.push(action.payload);
+    addTechToFilter: (state, action: PayloadAction<ITechTechTree>) => {
+      state.techsFilter.push(action.payload);
     },
-    removeTechFromAllFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techAllFilter = state.techAllFilter.filter(
+    removeTechFromFilter: (state, action: PayloadAction<ITechTechTree>) => {
+      state.techsFilter = state.techsFilter.filter(
         (tech) => tech.techName !== action.payload.techName
       );
     },
-    updateTechAllFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techAllFilter = action.payload;
+    updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
+      state.techsFilter = action.payload;
     },
-    clearAllFilter: (state) => {
-      state.techAllFilter = [];
-    },
-    addTechToAnyFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techAnyFilter.push(action.payload);
-    },
-    removeTechFromAnyFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techAnyFilter = state.techAnyFilter.filter(
-        (tech) => tech.techName !== action.payload.techName
-      );
-    },
-    updateTechAnyFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techAnyFilter = action.payload;
-    },
-    clearAnyFilter: (state) => {
-      state.techAnyFilter = [];
-    },
-    clearFilters: (state) => {
-      state.techAllFilter = [];
-      state.techAnyFilter = [];
+    clearTechsFilter: (state) => {
+      state.techsFilter = [];
     },
   },
   extraReducers: (builder) => {
@@ -85,15 +65,10 @@ export const techsSlice = createSlice({
 });
 
 export const {
-  addTechToAllFilter,
-  removeTechFromAllFilter,
-  updateTechAllFilter,
-  clearAllFilter,
-  addTechToAnyFilter,
-  removeTechFromAnyFilter,
-  updateTechAnyFilter,
-  clearAnyFilter,
-  clearFilters,
+  addTechToFilter,
+  removeTechFromFilter,
+  updateTechsFilter,
+  clearTechsFilter,
 } = techsSlice.actions;
 
 export const selectTechs = (state: RootState) => state.techs;
