@@ -5,13 +5,19 @@ import { ICiv } from '../../api/civs-api';
 import { IUnitTechTree } from '../../api/units-api';
 import { ITechTechTree } from '../../api/techs-api';
 import { IBuildingTechTree } from '../../api/buildings-api';
+import { filterCivPool } from './filter-civ-pool';
+
+export enum FilterMode {
+  HAS_ALL,
+  HAS_ANY,
+}
 
 export interface DraftParametersState {
   filteredCivPool: ICiv[];
   unitsFilter: IUnitTechTree[];
   techsFilter: ITechTechTree[];
   buildingsFilter: IBuildingTechTree[];
-  isAllFilter: boolean;
+  filterMode: FilterMode;
 }
 
 export const initialState: DraftParametersState = {
@@ -19,12 +25,8 @@ export const initialState: DraftParametersState = {
   unitsFilter: [] as IUnitTechTree[],
   techsFilter: [] as ITechTechTree[],
   buildingsFilter: [] as IBuildingTechTree[],
-  isAllFilter: true,
+  filterMode: FilterMode.HAS_ALL,
 };
-
-function filterCivPool(filters: DraftParametersState): ICiv[] {
-  return [] as ICiv[];
-}
 
 export const draftParametersSlice = createSlice({
   name: 'draftParameters',
@@ -63,8 +65,8 @@ export const draftParametersSlice = createSlice({
       state.buildingsFilter = [];
       state.filteredCivPool = [];
     },
-    updateIsAllFilter: (state, action: PayloadAction<boolean>) => {
-      state.isAllFilter = action.payload;
+    updateFilterMode: (state, action: PayloadAction<FilterMode>) => {
+      state.filterMode = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
   },
@@ -78,6 +80,7 @@ export const {
   updateBuildingsFilter,
   clearBuildingsFilter,
   clearFilters,
+  updateFilterMode,
 } = draftParametersSlice.actions;
 
 export const selectDraftParameters = (state: RootState) =>
