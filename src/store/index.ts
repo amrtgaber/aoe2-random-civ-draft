@@ -5,6 +5,7 @@ import civsReducer from '../store/civs-slice';
 import unitsReducer from '../store/units-slice';
 import techsReducer from '../store/techs-slice';
 import buildingsReducer from '../store/buildings-slice';
+import draftParametersReducer from '../store/draft-parameters-slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     units: unitsReducer,
     techs: techsReducer,
     buildings: buildingsReducer,
+    draftParameters: draftParametersReducer,
   },
 });
 
