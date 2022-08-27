@@ -9,24 +9,12 @@
   }
 
   .save-civ-pool-button {
-    cursor: pointer;
-    padding: calc-padding($padding-medium);
+    @include button-base(filled);
 
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-
-    color: $button-letter-color;
-    background-color: $button-filled-bg-color;
-
-    border-radius: $border-radius-medium;
-
-    &:hover {
-      background-color: $button-filled-bg-color-hover;
-    }
 
     &:active {
-      background-color: $button-filled-bg-color-active;
       border: $border-thickness-tiny solid $primary-color-amber-dark;
     }
 

@@ -1,0 +1,19 @@
+@import './color';
+
+$shadow-color: $black;
+
+$box-shadow-small: 10px;
+$box-shadow-large: 20px;
+$box-shadow-hover: 30px;
+
+@mixin box-shadow($size: small) {
+  @if $size == large {
+    box-shadow: 0px 0px $box-shadow-large 0px $shadow-color;
+  } @else {
+    box-shadow: 0px 0px $box-shadow-small 0px $shadow-color;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px $box-shadow-hover 0px $shadow-color;
+  }
+}

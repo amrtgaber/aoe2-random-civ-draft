@@ -19,24 +19,7 @@
   }
 
   .button {
-    cursor: pointer;
-    padding: calc-padding($padding-medium);
-
-    text-align: center;
-
-    color: $button-letter-color;
-    background-color: $button-outline-bg-color;
-
-    border-radius: $border-radius-medium;
-
-    &:hover {
-      background-color: $button-outline-bg-color-hover;
-    }
-
-    &:active {
-      background-color: $button-outline-bg-color-active;
-      border: $border-thickness-tiny solid $primary-color-amber-dark;
-    }
+    @include button-base;
 
     @include for-tablet-portrait-up {
       width: 80%;

@@ -29,6 +29,8 @@
 $civ-unit-image-size: 96px;
 
 .civ-main-content {
+  @include box-shadow;
+
   position: relative;
   width: $civ-unit-image-size;
   height: $civ-unit-image-size;
@@ -61,6 +63,7 @@ $civ-unit-image-size: 96px;
     &.in-pool {
       border: $border-thickness-tiny solid $primary-color-amber;
       background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-50);
+      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color;
       transform: scale(1.1);
 
       &:hover {
