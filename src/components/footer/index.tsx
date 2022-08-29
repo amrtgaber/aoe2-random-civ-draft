@@ -12,7 +12,15 @@ export const Footer: FC<IFooterProps> = (props) => {
       <h2 className='credits-title'>Credits</h2>
       <div className='credits-text'>
         <p>
-          Created by Amr Gaber (in game name: debrijja) (2022) •{' '}
+          Created by Amr Gaber (aoe2.net profile:{' '}
+          <a
+            href='https://aoe2.net/#profile-2235709'
+            target='_blank'
+            rel='noreferrer'
+          >
+            debrijja
+          </a>
+          ) (2022) •{' '}
           <a
             href='https://github.com/amrtgaber/aoe2-random-civ-draft/tree/main'
             target='_blank'
