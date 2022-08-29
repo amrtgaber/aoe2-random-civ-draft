@@ -1,8 +1,6 @@
 @import '../../shared-styles/lib';
 
 .footer {
-  margin-bottom: calc-vertical-margin($vertical-margin-giant);
-
   @include for-phone-only {
     margin-top: calc-vertical-margin($vertical-margin-medium);
   }
@@ -12,7 +10,7 @@
   }
 
   @include for-big-desktop-up {
-    margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+    margin-top: calc-vertical-margin($vertical-margin-giant);
   }
 
   .credits-title {

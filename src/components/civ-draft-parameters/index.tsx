@@ -11,6 +11,7 @@ import { SaveCivPool } from '../save-civ-pool';
 import { Separator } from '../separator';
 
 import './civ-draft-parameters.scss';
+import { TechTreeFilter } from './tech-tree-filter';
 
 export interface ICivDraftParametersProps {}
 
@@ -52,6 +53,7 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
           Invert selection
         </a>
       </div>
+      <TechTreeFilter />
     </>
   );
 };

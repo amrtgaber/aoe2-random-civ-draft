@@ -4,19 +4,25 @@ import { Provider } from 'react-redux';
 
 import civsReducer from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
+import unitsReducer from '../../store/units-slice';
+import techsReducer from '../../store/techs-slice';
+import buildingsReducer from '../../store/buildings-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
 import { TEST_CIVS } from '../../shared-test-data';
 import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {
+  const reducer = {
+    civs: civsReducer,
+    draftResult: draftResultReducer,
+    units: unitsReducer,
+    techs: techsReducer,
+    buildings: buildingsReducer,
+  };
+
   describe('renders civ draft parameters', () => {
     test('renders civ draft parameters', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+      const store = configureStore({ reducer });
 
       const { container: civDraftParameters } = render(
         <Provider store={store}>
@@ -35,10 +41,7 @@ describe('civ draft parameters component', () => {
   describe('add all, remove, and invert selection', () => {
     test('adds all civs to pool', () => {
       const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
+        reducer,
         preloadedState: {
           civs: {
             allCivs: TEST_CIVS,
@@ -61,10 +64,7 @@ describe('civ draft parameters component', () => {
 
     test('removes all civs from pool', () => {
       const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
+        reducer,
         preloadedState: {
           civs: {
             allCivs: TEST_CIVS,
@@ -87,10 +87,7 @@ describe('civ draft parameters component', () => {
 
     test('inverts civ pool selection', () => {
       const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
+        reducer,
         preloadedState: {
           civs: {
             allCivs: TEST_CIVS,
