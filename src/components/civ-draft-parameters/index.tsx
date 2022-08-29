@@ -18,15 +18,9 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
   const { allCivs, civPool } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
-  const handleRemoveAllCivs = (e: MouseEvent<HTMLAnchorElement>) => {
-    dispatch(removeAllCivsFromPool());
-  };
-
-  const handleAddAllCivs = (e: MouseEvent<HTMLAnchorElement>) => {
-    dispatch(addAllCivsToPool());
-  };
-
-  const handleInvertPool = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleRemoveAllCivs = () => dispatch(removeAllCivsFromPool());
+  const handleAddAllCivs = () => dispatch(addAllCivsToPool());
+  const handleInvertPool = () => {
     const invertedSelection = allCivs.filter((civ) => !civPool.includes(civ));
     dispatch(updateCivPool(invertedSelection));
   };
@@ -38,22 +32,22 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
       </div>
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
       <SaveCivPool />
-      <div className='civ-draft-parameters'>
+      <div className='civ-draft-parameters civ-pool-buttons'>
         <a
           className='button add-all-civs-button'
-          onClick={(e) => handleAddAllCivs(e)}
+          onClick={(e) => handleAddAllCivs()}
         >
           Add all civs
         </a>
         <a
           className='button reset-pool-button'
-          onClick={(e) => handleRemoveAllCivs(e)}
+          onClick={(e) => handleRemoveAllCivs()}
         >
           Reset
         </a>
         <a
           className='button invert-pool-button'
-          onClick={(e) => handleInvertPool(e)}
+          onClick={(e) => handleInvertPool()}
         >
           Invert selection
         </a>

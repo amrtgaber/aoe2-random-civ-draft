@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-.civ-draft-parameters {
+.civ-draft-parameters.civ-pool-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   @include grid-alignment-center;

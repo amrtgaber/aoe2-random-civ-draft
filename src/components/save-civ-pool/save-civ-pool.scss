@@ -1,18 +1,16 @@
 @import '../../shared-styles/lib';
 
 .save-civ-pool-button-container {
-  height: 130px;
-  text-align: center;
+  // really strange vertical space rendering in this component
+  // it clips the top border by 13px, not sure why, but padding
+  // works better than margin which is completely ignored
+  padding-top: calc-padding($padding-medium);
+  padding-bottom: calc-padding($padding-large);
 
-  @include for-phone-only {
-    height: 75px;
-  }
+  text-align: center;
 
   .save-civ-pool-button {
     @include button-base(filled);
-
-    margin-left: auto;
-    margin-right: auto;
 
     &:active {
       border: $border-thickness-tiny solid $primary-color-amber-dark;
@@ -21,5 +19,10 @@
     @include for-tablet-portrait-up {
       width: 80%;
     }
+  }
+
+  .save-civ-pool-tip {
+    padding: calc-padding($padding-medium);
+    padding-top: calc-padding($padding-giant);
   }
 }

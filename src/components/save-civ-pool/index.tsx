@@ -19,9 +19,9 @@ export const SaveCivPool: FC<ISaveCivPoolProps> = (props) => {
       >
         Save current civ pool
       </a>
-      <p className='save-civ-pool-tip'>
+      <div className='save-civ-pool-tip'>
         Clicking save copies the url to the clipboard
-      </p>
+      </div>
     </div>
   );
 };
