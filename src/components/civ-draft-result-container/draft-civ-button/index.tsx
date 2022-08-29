@@ -2,15 +2,16 @@ import { FC, MouseEvent } from 'react';
 
 import { ICiv } from '../../../api/civs-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { FetchStatus, selectCivs } from '../../../store/civs-slice';
+import { selectCivs } from '../../../store/civs-slice';
 import { draftCiv } from '../../../store/draft-result-slice';
+import { FetchStatus } from '../../../store/shared-store-utils';
 
 import './draft-civ-button.scss';
 
 export interface IDraftCivButtonProps {}
 
 export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
-  const { allCivs, civPool, status } = useAppSelector(selectCivs);
+  const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
   const calculateDraftResult = (): ICiv => {
@@ -21,7 +22,7 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
 
   const handleDraftCiv = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    if (status === FetchStatus.FULFILLED) {
+    if (civsStatus === FetchStatus.FULFILLED) {
       const draftResult = calculateDraftResult();
       dispatch(draftCiv(draftResult));
     }

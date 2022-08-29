@@ -2,10 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer, { FetchStatus } from '../../store/civs-slice';
+import civsReducer from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
-import { CivDraftParameters } from '.';
+import { FetchStatus } from '../../store/shared-store-utils';
 import { TEST_CIVS } from '../../shared-test-data';
+import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {
   describe('renders civ draft parameters', () => {
@@ -42,7 +43,7 @@ describe('civ draft parameters component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: [],
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });
@@ -68,7 +69,7 @@ describe('civ draft parameters component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: TEST_CIVS,
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });
@@ -94,7 +95,7 @@ describe('civ draft parameters component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: [TEST_CIVS[0]],
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });

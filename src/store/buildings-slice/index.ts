@@ -2,24 +2,18 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 import { getBuildings, IBuildingTechTree } from '../../api/buildings-api';
-
-export enum FetchStatus {
-  INIT,
-  LOADING,
-  FAILED,
-  FULFILLED,
-}
+import { FetchStatus } from '../shared-store-utils';
 
 export interface BuildingsState {
   allBuildings: IBuildingTechTree[];
   buildingsFilter: IBuildingTechTree[];
-  status: FetchStatus;
+  buildingsStatus: FetchStatus;
 }
 
 export const initialState: BuildingsState = {
   allBuildings: [] as IBuildingTechTree[],
   buildingsFilter: [] as IBuildingTechTree[],
-  status: FetchStatus.INIT,
+  buildingsStatus: FetchStatus.INIT,
 };
 
 export const fetchBuildings = createAsyncThunk(
@@ -55,17 +49,17 @@ export const buildingsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBuildings.pending, (state) => {
-        state.status = FetchStatus.LOADING;
+        state.buildingsStatus = FetchStatus.LOADING;
       })
       .addCase(
         fetchBuildings.fulfilled,
         (state, action: PayloadAction<IBuildingTechTree[]>) => {
           state.allBuildings = action.payload;
-          state.status = FetchStatus.FULFILLED;
+          state.buildingsStatus = FetchStatus.FULFILLED;
         }
       )
       .addCase(fetchBuildings.rejected, (state) => {
-        state.status = FetchStatus.FAILED;
+        state.buildingsStatus = FetchStatus.FAILED;
       });
   },
 });

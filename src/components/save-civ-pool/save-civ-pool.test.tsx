@@ -2,10 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer, { FetchStatus } from '../../store/civs-slice';
+import civsReducer from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
-import { SaveCivPool } from '.';
+import { FetchStatus } from '../../store/shared-store-utils';
 import { TEST_CIVS } from '../../shared-test-data';
+import { SaveCivPool } from '.';
 
 describe('save civ pool component', () => {
   describe('renders save civ pool', () => {
@@ -38,7 +39,7 @@ describe('save civ pool component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: [],
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });

@@ -2,24 +2,18 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 import { getTechs, ITechTechTree } from '../../api/techs-api';
-
-export enum FetchStatus {
-  INIT,
-  LOADING,
-  FAILED,
-  FULFILLED,
-}
+import { FetchStatus } from '../shared-store-utils';
 
 export interface TechsState {
   allTechs: ITechTechTree[];
   techsFilter: ITechTechTree[];
-  status: FetchStatus;
+  techsStatus: FetchStatus;
 }
 
 export const initialState: TechsState = {
   allTechs: [] as ITechTechTree[],
   techsFilter: [] as ITechTechTree[],
-  status: FetchStatus.INIT,
+  techsStatus: FetchStatus.INIT,
 };
 
 export const fetchTechs = createAsyncThunk(
@@ -49,17 +43,17 @@ export const techsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTechs.pending, (state) => {
-        state.status = FetchStatus.LOADING;
+        state.techsStatus = FetchStatus.LOADING;
       })
       .addCase(
         fetchTechs.fulfilled,
         (state, action: PayloadAction<ITechTechTree[]>) => {
           state.allTechs = action.payload;
-          state.status = FetchStatus.FULFILLED;
+          state.techsStatus = FetchStatus.FULFILLED;
         }
       )
       .addCase(fetchTechs.rejected, (state) => {
-        state.status = FetchStatus.FAILED;
+        state.techsStatus = FetchStatus.FAILED;
       });
   },
 });

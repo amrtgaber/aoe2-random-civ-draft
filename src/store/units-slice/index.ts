@@ -2,24 +2,18 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 import { getUnits, IUnitTechTree } from '../../api/units-api';
-
-export enum FetchStatus {
-  INIT,
-  LOADING,
-  FAILED,
-  FULFILLED,
-}
+import { FetchStatus } from '../shared-store-utils';
 
 export interface UnitsState {
   allUnits: IUnitTechTree[];
   unitsFilter: IUnitTechTree[];
-  status: FetchStatus;
+  unitsStatus: FetchStatus;
 }
 
 export const initialState: UnitsState = {
   allUnits: [] as IUnitTechTree[],
   unitsFilter: [] as IUnitTechTree[],
-  status: FetchStatus.INIT,
+  unitsStatus: FetchStatus.INIT,
 };
 
 export const fetchUnits = createAsyncThunk(
@@ -49,17 +43,17 @@ export const unitsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchUnits.pending, (state) => {
-        state.status = FetchStatus.LOADING;
+        state.unitsStatus = FetchStatus.LOADING;
       })
       .addCase(
         fetchUnits.fulfilled,
         (state, action: PayloadAction<IUnitTechTree[]>) => {
           state.allUnits = action.payload;
-          state.status = FetchStatus.FULFILLED;
+          state.unitsStatus = FetchStatus.FULFILLED;
         }
       )
       .addCase(fetchUnits.rejected, (state) => {
-        state.status = FetchStatus.FAILED;
+        state.unitsStatus = FetchStatus.FAILED;
       });
   },
 });

@@ -3,10 +3,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
-import civsReducer, { FetchStatus } from '../../store/civs-slice';
+import civsReducer from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
-import { CivDraft } from '.';
+import { FetchStatus } from '../../store/shared-store-utils';
 import { TEST_CIVS } from '../../shared-test-data';
+import { CivDraft } from '.';
 
 describe('civ draft component', () => {
   test('renders civ draft', () => {
@@ -40,7 +41,7 @@ describe('civ draft component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: [],
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });
@@ -68,7 +69,7 @@ describe('civ draft component', () => {
           civs: {
             allCivs: TEST_CIVS,
             civPool: [],
-            status: FetchStatus.FULFILLED,
+            civsStatus: FetchStatus.FULFILLED,
           },
         },
       });

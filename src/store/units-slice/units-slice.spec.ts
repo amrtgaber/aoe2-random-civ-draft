@@ -3,10 +3,10 @@ import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
 import { IUnitTechTree } from '../../api/units-api';
+import { FetchStatus } from '../shared-store-utils';
 import unitsReducer, {
   addUnitToFilter,
   clearUnitsFilter,
-  FetchStatus,
   fetchUnits,
   initialState,
   removeUnitFromFilter,
@@ -50,14 +50,14 @@ describe('units reducer', () => {
 
       await store.dispatch(fetchUnits());
 
-      expect(store.getState().status).toBe(FetchStatus.FULFILLED);
+      expect(store.getState().unitsStatus).toBe(FetchStatus.FULFILLED);
       expect(store.getState().allUnits.length).toBe(2);
     });
 
-    it('should set status to failed if request is rejected', async () => {
+    it('should set unitsStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchUnits());
-      expect(store.getState().status).toBe(FetchStatus.FAILED);
+      expect(store.getState().unitsStatus).toBe(FetchStatus.FAILED);
     });
   });
 
@@ -66,7 +66,7 @@ describe('units reducer', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
         unitsFilter: [],
-        status: FetchStatus.FULFILLED,
+        unitsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = unitsReducer(startState, addUnitToFilter(TEST_UNITS[0]));
@@ -78,7 +78,7 @@ describe('units reducer', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
         unitsFilter: [TEST_UNITS[0]],
-        status: FetchStatus.FULFILLED,
+        unitsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = unitsReducer(
@@ -93,7 +93,7 @@ describe('units reducer', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
         unitsFilter: [],
-        status: FetchStatus.FULFILLED,
+        unitsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = unitsReducer(startState, updateUnitsFilter(TEST_UNITS));
@@ -105,7 +105,7 @@ describe('units reducer', () => {
       const startState: UnitsState = {
         allUnits: TEST_UNITS,
         unitsFilter: TEST_UNITS,
-        status: FetchStatus.FULFILLED,
+        unitsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = unitsReducer(startState, clearUnitsFilter());

@@ -2,24 +2,18 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 import { getCivs, ICiv } from '../../api/civs-api';
-
-export enum FetchStatus {
-  INIT,
-  LOADING,
-  FAILED,
-  FULFILLED,
-}
+import { FetchStatus } from '../shared-store-utils';
 
 export interface CivsState {
   allCivs: ICiv[];
   civPool: ICiv[];
-  status: FetchStatus;
+  civsStatus: FetchStatus;
 }
 
 export const initialState: CivsState = {
   allCivs: [] as ICiv[],
   civPool: [] as ICiv[],
-  status: FetchStatus.INIT,
+  civsStatus: FetchStatus.INIT,
 };
 
 export const fetchCivs = createAsyncThunk(
@@ -52,14 +46,14 @@ export const civsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCivs.pending, (state) => {
-        state.status = FetchStatus.LOADING;
+        state.civsStatus = FetchStatus.LOADING;
       })
       .addCase(fetchCivs.fulfilled, (state, action: PayloadAction<ICiv[]>) => {
         state.allCivs = action.payload;
-        state.status = FetchStatus.FULFILLED;
+        state.civsStatus = FetchStatus.FULFILLED;
       })
       .addCase(fetchCivs.rejected, (state) => {
-        state.status = FetchStatus.FAILED;
+        state.civsStatus = FetchStatus.FAILED;
       });
   },
 });

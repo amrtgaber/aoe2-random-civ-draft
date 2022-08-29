@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
+import { FetchStatus } from '../shared-store-utils';
 import civsReducer, {
   addAllCivsToPool,
   addCivToPool,
   CivsState,
   fetchCivs,
-  FetchStatus,
   initialState,
   removeAllCivsFromPool,
   removeCivFromPool,
@@ -37,14 +37,14 @@ describe('civs reducer', () => {
 
       await store.dispatch(fetchCivs());
 
-      expect(store.getState().status).toBe(FetchStatus.FULFILLED);
+      expect(store.getState().civsStatus).toBe(FetchStatus.FULFILLED);
       expect(store.getState().allCivs.length).toBe(2);
     });
 
-    it('should set status to failed if request is rejected', async () => {
+    it('should set civsStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchCivs());
-      expect(store.getState().status).toBe(FetchStatus.FAILED);
+      expect(store.getState().civsStatus).toBe(FetchStatus.FAILED);
     });
   });
 
@@ -53,7 +53,7 @@ describe('civs reducer', () => {
       const startState: CivsState = {
         allCivs: TEST_CIVS,
         civPool: [],
-        status: FetchStatus.FULFILLED,
+        civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, addAllCivsToPool());
@@ -66,7 +66,7 @@ describe('civs reducer', () => {
       const startState: CivsState = {
         allCivs: TEST_CIVS,
         civPool: [],
-        status: FetchStatus.FULFILLED,
+        civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, addCivToPool(TEST_CIVS[0]));
@@ -81,7 +81,7 @@ describe('civs reducer', () => {
       const startState: CivsState = {
         allCivs: [],
         civPool: TEST_CIVS,
-        status: FetchStatus.FULFILLED,
+        civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, removeAllCivsFromPool());
@@ -94,7 +94,7 @@ describe('civs reducer', () => {
       const startState: CivsState = {
         allCivs: [],
         civPool: TEST_CIVS,
-        status: FetchStatus.FULFILLED,
+        civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, removeCivFromPool(TEST_CIVS[0]));
@@ -109,7 +109,7 @@ describe('civs reducer', () => {
       const startState: CivsState = {
         allCivs: [],
         civPool: [],
-        status: FetchStatus.FULFILLED,
+        civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, updateCivPool(TEST_CIVS));

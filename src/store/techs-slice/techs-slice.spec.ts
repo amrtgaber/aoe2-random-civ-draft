@@ -3,10 +3,10 @@ import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
 import { ITechTechTree } from '../../api/techs-api';
+import { FetchStatus } from '../shared-store-utils';
 import techsReducer, {
   addTechToFilter,
   clearTechsFilter,
-  FetchStatus,
   fetchTechs,
   initialState,
   removeTechFromFilter,
@@ -50,14 +50,14 @@ describe('techs reducer', () => {
 
       await store.dispatch(fetchTechs());
 
-      expect(store.getState().status).toBe(FetchStatus.FULFILLED);
+      expect(store.getState().techsStatus).toBe(FetchStatus.FULFILLED);
       expect(store.getState().allTechs.length).toBe(2);
     });
 
-    it('should set status to failed if request is rejected', async () => {
+    it('should set techsStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchTechs());
-      expect(store.getState().status).toBe(FetchStatus.FAILED);
+      expect(store.getState().techsStatus).toBe(FetchStatus.FAILED);
     });
   });
 
@@ -66,7 +66,7 @@ describe('techs reducer', () => {
       const startState: TechsState = {
         allTechs: TEST_TECHS,
         techsFilter: [],
-        status: FetchStatus.FULFILLED,
+        techsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = techsReducer(startState, addTechToFilter(TEST_TECHS[0]));
@@ -78,7 +78,7 @@ describe('techs reducer', () => {
       const startState: TechsState = {
         allTechs: TEST_TECHS,
         techsFilter: [TEST_TECHS[0]],
-        status: FetchStatus.FULFILLED,
+        techsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = techsReducer(
@@ -93,7 +93,7 @@ describe('techs reducer', () => {
       const startState: TechsState = {
         allTechs: TEST_TECHS,
         techsFilter: [],
-        status: FetchStatus.FULFILLED,
+        techsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = techsReducer(startState, updateTechsFilter(TEST_TECHS));
@@ -105,7 +105,7 @@ describe('techs reducer', () => {
       const startState: TechsState = {
         allTechs: TEST_TECHS,
         techsFilter: TEST_TECHS,
-        status: FetchStatus.FULFILLED,
+        techsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = techsReducer(startState, clearTechsFilter());

@@ -2,12 +2,8 @@ import { FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  fetchCivs,
-  FetchStatus,
-  selectCivs,
-  updateCivPool,
-} from '../../store/civs-slice';
+import { fetchCivs, selectCivs, updateCivPool } from '../../store/civs-slice';
+import { FetchStatus } from '../../store/shared-store-utils';
 import { ICiv } from '../../api/civs-api';
 import { Civ } from '../civ';
 import { Separator } from '../separator';
@@ -17,7 +13,7 @@ import './civ-draft.scss';
 export interface ICivDraftProps {}
 
 export const CivDraft: FC<ICivDraftProps> = (props) => {
-  const { allCivs, civPool, status } = useAppSelector(selectCivs);
+  const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,15 +23,15 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
 
   useEffect(() => {
     initCivDraft();
-  }, [status]);
+  }, [civsStatus]);
 
   const initCivDraft = () => {
-    if (status === FetchStatus.INIT) {
+    if (civsStatus === FetchStatus.INIT) {
       /* istanbul ignore next */
       dispatch(fetchCivs()).catch((error) => console.log(error));
     }
 
-    if (status === FetchStatus.FULFILLED) {
+    if (civsStatus === FetchStatus.FULFILLED) {
       const newCivPool = allCivs.filter((civ) =>
         civPoolQueryParams.includes(civ.civName)
       );
@@ -48,7 +44,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   }, [civPool]);
 
   const updateCivPoolQueryParams = () => {
-    if (status === FetchStatus.FULFILLED) {
+    if (civsStatus === FetchStatus.FULFILLED) {
       const newCivPool = civPool.map((civ) => civ.civName);
       setSearchParams({ civPool: newCivPool.join(',') }, { replace: true });
     }
@@ -67,10 +63,10 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
       </p>
       <div
         className={`civ-draft ${
-          status === FetchStatus.LOADING ? 'draft-loading' : 'draft-loaded'
+          civsStatus === FetchStatus.LOADING ? 'draft-loading' : 'draft-loaded'
         }`}
       >
-        {status === FetchStatus.LOADING ? (
+        {civsStatus === FetchStatus.LOADING ? (
           <>
             <p className='loading-text'>...loading...</p>
             <video className='loading-video' autoPlay loop muted>
