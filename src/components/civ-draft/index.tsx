@@ -9,6 +9,7 @@ import { Civ } from '../civ';
 import { Separator } from '../separator';
 
 import './civ-draft.scss';
+import { Loading } from '../loading';
 
 export interface ICivDraftProps {}
 
@@ -67,15 +68,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
         }`}
       >
         {civsStatus === FetchStatus.LOADING ? (
-          <>
-            <p className='loading-text'>...loading...</p>
-            <video className='loading-video' autoPlay loop muted>
-              <source
-                src='/assets/videos/wonder-collapse/notre-dame-collapse.mp4'
-                type='video/mp4'
-              />
-            </video>
-          </>
+          <Loading componentName='Civ Pool' />
         ) : (
           allCivs.map((civ) => (
             <Civ
