@@ -13,7 +13,6 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
-
   const dispatch = useAppDispatch();
 
   return (
