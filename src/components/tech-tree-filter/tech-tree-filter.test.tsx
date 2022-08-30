@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import unitsReducer from '../../../store/units-slice';
-import techsReducer from '../../../store/techs-slice';
-import buildingsReducer from '../../../store/buildings-slice';
+import unitsReducer from '../../store/units-slice';
+import techsReducer from '../../store/techs-slice';
+import buildingsReducer from '../../store/buildings-slice';
 import { TechTreeFilter } from '.';
 
 describe('tech tree filter component', () => {

@@ -1,0 +1,42 @@
+@import '../../shared-styles/lib';
+
+.tech-tree-filter-container {
+  margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+}
+
+.tech-tree-filter-panels-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: $border-thickness-tiny solid $grey;
+  border-radius: $border-radius-medium;
+}
+
+.tech-tree-filter-settings-panel {
+  display: grid;
+  grid-template-rows: 100px 8fr 1fr;
+
+  border-right: $border-thickness-tiny solid $grey;
+}
+
+.tech-tree-filter-items-panel {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.tech-tree-filter-selected-items {
+  border-bottom: $border-thickness-tiny solid $grey;
+}
+
+.tech-tree-filter-selected-items,
+.tech-tree-filter-unselected-items {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  @include grid-alignment-center;
+
+  text-align: center;
+}
