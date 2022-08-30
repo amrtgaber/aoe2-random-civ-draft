@@ -1,8 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { ICiv } from '../../api/civs-api';
+import { IUnitTechTree } from '../../api/units-api';
+import { ITechTechTree } from '../../api/techs-api';
+import { IBuildingTechTree } from '../../api/buildings-api';
 
 import draftParametersReducer, {
+  addBuildingToFilter,
+  addTechToFilter,
+  addUnitToFilter,
   clearBuildingsFilter,
   clearFilters,
   clearTechsFilter,
@@ -10,6 +16,9 @@ import draftParametersReducer, {
   DraftParametersState,
   FilterMode,
   initialState,
+  removeBuildingFromFilter,
+  removeTechFromFilter,
+  removeUnitFromFilter,
   updateBuildingsFilter,
   updateFilterMode,
   updateTechsFilter,
@@ -31,6 +40,45 @@ const TEST_CIVS: ICiv[] = [
   },
 ];
 
+const TEST_UNITS: IUnitTechTree[] = [
+  {
+    id: 1,
+    unitName: 'archer',
+    civs: TEST_CIVS,
+  },
+  {
+    id: 2,
+    unitName: 'skirmisher',
+    civs: TEST_CIVS,
+  },
+];
+
+const TEST_TECHS: ITechTechTree[] = [
+  {
+    id: 1,
+    techName: 'loom',
+    civs: TEST_CIVS,
+  },
+  {
+    id: 2,
+    techName: 'wheelbarrow',
+    civs: TEST_CIVS,
+  },
+];
+
+const TEST_BUILDINGS: IBuildingTechTree[] = [
+  {
+    id: 1,
+    buildingName: 'castle',
+    civs: TEST_CIVS,
+  },
+  {
+    id: 2,
+    buildingName: 'house',
+    civs: TEST_CIVS,
+  },
+];
+
 const store = configureStore({
   reducer: draftParametersReducer,
 });
@@ -43,6 +91,43 @@ describe('draftParameters reducer', () => {
   });
 
   describe('draftParameter units filter', () => {
+    it('should add unit to filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [],
+        techsFilter: [],
+        buildingsFilter: [],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        addUnitToFilter(TEST_UNITS[0])
+      );
+
+      expect(endState.unitsFilter.length).toBe(1);
+      expect(endState.filteredCivPool.length).toBe(1);
+      expect(endState.filteredCivPool[0].id).toBe(1);
+    });
+
+    it('should remove unit from filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [TEST_UNITS[0]],
+        techsFilter: [],
+        buildingsFilter: [],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        removeUnitFromFilter(TEST_UNITS[0])
+      );
+
+      expect(endState.unitsFilter.length).toBe(0);
+      expect(endState.filteredCivPool.length).toBe(0);
+    });
+
     it('should update units filter', () => {
       const startState: DraftParametersState = {
         filteredCivPool: [],
@@ -52,46 +137,19 @@ describe('draftParameters reducer', () => {
         filterMode: FilterMode.HAS_ALL,
       };
 
-      const units = [
-        {
-          id: 1,
-          unitName: 'archer',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          unitName: 'knight',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
       const endState = draftParametersReducer(
         startState,
-        updateUnitsFilter(units)
+        updateUnitsFilter(TEST_UNITS)
       );
 
       expect(endState.unitsFilter.length).toBe(2);
-      expect(endState.filteredCivPool.length).toBe(1);
-      expect(endState.filteredCivPool[0].id).toBe(1);
+      expect(endState.filteredCivPool.length).toBe(3);
     });
 
     it('should clear units filter', () => {
-      const units = [
-        {
-          id: 1,
-          unitName: 'archer',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          unitName: 'knight',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
       const startState: DraftParametersState = {
         filteredCivPool: [],
-        unitsFilter: units,
+        unitsFilter: TEST_UNITS,
         techsFilter: [],
         buildingsFilter: [],
         filterMode: FilterMode.HAS_ALL,
@@ -105,6 +163,42 @@ describe('draftParameters reducer', () => {
   });
 
   describe('draftParameter techs filter', () => {
+    it('should add tech to filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [],
+        techsFilter: [],
+        buildingsFilter: [],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        addTechToFilter(TEST_TECHS[0])
+      );
+
+      expect(endState.techsFilter.length).toBe(1);
+      expect(endState.filteredCivPool.length).toBe(1);
+    });
+
+    it('should remove tech from filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [],
+        techsFilter: [TEST_TECHS[0]],
+        buildingsFilter: [],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        removeTechFromFilter(TEST_TECHS[0])
+      );
+
+      expect(endState.techsFilter.length).toBe(0);
+      expect(endState.filteredCivPool.length).toBe(1);
+    });
+
     it('should update techs filter', () => {
       const startState: DraftParametersState = {
         filteredCivPool: [],
@@ -114,47 +208,21 @@ describe('draftParameters reducer', () => {
         filterMode: FilterMode.HAS_ALL,
       };
 
-      const techs = [
-        {
-          id: 1,
-          techName: 'forging',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          techName: 'loom',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
       const endState = draftParametersReducer(
         startState,
-        updateTechsFilter(techs)
+        updateTechsFilter(TEST_TECHS)
       );
 
-      expect(endState.techsFilter.length).toBe(2);
+      expect(endState.techsFilter.length).toBe(3);
       expect(endState.filteredCivPool.length).toBe(1);
       expect(endState.filteredCivPool[0].id).toBe(1);
     });
 
     it('should clear techs filter', () => {
-      const techs = [
-        {
-          id: 1,
-          techName: 'forging',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          techName: 'loom',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
       const startState: DraftParametersState = {
         filteredCivPool: [],
         unitsFilter: [],
-        techsFilter: techs,
+        techsFilter: TEST_TECHS,
         buildingsFilter: [],
         filterMode: FilterMode.HAS_ALL,
       };
@@ -167,7 +235,7 @@ describe('draftParameters reducer', () => {
   });
 
   describe('draftParameter buildings filter', () => {
-    it('should update buildings filter', () => {
+    it('should add building to filter', () => {
       const startState: DraftParametersState = {
         filteredCivPool: [],
         unitsFilter: [],
@@ -176,48 +244,58 @@ describe('draftParameters reducer', () => {
         filterMode: FilterMode.HAS_ALL,
       };
 
-      const buildings = [
-        {
-          id: 1,
-          buildingName: 'castle',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          buildingName: 'house',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
       const endState = draftParametersReducer(
         startState,
-        updateBuildingsFilter(buildings)
+        addBuildingToFilter(TEST_BUILDINGS[0])
       );
 
-      expect(endState.buildingsFilter.length).toBe(2);
+      expect(endState.buildingsFilter.length).toBe(1);
       expect(endState.filteredCivPool.length).toBe(1);
       expect(endState.filteredCivPool[0].id).toBe(1);
     });
 
-    it('should clear buildings filter', () => {
-      const buildings = [
-        {
-          id: 1,
-          buildingName: 'castle',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          buildingName: 'house',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
+    it('should remove building from filter', () => {
       const startState: DraftParametersState = {
         filteredCivPool: [],
         unitsFilter: [],
         techsFilter: [],
-        buildingsFilter: buildings,
+        buildingsFilter: [TEST_BUILDINGS[0]],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        removeBuildingFromFilter(TEST_BUILDINGS[0])
+      );
+
+      expect(endState.buildingsFilter.length).toBe(0);
+      expect(endState.filteredCivPool.length).toBe(0);
+    });
+
+    it('should update filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [],
+        techsFilter: [],
+        buildingsFilter: [],
+        filterMode: FilterMode.HAS_ALL,
+      };
+
+      const endState = draftParametersReducer(
+        startState,
+        updateBuildingsFilter(TEST_BUILDINGS)
+      );
+
+      expect(endState.buildingsFilter.length).toBe(3);
+      expect(endState.filteredCivPool.length).toBe(3);
+    });
+
+    it('should clear building filter', () => {
+      const startState: DraftParametersState = {
+        filteredCivPool: [],
+        unitsFilter: [],
+        techsFilter: [],
+        buildingsFilter: TEST_BUILDINGS,
         filterMode: FilterMode.HAS_ALL,
       };
 
@@ -235,9 +313,9 @@ describe('draftParameters reducer', () => {
     it('should clear all the filters', () => {
       const startState: DraftParametersState = {
         filteredCivPool: TEST_CIVS,
-        unitsFilter: [{ id: 1, unitName: 'archer', civs: [] }],
-        techsFilter: [{ id: 1, techName: 'loom', civs: [] }],
-        buildingsFilter: [{ id: 1, buildingName: 'house', civs: [] }],
+        unitsFilter: TEST_UNITS,
+        techsFilter: TEST_TECHS,
+        buildingsFilter: TEST_BUILDINGS,
         filterMode: FilterMode.HAS_ALL,
       };
 
@@ -247,47 +325,6 @@ describe('draftParameters reducer', () => {
       expect(endState.unitsFilter.length).toBe(0);
       expect(endState.techsFilter.length).toBe(0);
       expect(endState.buildingsFilter.length).toBe(0);
-    });
-  });
-
-  describe('update filter mode', () => {
-    it('should update filter mode', () => {
-      const units = [
-        {
-          id: 1,
-          unitName: 'archer',
-          civs: TEST_CIVS,
-        },
-        {
-          id: 2,
-          unitName: 'knight',
-          civs: [TEST_CIVS[0]],
-        },
-      ];
-
-      const startState: DraftParametersState = {
-        filteredCivPool: [],
-        unitsFilter: units,
-        techsFilter: [],
-        buildingsFilter: [],
-        filterMode: FilterMode.HAS_ALL,
-      };
-
-      let endState = draftParametersReducer(
-        startState,
-        updateFilterMode(FilterMode.HAS_ANY)
-      );
-
-      expect(endState.filteredCivPool.length).toBe(3);
-      expect(endState.filteredCivPool).toEqual(TEST_CIVS);
-
-      endState = draftParametersReducer(
-        startState,
-        updateFilterMode(FilterMode.HAS_ALL)
-      );
-
-      expect(endState.filteredCivPool.length).toBe(1);
-      expect(endState.filteredCivPool).toEqual([TEST_CIVS[0]]);
     });
   });
 

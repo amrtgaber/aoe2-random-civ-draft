@@ -1,0 +1,32 @@
+@import '../../shared-styles/lib';
+
+.staging-civ-pool-title {
+  margin-top: calc-vertical-margin($vertical-margin-small);
+  text-align: center;
+}
+
+.staging-civ-pool {
+  display: grid;
+  @include grid-alignment-center;
+
+  &.draft-loading {
+    grid-template-rows: 1fr 2fr;
+    height: 300px;
+  }
+
+  &.draft-loaded {
+    @include for-phone-only {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include for-tablet-portrait-up {
+      grid-template-columns: repeat(9, 1fr);
+    }
+
+    @include for-big-desktop-up {
+      grid-template-columns: repeat(14, 1fr);
+      width: 80%;
+      margin: auto;
+    }
+  }
+}

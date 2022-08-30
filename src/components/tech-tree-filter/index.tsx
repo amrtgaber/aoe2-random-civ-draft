@@ -1,24 +1,9 @@
 import { FC, MouseEvent, SyntheticEvent, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  addBuildingToFilter,
-  fetchBuildings,
-  removeBuildingFromFilter,
-  selectBuildings,
-} from '../../store/buildings-slice';
-import {
-  addTechToFilter,
-  fetchTechs,
-  removeTechFromFilter,
-  selectTechs,
-} from '../../store/techs-slice';
-import {
-  addUnitToFilter,
-  fetchUnits,
-  removeUnitFromFilter,
-  selectUnits,
-} from '../../store/units-slice';
+import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
+import { fetchTechs, selectTechs } from '../../store/techs-slice';
+import { fetchUnits, selectUnits } from '../../store/units-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
 import { Loading } from '../loading';
 import {
@@ -31,6 +16,12 @@ import {
 
 import './tech-tree-filter.scss';
 import {
+  addBuildingToFilter,
+  addTechToFilter,
+  addUnitToFilter,
+  removeBuildingFromFilter,
+  removeTechFromFilter,
+  removeUnitFromFilter,
   selectDraftParameters,
   updateBuildingsFilter,
   updateTechsFilter,
@@ -41,11 +32,11 @@ import { updateCivPool } from '../../store/civs-slice';
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
-  const { allUnits, unitsFilter, unitsStatus } = useAppSelector(selectUnits);
-  const { allTechs, techsFilter, techsStatus } = useAppSelector(selectTechs);
-  const { allBuildings, buildingsFilter, buildingsStatus } =
-    useAppSelector(selectBuildings);
-  const { filteredCivPool } = useAppSelector(selectDraftParameters);
+  const { allUnits, unitsStatus } = useAppSelector(selectUnits);
+  const { allTechs, techsStatus } = useAppSelector(selectTechs);
+  const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
+  const { filteredCivPool, unitsFilter, techsFilter, buildingsFilter } =
+    useAppSelector(selectDraftParameters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -220,6 +211,8 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
             <div className='tech-tree-filter-search'>search</div>
             <div className='tech-tree-filter-options'>
               options
+              <div className='tech-tree-filter-clear'>clear filter</div>
+              <div className='tech-tree-filter-mode'>mode</div>
               <div className='tech-tree-filter-hide-uniques'>hide uniques</div>
               <div className='tech-tree-filter-sort'>sort</div>
             </div>
@@ -238,6 +231,10 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
             <div className='tech-tree-filter-unselected-items'>
               {renderUnselectedItems()}
             </div>
+          </div>
+          <div className='tech-tree-filter-staging-panel'>
+            <div>merge with main pool</div>
+            Staging civ pool will be rendered here
           </div>
         </div>
       )}

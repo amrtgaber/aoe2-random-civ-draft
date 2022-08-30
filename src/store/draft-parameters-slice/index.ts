@@ -32,6 +32,16 @@ export const draftParametersSlice = createSlice({
   name: 'draftParameters',
   initialState,
   reducers: {
+    addUnitToFilter: (state, action: PayloadAction<IUnitTechTree>) => {
+      state.unitsFilter.push(action.payload);
+      state.filteredCivPool = filterCivPool(state);
+    },
+    removeUnitFromFilter: (state, action: PayloadAction<IUnitTechTree>) => {
+      state.unitsFilter = state.unitsFilter.filter(
+        (unit) => unit.unitName !== action.payload.unitName
+      );
+      state.filteredCivPool = filterCivPool(state);
+    },
     updateUnitsFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
       state.unitsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
@@ -40,6 +50,14 @@ export const draftParametersSlice = createSlice({
       state.unitsFilter = [];
       state.filteredCivPool = filterCivPool(state);
     },
+    addTechToFilter: (state, action: PayloadAction<ITechTechTree>) => {
+      state.techsFilter.push(action.payload);
+    },
+    removeTechFromFilter: (state, action: PayloadAction<ITechTechTree>) => {
+      state.techsFilter = state.techsFilter.filter(
+        (tech) => tech.techName !== action.payload.techName
+      );
+    },
     updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
       state.techsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
@@ -47,6 +65,17 @@ export const draftParametersSlice = createSlice({
     clearTechsFilter: (state) => {
       state.techsFilter = [];
       state.filteredCivPool = filterCivPool(state);
+    },
+    addBuildingToFilter: (state, action: PayloadAction<IBuildingTechTree>) => {
+      state.buildingsFilter.push(action.payload);
+    },
+    removeBuildingFromFilter: (
+      state,
+      action: PayloadAction<IBuildingTechTree>
+    ) => {
+      state.buildingsFilter = state.buildingsFilter.filter(
+        (building) => building.buildingName !== action.payload.buildingName
+      );
     },
     updateBuildingsFilter: (
       state,
@@ -73,10 +102,16 @@ export const draftParametersSlice = createSlice({
 });
 
 export const {
+  addUnitToFilter,
+  removeUnitFromFilter,
   updateUnitsFilter,
   clearUnitsFilter,
+  addTechToFilter,
+  removeTechFromFilter,
   updateTechsFilter,
   clearTechsFilter,
+  addBuildingToFilter,
+  removeBuildingFromFilter,
   updateBuildingsFilter,
   clearBuildingsFilter,
   clearFilters,

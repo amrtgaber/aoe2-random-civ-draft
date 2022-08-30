@@ -6,13 +6,11 @@ import { FetchStatus } from '../shared-store-utils';
 
 export interface TechsState {
   allTechs: ITechTechTree[];
-  techsFilter: ITechTechTree[];
   techsStatus: FetchStatus;
 }
 
 export const initialState: TechsState = {
   allTechs: [] as ITechTechTree[],
-  techsFilter: [] as ITechTechTree[],
   techsStatus: FetchStatus.INIT,
 };
 
@@ -24,22 +22,7 @@ export const fetchTechs = createAsyncThunk(
 export const techsSlice = createSlice({
   name: 'techs',
   initialState,
-  reducers: {
-    addTechToFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techsFilter.push(action.payload);
-    },
-    removeTechFromFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techsFilter = state.techsFilter.filter(
-        (tech) => tech.techName !== action.payload.techName
-      );
-    },
-    updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techsFilter = action.payload;
-    },
-    clearTechsFilter: (state) => {
-      state.techsFilter = [];
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchTechs.pending, (state) => {
@@ -57,13 +40,6 @@ export const techsSlice = createSlice({
       });
   },
 });
-
-export const {
-  addTechToFilter,
-  removeTechFromFilter,
-  updateTechsFilter,
-  clearTechsFilter,
-} = techsSlice.actions;
 
 export const selectTechs = (state: RootState) => state.techs;
 

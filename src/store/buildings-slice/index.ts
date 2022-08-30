@@ -6,13 +6,11 @@ import { FetchStatus } from '../shared-store-utils';
 
 export interface BuildingsState {
   allBuildings: IBuildingTechTree[];
-  buildingsFilter: IBuildingTechTree[];
   buildingsStatus: FetchStatus;
 }
 
 export const initialState: BuildingsState = {
   allBuildings: [] as IBuildingTechTree[],
-  buildingsFilter: [] as IBuildingTechTree[],
   buildingsStatus: FetchStatus.INIT,
 };
 
@@ -24,28 +22,7 @@ export const fetchBuildings = createAsyncThunk(
 export const buildingsSlice = createSlice({
   name: 'buildings',
   initialState,
-  reducers: {
-    addBuildingToFilter: (state, action: PayloadAction<IBuildingTechTree>) => {
-      state.buildingsFilter.push(action.payload);
-    },
-    removeBuildingFromFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree>
-    ) => {
-      state.buildingsFilter = state.buildingsFilter.filter(
-        (building) => building.buildingName !== action.payload.buildingName
-      );
-    },
-    updateBuildingsFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree[]>
-    ) => {
-      state.buildingsFilter = action.payload;
-    },
-    clearBuildingsFilter: (state) => {
-      state.buildingsFilter = [];
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchBuildings.pending, (state) => {
@@ -63,13 +40,6 @@ export const buildingsSlice = createSlice({
       });
   },
 });
-
-export const {
-  addBuildingToFilter,
-  removeBuildingFromFilter,
-  updateBuildingsFilter,
-  clearBuildingsFilter,
-} = buildingsSlice.actions;
 
 export const selectBuildings = (state: RootState) => state.buildings;
 

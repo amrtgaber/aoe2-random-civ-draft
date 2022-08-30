@@ -6,7 +6,7 @@
 
 .tech-tree-filter-panels-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 3fr 1fr;
 
   width: 80vw;
   margin-left: auto;
@@ -39,4 +39,8 @@
   @include grid-alignment-center;
 
   text-align: center;
+}
+
+.tech-tree-filter-staging-panel {
+  border-left: $border-thickness-tiny solid $grey;
 }
