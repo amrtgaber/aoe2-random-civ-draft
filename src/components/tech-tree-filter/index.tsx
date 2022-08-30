@@ -218,8 +218,12 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
         <div className='tech-tree-filter-panels-container'>
           <div className='tech-tree-filter-settings-panel'>
             <div className='tech-tree-filter-search'>search</div>
+            <div className='tech-tree-filter-options'>
+              options
+              <div className='tech-tree-filter-hide-uniques'>hide uniques</div>
+              <div className='tech-tree-filter-sort'>sort</div>
+            </div>
             <div className='tech-tree-filter-filter'>filter</div>
-            <div className='tech-tree-filter-sort'>sort</div>
           </div>
           <div className='tech-tree-filter-items-panel'>
             <div className='tech-tree-filter-selected-items'>
