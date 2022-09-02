@@ -69,7 +69,7 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
         }
       >
         <img src={imgSrc} />
-        <div>{name}</div>
+        <div className='tech-tree-item-name'>{name}</div>
       </div>
     </div>
   );

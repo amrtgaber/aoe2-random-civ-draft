@@ -77,7 +77,7 @@ export const Civ: FC<ICivProps> = (props) => {
   };
 
   const unitImageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
-  const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
+  const techTreeImageUrl = `/assets/images/tech-tree/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
 
   return (
     <div className={`civ-container ${isDrafted ? 'drafted-container' : ''}`}>
