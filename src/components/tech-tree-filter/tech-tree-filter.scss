@@ -2,13 +2,18 @@
 
 .tech-tree-filter-container {
   margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+
+  @include for-phone-only {
+    display: none;
+  }
 }
 
 .tech-tree-filter-panels-container {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 2fr 6fr 5fr;
 
-  width: 80vw;
+  width: 90vw;
+  height: 90vh;
   margin-left: auto;
   margin-right: auto;
 
@@ -18,29 +23,61 @@
 
 .tech-tree-filter-settings-panel {
   display: grid;
-  grid-template-rows: 100px 150px auto;
+  grid-template-rows: 100px 200px auto;
+  height: 90vh;
 
   border-right: $border-thickness-tiny solid $grey;
 }
 
 .tech-tree-filter-items-panel {
-  display: grid;
-  grid-template-rows: auto auto;
-}
-
-.tech-tree-filter-selected-items {
-  border-bottom: $border-thickness-tiny solid $grey;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
 }
 
 .tech-tree-filter-selected-items,
 .tech-tree-filter-unselected-items {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
   @include grid-alignment-center;
+  align-content: space-between;
 
   text-align: center;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @include for-4k-up {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.tech-tree-filter-selected-items {
+  flex: 1 1 15%;
+  padding-top: calc-padding($padding-medium);
+  padding-bottom: calc-padding($padding-medium);
+  border-bottom: $border-thickness-tiny solid $grey;
+
+  &.selected-items-placeholder {
+    width: 200px;
+    overflow-x: visible;
+  }
+}
+
+.tech-tree-filter-unselected-items {
+  flex: 1 1 auto;
+
+  padding-bottom: calc-padding($padding-medium);
+  padding-top: calc-padding($padding-medium);
+
+  overflow-y: auto;
 }
 
 .tech-tree-filter-staging-panel {
+  height: 90vh;
   border-left: $border-thickness-tiny solid $grey;
 }

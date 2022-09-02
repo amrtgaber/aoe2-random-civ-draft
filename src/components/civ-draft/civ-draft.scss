@@ -31,7 +31,7 @@
       grid-template-columns: repeat(9, 1fr);
     }
 
-    @include for-big-desktop-up {
+    @include for-4k-up {
       grid-template-columns: repeat(14, 1fr);
       width: 80%;
       margin: auto;

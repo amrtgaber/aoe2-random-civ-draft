@@ -10,11 +10,12 @@ import './civ.scss';
 export interface ICivProps {
   civ: ICiv;
   isDrafted: boolean;
+  isDraftable: boolean;
   isInPool: boolean;
 }
 
 export const Civ: FC<ICivProps> = (props) => {
-  const { civ, isDrafted, isInPool } = props;
+  const { civ, isDrafted, isDraftable, isInPool } = props;
   const name = civ.civName;
 
   const civEl = useRef<HTMLDivElement>(null);
@@ -42,7 +43,7 @@ export const Civ: FC<ICivProps> = (props) => {
   ) => {
     const el = event.target as HTMLDivElement | HTMLImageElement;
 
-    if (isDrafted || el instanceof HTMLImageElement) {
+    if (isDrafted || !isDraftable || el instanceof HTMLImageElement) {
       return;
     }
 
@@ -62,6 +63,10 @@ export const Civ: FC<ICivProps> = (props) => {
       classNames += 'drafted highlight-drafted';
     } else {
       classNames += 'poolable';
+    }
+
+    if (isDraftable) {
+      classNames += ' draftable';
     }
 
     if (isInPool) {

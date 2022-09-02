@@ -29,8 +29,7 @@
 $civ-unit-image-size: 96px;
 
 .civ-main-content {
-  @include box-shadow;
-
+  @include box-shadow($isInteractive: false);
   position: relative;
   width: $civ-unit-image-size;
   height: $civ-unit-image-size;
@@ -54,10 +53,21 @@ $civ-unit-image-size: 96px;
     $civ-bg-color-primary-50: rgba($primary-color-red-light, 0.5);
     $civ-bg-color-base: $black;
 
-    &:hover {
-      cursor: pointer;
-      background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-30);
-      transform: scale(1.1);
+    &.draftable {
+      @include box-shadow;
+
+      &:hover {
+        cursor: pointer;
+        background: linear-gradient(
+          $civ-bg-color-base,
+          $civ-bg-color-primary-30
+        );
+        transform: scale(1.1);
+      }
+
+      &.in-pool:hover {
+        background-color: $civ-bg-color-base;
+      }
     }
 
     &.in-pool {
@@ -65,10 +75,6 @@ $civ-unit-image-size: 96px;
       background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-50);
       box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color;
       transform: scale(1.1);
-
-      &:hover {
-        background-color: $civ-bg-color-base;
-      }
     }
   }
 }
@@ -125,10 +131,10 @@ $civ-unit-image-size: 96px;
   }
 
   @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-base);
+    font-size: calc-font-size($font-size-tiny-ex);
   }
 
-  @include for-desktop-up {
+  @include for-1080p-up {
     font-size: calc-font-size($font-size-tiny);
   }
 }

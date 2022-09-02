@@ -13,7 +13,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   @include grid-alignment-center;
 
-  @include for-desktop-up {
+  @include for-1080p-up {
     width: 80%;
     margin: auto;
   }

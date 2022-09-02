@@ -16,14 +16,14 @@
   }
 }
 
-@mixin for-desktop-up {
-  @media (min-width: 1300px) {
+@mixin for-1080p-up {
+  @media (min-width: 1900px) {
     @content;
   }
 }
 
-@mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
+@mixin for-4k-up {
+  @media (min-width: 2000px) {
     @content;
   }
 }

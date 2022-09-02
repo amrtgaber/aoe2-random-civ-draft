@@ -21,11 +21,11 @@
     font-size: calc-font-size($font-size-small);
   }
 
-  @include for-desktop-up {
+  @include for-1080p-up {
     font-size: calc-font-size($font-size-medium);
   }
 
-  @include for-big-desktop-up {
+  @include for-4k-up {
     width: 260px;
     height: 80px;
   }

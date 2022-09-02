@@ -20,7 +20,12 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={false} isInPool={false} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 
@@ -40,7 +45,12 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={false} isInPool={false} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 
@@ -65,7 +75,12 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={false} isInPool={true} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={true}
+          />
         </Provider>
       );
 
@@ -90,8 +105,18 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={false} isInPool={true} />
-          <Civ civ={TEST_CIVS[1]} isDrafted={false} isInPool={false} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={true}
+          />
+          <Civ
+            civ={TEST_CIVS[1]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 
@@ -114,7 +139,12 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={true} isInPool={false} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={true}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 
@@ -132,7 +162,12 @@ describe('civ component', () => {
 
       const { container: civContainer } = render(
         <Provider store={store}>
-          <Civ civ={TEST_CIVS[0]} isDrafted={true} isInPool={false} />
+          <Civ
+            civ={TEST_CIVS[0]}
+            isDrafted={true}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 

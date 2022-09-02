@@ -9,7 +9,7 @@
     margin-top: calc-vertical-margin($vertical-margin-large);
   }
 
-  @include for-big-desktop-up {
+  @include for-4k-up {
     margin-top: calc-vertical-margin($vertical-margin-giant);
   }
 

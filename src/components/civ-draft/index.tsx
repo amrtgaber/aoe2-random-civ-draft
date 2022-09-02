@@ -75,6 +75,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
               key={civ.id}
               civ={civ}
               isDrafted={false}
+              isDraftable={true}
               isInPool={isInPool(civ)}
             ></Civ>
           ))

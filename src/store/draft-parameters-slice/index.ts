@@ -52,11 +52,13 @@ export const draftParametersSlice = createSlice({
     },
     addTechToFilter: (state, action: PayloadAction<ITechTechTree>) => {
       state.techsFilter.push(action.payload);
+      state.filteredCivPool = filterCivPool(state);
     },
     removeTechFromFilter: (state, action: PayloadAction<ITechTechTree>) => {
       state.techsFilter = state.techsFilter.filter(
         (tech) => tech.techName !== action.payload.techName
       );
+      state.filteredCivPool = filterCivPool(state);
     },
     updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
       state.techsFilter = action.payload;
@@ -68,6 +70,7 @@ export const draftParametersSlice = createSlice({
     },
     addBuildingToFilter: (state, action: PayloadAction<IBuildingTechTree>) => {
       state.buildingsFilter.push(action.payload);
+      state.filteredCivPool = filterCivPool(state);
     },
     removeBuildingFromFilter: (
       state,
@@ -76,6 +79,7 @@ export const draftParametersSlice = createSlice({
       state.buildingsFilter = state.buildingsFilter.filter(
         (building) => building.buildingName !== action.payload.buildingName
       );
+      state.filteredCivPool = filterCivPool(state);
     },
     updateBuildingsFilter: (
       state,

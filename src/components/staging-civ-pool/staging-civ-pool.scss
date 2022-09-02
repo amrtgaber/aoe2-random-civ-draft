@@ -1,13 +1,39 @@
 @import '../../shared-styles/lib';
 
+.staging-civ-pool-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .staging-civ-pool-title {
-  margin-top: calc-vertical-margin($vertical-margin-small);
+  flex: 1 1 auto;
   text-align: center;
 }
 
-.staging-civ-pool {
+.buttons-container {
+  flex: 1 1 auto;
+
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   @include grid-alignment-center;
+
+  text-align: center;
+}
+
+.replace-main-civ-pool-button,
+.add-to-main-civ-pool-button,
+.subtract-from-main-civ-pool-button {
+  width: 90%;
+  @include button-base(outline);
+}
+
+.staging-civ-pool {
+  flex: 1 1 80%;
+
+  display: grid;
+
+  padding-bottom: calc-padding($padding-large);
 
   &.draft-loading {
     grid-template-rows: 1fr 2fr;
@@ -15,18 +41,22 @@
   }
 
   &.draft-loaded {
+    overflow-y: auto;
+
     @include for-phone-only {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include for-tablet-portrait-up {
-      grid-template-columns: repeat(9, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    @include for-big-desktop-up {
-      grid-template-columns: repeat(14, 1fr);
-      width: 80%;
-      margin: auto;
+    @include for-1080p-up {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    @include for-4k-up {
+      grid-template-columns: repeat(6, 1fr);
     }
   }
 }
