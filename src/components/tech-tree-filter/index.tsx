@@ -32,7 +32,10 @@ import './tech-tree-filter.scss';
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
+  const allFilterTags = ['units', 'techs', 'buildings']; // 'dark age', 'feudal age', 'castle age', 'imperial age', & buildings
+
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterTags, setFilterTags] = useState<string[]>([]);
 
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
   const [allItems, setAllItems] = useState<TechTreeItemType[]>([]);
@@ -149,8 +152,24 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
       return item1Name > item2Name ? 1 : -1;
     });
 
+    if (filterTags.length > 0) {
+      items = items.filter((item) => {
+        if (filterTags.includes('units') && isUnit(item)) {
+          return true;
+        }
+
+        if (filterTags.includes('techs') && isTech(item)) {
+          return true;
+        }
+
+        if (filterTags.includes('buildings') && isBuilding(item)) {
+          return true;
+        }
+      });
+    }
+
     setUnselectedItems(items);
-  }, [selectedItems, searchTerm]);
+  }, [selectedItems, searchTerm, filterTags]);
 
   const addToFilter = (item: TechTreeItemType) => {
     if (isUnit(item)) {
@@ -198,12 +217,31 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     // TODO
   };
 
-  const handleFilterByType = () => {
-    // TODO
+  const handleFilterByTag = (newTag: string, remove: boolean) => {
+    if (remove) {
+      setFilterTags(filterTags.filter((tag) => tag !== newTag));
+    } else {
+      setFilterTags([...filterTags, newTag]);
+    }
   };
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+  };
+
+  const renderFilterTagsButtons = () => {
+    return allFilterTags.map((tag) => {
+      const isOn = filterTags.includes(tag);
+      return (
+        <a
+          key={tag}
+          className={`filter-tags-button ${isOn ? 'filter-tag-on' : ''}`}
+          onClick={() => handleFilterByTag(tag, isOn)}
+        >
+          {tag}
+        </a>
+      );
+    });
   };
 
   const getKey = (item: TechTreeItemType) => {
@@ -268,51 +306,10 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 </select>
               </div>
             </div>
-            <div className='tech-tree-filter-filter-types'>
-              <div className='filter-types-title'>Filter items</div>
-              <div className='filter-types-buttons'>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  units
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  techs
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  buildings
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  dark age
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  feudal age
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  castle age
-                </a>
-                <a
-                  className='filter-types-button'
-                  onClick={() => handleFilterByType()}
-                >
-                  imperial age
-                </a>
+            <div className='tech-tree-filter-filter-tags'>
+              <div className='filter-tags-title'>Filter items</div>
+              <div className='filter-tags-buttons'>
+                {renderFilterTagsButtons()}
               </div>
             </div>
           </div>

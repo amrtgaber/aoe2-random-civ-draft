@@ -46,7 +46,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 
 .tech-tree-filter-search,
 .tech-tree-filter-options,
-.tech-tree-filter-filter-types {
+.tech-tree-filter-filter-tags {
   padding: calc-padding($padding-small);
 }
 
@@ -94,7 +94,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 }
 
 .options-title,
-.filter-types-title {
+.filter-tags-title {
   margin-bottom: calc-vertical-margin($vertical-margin-large);
 }
 
@@ -145,24 +145,24 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   }
 }
 
-.tech-tree-filter-filter-types {
+.tech-tree-filter-filter-tags {
   border-top: $tech-tree-filter-border-thickness solid
     $tech-tree-filter-border-color;
 }
 
-.filter-types-buttons {
+.filter-tags-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   overflow-y: auto;
 }
 
-.filter-types-button {
+.filter-tags-button {
   @include tech-tree-filter-button;
 
   font-size: calc-font-size($font-size-tiny);
 
-  &.filter-type-on {
+  &.filter-tag-on {
     border: $border-thickness-tiny solid $border-primary-color-amber;
   }
 }
