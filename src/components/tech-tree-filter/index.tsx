@@ -8,10 +8,13 @@ import {
   addBuildingToFilter,
   addTechToFilter,
   addUnitToFilter,
+  clearFilters,
+  FilterMode,
   removeBuildingFromFilter,
   removeTechFromFilter,
   removeUnitFromFilter,
   selectDraftParameters,
+  updateFilterMode,
 } from '../../store/draft-parameters-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
 import { Loading } from '../loading';
@@ -40,9 +43,8 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
-  const { unitsFilter, techsFilter, buildingsFilter } = useAppSelector(
-    selectDraftParameters
-  );
+  const { unitsFilter, techsFilter, buildingsFilter, filterMode } =
+    useAppSelector(selectDraftParameters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -154,6 +156,28 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     }
   };
 
+  const handleClearFilter = () => {
+    dispatch(clearFilters());
+  };
+
+  const handleToggleFilterMode = () => {
+    dispatch(
+      updateFilterMode(
+        filterMode === FilterMode.HAS_ALL
+          ? FilterMode.HAS_ANY
+          : FilterMode.HAS_ALL
+      )
+    );
+  };
+
+  const handleHideUniques = () => {
+    // TODO
+  };
+
+  const handleFilterByType = () => {
+    // TODO
+  };
+
   const getKey = (item: TechTreeItemType) => {
     if (isUnit(item)) return 1000 + item.id;
     if (isTech(item)) return 2000 + item.id;
@@ -167,15 +191,68 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
       ) : (
         <div className='tech-tree-filter-panels-container'>
           <div className='tech-tree-filter-settings-panel'>
-            <div className='tech-tree-filter-search'>search</div>
-            <div className='tech-tree-filter-options'>
-              options
-              <div className='tech-tree-filter-clear'>clear filter</div>
-              <div className='tech-tree-filter-mode'>filter mode</div>
-              <div className='tech-tree-filter-hide-uniques'>hide uniques</div>
-              <div className='tech-tree-filter-sort'>sort</div>
+            <div className='tech-tree-filter-search'>
+              <input className='search-input' placeholder='search'></input>
             </div>
-            <div className='tech-tree-filter-filter'>filter</div>
+            <div className='tech-tree-filter-options'>
+              <div className='options-title'>Options</div>
+              <div className='tech-tree-filter-mode'>
+                Civ has{' '}
+                <a
+                  className='filter-mode-button'
+                  onClick={() => handleToggleFilterMode()}
+                >
+                  {filterMode === FilterMode.HAS_ALL ? 'ALL' : 'ANY'}
+                </a>{' '}
+                selected items
+              </div>
+              <div className='tech-tree-filter-clear-filter'>
+                <a
+                  className='clear-filter-button'
+                  onClick={() => handleClearFilter()}
+                >
+                  Clear filter
+                </a>
+              </div>
+              <div className='tech-tree-filter-hide-uniques'>
+                <a
+                  className='hide-uniques-button'
+                  onClick={() => handleHideUniques()}
+                >
+                  Hide uniques
+                </a>
+              </div>
+              <div className='tech-tree-filter-sort'>
+                <div className='sort-text'>sort</div>
+                <select className='sort-dropdown'>
+                  <option>a-z</option>
+                  <option>by building</option>
+                </select>
+              </div>
+            </div>
+            <div className='tech-tree-filter-filter-types'>
+              <div className='filter-types-title'>Filter items by</div>
+              <div className='filter-types-buttons'>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  units
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  techs
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  buildings
+                </a>
+              </div>
+            </div>
           </div>
           <div className='tech-tree-filter-items-panel'>
             <div

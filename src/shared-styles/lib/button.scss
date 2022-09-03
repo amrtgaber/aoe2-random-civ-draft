@@ -16,11 +16,11 @@ $button-outline-bg-color-hover: #0b0b0b;
 
 $button-border-color: $button-letter-color;
 
-@mixin button-base($type: outline) {
+@mixin button-base($type: outline, $padding: $padding-medium) {
   @include box-shadow(large);
 
   cursor: pointer;
-  padding: calc-padding($padding-medium);
+  padding: calc-padding($padding);
 
   text-align: center;
   border-radius: $border-radius-medium;

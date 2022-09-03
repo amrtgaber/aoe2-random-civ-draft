@@ -23,10 +23,114 @@
 
 .tech-tree-filter-settings-panel {
   display: grid;
-  grid-template-rows: 100px 200px auto;
+  grid-template-rows: 100px 340px auto;
   height: calc(90vh - 3px);
 
   border-right: $border-thickness-small solid $border-neutral-color;
+
+  & > div {
+    padding: calc-padding($padding-small);
+  }
+}
+
+.tech-tree-filter-search {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include grid-alignment-center;
+}
+
+.search-input {
+  @include box-shadow;
+  width: 80%;
+  height: 50px;
+
+  color: $white;
+  background-color: $black;
+
+  font-size: calc-font-size($font-size-tiny-ex);
+
+  padding: calc-padding($padding-small);
+
+  border: none;
+  border-bottom: $border-thickness-tiny solid $border-primary-color-amber;
+  border-radius: $border-radius-medium $border-radius-medium 0 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.tech-tree-filter-options {
+  border-top: $border-thickness-small solid $border-neutral-color;
+}
+
+.options-title,
+.filter-types-title {
+  font-variant: small-caps;
+  margin-bottom: calc-vertical-margin($vertical-margin-large);
+}
+
+.tech-tree-filter-mode {
+  padding-left: calc-padding($padding-medium);
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+}
+
+.tech-tree-filter-clear-filter,
+.tech-tree-filter-hide-uniques,
+.tech-tree-filter-sort {
+  padding-left: calc-padding($padding-medium);
+  padding-top: calc-vertical-margin($vertical-margin-medium);
+  padding-bottom: calc-vertical-margin($vertical-margin-medium);
+}
+
+.filter-mode-button,
+.clear-filter-button,
+.hide-uniques-button {
+  @include button-base($padding: $padding-small);
+}
+
+.tech-tree-filter-sort {
+  display: flex;
+  flex-direction: row;
+
+  .sort-text {
+    flex: 1 1 20%;
+  }
+
+  .sort-dropdown {
+    flex: 1 1 80%;
+
+    color: $primary-color-amber;
+    background-color: $black;
+
+    padding: calc-padding($padding-small);
+
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+    border-radius: $border-radius-medium;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.tech-tree-filter-filter-types {
+  border-top: $border-thickness-small solid $border-neutral-color;
+}
+
+.filter-types-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @include grid-alignment-center;
+}
+
+.filter-types-button {
+  @include button-base($padding: $padding-small);
+
+  &.filter-type-on {
+    transform: scale(1.2);
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
 }
 
 .tech-tree-filter-items-panel {
