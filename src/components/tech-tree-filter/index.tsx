@@ -178,7 +178,11 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
             <div className='tech-tree-filter-filter'>filter</div>
           </div>
           <div className='tech-tree-filter-items-panel'>
-            <div className='tech-tree-filter-selected-items'>
+            <div
+              className={`tech-tree-filter-selected-items ${
+                selectedItems.length === 0 ? ' empty-filter' : ''
+              }`}
+            >
               <>
                 {selectedItems.length === 0 && (
                   <div className='selected-items-placeholder'>

@@ -1,18 +1,62 @@
 @import '../../shared-styles/lib';
 
-.tech-tree-item-container {
-}
+$tech-tree-color-unit: #00455c;
+$tech-tree-color-tech: #234623;
+$tech-tree-color-building: #79340f;
+$tech-tree-color-unique: #4a2750;
 
 .tech-tree-item {
+  @include box-shadow;
+  display: grid;
+  justify-content: center;
+
+  position: relative;
+  padding-top: calc-padding($padding-tiny);
+  margin-bottom: calc-vertical-margin($vertical-margin-large);
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: $border-radius-medium;
+
+  cursor: pointer;
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-tiny-ex);
+  }
+
+  @include for-4k-up {
+    font-size: calc-font-size($font-size-tiny);
+  }
+
+  &:hover {
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+
   &.unit {
+    background-color: $tech-tree-color-unit;
   }
 
   &.tech {
+    background-color: $tech-tree-color-tech;
   }
 
   &.building {
+    background-color: $tech-tree-color-building;
   }
 }
 
 .tech-tree-item-name {
+  display: inline-block;
+
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+
+  width: 100%;
+
+  font-weight: 700;
+  text-align: center;
+
+  background-color: rgba($black, 0.6);
 }

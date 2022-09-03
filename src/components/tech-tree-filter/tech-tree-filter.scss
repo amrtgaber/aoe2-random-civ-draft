@@ -17,22 +17,23 @@
   margin-left: auto;
   margin-right: auto;
 
-  border: $border-thickness-tiny solid $grey;
+  border: $border-thickness-small solid $border-neutral-color;
   border-radius: $border-radius-medium;
 }
 
 .tech-tree-filter-settings-panel {
   display: grid;
   grid-template-rows: 100px 200px auto;
-  height: 90vh;
+  height: calc(90vh - 3px);
 
-  border-right: $border-thickness-tiny solid $grey;
+  border-right: $border-thickness-small solid $border-neutral-color;
 }
 
 .tech-tree-filter-items-panel {
   display: flex;
   flex-direction: column;
   height: 90vh;
+  padding-bottom: calc-padding($padding-tiny);
 }
 
 .tech-tree-filter-selected-items,
@@ -48,6 +49,10 @@
   }
 
   @include for-tablet-portrait-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include for-1080p-up {
     grid-template-columns: repeat(5, 1fr);
   }
 
@@ -60,11 +65,17 @@
   flex: 1 1 15%;
   padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-medium);
-  border-bottom: $border-thickness-tiny solid $grey;
+  border-bottom: $border-thickness-small solid $border-neutral-color;
 
-  &.selected-items-placeholder {
-    width: 200px;
-    overflow-x: visible;
+  &.empty-filter {
+    display: block;
+    text-align: center;
+  }
+
+  & .selected-items-placeholder {
+    width: 100%;
+    height: 100px;
+    padding: calc-padding($padding-giant);
   }
 }
 
@@ -78,6 +89,6 @@
 }
 
 .tech-tree-filter-staging-panel {
-  height: 90vh;
-  border-left: $border-thickness-tiny solid $grey;
+  height: calc(90vh - 3px);
+  border-left: $border-thickness-small solid $border-neutral-color;
 }
