@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
@@ -32,8 +32,9 @@ import './tech-tree-filter.scss';
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
-  const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
+  const [searchTerm, setSearchTerm] = useState('');
 
+  const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
   const [allItems, setAllItems] = useState<TechTreeItemType[]>([]);
   const [selectedItems, setSelectedItems] = useState<TechTreeItemType[]>([]);
   const [unselectedItems, setUnselectedItems] = useState<TechTreeItemType[]>(
@@ -112,21 +113,44 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   }, [unitsFilter, techsFilter, buildingsFilter]);
 
   useEffect(() => {
-    setUnselectedItems(
-      allItems.filter((item) => {
-        return !selectedItems.some((selectedItem) => {
-          if (isUnit(item) && isUnit(selectedItem))
-            return selectedItem.id === item.id;
+    let items = allItems.filter((item) => {
+      return !selectedItems.some((selectedItem) => {
+        if (isUnit(item) && isUnit(selectedItem))
+          return selectedItem.id === item.id;
 
-          if (isTech(item) && isTech(selectedItem))
-            return selectedItem.id === item.id;
+        if (isTech(item) && isTech(selectedItem))
+          return selectedItem.id === item.id;
 
-          if (isBuilding(item) && isBuilding(selectedItem))
-            return selectedItem.id === item.id;
-        });
-      })
-    );
-  }, [selectedItems]);
+        if (isBuilding(item) && isBuilding(selectedItem))
+          return selectedItem.id === item.id;
+      });
+    });
+
+    if (searchTerm.length > 0) {
+      items = items.filter((item) => {
+        if (isUnit(item)) return item.unitName.includes(searchTerm);
+        if (isTech(item)) return item.techName.includes(searchTerm);
+        if (isBuilding(item)) return item.buildingName.includes(searchTerm);
+      });
+    }
+
+    items.sort((item1, item2) => {
+      let item1Name = '';
+      let item2Name = '';
+
+      if (isUnit(item1)) item1Name = item1.unitName;
+      if (isTech(item1)) item1Name = item1.techName;
+      if (isBuilding(item1)) item1Name = item1.buildingName;
+
+      if (isUnit(item2)) item2Name = item2.unitName;
+      if (isTech(item2)) item2Name = item2.techName;
+      if (isBuilding(item2)) item2Name = item2.buildingName;
+
+      return item1Name > item2Name ? 1 : -1;
+    });
+
+    setUnselectedItems(items);
+  }, [selectedItems, searchTerm]);
 
   const addToFilter = (item: TechTreeItemType) => {
     if (isUnit(item)) {
@@ -178,6 +202,10 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     // TODO
   };
 
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   const getKey = (item: TechTreeItemType) => {
     if (isUnit(item)) return 1000 + item.id;
     if (isTech(item)) return 2000 + item.id;
@@ -192,7 +220,16 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
         <div className='tech-tree-filter-panels-container'>
           <div className='tech-tree-filter-settings-panel'>
             <div className='tech-tree-filter-search'>
-              <input className='search-input' placeholder='search'></input>
+              <input
+                type='text'
+                className='search-input'
+                placeholder='search'
+                value={searchTerm}
+                onChange={(e) => handleSearch(e)}
+              />
+              <span className='clear-search' onClick={() => setSearchTerm('')}>
+                ✖
+              </span>
             </div>
             <div className='tech-tree-filter-options'>
               <div className='options-title'>Options</div>
@@ -211,7 +248,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                   className='clear-filter-button'
                   onClick={() => handleClearFilter()}
                 >
-                  Clear filter
+                  Clear selected items
                 </a>
               </div>
               <div className='tech-tree-filter-hide-uniques'>
@@ -226,12 +263,13 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 <div className='sort-text'>sort</div>
                 <select className='sort-dropdown'>
                   <option>a-z</option>
+                  <option>by age</option>
                   <option>by building</option>
                 </select>
               </div>
             </div>
             <div className='tech-tree-filter-filter-types'>
-              <div className='filter-types-title'>Filter items by</div>
+              <div className='filter-types-title'>Filter items</div>
               <div className='filter-types-buttons'>
                 <a
                   className='filter-types-button'
@@ -250,6 +288,30 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                   onClick={() => handleFilterByType()}
                 >
                   buildings
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  dark age
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  feudal age
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  castle age
+                </a>
+                <a
+                  className='filter-types-button'
+                  onClick={() => handleFilterByType()}
+                >
+                  imperial age
                 </a>
               </div>
             </div>

@@ -28,6 +28,8 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   margin-left: auto;
   margin-right: auto;
 
+  background-color: $bg-color-light;
+
   border: $tech-tree-filter-border-thickness solid
     $tech-tree-filter-border-color;
   border-radius: $border-radius-medium;
@@ -52,6 +54,8 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   display: grid;
   grid-template-columns: 1fr;
   @include grid-alignment-center;
+
+  position: relative;
 }
 
 .search-input {
@@ -72,6 +76,13 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
     outline: 0;
     border: $border-thickness-tiny solid $border-primary-color-amber;
   }
+}
+
+.clear-search {
+  position: absolute;
+  right: 15%;
+  color: $grey;
+  cursor: pointer;
 }
 
 .tech-tree-filter-options {
@@ -141,15 +152,17 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 
 .filter-types-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  @include grid-alignment-center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow-y: auto;
 }
 
 .filter-types-button {
   @include tech-tree-filter-button;
 
+  font-size: calc-font-size($font-size-tiny);
+
   &.filter-type-on {
-    transform: scale(1.1);
     border: $border-thickness-tiny solid $border-primary-color-amber;
   }
 }
@@ -164,8 +177,8 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 .tech-tree-filter-selected-items,
 .tech-tree-filter-unselected-items {
   display: grid;
-  @include grid-alignment-center;
-  align-content: space-between;
+  justify-items: center;
+  align-content: flex-start;
 
   text-align: center;
 
@@ -206,7 +219,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 }
 
 .tech-tree-filter-unselected-items {
-  flex: 1 1 auto;
+  flex: 1 1 85%;
 
   padding-bottom: calc-padding($padding-medium);
   padding-top: calc-padding($padding-medium);

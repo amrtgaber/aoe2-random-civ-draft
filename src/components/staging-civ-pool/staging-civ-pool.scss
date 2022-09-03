@@ -1,4 +1,5 @@
 @import '../../shared-styles/lib';
+@import '../tech-tree-filter/tech-tree-filter';
 
 .staging-civ-pool-container {
   display: flex;
@@ -34,6 +35,9 @@
   display: grid;
 
   padding-bottom: calc-padding($padding-large);
+
+  border-top: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
 
   &.draft-loading {
     grid-template-rows: 1fr 2fr;
