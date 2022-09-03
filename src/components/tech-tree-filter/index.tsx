@@ -204,7 +204,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 >
                   {filterMode === FilterMode.HAS_ALL ? 'ALL' : 'ANY'}
                 </a>{' '}
-                selected items
+                selected item{filterMode === FilterMode.HAS_ALL ? 's' : ''}
               </div>
               <div className='tech-tree-filter-clear-filter'>
                 <a

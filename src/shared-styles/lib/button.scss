@@ -6,18 +6,32 @@ $button-letter-color: $primary-color-amber;
 $button-letter-color-active: $primary-color-amber-dark;
 $button-letter-color-hover: $primary-color-amber-light;
 
-$button-filled-bg-color: $primary-color-red;
-$button-filled-bg-color-active: $primary-color-red-dark;
+$button-filled-primary-bg-color: $primary-color-red;
+$button-filled-primary-bg-color-active: $primary-color-red-dark;
 $button-filled-bg-color-hover: $primary-color-red-light;
 
-$button-outline-bg-color: $black;
-$button-outline-bg-color-active: $black;
-$button-outline-bg-color-hover: #0b0b0b;
+$button-filled-dark-bg-color: $black;
+$button-filled-dark-bg-color-active: $black;
+$button-filled-dark-bg-color-hover: #0b0b0b;
+
+$button-filled-light-bg-color: #252a2e;
+$button-filled-light-bg-color-active: #1e2226;
+$button-filled-light-bg-color-hover: #2a3036;
+
+$button-outline-bg-color: $bg-color;
+$button-outline-bg-color-active: #121314;
+$button-outline-bg-color-hover: #1f2325;
 
 $button-border-color: $button-letter-color;
 
-@mixin button-base($type: outline, $padding: $padding-medium) {
-  @include box-shadow(large);
+@mixin button-base(
+  $type: outline,
+  $padding: $padding-medium,
+  $box-shadow: true
+) {
+  @if $box-shadow {
+    @include box-shadow(large);
+  }
 
   cursor: pointer;
   padding: calc-padding($padding);
@@ -26,22 +40,38 @@ $button-border-color: $button-letter-color;
   border-radius: $border-radius-medium;
   color: $button-letter-color;
 
-  @if $type == filled {
-    background-color: $button-filled-bg-color;
-  } @else {
+  @if $type == filled-primary {
+    background-color: $button-filled-primary-bg-color;
+  } @else if $type == filled-dark {
+    background-color: $button-filled-dark-bg-color;
+  } @else if $type == filled-light {
+    background-color: $button-filled-light-bg-color;
+  } @else if $type == outline {
     background-color: $button-outline-bg-color;
+    border: $border-thickness-tiny solid $button-border-color;
   }
 
-  &:hover {
-    transform: scale(1.01);
+  @if $type == filled-primary or $type == filled-dark {
+    &:hover {
+      transform: scale(1.01);
+    }
+  } @else if $type == outline or $type == text {
+    &:hover {
+      background-color: $button-outline-bg-color-hover;
+    }
   }
 
   &:active {
-    @if $type == filled {
-      background-color: $button-filled-bg-color-active;
+    @if $type == filled-primary {
+      background-color: $button-filled-primary-bg-color-active;
+    } @else if $type == filled-dark {
+      background-color: $button-filled-dark-bg-color-active;
+      border: $border-thickness-tiny solid $button-border-color;
+    } @else if $type == filled-dark {
+      background-color: $button-filled-light-bg-color-active;
+      border: $border-thickness-tiny solid $button-border-color;
     } @else {
       background-color: $button-outline-bg-color-active;
-      border: $border-thickness-tiny solid $primary-color-amber-dark;
     }
   }
 }

@@ -19,7 +19,7 @@
   }
 
   .button {
-    @include button-base;
+    @include button-base(filled-dark);
 
     @include for-tablet-portrait-up {
       width: 80%;

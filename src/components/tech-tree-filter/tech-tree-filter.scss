@@ -1,5 +1,16 @@
 @import '../../shared-styles/lib';
 
+$tech-tree-filter-border-thickness: $border-thickness-small;
+$tech-tree-filter-border-color: rgba($black, 0.5);
+
+@mixin tech-tree-filter-button {
+  @include button-base(
+    $type: filled-light,
+    $padding: $padding-small,
+    $box-shadow: false
+  );
+}
+
 .tech-tree-filter-container {
   margin-top: calc-vertical-margin($vertical-margin-ludicrous);
 
@@ -17,7 +28,8 @@
   margin-left: auto;
   margin-right: auto;
 
-  border: $border-thickness-small solid $border-neutral-color;
+  border: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
   border-radius: $border-radius-medium;
 }
 
@@ -26,11 +38,14 @@
   grid-template-rows: 100px 340px auto;
   height: calc(90vh - 3px);
 
-  border-right: $border-thickness-small solid $border-neutral-color;
+  border-right: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
+}
 
-  & > div {
-    padding: calc-padding($padding-small);
-  }
+.tech-tree-filter-search,
+.tech-tree-filter-options,
+.tech-tree-filter-filter-types {
+  padding: calc-padding($padding-small);
 }
 
 .tech-tree-filter-search {
@@ -40,33 +55,35 @@
 }
 
 .search-input {
-  @include box-shadow;
   width: 80%;
   height: 50px;
 
   color: $white;
-  background-color: $black;
+  background-color: $tech-tree-filter-border-color;
 
   font-size: calc-font-size($font-size-tiny-ex);
 
   padding: calc-padding($padding-small);
 
   border: none;
-  border-bottom: $border-thickness-tiny solid $border-primary-color-amber;
-  border-radius: $border-radius-medium $border-radius-medium 0 0;
+  border-radius: $border-radius-medium;
 
   &:focus {
     outline: 0;
+    border: $border-thickness-tiny solid $border-primary-color-amber;
   }
 }
 
 .tech-tree-filter-options {
-  border-top: $border-thickness-small solid $border-neutral-color;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+
+  border-top: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
 }
 
 .options-title,
 .filter-types-title {
-  font-variant: small-caps;
   margin-bottom: calc-vertical-margin($vertical-margin-large);
 }
 
@@ -86,12 +103,13 @@
 .filter-mode-button,
 .clear-filter-button,
 .hide-uniques-button {
-  @include button-base($padding: $padding-small);
+  @include tech-tree-filter-button;
 }
 
 .tech-tree-filter-sort {
   display: flex;
   flex-direction: row;
+  width: 100%;
 
   .sort-text {
     flex: 1 1 20%;
@@ -101,12 +119,14 @@
     flex: 1 1 80%;
 
     color: $primary-color-amber;
-    background-color: $black;
+    background-color: $button-filled-light-bg-color;
 
     padding: calc-padding($padding-small);
 
-    border: $border-thickness-tiny solid $border-primary-color-amber;
-    border-radius: $border-radius-medium;
+    border: none;
+    border-radius: $border-radius-small;
+
+    cursor: pointer;
 
     &:focus {
       outline: 0;
@@ -115,7 +135,8 @@
 }
 
 .tech-tree-filter-filter-types {
-  border-top: $border-thickness-small solid $border-neutral-color;
+  border-top: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
 }
 
 .filter-types-buttons {
@@ -125,10 +146,10 @@
 }
 
 .filter-types-button {
-  @include button-base($padding: $padding-small);
+  @include tech-tree-filter-button;
 
   &.filter-type-on {
-    transform: scale(1.2);
+    transform: scale(1.1);
     border: $border-thickness-tiny solid $border-primary-color-amber;
   }
 }
@@ -169,7 +190,8 @@
   flex: 1 1 15%;
   padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-medium);
-  border-bottom: $border-thickness-small solid $border-neutral-color;
+  border-bottom: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
 
   &.empty-filter {
     display: block;
@@ -178,8 +200,8 @@
 
   & .selected-items-placeholder {
     width: 100%;
-    height: 100px;
-    padding: calc-padding($padding-giant);
+    height: 124px;
+    padding: calc-padding($padding-ludicrous);
   }
 }
 
@@ -194,5 +216,6 @@
 
 .tech-tree-filter-staging-panel {
   height: calc(90vh - 3px);
-  border-left: $border-thickness-small solid $border-neutral-color;
+  border-left: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
 }

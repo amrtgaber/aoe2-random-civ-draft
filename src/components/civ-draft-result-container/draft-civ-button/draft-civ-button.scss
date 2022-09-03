@@ -1,7 +1,7 @@
 @import '../../../shared-styles/lib';
 
 .draft-civ-button {
-  @include button-base(filled);
+  @include button-base(filled-primary);
 
   font-weight: 500;
 

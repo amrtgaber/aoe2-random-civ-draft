@@ -25,7 +25,7 @@
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
-  @include button-base(outline);
+  @include button-base(filled-dark);
 }
 
 .staging-civ-pool {
