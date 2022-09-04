@@ -108,10 +108,10 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   }, [itemsFilter]);
 
   useEffect(() => {
-    setUnselectedItems(filterUnselectedItems());
+    setUnselectedItems(assembleUnselectedItemsList());
   }, [selectedItems, searchTerm, filterTags, isHidingUniques]);
 
-  const filterUnselectedItems = (): ITechTreeItem[] => {
+  const assembleUnselectedItemsList = (): ITechTreeItem[] => {
     // remove selectedItems
     let items = allItems.filter((item) => {
       return !selectedItems.some((selectedItem) => selectedItem.id === item.id);
@@ -203,6 +203,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const renderFilterTagsButtons = () => {
     return allFilterTags.map((tag) => {
       const isOn = filterTags.includes(tag);
+
       return (
         <a
           key={tag}
@@ -213,12 +214,6 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
         </a>
       );
     });
-  };
-
-  const getKey = (item: ITechTreeItem) => {
-    if (isUnit(item)) return 1000 + item.id;
-    if (isTech(item)) return 2000 + item.id;
-    if (isBuilding(item)) return 3000 + item.id;
   };
 
   return (
@@ -297,11 +292,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                   </div>
                 )}
                 {selectedItems.map((item) => (
-                  <TechTreeItem
-                    key={getKey(item)}
-                    item={item}
-                    selected={true}
-                  />
+                  <TechTreeItem key={item.id} item={item} selected={true} />
                 ))}
               </>
             </div>
@@ -317,11 +308,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                   </div>
                 )}
                 {unselectedItems.map((item) => (
-                  <TechTreeItem
-                    key={getKey(item)}
-                    item={item}
-                    selected={false}
-                  />
+                  <TechTreeItem key={item.id} item={item} selected={false} />
                 ))}
               </>
             </div>
