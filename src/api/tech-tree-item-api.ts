@@ -6,6 +6,7 @@ import { IUnit } from './units-api';
 export interface ITechTreeItem {
   id: number;
   itemName: string;
+  isUnique: boolean;
   kind: TechTreeItemType;
   civs?: ICiv[];
 }

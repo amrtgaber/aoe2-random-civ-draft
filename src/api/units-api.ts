@@ -20,7 +20,8 @@ export async function getUnits(): Promise<IUnit[]> {
   return units
     .map((unit) => {
       const { id, unitName: itemName, civs } = unit;
-      return { id, itemName, civs, kind: TechTreeItemType.UNIT };
+      const isUnique = civs.length === 1;
+      return { id, itemName, civs, isUnique, kind: TechTreeItemType.UNIT };
     })
     .sort((unit1, unit2) => (unit1.itemName > unit2.itemName ? 1 : -1));
 }

@@ -13,12 +13,14 @@ const TEST_UNITS: IUnit[] = [
     itemName: 'archer',
     civs: TEST_CIVS,
     kind: TechTreeItemType.UNIT,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'skirmisher',
     civs: TEST_CIVS,
     kind: TechTreeItemType.UNIT,
+    isUnique: false,
   },
 ];
 

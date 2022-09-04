@@ -20,7 +20,8 @@ export async function getTechs(): Promise<ITech[]> {
   return techs
     .map((tech) => {
       const { id, techName: itemName, civs } = tech;
-      return { id, itemName, civs, kind: TechTreeItemType.TECH };
+      const isUnique = civs.length === 1;
+      return { id, itemName, civs, isUnique, kind: TechTreeItemType.TECH };
     })
     .sort((tech1, tech2) => (tech1.itemName > tech2.itemName ? 1 : -1));
 }

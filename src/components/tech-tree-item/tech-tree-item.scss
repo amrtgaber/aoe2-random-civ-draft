@@ -44,6 +44,10 @@ $tech-tree-color-unique: #4a2750;
   &.building {
     background-color: $tech-tree-color-building;
   }
+
+  &.unique {
+    background-color: $tech-tree-color-unique;
+  }
 }
 
 .tech-tree-item-name {

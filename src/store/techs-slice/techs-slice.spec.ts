@@ -13,12 +13,14 @@ const TEST_TECHS: ITech[] = [
     itemName: 'loom',
     civs: TEST_CIVS,
     kind: TechTreeItemType.TECH,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'wheelbarrow',
     civs: TEST_CIVS,
     kind: TechTreeItemType.TECH,
+    isUnique: false,
   },
 ];
 

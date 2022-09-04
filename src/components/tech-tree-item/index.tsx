@@ -45,6 +45,10 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
     classes += ' building';
   }
 
+  if (item.isUnique) {
+    classes += ' unique';
+  }
+
   return (
     <div className='tech-tree-item-container'>
       <div

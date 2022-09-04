@@ -26,10 +26,11 @@ import './tech-tree-filter.scss';
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
-  const allFilterTags = ['units', 'techs', 'buildings']; // 'dark age', 'feudal age', 'castle age', 'imperial age', & buildings
+  const allFilterTags = ['units', 'techs', 'buildings', 'uniques']; // 'dark age', 'feudal age', 'castle age', 'imperial age', & buildings
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTags, setFilterTags] = useState<string[]>([]);
+  const [isHidingUniques, setIsHidingUniques] = useState(false);
 
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
   const [allItems, setAllItems] = useState<ITechTreeItem[]>([]);
@@ -108,13 +109,18 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   useEffect(() => {
     setUnselectedItems(filterUnselectedItems());
-  }, [selectedItems, searchTerm, filterTags]);
+  }, [selectedItems, searchTerm, filterTags, isHidingUniques]);
 
   const filterUnselectedItems = (): ITechTreeItem[] => {
     // remove selectedItems
     let items = allItems.filter((item) => {
       return !selectedItems.some((selectedItem) => selectedItem.id === item.id);
     });
+
+    // hide uniques
+    if (isHidingUniques) {
+      items = items.filter((item) => !item.isUnique);
+    }
 
     // match search term
     if (searchTerm.length > 0) {
@@ -128,14 +134,34 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     if (filterTags.length > 0) {
       items = items.filter((item) => {
         if (filterTags.includes('units') && isUnit(item)) {
+          if (filterTags.includes('uniques')) {
+            return item.isUnique;
+          }
+
           return true;
         }
 
         if (filterTags.includes('techs') && isTech(item)) {
+          if (filterTags.includes('uniques')) {
+            return item.isUnique;
+          }
+
           return true;
         }
 
         if (filterTags.includes('buildings') && isBuilding(item)) {
+          if (filterTags.includes('uniques')) {
+            return item.isUnique;
+          }
+
+          return true;
+        }
+
+        if (filterTags.includes('uniques') && item.isUnique) {
+          if (filterTags.includes('units')) return isUnit(item);
+          if (filterTags.includes('techs')) return isTech(item);
+          if (filterTags.includes('buildings')) return isBuilding(item);
+
           return true;
         }
       });
@@ -159,7 +185,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   };
 
   const handleHideUniques = () => {
-    // TODO
+    setIsHidingUniques(!isHidingUniques);
   };
 
   const handleFilterByTag = (newTag: string, hasTag: boolean) => {
@@ -239,7 +265,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                   className='hide-uniques-button'
                   onClick={() => handleHideUniques()}
                 >
-                  Hide uniques
+                  {isHidingUniques ? 'Show uniques' : 'Hide uniques'}
                 </a>
               </div>
               <div className='tech-tree-filter-sort'>
@@ -279,10 +305,25 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 ))}
               </>
             </div>
-            <div className='tech-tree-filter-unselected-items'>
-              {unselectedItems.map((item) => (
-                <TechTreeItem key={getKey(item)} item={item} selected={false} />
-              ))}
+            <div
+              className={`tech-tree-filter-unselected-items ${
+                unselectedItems.length === 0 ? ' empty-filter' : ''
+              }`}
+            >
+              <>
+                {unselectedItems.length === 0 && (
+                  <div className='unselected-items-placeholder'>
+                    No matching items
+                  </div>
+                )}
+                {unselectedItems.map((item) => (
+                  <TechTreeItem
+                    key={getKey(item)}
+                    item={item}
+                    selected={false}
+                  />
+                ))}
+              </>
             </div>
           </div>
           <div className='tech-tree-filter-staging-panel'>

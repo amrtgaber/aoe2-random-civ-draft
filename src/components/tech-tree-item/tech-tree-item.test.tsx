@@ -22,7 +22,12 @@ describe('tech tree item component', () => {
       const { container: techTreeItem } = render(
         <Provider store={store}>
           <TechTreeItem
-            item={{ id: 1, itemName: 'archer', kind: TechTreeItemType.UNIT }}
+            item={{
+              id: 1,
+              itemName: 'archer',
+              kind: TechTreeItemType.UNIT,
+              isUnique: false,
+            }}
             selected={false}
           />
         </Provider>

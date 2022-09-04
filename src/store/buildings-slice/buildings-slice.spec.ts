@@ -17,12 +17,14 @@ const TEST_BUILDINGS: IBuilding[] = [
     itemName: 'castle',
     civs: TEST_CIVS,
     kind: TechTreeItemType.BUILDING,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'house',
     civs: TEST_CIVS,
     kind: TechTreeItemType.BUILDING,
+    isUnique: false,
   },
 ];
 

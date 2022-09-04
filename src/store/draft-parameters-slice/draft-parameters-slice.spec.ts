@@ -38,12 +38,14 @@ const TEST_UNITS: IUnit[] = [
     itemName: 'archer',
     civs: TEST_CIVS,
     kind: TechTreeItemType.UNIT,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'skirmisher',
     civs: TEST_CIVS,
     kind: TechTreeItemType.UNIT,
+    isUnique: false,
   },
 ];
 
@@ -53,12 +55,14 @@ const TEST_TECHS: ITech[] = [
     itemName: 'loom',
     civs: TEST_CIVS,
     kind: TechTreeItemType.TECH,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'wheelbarrow',
     civs: TEST_CIVS,
     kind: TechTreeItemType.TECH,
+    isUnique: false,
   },
 ];
 
@@ -68,12 +72,14 @@ const TEST_BUILDINGS: IBuilding[] = [
     itemName: 'castle',
     civs: TEST_CIVS,
     kind: TechTreeItemType.BUILDING,
+    isUnique: false,
   },
   {
     id: 2,
     itemName: 'house',
     civs: TEST_CIVS,
     kind: TechTreeItemType.BUILDING,
+    isUnique: false,
   },
 ];
 
@@ -304,12 +310,14 @@ describe('draftParameters reducer', () => {
             itemName: 'archer',
             civs: TEST_CIVS,
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'knight',
             civs: TEST_CIVS,
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
         ];
 
@@ -319,12 +327,14 @@ describe('draftParameters reducer', () => {
             itemName: 'forging',
             civs: TEST_CIVS,
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'loom',
             civs: TEST_CIVS,
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
         ];
 
@@ -334,12 +344,14 @@ describe('draftParameters reducer', () => {
             itemName: 'castle',
             civs: TEST_CIVS,
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'house',
             civs: TEST_CIVS,
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
         ];
 
@@ -365,12 +377,14 @@ describe('draftParameters reducer', () => {
             itemName: 'archer',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'knight',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
         ];
 
@@ -380,12 +394,14 @@ describe('draftParameters reducer', () => {
             itemName: 'forging',
             civs: [TEST_CIVS[1]],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'loom',
             civs: [TEST_CIVS[1]],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
         ];
 
@@ -395,12 +411,14 @@ describe('draftParameters reducer', () => {
             itemName: 'castle',
             civs: [TEST_CIVS[2]],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'house',
             civs: [TEST_CIVS[2]],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
         ];
 
@@ -427,12 +445,14 @@ describe('draftParameters reducer', () => {
             itemName: 'archer',
             civs: TEST_CIVS,
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'knight',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
         ];
 
@@ -442,12 +462,14 @@ describe('draftParameters reducer', () => {
             itemName: 'forging',
             civs: TEST_CIVS,
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'loom',
             civs: TEST_CIVS,
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
         ];
 
@@ -457,12 +479,14 @@ describe('draftParameters reducer', () => {
             itemName: 'castle',
             civs: TEST_CIVS,
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'house',
             civs: TEST_CIVS,
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
         ];
 
@@ -488,12 +512,14 @@ describe('draftParameters reducer', () => {
             itemName: 'archer',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'knight',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
         ];
 
@@ -503,12 +529,14 @@ describe('draftParameters reducer', () => {
             itemName: 'forging',
             civs: [TEST_CIVS[0]],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'loom',
             civs: [TEST_CIVS[1]],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
         ];
 
@@ -518,12 +546,14 @@ describe('draftParameters reducer', () => {
             itemName: 'castle',
             civs: [TEST_CIVS[1]],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'house',
             civs: [TEST_CIVS[1]],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
         ];
 
@@ -549,12 +579,14 @@ describe('draftParameters reducer', () => {
             itemName: 'archer',
             civs: [],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'knight',
             civs: [],
             kind: TechTreeItemType.UNIT,
+            isUnique: false,
           },
         ];
 
@@ -564,12 +596,14 @@ describe('draftParameters reducer', () => {
             itemName: 'forging',
             civs: [],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'loom',
             civs: [],
             kind: TechTreeItemType.TECH,
+            isUnique: false,
           },
         ];
 
@@ -579,12 +613,14 @@ describe('draftParameters reducer', () => {
             itemName: 'castle',
             civs: [],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
           {
             id: 2,
             itemName: 'house',
             civs: [],
             kind: TechTreeItemType.BUILDING,
+            isUnique: false,
           },
         ];
 

@@ -20,7 +20,8 @@ export async function getBuildings(): Promise<IBuilding[]> {
   return buildings
     .map((building) => {
       const { id, buildingName: itemName, civs } = building;
-      return { id, itemName, civs, kind: TechTreeItemType.BUILDING };
+      const isUnique = civs.length === 1;
+      return { id, itemName, civs, isUnique, kind: TechTreeItemType.BUILDING };
     })
     .sort((building1, building2) =>
       building1.itemName > building2.itemName ? 1 : -1

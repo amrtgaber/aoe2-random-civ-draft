@@ -182,6 +182,11 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 
   text-align: center;
 
+  &.empty-filter {
+    display: block;
+    text-align: center;
+  }
+
   @include for-phone-only {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -206,14 +211,9 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   border-bottom: $tech-tree-filter-border-thickness solid
     $tech-tree-filter-border-color;
 
-  &.empty-filter {
-    display: block;
-    text-align: center;
-  }
-
-  & .selected-items-placeholder {
+  .selected-items-placeholder {
     width: 100%;
-    height: 124px;
+    height: 10vh;
     padding: calc-padding($padding-ludicrous);
   }
 }
@@ -225,6 +225,12 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   padding-top: calc-padding($padding-medium);
 
   overflow-y: auto;
+
+  .unselected-items-placeholder {
+    width: 100%;
+    height: 70vh;
+    padding: calc-padding($padding-ludicrous);
+  }
 }
 
 .tech-tree-filter-staging-panel {
