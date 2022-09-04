@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getTechs, ITechTechTree } from '../../api/techs-api';
+import { getTechs, ITech } from '../../api/techs-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface TechsState {
-  allTechs: ITechTechTree[];
+  allTechs: ITech[];
   techsStatus: FetchStatus;
 }
 
 export const initialState: TechsState = {
-  allTechs: [] as ITechTechTree[],
+  allTechs: [] as ITech[],
   techsStatus: FetchStatus.INIT,
 };
 
@@ -30,7 +30,7 @@ export const techsSlice = createSlice({
       })
       .addCase(
         fetchTechs.fulfilled,
-        (state, action: PayloadAction<ITechTechTree[]>) => {
+        (state, action: PayloadAction<ITech[]>) => {
           state.allTechs = action.payload;
           state.techsStatus = FetchStatus.FULFILLED;
         }

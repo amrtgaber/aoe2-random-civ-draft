@@ -6,6 +6,7 @@ import unitsReducer from '../../store/units-slice';
 import techsReducer from '../../store/techs-slice';
 import buildingsReducer from '../../store/buildings-slice';
 import { TechTreeItem } from '.';
+import { TechTreeItemType } from '../../api/tech-tree-item-api';
 
 describe('tech tree item component', () => {
   const reducer = {
@@ -21,10 +22,8 @@ describe('tech tree item component', () => {
       const { container: techTreeItem } = render(
         <Provider store={store}>
           <TechTreeItem
-            item={{ id: 1, unitName: 'archer', civs: [] }}
+            item={{ id: 1, itemName: 'archer', kind: TechTreeItemType.UNIT }}
             selected={false}
-            addToFilter={(item) => {}}
-            removeFromFilter={(item) => {}}
           />
         </Provider>
       );

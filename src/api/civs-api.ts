@@ -1,7 +1,5 @@
 import { API_URL } from '.';
-import { IBuilding } from './buildings-api';
-import { ITech } from './techs-api';
-import { IUnit } from './units-api';
+import { ITechTreeItem } from './tech-tree-item-api';
 
 export interface ICiv {
   id: number;
@@ -9,9 +7,9 @@ export interface ICiv {
 }
 
 export interface ICivTechTree extends ICiv {
-  units: IUnit[];
-  techs: ITech[];
-  buildings: IBuilding[];
+  units: ITechTreeItem[];
+  techs: ITechTreeItem[];
+  buildings: ITechTreeItem[];
 }
 
 export async function getCivs(): Promise<ICiv[]> {

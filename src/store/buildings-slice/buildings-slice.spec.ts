@@ -2,24 +2,27 @@ import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
-import { IBuildingTechTree } from '../../api/buildings-api';
+import { IBuilding } from '../../api/buildings-api';
 import { FetchStatus } from '../shared-store-utils';
 import buildingsReducer, {
   BuildingsState,
   fetchBuildings,
   initialState,
 } from '.';
+import { TechTreeItemType } from '../../api/tech-tree-item-api';
 
-const TEST_BUILDINGS: IBuildingTechTree[] = [
+const TEST_BUILDINGS: IBuilding[] = [
   {
     id: 1,
-    buildingName: 'castle',
+    itemName: 'castle',
     civs: TEST_CIVS,
+    kind: TechTreeItemType.BUILDING,
   },
   {
     id: 2,
-    buildingName: 'house',
+    itemName: 'house',
     civs: TEST_CIVS,
+    kind: TechTreeItemType.BUILDING,
   },
 ];
 

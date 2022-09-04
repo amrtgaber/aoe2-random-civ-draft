@@ -17,28 +17,28 @@ describe('units api', () => {
             id: 1,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            unitName: 'skirmisher',
+            itemName: 'skirmisher',
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            unitName: 'archer',
+            itemName: 'archer',
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            unitName: 'villager',
+            itemName: 'villager',
           },
         ])
       );
 
       const units = await getUnits();
 
-      expect(units[0].unitName).toBe('archer');
-      expect(units[1].unitName).toBe('skirmisher');
-      expect(units[2].unitName).toBe('villager');
+      expect(units[0].itemName).toBe('archer');
+      expect(units[1].itemName).toBe('skirmisher');
+      expect(units[2].itemName).toBe('villager');
     });
   });
 });

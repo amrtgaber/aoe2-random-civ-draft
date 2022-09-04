@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getUnits, IUnitTechTree } from '../../api/units-api';
+import { getUnits, IUnit } from '../../api/units-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface UnitsState {
-  allUnits: IUnitTechTree[];
+  allUnits: IUnit[];
   unitsStatus: FetchStatus;
 }
 
 export const initialState: UnitsState = {
-  allUnits: [] as IUnitTechTree[],
+  allUnits: [] as IUnit[],
   unitsStatus: FetchStatus.INIT,
 };
 
@@ -30,7 +30,7 @@ export const unitsSlice = createSlice({
       })
       .addCase(
         fetchUnits.fulfilled,
-        (state, action: PayloadAction<IUnitTechTree[]>) => {
+        (state, action: PayloadAction<IUnit[]>) => {
           state.allUnits = action.payload;
           state.unitsStatus = FetchStatus.FULFILLED;
         }

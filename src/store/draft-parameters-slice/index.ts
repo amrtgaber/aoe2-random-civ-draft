@@ -2,10 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 import { ICiv } from '../../api/civs-api';
-import { IUnitTechTree } from '../../api/units-api';
-import { ITechTechTree } from '../../api/techs-api';
-import { IBuildingTechTree } from '../../api/buildings-api';
 import { filterCivPool } from './filter-civ-pool';
+import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
 export enum FilterMode {
   HAS_ALL,
@@ -14,17 +12,13 @@ export enum FilterMode {
 
 export interface DraftParametersState {
   filteredCivPool: ICiv[];
-  unitsFilter: IUnitTechTree[];
-  techsFilter: ITechTechTree[];
-  buildingsFilter: IBuildingTechTree[];
+  itemsFilter: ITechTreeItem[];
   filterMode: FilterMode;
 }
 
 export const initialState: DraftParametersState = {
   filteredCivPool: [] as ICiv[],
-  unitsFilter: [] as IUnitTechTree[],
-  techsFilter: [] as ITechTechTree[],
-  buildingsFilter: [] as IBuildingTechTree[],
+  itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
 };
 
@@ -32,71 +26,23 @@ export const draftParametersSlice = createSlice({
   name: 'draftParameters',
   initialState,
   reducers: {
-    addUnitToFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitsFilter.push(action.payload);
+    addItemToFilter: (state, action: PayloadAction<ITechTreeItem>) => {
+      state.itemsFilter.push(action.payload);
       state.filteredCivPool = filterCivPool(state);
     },
-    removeUnitFromFilter: (state, action: PayloadAction<IUnitTechTree>) => {
-      state.unitsFilter = state.unitsFilter.filter(
-        (unit) => unit.unitName !== action.payload.unitName
+    removeItemFromFilter: (state, action: PayloadAction<ITechTreeItem>) => {
+      state.itemsFilter = state.itemsFilter.filter(
+        (item) => item.itemName !== action.payload.itemName
       );
       state.filteredCivPool = filterCivPool(state);
     },
-    updateUnitsFilter: (state, action: PayloadAction<IUnitTechTree[]>) => {
-      state.unitsFilter = action.payload;
+    updateFilter: (state, action: PayloadAction<ITechTreeItem[]>) => {
+      state.itemsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
-    clearUnitsFilter: (state) => {
-      state.unitsFilter = [];
+    clearFilter: (state) => {
+      state.itemsFilter = [];
       state.filteredCivPool = filterCivPool(state);
-    },
-    addTechToFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techsFilter.push(action.payload);
-      state.filteredCivPool = filterCivPool(state);
-    },
-    removeTechFromFilter: (state, action: PayloadAction<ITechTechTree>) => {
-      state.techsFilter = state.techsFilter.filter(
-        (tech) => tech.techName !== action.payload.techName
-      );
-      state.filteredCivPool = filterCivPool(state);
-    },
-    updateTechsFilter: (state, action: PayloadAction<ITechTechTree[]>) => {
-      state.techsFilter = action.payload;
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearTechsFilter: (state) => {
-      state.techsFilter = [];
-      state.filteredCivPool = filterCivPool(state);
-    },
-    addBuildingToFilter: (state, action: PayloadAction<IBuildingTechTree>) => {
-      state.buildingsFilter.push(action.payload);
-      state.filteredCivPool = filterCivPool(state);
-    },
-    removeBuildingFromFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree>
-    ) => {
-      state.buildingsFilter = state.buildingsFilter.filter(
-        (building) => building.buildingName !== action.payload.buildingName
-      );
-      state.filteredCivPool = filterCivPool(state);
-    },
-    updateBuildingsFilter: (
-      state,
-      action: PayloadAction<IBuildingTechTree[]>
-    ) => {
-      state.buildingsFilter = action.payload;
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearBuildingsFilter: (state) => {
-      state.buildingsFilter = [];
-      state.filteredCivPool = filterCivPool(state);
-    },
-    clearFilters: (state) => {
-      state.unitsFilter = [];
-      state.techsFilter = [];
-      state.buildingsFilter = [];
-      state.filteredCivPool = [];
     },
     updateFilterMode: (state, action: PayloadAction<FilterMode>) => {
       state.filterMode = action.payload;
@@ -106,19 +52,10 @@ export const draftParametersSlice = createSlice({
 });
 
 export const {
-  addUnitToFilter,
-  removeUnitFromFilter,
-  updateUnitsFilter,
-  clearUnitsFilter,
-  addTechToFilter,
-  removeTechFromFilter,
-  updateTechsFilter,
-  clearTechsFilter,
-  addBuildingToFilter,
-  removeBuildingFromFilter,
-  updateBuildingsFilter,
-  clearBuildingsFilter,
-  clearFilters,
+  addItemToFilter,
+  removeItemFromFilter,
+  updateFilter,
+  clearFilter,
   updateFilterMode,
 } = draftParametersSlice.actions;
 

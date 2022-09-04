@@ -2,14 +2,12 @@ import { DraftParametersState, FilterMode } from '.';
 import { ICiv } from '../../api/civs-api';
 
 export function filterCivPool(state: DraftParametersState): ICiv[] {
-  const { unitsFilter, techsFilter, buildingsFilter, filterMode } = state;
+  const { itemsFilter, filterMode } = state;
 
   const filterFn =
     filterMode === FilterMode.HAS_ALL ? filterByAll : filterByAny;
 
-  const allCivLists = [...unitsFilter, ...techsFilter, ...buildingsFilter].map(
-    (item) => item.civs
-  );
+  const allCivLists = itemsFilter.map((item) => item.civs!);
 
   return allCivLists.length > 0
     ? allCivLists.reduce(filterFn, allCivLists[0])

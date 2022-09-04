@@ -1,23 +1,26 @@
 import { API_URL } from '.';
 import { ICiv } from './civs-api';
+import { ITechTreeItem, TechTreeItemType } from './tech-tree-item-api';
 
-export interface ITech {
+interface ApiTech {
   id: number;
   techName: string;
-}
-
-export interface ITechTechTree extends ITech {
   civs: ICiv[];
 }
 
-export async function getTechs(): Promise<ITechTechTree[]> {
+export interface ITech extends ITechTreeItem {
+  kind: TechTreeItemType;
+  civs: ICiv[];
+}
+
+export async function getTechs(): Promise<ITech[]> {
   const response = await fetch(`${API_URL}/techs`);
-  const techs = (await response.json()) as ITechTechTree[];
+  const techs = (await response.json()) as ApiTech[];
 
   return techs
     .map((tech) => {
-      const { id, techName, civs } = tech;
-      return { id, techName, civs };
+      const { id, techName: itemName, civs } = tech;
+      return { id, itemName, civs, kind: TechTreeItemType.TECH };
     })
-    .sort((tech1, tech2) => (tech1.techName > tech2.techName ? 1 : -1));
+    .sort((tech1, tech2) => (tech1.itemName > tech2.itemName ? 1 : -1));
 }

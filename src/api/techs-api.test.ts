@@ -16,28 +16,28 @@ describe('techs api', () => {
             id: 1,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            techName: 'wheelbarrow',
+            itemName: 'wheelbarrow',
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            techName: 'loom',
+            itemName: 'loom',
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            techName: 'stone mining',
+            itemName: 'stone mining',
           },
         ])
       );
 
       const techs = await getTechs();
 
-      expect(techs[0].techName).toBe('loom');
-      expect(techs[1].techName).toBe('stone mining');
-      expect(techs[2].techName).toBe('wheelbarrow');
+      expect(techs[0].itemName).toBe('loom');
+      expect(techs[1].itemName).toBe('stone mining');
+      expect(techs[2].itemName).toBe('wheelbarrow');
     });
   });
 });

@@ -1,25 +1,28 @@
 import { API_URL } from '.';
 import { ICiv } from './civs-api';
+import { ITechTreeItem, TechTreeItemType } from './tech-tree-item-api';
 
-export interface IBuilding {
+interface ApiBuilding {
   id: number;
   buildingName: string;
-}
-
-export interface IBuildingTechTree extends IBuilding {
   civs: ICiv[];
 }
 
-export async function getBuildings(): Promise<IBuildingTechTree[]> {
+export interface IBuilding extends ITechTreeItem {
+  kind: TechTreeItemType;
+  civs: ICiv[];
+}
+
+export async function getBuildings(): Promise<IBuilding[]> {
   const response = await fetch(`${API_URL}/buildings`);
-  const buildings = (await response.json()) as IBuildingTechTree[];
+  const buildings = (await response.json()) as ApiBuilding[];
 
   return buildings
     .map((building) => {
-      const { id, buildingName, civs } = building;
-      return { id, buildingName, civs };
+      const { id, buildingName: itemName, civs } = building;
+      return { id, itemName, civs, kind: TechTreeItemType.BUILDING };
     })
     .sort((building1, building2) =>
-      building1.buildingName > building2.buildingName ? 1 : -1
+      building1.itemName > building2.itemName ? 1 : -1
     );
 }

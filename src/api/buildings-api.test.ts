@@ -16,28 +16,28 @@ describe('buildings api', () => {
             id: 1,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            buildingName: 'house',
+            itemName: 'house',
           },
           {
             id: 2,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            buildingName: 'castle',
+            itemName: 'castle',
           },
           {
             id: 3,
             createdAt: '2022-08-18T20:26:39.368Z',
             updatedAt: '2022-08-18T20:26:39.372Z',
-            buildingName: 'stable',
+            itemName: 'stable',
           },
         ])
       );
 
       const buildings = await getBuildings();
 
-      expect(buildings[0].buildingName).toBe('castle');
-      expect(buildings[1].buildingName).toBe('house');
-      expect(buildings[2].buildingName).toBe('stable');
+      expect(buildings[0].itemName).toBe('castle');
+      expect(buildings[1].itemName).toBe('house');
+      expect(buildings[2].itemName).toBe('stable');
     });
   });
 });

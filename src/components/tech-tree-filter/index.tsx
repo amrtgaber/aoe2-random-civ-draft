@@ -1,30 +1,24 @@
-import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
 import { fetchTechs, selectTechs } from '../../store/techs-slice';
 import { fetchUnits, selectUnits } from '../../store/units-slice';
 import {
-  addBuildingToFilter,
-  addTechToFilter,
-  addUnitToFilter,
-  clearFilters,
+  clearFilter,
   FilterMode,
-  removeBuildingFromFilter,
-  removeTechFromFilter,
-  removeUnitFromFilter,
   selectDraftParameters,
   updateFilterMode,
 } from '../../store/draft-parameters-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
-import { Loading } from '../loading';
 import {
   isBuilding,
   isTech,
   isUnit,
-  TechTreeItem,
-  TechTreeItemType,
-} from '../tech-tree-item';
+  ITechTreeItem,
+} from '../../api/tech-tree-item-api';
+import { Loading } from '../loading';
+import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
@@ -38,17 +32,14 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const [filterTags, setFilterTags] = useState<string[]>([]);
 
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
-  const [allItems, setAllItems] = useState<TechTreeItemType[]>([]);
-  const [selectedItems, setSelectedItems] = useState<TechTreeItemType[]>([]);
-  const [unselectedItems, setUnselectedItems] = useState<TechTreeItemType[]>(
-    []
-  );
+  const [allItems, setAllItems] = useState<ITechTreeItem[]>([]);
+  const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
+  const [unselectedItems, setUnselectedItems] = useState<ITechTreeItem[]>([]);
 
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
-  const { unitsFilter, techsFilter, buildingsFilter, filterMode } =
-    useAppSelector(selectDraftParameters);
+  const { itemsFilter, filterMode } = useAppSelector(selectDraftParameters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -112,46 +103,28 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   };
 
   useEffect(() => {
-    setSelectedItems([...unitsFilter, ...techsFilter, ...buildingsFilter]);
-  }, [unitsFilter, techsFilter, buildingsFilter]);
+    setSelectedItems(itemsFilter);
+  }, [itemsFilter]);
 
   useEffect(() => {
+    setUnselectedItems(filterUnselectedItems());
+  }, [selectedItems, searchTerm, filterTags]);
+
+  const filterUnselectedItems = (): ITechTreeItem[] => {
+    // remove selectedItems
     let items = allItems.filter((item) => {
-      return !selectedItems.some((selectedItem) => {
-        if (isUnit(item) && isUnit(selectedItem))
-          return selectedItem.id === item.id;
-
-        if (isTech(item) && isTech(selectedItem))
-          return selectedItem.id === item.id;
-
-        if (isBuilding(item) && isBuilding(selectedItem))
-          return selectedItem.id === item.id;
-      });
+      return !selectedItems.some((selectedItem) => selectedItem.id === item.id);
     });
 
+    // match search term
     if (searchTerm.length > 0) {
-      items = items.filter((item) => {
-        if (isUnit(item)) return item.unitName.includes(searchTerm);
-        if (isTech(item)) return item.techName.includes(searchTerm);
-        if (isBuilding(item)) return item.buildingName.includes(searchTerm);
-      });
+      items = items.filter((item) => item.itemName.includes(searchTerm));
     }
 
-    items.sort((item1, item2) => {
-      let item1Name = '';
-      let item2Name = '';
+    // sort
+    items.sort((item1, item2) => (item1.itemName > item2.itemName ? 1 : -1));
 
-      if (isUnit(item1)) item1Name = item1.unitName;
-      if (isTech(item1)) item1Name = item1.techName;
-      if (isBuilding(item1)) item1Name = item1.buildingName;
-
-      if (isUnit(item2)) item2Name = item2.unitName;
-      if (isTech(item2)) item2Name = item2.techName;
-      if (isBuilding(item2)) item2Name = item2.buildingName;
-
-      return item1Name > item2Name ? 1 : -1;
-    });
-
+    // filter by tag
     if (filterTags.length > 0) {
       items = items.filter((item) => {
         if (filterTags.includes('units') && isUnit(item)) {
@@ -168,39 +141,11 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
       });
     }
 
-    setUnselectedItems(items);
-  }, [selectedItems, searchTerm, filterTags]);
-
-  const addToFilter = (item: TechTreeItemType) => {
-    if (isUnit(item)) {
-      dispatch(addUnitToFilter(item));
-    }
-
-    if (isTech(item)) {
-      dispatch(addTechToFilter(item));
-    }
-
-    if (isBuilding(item)) {
-      dispatch(addBuildingToFilter(item));
-    }
-  };
-
-  const removeFromFilter = (item: TechTreeItemType) => {
-    if (isUnit(item)) {
-      dispatch(removeUnitFromFilter(item));
-    }
-
-    if (isTech(item)) {
-      dispatch(removeTechFromFilter(item));
-    }
-
-    if (isBuilding(item)) {
-      dispatch(removeBuildingFromFilter(item));
-    }
+    return items;
   };
 
   const handleClearFilter = () => {
-    dispatch(clearFilters());
+    dispatch(clearFilter());
   };
 
   const handleToggleFilterMode = () => {
@@ -217,8 +162,8 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     // TODO
   };
 
-  const handleFilterByTag = (newTag: string, remove: boolean) => {
-    if (remove) {
+  const handleFilterByTag = (newTag: string, hasTag: boolean) => {
+    if (hasTag) {
       setFilterTags(filterTags.filter((tag) => tag !== newTag));
     } else {
       setFilterTags([...filterTags, newTag]);
@@ -244,7 +189,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     });
   };
 
-  const getKey = (item: TechTreeItemType) => {
+  const getKey = (item: ITechTreeItem) => {
     if (isUnit(item)) return 1000 + item.id;
     if (isTech(item)) return 2000 + item.id;
     if (isBuilding(item)) return 3000 + item.id;
@@ -330,21 +275,13 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                     key={getKey(item)}
                     item={item}
                     selected={true}
-                    addToFilter={addToFilter}
-                    removeFromFilter={removeFromFilter}
                   />
                 ))}
               </>
             </div>
             <div className='tech-tree-filter-unselected-items'>
               {unselectedItems.map((item) => (
-                <TechTreeItem
-                  key={getKey(item)}
-                  item={item}
-                  selected={false}
-                  addToFilter={addToFilter}
-                  removeFromFilter={removeFromFilter}
-                />
+                <TechTreeItem key={getKey(item)} item={item} selected={false} />
               ))}
             </div>
           </div>

@@ -18,16 +18,16 @@ describe('civs api', () => {
             updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Vikings',
             units: [
-              { id: 1, unitName: 'archer' },
-              { id: 2, unitName: 'skirmisher' },
+              { id: 1, itemName: 'archer' },
+              { id: 2, itemName: 'skirmisher' },
             ],
             techs: [
-              { id: 1, techName: 'loom' },
-              { id: 2, techName: 'wheelbarrow' },
+              { id: 1, itemName: 'loom' },
+              { id: 2, itemName: 'wheelbarrow' },
             ],
             buildings: [
-              { id: 1, buildingName: 'castle' },
-              { id: 2, buildingName: 'house' },
+              { id: 1, itemName: 'castle' },
+              { id: 2, itemName: 'house' },
             ],
           },
           {
@@ -36,16 +36,16 @@ describe('civs api', () => {
             updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Aztecs',
             units: [
-              { id: 1, unitName: 'archer' },
-              { id: 2, unitName: 'skirmisher' },
+              { id: 1, itemName: 'archer' },
+              { id: 2, itemName: 'skirmisher' },
             ],
             techs: [
-              { id: 1, techName: 'loom' },
-              { id: 2, techName: 'wheelbarrow' },
+              { id: 1, itemName: 'loom' },
+              { id: 2, itemName: 'wheelbarrow' },
             ],
             buildings: [
-              { id: 1, buildingName: 'castle' },
-              { id: 2, buildingName: 'house' },
+              { id: 1, itemName: 'castle' },
+              { id: 2, itemName: 'house' },
             ],
           },
           {
@@ -54,16 +54,16 @@ describe('civs api', () => {
             updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Malians',
             units: [
-              { id: 1, unitName: 'archer' },
-              { id: 2, unitName: 'skirmisher' },
+              { id: 1, itemName: 'archer' },
+              { id: 2, itemName: 'skirmisher' },
             ],
             techs: [
-              { id: 1, techName: 'loom' },
-              { id: 2, techName: 'wheelbarrow' },
+              { id: 1, itemName: 'loom' },
+              { id: 2, itemName: 'wheelbarrow' },
             ],
             buildings: [
-              { id: 1, buildingName: 'castle' },
-              { id: 2, buildingName: 'house' },
+              { id: 1, itemName: 'castle' },
+              { id: 2, itemName: 'house' },
             ],
           },
         ])
