@@ -86,7 +86,7 @@ $civ-unit-image-size: 96px;
   top: 5px;
   right: 5px;
 
-  font-size: calc-font-size($font-size-zero);
+  font-size: calc-font-size($font-size-0);
 
   img {
     width: 25px;
@@ -127,14 +127,14 @@ $civ-unit-image-size: 96px;
   border-radius: $border-radius-medium;
 
   @include for-phone-only {
-    font-size: calc-font-size($font-size-base-ex);
+    font-size: calc-font-size($font-size-12);
   }
 
   @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-tiny-ex);
+    font-size: calc-font-size($font-size-8);
   }
 
   @include for-1080p-up {
-    font-size: calc-font-size($font-size-tiny);
+    font-size: calc-font-size($font-size-2);
   }
 }

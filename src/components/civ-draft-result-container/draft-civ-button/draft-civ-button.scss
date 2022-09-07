@@ -12,17 +12,17 @@
   @include for-phone-only {
     width: 140px;
     height: 58px;
-    font-size: calc-font-size($font-size-small);
+    font-size: calc-font-size($font-size-14);
   }
 
   @include for-tablet-portrait-up {
     width: 220px;
     height: 65px;
-    font-size: calc-font-size($font-size-small);
+    font-size: calc-font-size($font-size-14);
   }
 
   @include for-1080p-up {
-    font-size: calc-font-size($font-size-medium);
+    font-size: calc-font-size($font-size-18);
   }
 
   @include for-4k-up {

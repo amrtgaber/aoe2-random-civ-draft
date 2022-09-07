@@ -23,7 +23,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    font-size: calc-font-size($font-size-tiny);
+    font-size: calc-font-size($font-size-4);
     text-align: center;
 
     @include for-phone-only {

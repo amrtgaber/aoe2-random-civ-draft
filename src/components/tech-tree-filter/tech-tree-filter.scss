@@ -65,7 +65,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   color: $white;
   background-color: $tech-tree-filter-border-color;
 
-  font-size: calc-font-size($font-size-tiny-ex);
+  font-size: calc-font-size($font-size-8);
 
   padding: calc-padding($padding-small);
 
@@ -160,7 +160,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 .filter-tags-button {
   @include tech-tree-filter-button;
 
-  font-size: calc-font-size($font-size-tiny);
+  font-size: calc-font-size($font-size-4);
 
   &.filter-tag-on {
     border: $border-thickness-tiny solid $border-primary-color-amber;
