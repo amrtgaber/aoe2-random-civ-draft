@@ -1,14 +1,12 @@
 import { API_URL } from '.';
 import { ICiv } from './civs-api';
-import { getId, ITechTreeItem, TechTreeItemType } from './tech-tree-item-api';
+import { ITechTreeItem, TechTreeItemType } from './tech-tree-item-api';
 
 interface ApiUnit {
   id: number;
   unitName: string;
   civs: ICiv[];
 }
-
-const UNIT_MIN_ID = 1000;
 
 export interface IUnit extends ITechTreeItem {
   kind: TechTreeItemType;
@@ -24,7 +22,7 @@ export async function getUnits(): Promise<IUnit[]> {
       const { id, unitName: itemName, civs } = unit;
       const isUnique = civs.length === 1;
       return {
-        id: getId(id, UNIT_MIN_ID),
+        id,
         itemName,
         civs,
         isUnique,

@@ -28,7 +28,3 @@ export function isTech(item: ITechTreeItem): item is ITech {
 export function isBuilding(item: ITechTreeItem): item is IBuilding {
   return item.kind === TechTreeItemType.BUILDING;
 }
-
-export function getId(id: number, minId: number): number {
-  return (id % minId) + minId;
-}
