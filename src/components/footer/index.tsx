@@ -36,16 +36,24 @@ export const Footer: FC<IFooterProps> = (props) => {
           >
             Donate
           </a>
+          •{' '}
+          <a
+            href='https://www.youtube.com/c/debrijja'
+            target='_blank'
+            rel='noreferrer'
+          >
+            youtube
+          </a>
         </p>
         <p>
           Thank you to <a href='https://siegeengineers.org/'>Siege Engineers</a>
           . Inspiration and some assets were taken (wololo 11) from their
-          projects.
+          projects. If u like this app u might also like{' '}
+          <a href='https://www.aoe2database.com/'>aoe2database.com</a>.
         </p>
         <p>
           Age of Empires II © Microsoft Corporation. Age of Empires II Random
-          Civilization Draft for Age of Empires II was created under
-          Microsoft&apos;s &quot;
+          Civilization Draft was created under Microsoft&apos;s &quot;
           <a href='https://www.xbox.com/en-us/developers/rules'>
             Game Content Usage Rules
           </a>
