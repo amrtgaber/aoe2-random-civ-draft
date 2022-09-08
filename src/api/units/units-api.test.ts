@@ -1,5 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
-import { TEST_CIVS } from '../shared-test-data';
+import { TEST_CIVS } from '../../shared-test-data';
 import { getUnits } from './units-api';
 
 fetchMock.enableMocks();

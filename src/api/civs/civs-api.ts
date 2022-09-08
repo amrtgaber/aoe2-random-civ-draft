@@ -1,5 +1,5 @@
-import { API_URL } from '.';
-import { ITechTreeItem } from './tech-tree-item-api';
+import { API_URL } from '..';
+import { ITechTreeItem } from '../tech-tree-item-api';
 
 export interface ICiv {
   id: number;

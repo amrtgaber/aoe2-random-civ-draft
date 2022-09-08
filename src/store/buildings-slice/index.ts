@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getBuildings, IBuilding } from '../../api/buildings-api';
+import { getBuildings, IBuilding } from '../../api/buildings/buildings-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface BuildingsState {

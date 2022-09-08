@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getCivs, ICiv } from '../../api/civs-api';
+import { getCivs, ICiv } from '../../api/civs/civs-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface CivsState {

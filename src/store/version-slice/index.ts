@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getVersion } from '../../api/version-api';
+import { getVersion } from '../../api/version/version-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface VersionState {

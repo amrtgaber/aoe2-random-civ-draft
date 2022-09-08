@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
-import { IBuilding } from '../../api/buildings-api';
+import { IBuilding } from '../../api/buildings/buildings-api';
 import { FetchStatus } from '../shared-store-utils';
 import buildingsReducer, {
   BuildingsState,

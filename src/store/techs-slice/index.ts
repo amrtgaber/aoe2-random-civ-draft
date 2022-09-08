@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getTechs, ITech } from '../../api/techs-api';
+import { getTechs, ITech } from '../../api/techs/techs-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface TechsState {

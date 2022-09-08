@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
-import { IUnit } from '../../api/units-api';
+import { IUnit } from '../../api/units/units-api';
 import { FetchStatus } from '../shared-store-utils';
 import unitsReducer, { fetchUnits, initialState, UnitsState } from '.';
 import { TechTreeItemType } from '../../api/tech-tree-item-api';

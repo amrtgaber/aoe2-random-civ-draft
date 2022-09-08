@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { getUnits, IUnit } from '../../api/units-api';
+import { getUnits, IUnit } from '../../api/units/units-api';
 import { FetchStatus } from '../shared-store-utils';
 
 export interface UnitsState {

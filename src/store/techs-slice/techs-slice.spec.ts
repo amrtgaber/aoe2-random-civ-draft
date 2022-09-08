@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
 import { TEST_CIVS } from '../../shared-test-data';
-import { ITech } from '../../api/techs-api';
+import { ITech } from '../../api/techs/techs-api';
 import { FetchStatus } from '../shared-store-utils';
 import techsReducer, { fetchTechs, initialState, TechsState } from '.';
 import { TechTreeItemType } from '../../api/tech-tree-item-api';

@@ -1,6 +1,6 @@
-import { API_URL } from '.';
-import { ICiv } from './civs-api';
-import { ITechTreeItem, TechTreeItemType } from './tech-tree-item-api';
+import { API_URL } from '..';
+import { ICiv } from '../civs/civs-api';
+import { ITechTreeItem, TechTreeItemType } from '../tech-tree-item-api';
 
 interface ApiTech {
   id: number;

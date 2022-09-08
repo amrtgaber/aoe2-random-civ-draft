@@ -1,7 +1,7 @@
-import { IBuilding } from './buildings-api';
-import { ICiv } from './civs-api';
-import { ITech } from './techs-api';
-import { IUnit } from './units-api';
+import { IBuilding } from './buildings/buildings-api';
+import { ICiv } from './civs/civs-api';
+import { ITech } from './techs/techs-api';
+import { IUnit } from './units/units-api';
 
 export interface ITechTreeItem {
   id: number;
