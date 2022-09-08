@@ -1,28 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer from '../../store/civs-slice';
-import draftResultReducer from '../../store/draft-result-slice';
-import unitsReducer from '../../store/units-slice';
-import techsReducer from '../../store/techs-slice';
-import buildingsReducer from '../../store/buildings-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
-import { TEST_CIVS } from '../../shared-test-data';
+import { configureTestStore, TEST_CIVS } from '../../test/shared-test-data';
 import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {
-  const reducer = {
-    civs: civsReducer,
-    draftResult: draftResultReducer,
-    units: unitsReducer,
-    techs: techsReducer,
-    buildings: buildingsReducer,
-  };
-
   describe('renders civ draft parameters', () => {
     test('renders civ draft parameters', () => {
-      const store = configureStore({ reducer });
+      const store = configureTestStore();
 
       const { container: civDraftParameters } = render(
         <Provider store={store}>
@@ -40,14 +26,11 @@ describe('civ draft parameters component', () => {
 
   describe('add all, remove, and invert selection', () => {
     test('adds all civs to pool', () => {
-      const store = configureStore({
-        reducer,
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [],
-            civsStatus: FetchStatus.FULFILLED,
-          },
+      const store = configureTestStore({
+        civs: {
+          allCivs: TEST_CIVS,
+          civPool: [],
+          civsStatus: FetchStatus.FULFILLED,
         },
       });
 
@@ -59,18 +42,15 @@ describe('civ draft parameters component', () => {
 
       expect(store.getState().civs.civPool.length).toBe(0);
       fireEvent.click(screen.getByText('Add all civs'));
-      expect(store.getState().civs.civPool.length).toBe(2);
+      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length);
     });
 
     test('removes all civs from pool', () => {
-      const store = configureStore({
-        reducer,
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: TEST_CIVS,
-            civsStatus: FetchStatus.FULFILLED,
-          },
+      const store = configureTestStore({
+        civs: {
+          allCivs: TEST_CIVS,
+          civPool: TEST_CIVS,
+          civsStatus: FetchStatus.FULFILLED,
         },
       });
 
@@ -80,20 +60,17 @@ describe('civ draft parameters component', () => {
         </Provider>
       );
 
-      expect(store.getState().civs.civPool.length).toBe(2);
+      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length);
       fireEvent.click(screen.getByText('Reset'));
       expect(store.getState().civs.civPool.length).toBe(0);
     });
 
     test('inverts civ pool selection', () => {
-      const store = configureStore({
-        reducer,
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [TEST_CIVS[0]],
-            civsStatus: FetchStatus.FULFILLED,
-          },
+      const store = configureTestStore({
+        civs: {
+          allCivs: TEST_CIVS,
+          civPool: [TEST_CIVS[0]],
+          civsStatus: FetchStatus.FULFILLED,
         },
       });
 
@@ -103,9 +80,9 @@ describe('civ draft parameters component', () => {
         </Provider>
       );
 
-      expect(store.getState().civs.civPool[0].civName).toBe('Aztecs');
+      expect(store.getState().civs.civPool.length).toBe(1);
       fireEvent.click(screen.getByText('Invert selection'));
-      expect(store.getState().civs.civPool[0].civName).toBe('Vikings');
+      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length - 1);
     });
   });
 });

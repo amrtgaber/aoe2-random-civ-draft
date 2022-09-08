@@ -1,22 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer from '../../store/civs-slice';
-import draftResultReducer from '../../store/draft-result-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
-import { TEST_CIVS } from '../../shared-test-data';
+import { configureTestStore, TEST_CIVS } from '../../test/shared-test-data';
 import { Civ } from '.';
 
 describe('civ component', () => {
   describe('renders civ component', () => {
     test('renders civ component', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+      const store = configureTestStore();
 
       const { container: civContainer } = render(
         <Provider store={store}>
@@ -36,12 +28,7 @@ describe('civ component', () => {
 
   describe('civ in civ draft component', () => {
     test('adds civ to civ pool when clicked', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+      const store = configureTestStore();
 
       const { container: civContainer } = render(
         <Provider store={store}>
@@ -59,17 +46,11 @@ describe('civ component', () => {
     });
 
     test('removes civ from civ pool when clicked', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [TEST_CIVS[0]],
-            civsStatus: FetchStatus.FULFILLED,
-          },
+      const store = configureTestStore({
+        civs: {
+          allCivs: TEST_CIVS,
+          civPool: [TEST_CIVS[0]],
+          civsStatus: FetchStatus.FULFILLED,
         },
       });
 
@@ -89,17 +70,11 @@ describe('civ component', () => {
     });
 
     test('clicking tech tree does not affect pool state', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [TEST_CIVS[0]],
-            civsStatus: FetchStatus.FULFILLED,
-          },
+      const store = configureTestStore({
+        civs: {
+          allCivs: TEST_CIVS,
+          civPool: [TEST_CIVS[0]],
+          civsStatus: FetchStatus.FULFILLED,
         },
       });
 
@@ -117,6 +92,12 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={false}
           />
+          <Civ
+            civ={TEST_CIVS[2]}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={false}
+          />
         </Provider>
       );
 
@@ -130,12 +111,7 @@ describe('civ component', () => {
 
   describe('civ in draft result component', () => {
     test('renders civ in draft result component', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+      const store = configureTestStore();
 
       const { container: civContainer } = render(
         <Provider store={store}>
@@ -153,12 +129,7 @@ describe('civ component', () => {
     });
 
     test('removes animation class when animation ends', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+      const store = configureTestStore();
 
       const { container: civContainer } = render(
         <Provider store={store}>

@@ -1,5 +1,5 @@
-import { ICiv } from '../../api/civs-api';
-import { TEST_CIVS } from '../../shared-test-data';
+import { ICiv } from '../../api/civs/civs-api';
+import { TEST_CIVS } from '../../test/shared-test-data';
 import draftResultReducer, { draftCiv, DraftResultState } from '.';
 
 const initialState: DraftResultState = {

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_CIVS } from '../../shared-test-data';
+import { TEST_CIVS } from '../../test/shared-test-data';
 import { FetchStatus } from '../shared-store-utils';
 import civsReducer, {
   addAllCivsToPool,

@@ -13,7 +13,9 @@ export interface ICivTechTree extends ICiv {
 }
 
 export async function getCivs(): Promise<ICiv[]> {
-  const response = await fetch(`${API_URL}/civs`);
+  const queryOptions =
+    '?includeUnits=false&includeTechs=false&includeBuildings=false';
+  const response = await fetch(`${API_URL}/civs${queryOptions}`);
   const civs = (await response.json()) as ICiv[];
 
   return civs

@@ -1,28 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_CIVS } from '../../shared-test-data';
-import { ITech } from '../../api/techs/techs-api';
+import { TEST_TECHS } from '../../test/shared-test-data';
 import { FetchStatus } from '../shared-store-utils';
 import techsReducer, { fetchTechs, initialState, TechsState } from '.';
-import { TechTreeItemType } from '../../api/tech-tree-item-api';
-
-const TEST_TECHS: ITech[] = [
-  {
-    id: 1,
-    itemName: 'loom',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.TECH,
-    isUnique: false,
-  },
-  {
-    id: 2,
-    itemName: 'wheelbarrow',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.TECH,
-    isUnique: false,
-  },
-];
 
 fetchMock.enableMocks();
 

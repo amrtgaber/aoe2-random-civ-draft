@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { ICiv } from '../../api/civs-api';
-import { IUnit } from '../../api/units-api';
-import { ITech } from '../../api/techs-api';
-import { IBuilding } from '../../api/buildings-api';
+import { ICiv } from '../../api/civs/civs-api';
+import { IUnit } from '../../api/units/units-api';
+import { ITech } from '../../api/techs/techs-api';
+import { IBuilding } from '../../api/buildings/buildings-api';
 
 import draftParametersReducer, {
   addItemToFilter,
@@ -16,72 +16,63 @@ import draftParametersReducer, {
   updateFilterMode,
 } from '.';
 import { TechTreeItemType } from '../../api/tech-tree-item-api';
+import {
+  TEST_BUILDINGS,
+  TEST_CIVS,
+  TEST_TECHS,
+  TEST_UNITS,
+} from '../../test/shared-test-data';
 
-const TEST_CIVS: ICiv[] = [
-  {
-    id: 1,
-    civName: 'Aztecs',
-  },
-  {
-    id: 2,
-    civName: 'Malians',
-  },
-  {
-    id: 3,
-    civName: 'Vikings',
-  },
-];
+// const TEST_UNITS: IUnit[] = [
+//   {
+//     id: 1,
+//     itemName: 'archer',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.UNIT,
+//     isUnique: false,
+//   },
+//   {
+//     id: 2,
+//     itemName: 'skirmisher',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.UNIT,
+//     isUnique: false,
+//   },
+// ];
 
-const TEST_UNITS: IUnit[] = [
-  {
-    id: 1,
-    itemName: 'archer',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.UNIT,
-    isUnique: false,
-  },
-  {
-    id: 2,
-    itemName: 'skirmisher',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.UNIT,
-    isUnique: false,
-  },
-];
+// const TEST_TECHS: ITech[] = [
+//   {
+//     id: 1,
+//     itemName: 'loom',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.TECH,
+//     isUnique: false,
+//   },
+//   {
+//     id: 2,
+//     itemName: 'wheelbarrow',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.TECH,
+//     isUnique: false,
+//   },
+// ];
 
-const TEST_TECHS: ITech[] = [
-  {
-    id: 1,
-    itemName: 'loom',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.TECH,
-    isUnique: false,
-  },
-  {
-    id: 2,
-    itemName: 'wheelbarrow',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.TECH,
-    isUnique: false,
-  },
-];
-
-const TEST_BUILDINGS: IBuilding[] = [
-  {
-    id: 1,
-    itemName: 'castle',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.BUILDING,
-    isUnique: false,
-  },
-  {
-    id: 2,
-    itemName: 'house',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.BUILDING,
-    isUnique: false,
-  },
-];
+// const TEST_BUILDINGS: IBuilding[] = [
+//   {
+//     id: 1,
+//     itemName: 'castle',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.BUILDING,
+//     isUnique: false,
+//   },
+//   {
+//     id: 2,
+//     itemName: 'house',
+//     civs: TEST_CIVS,
+//     kind: TechTreeItemType.BUILDING,
+//     isUnique: false,
+//   },
+// ];
 
 const store = configureStore({
   reducer: draftParametersReducer,
@@ -424,7 +415,7 @@ describe('draftParameters reducer', () => {
 
         const startState: DraftParametersState = {
           filteredCivPool: [],
-          itemsFilter: techs,
+          itemsFilter: [...units, ...techs],
           filterMode: FilterMode.HAS_ALL,
         };
 

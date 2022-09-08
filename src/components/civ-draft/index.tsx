@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchCivs, selectCivs, updateCivPool } from '../../store/civs-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
-import { ICiv } from '../../api/civs-api';
+import { ICiv } from '../../api/civs/civs-api';
 import { Civ } from '../civ';
 import { Separator } from '../separator';
 

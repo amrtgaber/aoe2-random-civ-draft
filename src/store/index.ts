@@ -9,18 +9,18 @@ import versionReducer from '../store/version-slice';
 import draftParametersReducer from '../store/draft-parameters-slice';
 import draftResultReducer from './draft-result-slice';
 
-export const store = configureStore({
-  reducer: {
-    civs: civsReducer,
-    units: unitsReducer,
-    techs: techsReducer,
-    buildings: buildingsReducer,
-    ages: agesReducer,
-    version: versionReducer,
-    draftParameters: draftParametersReducer,
-    draftResult: draftResultReducer,
-  },
-});
+export const reducer = {
+  civs: civsReducer,
+  units: unitsReducer,
+  techs: techsReducer,
+  buildings: buildingsReducer,
+  ages: agesReducer,
+  version: versionReducer,
+  draftParameters: draftParametersReducer,
+  draftResult: draftResultReducer,
+};
+
+export const store = configureStore({ reducer });
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

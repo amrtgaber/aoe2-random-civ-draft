@@ -6,7 +6,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import civsReducer from '../../store/civs-slice';
 import draftResultReducer from '../../store/draft-result-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
-import { TEST_CIVS } from '../../shared-test-data';
+import { TEST_CIVS } from '../../test/shared-test-data';
 import { CivDraft } from '.';
 
 describe('civ draft component', () => {

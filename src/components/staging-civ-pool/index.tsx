@@ -9,7 +9,7 @@ import {
 } from '../../store/civs-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
 import { selectDraftParameters } from '../../store/draft-parameters-slice';
-import { ICiv } from '../../api/civs-api';
+import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
 import { Civ } from '../civ';
 

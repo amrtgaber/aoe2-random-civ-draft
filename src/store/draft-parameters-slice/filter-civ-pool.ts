@@ -1,5 +1,5 @@
 import { DraftParametersState, FilterMode } from '.';
-import { ICiv } from '../../api/civs-api';
+import { ICiv } from '../../api/civs/civs-api';
 
 export function filterCivPool(state: DraftParametersState): ICiv[] {
   const { itemsFilter, filterMode } = state;

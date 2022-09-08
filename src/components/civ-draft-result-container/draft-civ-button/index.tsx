@@ -1,6 +1,6 @@
 import { FC, MouseEvent } from 'react';
 
-import { ICiv } from '../../../api/civs-api';
+import { ICiv } from '../../../api/civs/civs-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { selectCivs } from '../../../store/civs-slice';
 import { draftCiv } from '../../../store/draft-result-slice';

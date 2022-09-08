@@ -14,8 +14,6 @@ describe('civs api', () => {
         JSON.stringify([
           {
             id: 1,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Vikings',
             units: [
               { id: 1, itemName: 'archer' },
@@ -32,8 +30,6 @@ describe('civs api', () => {
           },
           {
             id: 2,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Aztecs',
             units: [
               { id: 1, itemName: 'archer' },
@@ -50,8 +46,6 @@ describe('civs api', () => {
           },
           {
             id: 2,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             civName: 'Malians',
             units: [
               { id: 1, itemName: 'archer' },

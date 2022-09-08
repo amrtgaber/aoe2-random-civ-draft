@@ -1,5 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
-import { TEST_CIVS } from '../../shared-test-data';
+import { TEST_CIVS } from '../../test/shared-test-data';
 import { getUnits } from './units-api';
 
 fetchMock.enableMocks();
@@ -15,20 +15,14 @@ describe('units api', () => {
         JSON.stringify([
           {
             id: 1,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             itemName: 'skirmisher',
           },
           {
             id: 2,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             itemName: 'archer',
           },
           {
             id: 2,
-            createdAt: '2022-08-18T20:26:39.368Z',
-            updatedAt: '2022-08-18T20:26:39.372Z',
             itemName: 'villager',
           },
         ])

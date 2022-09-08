@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
-import { ICiv } from '../../api/civs-api';
+import { ICiv } from '../../api/civs/civs-api';
 import { filterCivPool } from './filter-civ-pool';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 

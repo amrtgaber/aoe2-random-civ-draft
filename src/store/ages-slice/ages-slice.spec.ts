@@ -24,16 +24,18 @@ describe('ages reducer', () => {
 
     it('should fetch game ages', async () => {
       fetchMock.mockResponse(
-        JSON.stringify({
-          id: 1,
-          ageName: 'dark age',
-        })
+        JSON.stringify([
+          {
+            id: 1,
+            ageName: 'dark age',
+          },
+        ])
       );
 
       await store.dispatch(fetchAges());
 
       expect(store.getState().agesStatus).toBe(FetchStatus.FULFILLED);
-      expect(store.getState().ages.length).toBe(1);
+      expect(store.getState().allAges.length).toBe(1);
     });
 
     it('should set agesStatus to failed if request is rejected', async () => {

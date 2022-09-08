@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
 import { fetchTechs, selectTechs } from '../../store/techs-slice';
 import { fetchUnits, selectUnits } from '../../store/units-slice';
+import { fetchAges, selectAges } from '../../store/ages-slice';
 import {
   clearFilter,
   FilterMode,
@@ -26,7 +27,7 @@ import './tech-tree-filter.scss';
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
-  const allFilterTags = ['units', 'techs', 'buildings', 'uniques']; // 'dark age', 'feudal age', 'castle age', 'imperial age', & buildings
+  const allFilterTags = ['units', 'techs', 'buildings', 'uniques'];
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTags, setFilterTags] = useState<string[]>([]);
@@ -40,12 +41,13 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
+  const { allAges, agesStatus } = useAppSelector(selectAges);
   const { itemsFilter, filterMode } = useAppSelector(selectDraftParameters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch();
-  }, [unitsStatus, techsStatus, buildingsStatus]);
+  }, [unitsStatus, techsStatus, buildingsStatus, agesStatus]);
 
   const fetch = () => {
     if (unitsStatus === FetchStatus.INIT) {
@@ -59,17 +61,22 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     if (buildingsStatus === FetchStatus.INIT) {
       dispatch(fetchBuildings()).catch((error) => console.log(error));
     }
+
+    if (agesStatus === FetchStatus.INIT) {
+      dispatch(fetchAges()).catch((error) => console.log(error));
+    }
   };
 
   useEffect(() => {
     updateFetchStatus();
-  }, [unitsStatus, techsStatus, buildingsStatus]);
+  }, [unitsStatus, techsStatus, buildingsStatus, agesStatus]);
 
   const updateFetchStatus = () => {
     if (
       unitsStatus === FetchStatus.LOADING ||
       techsStatus === FetchStatus.LOADING ||
-      buildingsStatus === FetchStatus.LOADING
+      buildingsStatus === FetchStatus.LOADING ||
+      agesStatus === FetchStatus.LOADING
     ) {
       setFetchStatus(FetchStatus.LOADING);
     }
@@ -77,7 +84,8 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     if (
       unitsStatus === FetchStatus.FAILED ||
       techsStatus === FetchStatus.FAILED ||
-      buildingsStatus === FetchStatus.FAILED
+      buildingsStatus === FetchStatus.FAILED ||
+      agesStatus === FetchStatus.FAILED
     ) {
       setFetchStatus(FetchStatus.FAILED);
     }
@@ -85,7 +93,8 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     if (
       unitsStatus === FetchStatus.FULFILLED &&
       techsStatus === FetchStatus.FULFILLED &&
-      buildingsStatus === FetchStatus.FULFILLED
+      buildingsStatus === FetchStatus.FULFILLED &&
+      agesStatus === FetchStatus.FULFILLED
     ) {
       setFetchStatus(FetchStatus.FULFILLED);
     }

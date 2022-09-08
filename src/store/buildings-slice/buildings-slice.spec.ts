@@ -1,32 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_CIVS } from '../../shared-test-data';
-import { IBuilding } from '../../api/buildings/buildings-api';
+import { TEST_BUILDINGS } from '../../test/shared-test-data';
 import { FetchStatus } from '../shared-store-utils';
 import buildingsReducer, {
   BuildingsState,
   fetchBuildings,
   initialState,
 } from '.';
-import { TechTreeItemType } from '../../api/tech-tree-item-api';
-
-const TEST_BUILDINGS: IBuilding[] = [
-  {
-    id: 1,
-    itemName: 'castle',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.BUILDING,
-    isUnique: false,
-  },
-  {
-    id: 2,
-    itemName: 'house',
-    civs: TEST_CIVS,
-    kind: TechTreeItemType.BUILDING,
-    isUnique: false,
-  },
-];
 
 fetchMock.enableMocks();
 
