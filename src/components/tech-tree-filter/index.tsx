@@ -24,6 +24,12 @@ import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
 
+enum SortBy {
+  ALPHA = 'SORT_BY_ALPHA',
+  AGE = 'SORT_BY_AGE',
+  BUILDING = 'SORT_BY_BUILDING',
+}
+
 export interface ITechTreeFilterProps {}
 
 export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
@@ -32,6 +38,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [isHidingUniques, setIsHidingUniques] = useState(false);
+  const [sortMode, setSortMode] = useState(SortBy.ALPHA);
 
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
   const [allItems, setAllItems] = useState<ITechTreeItem[]>([]);
@@ -118,7 +125,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   useEffect(() => {
     setUnselectedItems(assembleUnselectedItemsList());
-  }, [selectedItems, searchTerm, filterTags, isHidingUniques]);
+  }, [selectedItems, searchTerm, filterTags, isHidingUniques, sortMode]);
 
   const assembleUnselectedItemsList = (): ITechTreeItem[] => {
     // remove selectedItems
@@ -137,7 +144,34 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     }
 
     // sort
-    items.sort((item1, item2) => (item1.itemName > item2.itemName ? 1 : -1));
+    if (sortMode === SortBy.ALPHA) {
+      items.sort((item1, item2) => (item1.itemName > item2.itemName ? 1 : -1));
+    }
+
+    if (sortMode === SortBy.AGE) {
+      items.sort((item1, item2) => item1.age!.id - item2.age!.id);
+    }
+
+    if (sortMode === SortBy.BUILDING) {
+      items.sort((item1, item2) => {
+        let id1 = 0;
+        let id2 = 0;
+
+        if (isBuilding(item1)) {
+          id1 = item1.id;
+        } else if (isUnit(item1) || isTech(item1)) {
+          id1 = item1.buildings[0].id;
+        }
+
+        if (isBuilding(item2)) {
+          id2 = item2.id;
+        } else if (isUnit(item2) || isTech(item2)) {
+          id2 = item2.buildings[0].id;
+        }
+
+        return id1 - id2;
+      });
+    }
 
     // filter by tag
     if (filterTags.length > 0) {
@@ -225,6 +259,10 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
     });
   };
 
+  const handleChangeSortMode = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortMode(e.target.value as SortBy);
+  };
+
   return (
     <div className='tech-tree-filter-container'>
       {fetchStatus === FetchStatus.LOADING ? (
@@ -274,10 +312,14 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
               </div>
               <div className='tech-tree-filter-sort'>
                 <div className='sort-text'>sort</div>
-                <select className='sort-dropdown'>
-                  <option>a-z</option>
-                  <option>by age</option>
-                  <option>by building</option>
+                <select
+                  value={sortMode}
+                  onChange={(e) => handleChangeSortMode(e)}
+                  className='sort-dropdown'
+                >
+                  <option value={SortBy.ALPHA}>a-z</option>
+                  <option value={SortBy.AGE}>by age</option>
+                  <option value={SortBy.BUILDING}>by building</option>
                 </select>
               </div>
             </div>
