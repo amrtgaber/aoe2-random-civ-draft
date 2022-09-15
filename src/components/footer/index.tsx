@@ -35,7 +35,7 @@ export const Footer: FC<IFooterProps> = (props) => {
             rel='noreferrer'
           >
             Donate
-          </a>
+          </a>{' '}
           •{' '}
           <a
             href='https://www.youtube.com/c/debrijja'
