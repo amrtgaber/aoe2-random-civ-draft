@@ -37,7 +37,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTags, setFilterTags] = useState<string[]>([]);
-  const [isHidingUniques, setIsHidingUniques] = useState(false);
+  const [isHidingUniques, setIsHidingUniques] = useState(true);
   const [sortMode, setSortMode] = useState(SortBy.ALPHA);
 
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
