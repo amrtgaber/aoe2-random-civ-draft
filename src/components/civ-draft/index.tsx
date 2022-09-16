@@ -6,7 +6,6 @@ import { fetchCivs, selectCivs, updateCivPool } from '../../store/civs-slice';
 import { FetchStatus } from '../../store/shared-store-utils';
 import { ICiv } from '../../api/civs/civs-api';
 import { Civ } from '../civ';
-import { Separator } from '../separator';
 
 import './civ-draft.scss';
 import { Loading } from '../loading';
@@ -57,7 +56,6 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
 
   return (
     <>
-      <Separator />
       <h2 className='civ-draft-title'>Civ Pool</h2>
       <p className='civ-draft-tip'>
         Click a civ to add or remove it from the civ pool

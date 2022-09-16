@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -8,7 +8,6 @@ import {
   updateCivPool,
 } from '../../store/civs-slice';
 import { SaveCivPool } from '../save-civ-pool';
-import { Separator } from '../separator';
 
 import './civ-draft-parameters.scss';
 import { TechTreeFilter } from '../tech-tree-filter';
@@ -30,9 +29,6 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
 
   return (
     <>
-      <div className='civ-draft-parameters-separator'>
-        <Separator />
-      </div>
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
       <SaveCivPool />
       <div className='civ-draft-parameters civ-pool-buttons'>

@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { Separator } from '../separator';
 
 import './footer.scss';
 
@@ -7,8 +6,7 @@ export interface IFooterProps {}
 
 export const Footer: FC<IFooterProps> = (props) => {
   return (
-    <div className='footer'>
-      <Separator />
+    <footer>
       <h2 className='credits-title'>Credits</h2>
       <div className='credits-text'>
         <p>
@@ -61,6 +59,6 @@ export const Footer: FC<IFooterProps> = (props) => {
           or affiliated with Microsoft.
         </p>
       </div>
-    </div>
+    </footer>
   );
 };
