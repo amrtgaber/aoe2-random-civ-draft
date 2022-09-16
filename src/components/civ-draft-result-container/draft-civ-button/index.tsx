@@ -8,9 +8,7 @@ import { FetchStatus } from '../../../store/shared-store-utils';
 
 import './draft-civ-button.scss';
 
-export interface IDraftCivButtonProps {}
-
-export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
+export const DraftCivButton: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -29,7 +27,7 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
   };
 
   return (
-    <a className='button draft-civ-button' onClick={(e) => handleDraftCiv(e)}>
+    <a className='draft-civ-button' onClick={handleDraftCiv}>
       Draft Civ
     </a>
   );

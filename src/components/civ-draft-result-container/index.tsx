@@ -20,7 +20,7 @@ export const CivDraftResultContainer: FC = () => {
             isDrafted={true}
             isDraftable={false}
             isInPool={false}
-          ></Civ>
+          />
         ) : (
           <img
             className='undrafted-image'

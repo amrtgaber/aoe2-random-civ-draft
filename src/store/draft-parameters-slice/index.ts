@@ -6,8 +6,8 @@ import { filterCivPool } from './filter-civ-pool';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
 export enum FilterMode {
-  HAS_ALL,
-  HAS_ANY,
+  HAS_ALL = 'ALL',
+  HAS_ANY = 'ANY',
 }
 
 export interface DraftParametersState {
@@ -32,7 +32,7 @@ export const draftParametersSlice = createSlice({
     },
     removeItemFromFilter: (state, action: PayloadAction<ITechTreeItem>) => {
       state.itemsFilter = state.itemsFilter.filter(
-        (item) => item.itemName !== action.payload.itemName
+        (item) => item.id !== action.payload.id
       );
       state.filteredCivPool = filterCivPool(state);
     },
@@ -44,7 +44,7 @@ export const draftParametersSlice = createSlice({
       state.itemsFilter = [];
       state.filteredCivPool = filterCivPool(state);
     },
-    updateFilterMode: (state, action: PayloadAction<FilterMode>) => {
+    setFilterMode: (state, action: PayloadAction<FilterMode>) => {
       state.filterMode = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
@@ -56,7 +56,7 @@ export const {
   removeItemFromFilter,
   updateFilter,
   clearFilter,
-  updateFilterMode,
+  setFilterMode,
 } = draftParametersSlice.actions;
 
 export const selectDraftParameters = (state: RootState) =>

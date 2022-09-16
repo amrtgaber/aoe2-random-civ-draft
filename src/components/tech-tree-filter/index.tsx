@@ -9,9 +9,15 @@ import {
   clearFilter,
   FilterMode,
   selectDraftParameters,
-  updateFilterMode,
+  setFilterMode,
 } from '../../store/draft-parameters-slice';
-import { FetchStatus } from '../../store/shared-store-utils';
+import {
+  FetchStatus,
+  isFailed,
+  isFulfilled,
+  isInit,
+  isLoading,
+} from '../../store/shared-store-utils';
 import {
   isBuilding,
   isTech,
@@ -30,9 +36,7 @@ enum SortBy {
   BUILDING = 'SORT_BY_BUILDING',
 }
 
-export interface ITechTreeFilterProps {}
-
-export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
+export const TechTreeFilter: FC = () => {
   const allFilterTags = ['units', 'techs', 'buildings', 'uniques'];
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,7 +44,9 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const [isHidingUniques, setIsHidingUniques] = useState(true);
   const [sortMode, setSortMode] = useState(SortBy.ALPHA);
 
-  const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.INIT);
+  const [combinedFetchStatus, setCombinedFetchStatus] = useState<FetchStatus>(
+    FetchStatus.INIT
+  );
   const [allItems, setAllItems] = useState<ITechTreeItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
   const [unselectedItems, setUnselectedItems] = useState<ITechTreeItem[]>([]);
@@ -53,24 +59,24 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetch();
+    fetchFuckingEverything();
   }, [unitsStatus, techsStatus, buildingsStatus, agesStatus]);
 
-  const fetch = () => {
-    if (unitsStatus === FetchStatus.INIT) {
-      dispatch(fetchUnits()).catch((error) => console.log(error));
+  const fetchFuckingEverything = () => {
+    if (isInit(unitsStatus)) {
+      dispatch(fetchUnits());
     }
 
-    if (techsStatus === FetchStatus.INIT) {
-      dispatch(fetchTechs()).catch((error) => console.log(error));
+    if (isInit(techsStatus)) {
+      dispatch(fetchTechs());
     }
 
-    if (buildingsStatus === FetchStatus.INIT) {
-      dispatch(fetchBuildings()).catch((error) => console.log(error));
+    if (isInit(buildingsStatus)) {
+      dispatch(fetchBuildings());
     }
 
-    if (agesStatus === FetchStatus.INIT) {
-      dispatch(fetchAges()).catch((error) => console.log(error));
+    if (isInit(agesStatus)) {
+      dispatch(fetchAges());
     }
   };
 
@@ -80,43 +86,43 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   const updateFetchStatus = () => {
     if (
-      unitsStatus === FetchStatus.LOADING ||
-      techsStatus === FetchStatus.LOADING ||
-      buildingsStatus === FetchStatus.LOADING ||
-      agesStatus === FetchStatus.LOADING
+      isLoading(unitsStatus) ||
+      isLoading(techsStatus) ||
+      isLoading(buildingsStatus) ||
+      isLoading(agesStatus)
     ) {
-      setFetchStatus(FetchStatus.LOADING);
+      setCombinedFetchStatus(FetchStatus.LOADING);
     }
 
     if (
-      unitsStatus === FetchStatus.FAILED ||
-      techsStatus === FetchStatus.FAILED ||
-      buildingsStatus === FetchStatus.FAILED ||
-      agesStatus === FetchStatus.FAILED
+      isFailed(unitsStatus) ||
+      isFailed(techsStatus) ||
+      isFailed(buildingsStatus) ||
+      isFailed(agesStatus)
     ) {
-      setFetchStatus(FetchStatus.FAILED);
+      setCombinedFetchStatus(FetchStatus.FAILED);
     }
 
     if (
-      unitsStatus === FetchStatus.FULFILLED &&
-      techsStatus === FetchStatus.FULFILLED &&
-      buildingsStatus === FetchStatus.FULFILLED &&
-      agesStatus === FetchStatus.FULFILLED
+      isFulfilled(unitsStatus) &&
+      isFulfilled(techsStatus) &&
+      isFulfilled(buildingsStatus) &&
+      isFulfilled(agesStatus)
     ) {
-      setFetchStatus(FetchStatus.FULFILLED);
+      setCombinedFetchStatus(FetchStatus.FULFILLED);
     }
   };
 
   useEffect(() => {
-    if (fetchStatus === FetchStatus.FULFILLED) {
+    if (isFulfilled(combinedFetchStatus)) {
       initItems();
     }
-  }, [fetchStatus]);
+  }, [combinedFetchStatus]);
 
   const initItems = () => {
-    setAllItems([...allUnits, ...allTechs, ...allBuildings]);
-    setSelectedItems([]);
-    setUnselectedItems(allItems);
+    const allFetchedItems = [...allUnits, ...allTechs, ...allBuildings];
+    setAllItems(allFetchedItems);
+    setUnselectedItems(allFetchedItems);
   };
 
   useEffect(() => {
@@ -124,13 +130,14 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
   }, [itemsFilter]);
 
   useEffect(() => {
-    setUnselectedItems(assembleUnselectedItemsList());
+    setUnselectedItems(assembleUnselectedItems());
   }, [selectedItems, searchTerm, filterTags, isHidingUniques, sortMode]);
 
-  const assembleUnselectedItemsList = (): ITechTreeItem[] => {
+  const assembleUnselectedItems = (): ITechTreeItem[] => {
     // remove selectedItems
+    const selectedItemIds = selectedItems.map((item) => item.id);
     let items = allItems.filter((item) => {
-      return !selectedItems.some((selectedItem) => selectedItem.id === item.id);
+      return !selectedItemIds.includes(item.id);
     });
 
     // hide uniques
@@ -140,7 +147,9 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
     // match search term
     if (searchTerm.length > 0) {
-      items = items.filter((item) => item.itemName.includes(searchTerm));
+      items = items.filter((item) => {
+        return item.itemName.includes(searchTerm.toLowerCase());
+      });
     }
 
     // sort
@@ -219,7 +228,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   const handleToggleFilterMode = () => {
     dispatch(
-      updateFilterMode(
+      setFilterMode(
         filterMode === FilterMode.HAS_ALL
           ? FilterMode.HAS_ANY
           : FilterMode.HAS_ALL
@@ -265,7 +274,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
 
   return (
     <div className='tech-tree-filter-container'>
-      {fetchStatus === FetchStatus.LOADING ? (
+      {isLoading(combinedFetchStatus) ? (
         <Loading componentName='Tech Tree Filter' />
       ) : (
         <div className='tech-tree-filter-panels-container'>
@@ -276,7 +285,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 className='search-input'
                 placeholder='search'
                 value={searchTerm}
-                onChange={(e) => handleSearch(e)}
+                onChange={handleSearch}
               />
               <span className='clear-search' onClick={() => setSearchTerm('')}>
                 ✖
@@ -288,25 +297,19 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 Civ has{' '}
                 <a
                   className='filter-mode-button'
-                  onClick={() => handleToggleFilterMode()}
+                  onClick={handleToggleFilterMode}
                 >
-                  {filterMode === FilterMode.HAS_ALL ? 'ALL' : 'ANY'}
+                  {filterMode}
                 </a>{' '}
-                selected item{filterMode === FilterMode.HAS_ALL ? 's' : ''}
+                selected items
               </div>
               <div className='tech-tree-filter-clear-filter'>
-                <a
-                  className='clear-filter-button'
-                  onClick={() => handleClearFilter()}
-                >
+                <a className='clear-filter-button' onClick={handleClearFilter}>
                   Clear selected items
                 </a>
               </div>
               <div className='tech-tree-filter-hide-uniques'>
-                <a
-                  className='hide-uniques-button'
-                  onClick={() => handleHideUniques()}
-                >
+                <a className='hide-uniques-button' onClick={handleHideUniques}>
                   {isHidingUniques ? 'Show uniques' : 'Hide uniques'}
                 </a>
               </div>
@@ -314,7 +317,7 @@ export const TechTreeFilter: FC<ITechTreeFilterProps> = (props) => {
                 <div className='sort-text'>sort</div>
                 <select
                   value={sortMode}
-                  onChange={(e) => handleChangeSortMode(e)}
+                  onChange={handleChangeSortMode}
                   className='sort-dropdown'
                 >
                   <option value={SortBy.ALPHA}>a-z</option>

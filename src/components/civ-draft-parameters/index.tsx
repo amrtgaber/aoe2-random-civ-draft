@@ -5,7 +5,7 @@ import {
   addAllCivsToPool,
   removeAllCivsFromPool,
   selectCivs,
-  updateCivPool,
+  setCivPool,
 } from '../../store/civs-slice';
 import { SaveCivPool } from '../save-civ-pool';
 
@@ -24,7 +24,7 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
     const invertedSelection = allCivs.filter(
       (civ) => !civPool.some((civInPool) => civInPool.id === civ.id)
     );
-    dispatch(updateCivPool(invertedSelection));
+    dispatch(setCivPool(invertedSelection));
   };
 
   return (
@@ -32,22 +32,13 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
       <SaveCivPool />
       <div className='civ-draft-parameters civ-pool-buttons'>
-        <a
-          className='button add-all-civs-button'
-          onClick={(e) => handleAddAllCivs()}
-        >
+        <a className='add-all-civs-button' onClick={handleAddAllCivs}>
           Add all civs
         </a>
-        <a
-          className='button reset-pool-button'
-          onClick={(e) => handleRemoveAllCivs()}
-        >
+        <a className='reset-pool-button' onClick={handleRemoveAllCivs}>
           Reset
         </a>
-        <a
-          className='button invert-pool-button'
-          onClick={(e) => handleInvertPool()}
-        >
+        <a className='invert-pool-button' onClick={handleInvertPool}>
           Invert selection
         </a>
       </div>
