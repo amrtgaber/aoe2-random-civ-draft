@@ -13,7 +13,7 @@ import draftParametersReducer, {
   initialState,
   removeItemFromFilter,
   updateFilter,
-  updateFilterMode,
+  setFilterMode,
 } from '.';
 import { TechTreeItemType } from '../../api/tech-tree-item-api';
 import {
@@ -287,7 +287,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ALL)
+          setFilterMode(FilterMode.HAS_ALL)
         );
 
         expect(endState.filteredCivPool.length).toBe(3);
@@ -354,7 +354,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ALL)
+          setFilterMode(FilterMode.HAS_ALL)
         );
 
         expect(endState.filteredCivPool.length).toBe(3);
@@ -421,7 +421,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ALL)
+          setFilterMode(FilterMode.HAS_ALL)
         );
 
         expect(endState.filteredCivPool.length).toBe(0);
@@ -489,7 +489,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ANY)
+          setFilterMode(FilterMode.HAS_ANY)
         );
 
         expect(endState.filteredCivPool.length).toBe(3);
@@ -556,7 +556,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ANY)
+          setFilterMode(FilterMode.HAS_ANY)
         );
 
         expect(endState.filteredCivPool.length).toBe(2);
@@ -623,7 +623,7 @@ describe('draftParameters reducer', () => {
 
         const endState = draftParametersReducer(
           startState,
-          updateFilterMode(FilterMode.HAS_ANY)
+          setFilterMode(FilterMode.HAS_ANY)
         );
 
         expect(endState.filteredCivPool.length).toBe(0);

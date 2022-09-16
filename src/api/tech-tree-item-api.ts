@@ -14,9 +14,9 @@ export interface ITechTreeItem {
 }
 
 export enum TechTreeItemType {
-  UNIT,
-  TECH,
-  BUILDING,
+  UNIT = 'unit',
+  TECH = 'tech',
+  BUILDING = 'building',
 }
 
 export function isUnit(item: ITechTreeItem): item is IUnit {

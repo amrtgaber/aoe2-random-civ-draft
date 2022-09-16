@@ -31,15 +31,24 @@ export const civsSlice = createSlice({
     addCivToPool: (state, action: PayloadAction<ICiv>) => {
       state.civPool.push(action.payload);
     },
+    addCivsToPool: (state, action: PayloadAction<ICiv[]>) => {
+      state.civPool.push(...action.payload);
+    },
     removeAllCivsFromPool: (state) => {
       state.civPool = [];
     },
     removeCivFromPool: (state, action: PayloadAction<ICiv>) => {
       state.civPool = state.civPool.filter(
-        (civ) => civ.civName !== action.payload.civName
+        (civ) => civ.id !== action.payload.id
       );
     },
-    updateCivPool: (state, action: PayloadAction<ICiv[]>) => {
+    removeCivsFromPool: (state, action: PayloadAction<ICiv[]>) => {
+      const civIdsToRemove = action.payload.map((civ) => civ.id);
+      state.civPool = state.civPool.filter(
+        (civ) => !civIdsToRemove.includes(civ.id)
+      );
+    },
+    setCivPool: (state, action: PayloadAction<ICiv[]>) => {
       state.civPool = action.payload;
     },
   },
@@ -61,9 +70,11 @@ export const civsSlice = createSlice({
 export const {
   addAllCivsToPool,
   addCivToPool,
+  addCivsToPool,
   removeAllCivsFromPool,
   removeCivFromPool,
-  updateCivPool,
+  removeCivsFromPool,
+  setCivPool,
 } = civsSlice.actions;
 
 export const selectCivs = (state: RootState) => state.civs;

@@ -48,32 +48,30 @@ export const Civ: FC<ICivProps> = (props) => {
     }
 
     if (isInPool) {
-      el.classList.remove('in-pool');
       dispatch(removeCivFromPool(civ));
     } else {
-      el.classList.add('in-pool');
       dispatch(addCivToPool(civ));
     }
   };
 
   const getClassNames = (): string => {
-    let classNames = '';
+    const classNames = [];
 
     if (isDrafted) {
-      classNames += 'drafted highlight-drafted';
+      classNames.push('drafted', 'highlight-drafted');
     } else {
-      classNames += 'poolable';
+      classNames.push('poolable');
     }
 
     if (isDraftable) {
-      classNames += ' draftable';
+      classNames.push('draftable');
     }
 
     if (isInPool) {
-      classNames += ' in-pool';
+      classNames.push('in-pool');
     }
 
-    return classNames;
+    return classNames.join(' ');
   };
 
   const unitImageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
@@ -84,8 +82,8 @@ export const Civ: FC<ICivProps> = (props) => {
       <div
         ref={civEl}
         className={`civ-main-content ${getClassNames()}`}
-        onClick={(e) => handleToggleInPool(e)}
-        onAnimationEnd={(e) => handleAnimationEnd(e)}
+        onClick={handleToggleInPool}
+        onAnimationEnd={handleAnimationEnd}
       >
         <a
           className='civ-tech-tree'

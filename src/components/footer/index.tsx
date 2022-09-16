@@ -2,9 +2,7 @@ import { FC } from 'react';
 
 import './footer.scss';
 
-export interface IFooterProps {}
-
-export const Footer: FC<IFooterProps> = (props) => {
+export const Footer: FC = () => {
   return (
     <footer>
       <h2 className='credits-title'>Credits</h2>

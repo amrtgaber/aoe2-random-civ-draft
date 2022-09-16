@@ -2,17 +2,15 @@ import { FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCivs, selectCivs, updateCivPool } from '../../store/civs-slice';
-import { FetchStatus } from '../../store/shared-store-utils';
+import { fetchCivs, selectCivs, setCivPool } from '../../store/civs-slice';
+import { isFulfilled, isInit, isLoading } from '../../store/shared-store-utils';
 import { ICiv } from '../../api/civs/civs-api';
 import { Civ } from '../civ';
-
-import './civ-draft.scss';
 import { Loading } from '../loading';
 
-export interface ICivDraftProps {}
+import './civ-draft.scss';
 
-export const CivDraft: FC<ICivDraftProps> = (props) => {
+export const CivDraft: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -26,16 +24,16 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   }, [civsStatus]);
 
   const initCivDraft = () => {
-    if (civsStatus === FetchStatus.INIT) {
+    if (isInit(civsStatus)) {
       /* istanbul ignore next */
       dispatch(fetchCivs()).catch((error) => console.log(error));
     }
 
-    if (civsStatus === FetchStatus.FULFILLED) {
+    if (isFulfilled(civsStatus)) {
       const newCivPool = allCivs.filter((civ) =>
         civPoolQueryParams.includes(civ.civName)
       );
-      dispatch(updateCivPool(newCivPool));
+      dispatch(setCivPool(newCivPool));
     }
   };
 
@@ -44,14 +42,17 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
   }, [civPool]);
 
   const updateCivPoolQueryParams = () => {
-    if (civsStatus === FetchStatus.FULFILLED) {
+    if (isFulfilled(civsStatus)) {
       const newCivPool = civPool.map((civ) => civ.civName);
-      setSearchParams({ civPool: newCivPool.join(',') }, { replace: true });
+
+      newCivPool.length > 0
+        ? setSearchParams({ civPool: newCivPool.join(',') }, { replace: true })
+        : setSearchParams({});
     }
   };
 
   const isInPool = (civ: ICiv): boolean => {
-    return !!civPool.find((civInPool) => civInPool.civName === civ.civName);
+    return civPool.some((civInPool) => civInPool.civName === civ.civName);
   };
 
   return (
@@ -62,10 +63,10 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
       </p>
       <div
         className={`civ-draft ${
-          civsStatus === FetchStatus.LOADING ? 'draft-loading' : 'draft-loaded'
+          isLoading(civsStatus) ? 'draft-loading' : 'draft-loaded'
         }`}
       >
-        {civsStatus === FetchStatus.LOADING ? (
+        {isLoading(civsStatus) ? (
           <Loading componentName='Civ Pool' />
         ) : (
           allCivs.map((civ) => (
@@ -75,7 +76,7 @@ export const CivDraft: FC<ICivDraftProps> = (props) => {
               isDrafted={false}
               isDraftable={true}
               isInPool={isInPool(civ)}
-            ></Civ>
+            />
           ))
         )}
       </div>
