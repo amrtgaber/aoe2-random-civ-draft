@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import {
   addItemToFilter,
   removeItemFromFilter,
-} from '../../store/draft-parameters-slice';
+} from '../../store/tech-tree-filter-slice';
 
 export interface ITechTreeItemProps {
   item: ITechTreeItem;

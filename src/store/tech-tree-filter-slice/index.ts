@@ -10,20 +10,22 @@ export enum FilterMode {
   HAS_ANY = 'ANY',
 }
 
-export interface DraftParametersState {
+export interface TechTreeFilterState {
   filteredCivPool: ICiv[];
   itemsFilter: ITechTreeItem[];
   filterMode: FilterMode;
+  shownItems: ITechTreeItem[];
 }
 
-export const initialState: DraftParametersState = {
+export const initialState: TechTreeFilterState = {
   filteredCivPool: [] as ICiv[],
   itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
+  shownItems: [] as ITechTreeItem[],
 };
 
-export const draftParametersSlice = createSlice({
-  name: 'draftParameters',
+export const techTreeFilterSlice = createSlice({
+  name: 'techTreeFilter',
   initialState,
   reducers: {
     addItemToFilter: (state, action: PayloadAction<ITechTreeItem>) => {
@@ -36,7 +38,7 @@ export const draftParametersSlice = createSlice({
       );
       state.filteredCivPool = filterCivPool(state);
     },
-    updateFilter: (state, action: PayloadAction<ITechTreeItem[]>) => {
+    setItemsFilter: (state, action: PayloadAction<ITechTreeItem[]>) => {
       state.itemsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
@@ -48,18 +50,31 @@ export const draftParametersSlice = createSlice({
       state.filterMode = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
+    addShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
+      state.shownItems.push(action.payload);
+    },
+    removeShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
+      state.shownItems = state.shownItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+    },
+    setShownItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
+      state.shownItems = action.payload;
+    },
   },
 });
 
 export const {
   addItemToFilter,
   removeItemFromFilter,
-  updateFilter,
+  setItemsFilter,
   clearFilter,
   setFilterMode,
-} = draftParametersSlice.actions;
+  addShownItem,
+  removeShownItem,
+  setShownItems,
+} = techTreeFilterSlice.actions;
 
-export const selectDraftParameters = (state: RootState) =>
-  state.draftParameters;
+export const selectTechTreeFilter = (state: RootState) => state.techTreeFilter;
 
-export default draftParametersSlice.reducer;
+export default techTreeFilterSlice.reducer;
