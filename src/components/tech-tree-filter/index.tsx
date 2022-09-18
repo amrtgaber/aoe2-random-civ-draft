@@ -155,9 +155,10 @@ export const TechTreeFilter: FC = () => {
                     No matching items
                   </div>
                 )}
-                {shownItems.map((item) => (
-                  <TechTreeItem key={item.id} item={item} selected={false} />
-                ))}
+                {hasShownItems &&
+                  shownItems.map((item) => (
+                    <TechTreeItem key={item.id} item={item} selected={false} />
+                  ))}
               </>
             </div>
           </div>

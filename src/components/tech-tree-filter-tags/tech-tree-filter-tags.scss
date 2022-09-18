@@ -6,6 +6,8 @@
 
   border-top: $tech-tree-filter-border-thickness solid
     $tech-tree-filter-border-color;
+
+  overflow-y: auto;
 }
 
 .tags-buttons {
