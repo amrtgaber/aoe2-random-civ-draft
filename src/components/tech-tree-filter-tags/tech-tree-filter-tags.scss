@@ -1,0 +1,26 @@
+@import '../../shared-styles/lib';
+@import '../tech-tree-filter/tech-tree-filter';
+
+.tech-tree-filter-tags {
+  padding: calc-padding($padding-small);
+
+  border-top: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
+}
+
+.tags-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.tags-button {
+  @include tech-tree-filter-button;
+
+  font-size: calc-font-size($font-size-4);
+
+  &.tag-on {
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+}

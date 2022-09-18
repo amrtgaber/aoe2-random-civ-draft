@@ -4,6 +4,12 @@ import { ApiConnectedUnit, IUnit } from './units/units-api';
 import { ApiConnectedTech, ITech } from './techs/techs-api';
 import { ApiConnectedBuilding, IBuilding } from './buildings/buildings-api';
 
+export interface FilterTag {
+  id: number;
+  tagName: string;
+  isOn: boolean;
+}
+
 export interface ITechTreeItem {
   id: number;
   itemName: string;
@@ -11,6 +17,7 @@ export interface ITechTreeItem {
   isUnique?: boolean;
   age?: IAge;
   civs?: ICiv[];
+  tags?: FilterTag[];
 }
 
 export enum TechTreeItemType {
