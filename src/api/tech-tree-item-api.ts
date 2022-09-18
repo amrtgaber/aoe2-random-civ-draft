@@ -7,7 +7,6 @@ import { ApiConnectedBuilding, IBuilding } from './buildings/buildings-api';
 export interface FilterTag {
   id: number;
   tagName: string;
-  isOn: boolean;
 }
 
 export interface ITechTreeItem {
@@ -17,7 +16,7 @@ export interface ITechTreeItem {
   isUnique?: boolean;
   age?: IAge;
   civs?: ICiv[];
-  tags?: FilterTag[];
+  tagIds?: number[];
 }
 
 export enum TechTreeItemType {

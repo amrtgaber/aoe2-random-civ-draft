@@ -8,6 +8,7 @@ import { fetchAges, selectAges } from '../../store/ages-slice';
 import {
   selectTechTreeFilter,
   setShownItems,
+  setTaggedItems,
 } from '../../store/tech-tree-filter-slice';
 import {
   FetchStatus,
@@ -25,7 +26,7 @@ import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
-import { addTags } from '../tech-tree-filter-tags/tags';
+import { addTagsToItem } from '../tech-tree-filter-tags/tags';
 import { TechTreeFilterTags } from '../tech-tree-filter-tags';
 
 export const TechTreeFilter: FC = () => {
@@ -37,7 +38,7 @@ export const TechTreeFilter: FC = () => {
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
-  const { allAges, agesStatus } = useAppSelector(selectAges);
+  const { agesStatus } = useAppSelector(selectAges);
 
   const { itemsFilter, shownItems } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
@@ -105,8 +106,9 @@ export const TechTreeFilter: FC = () => {
 
   const initItems = () => {
     const allFetchedItems = [...allUnits, ...allTechs, ...allBuildings];
-    const taggedItems = allFetchedItems.map((item) => addTags(item));
+    const taggedItems = allFetchedItems.map((item) => addTagsToItem(item));
     dispatch(setShownItems(taggedItems));
+    dispatch(setTaggedItems(taggedItems));
   };
 
   useEffect(() => {

@@ -15,6 +15,7 @@ export interface TechTreeFilterState {
   itemsFilter: ITechTreeItem[];
   filterMode: FilterMode;
   shownItems: ITechTreeItem[];
+  taggedItems: ITechTreeItem[];
 }
 
 export const initialState: TechTreeFilterState = {
@@ -22,6 +23,7 @@ export const initialState: TechTreeFilterState = {
   itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
   shownItems: [] as ITechTreeItem[],
+  taggedItems: [] as ITechTreeItem[],
 };
 
 export const techTreeFilterSlice = createSlice({
@@ -61,6 +63,9 @@ export const techTreeFilterSlice = createSlice({
     setShownItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
       state.shownItems = action.payload;
     },
+    setTaggedItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
+      state.taggedItems = action.payload;
+    },
   },
 });
 
@@ -73,6 +78,7 @@ export const {
   addShownItem,
   removeShownItem,
   setShownItems,
+  setTaggedItems,
 } = techTreeFilterSlice.actions;
 
 export const selectTechTreeFilter = (state: RootState) => state.techTreeFilter;
