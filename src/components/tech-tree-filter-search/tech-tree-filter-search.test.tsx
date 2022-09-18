@@ -16,7 +16,7 @@ describe('tech tree filter search component', () => {
       );
 
       const techTreeFilterSearchEl = techTreeFilterSearch.querySelector(
-        '.tech-tree-filter-search-panel'
+        '.tech-tree-filter-search'
       );
 
       expect(techTreeFilterSearchEl).toBeInTheDocument();

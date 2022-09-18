@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
@@ -6,10 +6,7 @@ import { fetchTechs, selectTechs } from '../../store/techs-slice';
 import { fetchUnits, selectUnits } from '../../store/units-slice';
 import { fetchAges, selectAges } from '../../store/ages-slice';
 import {
-  clearFilter,
-  FilterMode,
   selectTechTreeFilter,
-  setFilterMode,
   setShownItems,
 } from '../../store/tech-tree-filter-slice';
 import {
@@ -20,25 +17,19 @@ import {
   isLoading,
 } from '../../store/shared-store-utils';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
+
 import { Loading } from '../loading';
+import { TechTreeFilterSearch } from '../tech-tree-filter-search';
+import { TechTreeFilterOptions } from '../tech-tree-filter-options';
 import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
-import { TechTreeFilterSearch } from '../tech-tree-filter-search';
 
 import './tech-tree-filter.scss';
-
-enum SortBy {
-  ALPHA = 'SORT_BY_ALPHA',
-  AGE = 'SORT_BY_AGE',
-  BUILDING = 'SORT_BY_BUILDING',
-}
 
 export const TechTreeFilter: FC = () => {
   const allFilterTags = ['units', 'techs', 'buildings', 'uniques'];
 
   const [filterTags, setFilterTags] = useState<string[]>([]);
-  const [isHidingUniques, setIsHidingUniques] = useState(true);
-  const [sortMode, setSortMode] = useState(SortBy.ALPHA);
 
   const [combinedFetchStatus, setCombinedFetchStatus] = useState<FetchStatus>(
     FetchStatus.INIT
@@ -49,8 +40,7 @@ export const TechTreeFilter: FC = () => {
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
   const { allAges, agesStatus } = useAppSelector(selectAges);
-  const { itemsFilter, filterMode, shownItems } =
-    useAppSelector(selectTechTreeFilter);
+  const { itemsFilter, shownItems } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -115,8 +105,7 @@ export const TechTreeFilter: FC = () => {
   }, [combinedFetchStatus]);
 
   const initItems = () => {
-    const allFetchedItems = [...allUnits, ...allTechs, ...allBuildings];
-    dispatch(setShownItems(allFetchedItems));
+    dispatch(setShownItems([...allUnits, ...allTechs, ...allBuildings]));
   };
 
   useEffect(() => {
@@ -209,24 +198,6 @@ export const TechTreeFilter: FC = () => {
   //   return items;
   // };
 
-  const handleClearFilter = () => {
-    dispatch(clearFilter());
-  };
-
-  const handleToggleFilterMode = () => {
-    dispatch(
-      setFilterMode(
-        filterMode === FilterMode.HAS_ALL
-          ? FilterMode.HAS_ANY
-          : FilterMode.HAS_ALL
-      )
-    );
-  };
-
-  const handleHideUniques = () => {
-    setIsHidingUniques(!isHidingUniques);
-  };
-
   const handleFilterByTag = (newTag: string, hasTag: boolean) => {
     if (hasTag) {
       setFilterTags(filterTags.filter((tag) => tag !== newTag));
@@ -251,10 +222,6 @@ export const TechTreeFilter: FC = () => {
     });
   };
 
-  const handleChangeSortMode = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSortMode(e.target.value as SortBy);
-  };
-
   return (
     <div className='tech-tree-filter-container'>
       {isLoading(combinedFetchStatus) ? (
@@ -263,41 +230,7 @@ export const TechTreeFilter: FC = () => {
         <div className='tech-tree-filter-panels-container'>
           <div className='tech-tree-filter-settings-panel'>
             <TechTreeFilterSearch />
-            <div className='tech-tree-filter-options'>
-              <div className='options-title'>Options</div>
-              <div className='tech-tree-filter-mode'>
-                Civ has{' '}
-                <a
-                  className='filter-mode-button'
-                  onClick={handleToggleFilterMode}
-                >
-                  {filterMode}
-                </a>{' '}
-                selected items
-              </div>
-              <div className='tech-tree-filter-clear-filter'>
-                <a className='clear-filter-button' onClick={handleClearFilter}>
-                  Clear selected items
-                </a>
-              </div>
-              <div className='tech-tree-filter-hide-uniques'>
-                <a className='hide-uniques-button' onClick={handleHideUniques}>
-                  {isHidingUniques ? 'Show uniques' : 'Hide uniques'}
-                </a>
-              </div>
-              <div className='tech-tree-filter-sort'>
-                <div className='sort-text'>sort</div>
-                <select
-                  value={sortMode}
-                  onChange={handleChangeSortMode}
-                  className='sort-dropdown'
-                >
-                  <option value={SortBy.ALPHA}>a-z</option>
-                  <option value={SortBy.AGE}>by age</option>
-                  <option value={SortBy.BUILDING}>by building</option>
-                </select>
-              </div>
-            </div>
+            <TechTreeFilterOptions />
             <div className='tech-tree-filter-filter-tags'>
               <div className='filter-tags-title'>Filter items</div>
               <div className='filter-tags-buttons'>
