@@ -8,7 +8,7 @@ import {
   setCivPool,
 } from '../../store/civs-slice';
 import { isLoading } from '../../store/shared-store-utils';
-import { selectDraftParameters } from '../../store/draft-parameters-slice';
+import { selectTechTreeFilter } from '../../store/tech-tree-filter-slice';
 import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
 import { Civ } from '../civ';
@@ -17,7 +17,7 @@ import './staging-civ-pool.scss';
 
 export const StagingCivPool: FC = () => {
   const { allCivs, civsStatus } = useAppSelector(selectCivs);
-  const { filteredCivPool } = useAppSelector(selectDraftParameters);
+  const { filteredCivPool } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   const handleAddToMainCivPool = () => {

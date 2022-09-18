@@ -1,7 +1,7 @@
 import { TechTreeItemType } from '../api/tech-tree-item-api';
 import { RootState } from '../store';
 import { FetchStatus } from '../store/shared-store-utils';
-import { FilterMode } from '../store/draft-parameters-slice';
+import { FilterMode } from '../store/tech-tree-filter-slice';
 
 export const TEST_STATE: RootState = {
   civs: {
@@ -603,10 +603,11 @@ export const TEST_STATE: RootState = {
     gameVersion: '66692',
     versionStatus: FetchStatus.FULFILLED,
   },
-  draftParameters: {
+  techTreeFilter: {
     filteredCivPool: [],
     itemsFilter: [],
     filterMode: FilterMode.HAS_ALL,
+    shownItems: [],
   },
   draftResult: {
     civ: null,

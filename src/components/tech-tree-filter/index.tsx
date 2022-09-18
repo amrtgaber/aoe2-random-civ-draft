@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
@@ -6,11 +6,9 @@ import { fetchTechs, selectTechs } from '../../store/techs-slice';
 import { fetchUnits, selectUnits } from '../../store/units-slice';
 import { fetchAges, selectAges } from '../../store/ages-slice';
 import {
-  clearFilter,
-  FilterMode,
-  selectDraftParameters,
-  setFilterMode,
-} from '../../store/draft-parameters-slice';
+  selectTechTreeFilter,
+  setShownItems,
+} from '../../store/tech-tree-filter-slice';
 import {
   FetchStatus,
   isFailed,
@@ -18,44 +16,31 @@ import {
   isInit,
   isLoading,
 } from '../../store/shared-store-utils';
-import {
-  isBuilding,
-  isTech,
-  isUnit,
-  ITechTreeItem,
-} from '../../api/tech-tree-item-api';
+import { ITechTreeItem } from '../../api/tech-tree-item-api';
+
 import { Loading } from '../loading';
+import { TechTreeFilterSearch } from '../tech-tree-filter-search';
+import { TechTreeFilterOptions } from '../tech-tree-filter-options';
 import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
 
-enum SortBy {
-  ALPHA = 'SORT_BY_ALPHA',
-  AGE = 'SORT_BY_AGE',
-  BUILDING = 'SORT_BY_BUILDING',
-}
-
 export const TechTreeFilter: FC = () => {
   const allFilterTags = ['units', 'techs', 'buildings', 'uniques'];
 
-  const [searchTerm, setSearchTerm] = useState('');
   const [filterTags, setFilterTags] = useState<string[]>([]);
-  const [isHidingUniques, setIsHidingUniques] = useState(true);
-  const [sortMode, setSortMode] = useState(SortBy.ALPHA);
 
   const [combinedFetchStatus, setCombinedFetchStatus] = useState<FetchStatus>(
     FetchStatus.INIT
   );
-  const [allItems, setAllItems] = useState<ITechTreeItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
-  const [unselectedItems, setUnselectedItems] = useState<ITechTreeItem[]>([]);
 
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
   const { allTechs, techsStatus } = useAppSelector(selectTechs);
   const { allBuildings, buildingsStatus } = useAppSelector(selectBuildings);
   const { allAges, agesStatus } = useAppSelector(selectAges);
-  const { itemsFilter, filterMode } = useAppSelector(selectDraftParameters);
+  const { itemsFilter, shownItems } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -120,125 +105,98 @@ export const TechTreeFilter: FC = () => {
   }, [combinedFetchStatus]);
 
   const initItems = () => {
-    const allFetchedItems = [...allUnits, ...allTechs, ...allBuildings];
-    setAllItems(allFetchedItems);
-    setUnselectedItems(allFetchedItems);
+    dispatch(setShownItems([...allUnits, ...allTechs, ...allBuildings]));
   };
 
   useEffect(() => {
     setSelectedItems(itemsFilter);
   }, [itemsFilter]);
 
-  useEffect(() => {
-    setUnselectedItems(assembleUnselectedItems());
-  }, [selectedItems, searchTerm, filterTags, isHidingUniques, sortMode]);
+  // useEffect(() => {
+  //   setUnselectedItems(assembleUnselectedItems());
+  // }, [selectedItems, searchTerm, filterTags, isHidingUniques, sortMode]);
 
-  const assembleUnselectedItems = (): ITechTreeItem[] => {
-    // remove selectedItems
-    const selectedItemIds = selectedItems.map((item) => item.id);
-    let items = allItems.filter((item) => {
-      return !selectedItemIds.includes(item.id);
-    });
+  // const assembleUnselectedItems = (): ITechTreeItem[] => {
+  //   // remove selectedItems
+  //   const selectedItemIds = selectedItems.map((item) => item.id);
+  //   let items = allItems.filter((item) => {
+  //     return !selectedItemIds.includes(item.id);
+  //   });
 
-    // hide uniques
-    if (isHidingUniques) {
-      items = items.filter((item) => !item.isUnique);
-    }
+  //   // hide uniques
+  //   if (isHidingUniques) {
+  //     items = items.filter((item) => !item.isUnique);
+  //   }
 
-    // match search term
-    if (searchTerm.length > 0) {
-      items = items.filter((item) => {
-        return item.itemName.includes(searchTerm.toLowerCase());
-      });
-    }
+  //   // sort
+  //   if (sortMode === SortBy.ALPHA) {
+  //     items.sort((item1, item2) => (item1.itemName > item2.itemName ? 1 : -1));
+  //   }
 
-    // sort
-    if (sortMode === SortBy.ALPHA) {
-      items.sort((item1, item2) => (item1.itemName > item2.itemName ? 1 : -1));
-    }
+  //   if (sortMode === SortBy.AGE) {
+  //     items.sort((item1, item2) => item1.age!.id - item2.age!.id);
+  //   }
 
-    if (sortMode === SortBy.AGE) {
-      items.sort((item1, item2) => item1.age!.id - item2.age!.id);
-    }
+  //   if (sortMode === SortBy.BUILDING) {
+  //     items.sort((item1, item2) => {
+  //       let id1 = 0;
+  //       let id2 = 0;
 
-    if (sortMode === SortBy.BUILDING) {
-      items.sort((item1, item2) => {
-        let id1 = 0;
-        let id2 = 0;
+  //       if (isBuilding(item1)) {
+  //         id1 = item1.id;
+  //       } else if (isUnit(item1) || isTech(item1)) {
+  //         id1 = item1.buildings[0].id;
+  //       }
 
-        if (isBuilding(item1)) {
-          id1 = item1.id;
-        } else if (isUnit(item1) || isTech(item1)) {
-          id1 = item1.buildings[0].id;
-        }
+  //       if (isBuilding(item2)) {
+  //         id2 = item2.id;
+  //       } else if (isUnit(item2) || isTech(item2)) {
+  //         id2 = item2.buildings[0].id;
+  //       }
 
-        if (isBuilding(item2)) {
-          id2 = item2.id;
-        } else if (isUnit(item2) || isTech(item2)) {
-          id2 = item2.buildings[0].id;
-        }
+  //       return id1 - id2;
+  //     });
+  //   }
 
-        return id1 - id2;
-      });
-    }
+  //   // filter by tag
+  //   if (filterTags.length > 0) {
+  //     items = items.filter((item) => {
+  //       if (filterTags.includes('units') && isUnit(item)) {
+  //         if (filterTags.includes('uniques')) {
+  //           return item.isUnique;
+  //         }
 
-    // filter by tag
-    if (filterTags.length > 0) {
-      items = items.filter((item) => {
-        if (filterTags.includes('units') && isUnit(item)) {
-          if (filterTags.includes('uniques')) {
-            return item.isUnique;
-          }
+  //         return true;
+  //       }
 
-          return true;
-        }
+  //       if (filterTags.includes('techs') && isTech(item)) {
+  //         if (filterTags.includes('uniques')) {
+  //           return item.isUnique;
+  //         }
 
-        if (filterTags.includes('techs') && isTech(item)) {
-          if (filterTags.includes('uniques')) {
-            return item.isUnique;
-          }
+  //         return true;
+  //       }
 
-          return true;
-        }
+  //       if (filterTags.includes('buildings') && isBuilding(item)) {
+  //         if (filterTags.includes('uniques')) {
+  //           return item.isUnique;
+  //         }
 
-        if (filterTags.includes('buildings') && isBuilding(item)) {
-          if (filterTags.includes('uniques')) {
-            return item.isUnique;
-          }
+  //         return true;
+  //       }
 
-          return true;
-        }
+  //       if (filterTags.includes('uniques') && item.isUnique) {
+  //         if (filterTags.includes('units')) return isUnit(item);
+  //         if (filterTags.includes('techs')) return isTech(item);
+  //         if (filterTags.includes('buildings')) return isBuilding(item);
 
-        if (filterTags.includes('uniques') && item.isUnique) {
-          if (filterTags.includes('units')) return isUnit(item);
-          if (filterTags.includes('techs')) return isTech(item);
-          if (filterTags.includes('buildings')) return isBuilding(item);
+  //         return true;
+  //       }
+  //     });
+  //   }
 
-          return true;
-        }
-      });
-    }
-
-    return items;
-  };
-
-  const handleClearFilter = () => {
-    dispatch(clearFilter());
-  };
-
-  const handleToggleFilterMode = () => {
-    dispatch(
-      setFilterMode(
-        filterMode === FilterMode.HAS_ALL
-          ? FilterMode.HAS_ANY
-          : FilterMode.HAS_ALL
-      )
-    );
-  };
-
-  const handleHideUniques = () => {
-    setIsHidingUniques(!isHidingUniques);
-  };
+  //   return items;
+  // };
 
   const handleFilterByTag = (newTag: string, hasTag: boolean) => {
     if (hasTag) {
@@ -246,10 +204,6 @@ export const TechTreeFilter: FC = () => {
     } else {
       setFilterTags([...filterTags, newTag]);
     }
-  };
-
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
   };
 
   const renderFilterTagsButtons = () => {
@@ -268,10 +222,6 @@ export const TechTreeFilter: FC = () => {
     });
   };
 
-  const handleChangeSortMode = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSortMode(e.target.value as SortBy);
-  };
-
   return (
     <div className='tech-tree-filter-container'>
       {isLoading(combinedFetchStatus) ? (
@@ -279,53 +229,8 @@ export const TechTreeFilter: FC = () => {
       ) : (
         <div className='tech-tree-filter-panels-container'>
           <div className='tech-tree-filter-settings-panel'>
-            <div className='tech-tree-filter-search'>
-              <input
-                type='text'
-                className='search-input'
-                placeholder='search'
-                value={searchTerm}
-                onChange={handleSearch}
-              />
-              <span className='clear-search' onClick={() => setSearchTerm('')}>
-                ✖
-              </span>
-            </div>
-            <div className='tech-tree-filter-options'>
-              <div className='options-title'>Options</div>
-              <div className='tech-tree-filter-mode'>
-                Civ has{' '}
-                <a
-                  className='filter-mode-button'
-                  onClick={handleToggleFilterMode}
-                >
-                  {filterMode}
-                </a>{' '}
-                selected items
-              </div>
-              <div className='tech-tree-filter-clear-filter'>
-                <a className='clear-filter-button' onClick={handleClearFilter}>
-                  Clear selected items
-                </a>
-              </div>
-              <div className='tech-tree-filter-hide-uniques'>
-                <a className='hide-uniques-button' onClick={handleHideUniques}>
-                  {isHidingUniques ? 'Show uniques' : 'Hide uniques'}
-                </a>
-              </div>
-              <div className='tech-tree-filter-sort'>
-                <div className='sort-text'>sort</div>
-                <select
-                  value={sortMode}
-                  onChange={handleChangeSortMode}
-                  className='sort-dropdown'
-                >
-                  <option value={SortBy.ALPHA}>a-z</option>
-                  <option value={SortBy.AGE}>by age</option>
-                  <option value={SortBy.BUILDING}>by building</option>
-                </select>
-              </div>
-            </div>
+            <TechTreeFilterSearch />
+            <TechTreeFilterOptions />
             <div className='tech-tree-filter-filter-tags'>
               <div className='filter-tags-title'>Filter items</div>
               <div className='filter-tags-buttons'>
@@ -352,16 +257,16 @@ export const TechTreeFilter: FC = () => {
             </div>
             <div
               className={`tech-tree-filter-unselected-items ${
-                unselectedItems.length === 0 ? ' empty-filter' : ''
+                shownItems.length === 0 ? ' empty-filter' : ''
               }`}
             >
               <>
-                {unselectedItems.length === 0 && (
+                {shownItems.length === 0 && (
                   <div className='unselected-items-placeholder'>
                     No matching items
                   </div>
                 )}
-                {unselectedItems.map((item) => (
+                {shownItems.map((item) => (
                   <TechTreeItem key={item.id} item={item} selected={false} />
                 ))}
               </>

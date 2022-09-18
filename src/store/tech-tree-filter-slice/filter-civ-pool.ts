@@ -1,7 +1,7 @@
-import { DraftParametersState, FilterMode } from '.';
+import { FilterMode, TechTreeFilterState } from '.';
 import { ICiv } from '../../api/civs/civs-api';
 
-export function filterCivPool(state: DraftParametersState): ICiv[] {
+export function filterCivPool(state: TechTreeFilterState): ICiv[] {
   const { itemsFilter, filterMode } = state;
 
   const filterFn =

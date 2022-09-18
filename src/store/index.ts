@@ -6,7 +6,7 @@ import techsReducer from '../store/techs-slice';
 import buildingsReducer from '../store/buildings-slice';
 import agesReducer from '../store/ages-slice';
 import versionReducer from '../store/version-slice';
-import draftParametersReducer from '../store/draft-parameters-slice';
+import techTreeFilterReducer from './tech-tree-filter-slice';
 import draftResultReducer from './draft-result-slice';
 
 export const reducer = {
@@ -16,7 +16,7 @@ export const reducer = {
   buildings: buildingsReducer,
   ages: agesReducer,
   version: versionReducer,
-  draftParameters: draftParametersReducer,
+  techTreeFilter: techTreeFilterReducer,
   draftResult: draftResultReducer,
 };
 
