@@ -1,5 +1,10 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { isBuilding, isTech, isUnit } from '../../api/tech-tree-item-api';
+import {
+  isBuilding,
+  isTech,
+  isUnit,
+  ITechTreeItem,
+} from '../../api/tech-tree-item-api';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -46,40 +51,50 @@ export const TechTreeFilterOptions: FC = () => {
     doSort();
   }, [sortMode]);
 
+  const sortByAlpha = (items: ITechTreeItem[]) => {
+    return items.sort((item1, item2) => {
+      return item1.itemName > item2.itemName ? 1 : -1;
+    });
+  };
+
+  const sortByAge = (items: ITechTreeItem[]) => {
+    return items.sort((item1, item2) => item1.age!.id - item2.age!.id);
+  };
+
+  const getBuildingId = (item: ITechTreeItem) => {
+    let itemId = 0;
+
+    if (isBuilding(item)) {
+      itemId = item.id;
+    } else if (isUnit(item) || isTech(item)) {
+      itemId = item.buildings[0].id;
+    }
+
+    return itemId;
+  };
+
+  const sortByBuilding = (items: ITechTreeItem[]) => {
+    return items.sort((item1, item2) => {
+      const id1: number = getBuildingId(item1);
+      const id2: number = getBuildingId(item2);
+
+      return id1 - id2;
+    });
+  };
+
+  const sortFunctions = {
+    [SortBy.ALPHA]: sortByAlpha,
+    [SortBy.AGE]: sortByAge,
+    [SortBy.BUILDING]: sortByBuilding,
+  };
+
   const doSort = () => {
-    const sortedItems = [...shownItems];
+    // const sortFunction = sortFunctions[sortMode];
+    // sortFunction(shownItems);
 
-    if (sortMode === SortBy.ALPHA) {
-      sortedItems.sort((item1, item2) =>
-        item1.itemName > item2.itemName ? 1 : -1
-      );
-    }
-
-    if (sortMode === SortBy.AGE) {
-      sortedItems.sort((item1, item2) => item1.age!.id - item2.age!.id);
-    }
-
-    if (sortMode === SortBy.BUILDING) {
-      sortedItems.sort((item1, item2) => {
-        let id1 = 0;
-        let id2 = 0;
-
-        if (isBuilding(item1)) {
-          id1 = item1.id;
-        } else if (isUnit(item1) || isTech(item1)) {
-          id1 = item1.buildings[0].id;
-        }
-
-        if (isBuilding(item2)) {
-          id2 = item2.id;
-        } else if (isUnit(item2) || isTech(item2)) {
-          id2 = item2.buildings[0].id;
-        }
-
-        return id1 - id2;
-      });
-    }
-
+    let sortedItems = [...shownItems];
+    const sortFunction = sortFunctions[sortMode];
+    sortedItems = sortFunction(sortedItems);
     dispatch(setShownItems(sortedItems));
   };
 
