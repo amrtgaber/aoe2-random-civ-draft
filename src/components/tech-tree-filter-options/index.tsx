@@ -62,6 +62,7 @@ export const TechTreeFilterOptions: FC = () => {
           <option value={SortBy.ALPHA}>a-z</option>
           <option value={SortBy.AGE}>by age</option>
           <option value={SortBy.BUILDING}>by building</option>
+          <option value={SortBy.KIND}>by type</option>
         </select>
       </div>
     </div>

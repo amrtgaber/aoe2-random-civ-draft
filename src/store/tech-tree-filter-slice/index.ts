@@ -9,7 +9,7 @@ import {
   getTagIdsByType,
   TagType,
 } from './TechTreeFilterService/TagsService/tags';
-import { SortBy } from './TechTreeFilterService/SortService';
+import { doSort, SortBy } from './TechTreeFilterService/SortService';
 import { assembleShownItemsOnChange } from './TechTreeFilterService';
 
 export enum FilterMode {
@@ -64,6 +64,7 @@ export const techTreeFilterSlice = createSlice({
     clearFilter: (state) => {
       state.itemsFilter = [];
       state.filteredCivPool = filterCivPool(state);
+      state.shownItems = state.taggedItems;
     },
     setFilterMode: (state, action: PayloadAction<FilterMode>) => {
       state.filterMode = action.payload;
@@ -72,6 +73,7 @@ export const techTreeFilterSlice = createSlice({
 
     addShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems.push(action.payload);
+      state.shownItems = doSort(state.shownItems, state.sortMode);
     },
     removeShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems = state.shownItems.filter(
@@ -82,7 +84,7 @@ export const techTreeFilterSlice = createSlice({
       state.shownItems = action.payload;
     },
     setTaggedItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
-      state.taggedItems = action.payload;
+      state.taggedItems = doSort(action.payload, state.sortMode);
       state.shownItems = assembleShownItemsOnChange(state);
     },
 
