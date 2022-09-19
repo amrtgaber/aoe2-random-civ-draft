@@ -1,0 +1,61 @@
+@import '../../shared-styles/lib';
+@import '../tech-tree-filter/tech-tree-filter';
+
+.tech-tree-filter-tags {
+  padding: calc-padding($padding-small);
+
+  border-top: $tech-tree-filter-border-thickness solid
+    $tech-tree-filter-border-color;
+
+  overflow-y: auto;
+}
+
+.tags-top-bar {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  width: 100%;
+}
+
+.tags-title {
+  flex: auto;
+}
+
+.tags-reset-button {
+  @include tech-tree-filter-button;
+
+  flex: 0;
+  background-color: $bg-color-light;
+
+  font-size: calc-font-size($font-size-4);
+}
+
+.tags-type-title {
+  padding: calc-padding($padding-small);
+  font-size: calc-font-size($font-size-6);
+}
+
+.tags-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow-y: auto;
+  margin-top: calc-vertical-margin($vertical-margin-tiny);
+
+  &.age-tags {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tags-button {
+  @include tech-tree-filter-button;
+
+  display: grid;
+  @include grid-alignment-center;
+
+  font-size: calc-font-size($font-size-4);
+
+  &.tag-on {
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+}

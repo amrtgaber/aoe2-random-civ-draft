@@ -44,30 +44,6 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
     $tech-tree-filter-border-color;
 }
 
-.tech-tree-filter-filter-tags {
-  padding: calc-padding($padding-small);
-
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
-}
-
-.filter-tags-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  overflow-y: auto;
-}
-
-.filter-tags-button {
-  @include tech-tree-filter-button;
-
-  font-size: calc-font-size($font-size-4);
-
-  &.filter-tag-on {
-    border: $border-thickness-tiny solid $border-primary-color-amber;
-  }
-}
-
 .tech-tree-filter-items-panel {
   display: flex;
   flex-direction: column;

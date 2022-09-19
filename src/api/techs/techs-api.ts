@@ -47,6 +47,7 @@ export async function getTechs(): Promise<ITech[]> {
         buildings: buildings.map((building) =>
           convertBuildingToTechTreeItem(building)
         ),
+        tagIds: [],
       };
     })
     .sort(techTreeItemCompare);

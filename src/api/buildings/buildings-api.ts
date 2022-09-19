@@ -50,6 +50,7 @@ export async function getBuildings(): Promise<IBuilding[]> {
         civs,
         units: units.map((unit) => convertUnitToTechTreeItem(unit)),
         techs: techs.map((tech) => convertTechToTechTreeItem(tech)),
+        tagIds: [],
       };
     })
     .sort(techTreeItemCompare);

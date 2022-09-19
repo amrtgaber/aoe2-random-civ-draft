@@ -608,6 +608,7 @@ export const TEST_STATE: RootState = {
     itemsFilter: [],
     filterMode: FilterMode.HAS_ALL,
     shownItems: [],
+    taggedItems: [],
   },
   draftResult: {
     civ: null,

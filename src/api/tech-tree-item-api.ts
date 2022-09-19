@@ -11,6 +11,7 @@ export interface ITechTreeItem {
   isUnique?: boolean;
   age?: IAge;
   civs?: ICiv[];
+  tagIds?: number[];
 }
 
 export enum TechTreeItemType {
