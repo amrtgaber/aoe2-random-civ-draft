@@ -5,6 +5,13 @@ import { ICiv } from '../../api/civs/civs-api';
 import { filterCivPool } from './filter-civ-pool';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
+import {
+  getTagIdsByType,
+  TagType,
+} from './TechTreeFilterService/TagsService/tags';
+import { SortBy } from './TechTreeFilterService/SortService';
+import { assembleShownItemsOnChange } from './TechTreeFilterService';
+
 export enum FilterMode {
   HAS_ALL = 'ALL',
   HAS_ANY = 'ANY',
@@ -14,16 +21,26 @@ export interface TechTreeFilterState {
   filteredCivPool: ICiv[];
   itemsFilter: ITechTreeItem[];
   filterMode: FilterMode;
+
   shownItems: ITechTreeItem[];
   taggedItems: ITechTreeItem[];
+
+  searchTerm: string;
+  sortMode: SortBy;
+  selectedTagIds: number[];
 }
 
 export const initialState: TechTreeFilterState = {
   filteredCivPool: [] as ICiv[],
   itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
+
   shownItems: [] as ITechTreeItem[],
   taggedItems: [] as ITechTreeItem[],
+
+  searchTerm: '',
+  sortMode: SortBy.ALPHA,
+  selectedTagIds: getTagIdsByType(TagType.KIND),
 };
 
 export const techTreeFilterSlice = createSlice({
@@ -52,6 +69,7 @@ export const techTreeFilterSlice = createSlice({
       state.filterMode = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
+
     addShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems.push(action.payload);
     },
@@ -65,6 +83,20 @@ export const techTreeFilterSlice = createSlice({
     },
     setTaggedItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
       state.taggedItems = action.payload;
+      state.shownItems = assembleShownItemsOnChange(state);
+    },
+
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+      state.shownItems = assembleShownItemsOnChange(state);
+    },
+    setSortMode: (state, action: PayloadAction<SortBy>) => {
+      state.sortMode = action.payload;
+      state.shownItems = assembleShownItemsOnChange(state);
+    },
+    setSelectedTagIds: (state, action: PayloadAction<number[]>) => {
+      state.selectedTagIds = action.payload;
+      state.shownItems = assembleShownItemsOnChange(state);
     },
   },
 });
@@ -79,6 +111,9 @@ export const {
   removeShownItem,
   setShownItems,
   setTaggedItems,
+  setSearchTerm,
+  setSortMode,
+  setSelectedTagIds,
 } = techTreeFilterSlice.actions;
 
 export const selectTechTreeFilter = (state: RootState) => state.techTreeFilter;

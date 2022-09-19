@@ -1,4 +1,4 @@
-import { ITechTreeItem } from '../../api/tech-tree-item-api';
+import { ITechTreeItem } from '../../../../api/tech-tree-item-api';
 import { getTagIdsByType, TagType } from './tags';
 
 const getEnabledTagIdsByType = (

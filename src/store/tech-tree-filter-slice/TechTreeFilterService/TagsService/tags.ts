@@ -1,4 +1,8 @@
-import { isTech, isUnit, ITechTreeItem } from '../../api/tech-tree-item-api';
+import {
+  isTech,
+  isUnit,
+  ITechTreeItem,
+} from '../../../../api/tech-tree-item-api';
 
 export enum TagType {
   KIND,

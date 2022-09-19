@@ -1,61 +1,41 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   selectTechTreeFilter,
-  setShownItems,
+  setSelectedTagIds,
 } from '../../store/tech-tree-filter-slice';
 import {
-  filterByAge,
-  filterByBuilding,
-  filterByKind,
-  filterByUnique,
-} from './filters';
-import { FilterTag, filterTags, getTagIdsByType, TagType } from './tags';
+  FilterTag,
+  filterTags,
+  getTagIdsByType,
+  TagType,
+} from '../../store/tech-tree-filter-slice/TechTreeFilterService/TagsService/tags';
 
 import './tech-tree-filter-tags.scss';
 
 export const TechTreeFilterTags: FC = () => {
-  const [enabledTagIds, setEnabledTagIds] = useState<number[]>(
-    getTagIdsByType(TagType.KIND)
-  );
-
-  const { taggedItems } = useAppSelector(selectTechTreeFilter);
+  const { selectedTagIds } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   const handleResetTags = () => {
-    setEnabledTagIds(getTagIdsByType(TagType.KIND));
+    dispatch(setSelectedTagIds(getTagIdsByType(TagType.KIND)));
   };
 
   const handleToggleFilterTag = (tag: FilterTag, isOn: boolean) => {
     if (isOn) {
-      const tagIds = enabledTagIds.filter((id) => id !== tag.id);
-      setEnabledTagIds(tagIds);
+      const tagIds = selectedTagIds.filter((id) => id !== tag.id);
+      dispatch(setSelectedTagIds(tagIds));
     } else {
-      setEnabledTagIds([...enabledTagIds, tag.id]);
+      dispatch(setSelectedTagIds([...selectedTagIds, tag.id]));
     }
-  };
-
-  useEffect(() => {
-    doFilter();
-  }, [enabledTagIds]);
-
-  const doFilter = () => {
-    let filteredItems = taggedItems;
-
-    filteredItems = filterByKind(filteredItems, enabledTagIds);
-    filteredItems = filterByUnique(filteredItems, enabledTagIds);
-    filteredItems = filterByAge(filteredItems, enabledTagIds);
-    filteredItems = filterByBuilding(filteredItems, enabledTagIds);
-
-    dispatch(setShownItems(filteredItems));
   };
 
   const renderTagsByType = (tagType: TagType): JSX.Element[] => {
     return filterTags
       .filter((tag) => tag.tagType === tagType)
       .map((tag) => {
-        const isOn = enabledTagIds.includes(tag.id);
+        const isOn = selectedTagIds.includes(tag.id);
 
         return (
           <a

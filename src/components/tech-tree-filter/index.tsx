@@ -7,15 +7,12 @@ import { fetchUnits, selectUnits } from '../../store/units-slice';
 import { fetchAges, selectAges } from '../../store/ages-slice';
 import {
   selectTechTreeFilter,
-  setShownItems,
   setTaggedItems,
 } from '../../store/tech-tree-filter-slice';
 import {
   FetchStatus,
-  isFailed,
   isFulfilled,
   isInit,
-  isLoading,
 } from '../../store/shared-store-utils';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
@@ -26,12 +23,12 @@ import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
-import { addTagsToItem } from '../tech-tree-filter-tags/tags';
+import { addTagsToItem } from '../../store/tech-tree-filter-slice/TechTreeFilterService/TagsService/tags';
 import { TechTreeFilterTags } from '../tech-tree-filter-tags';
 
 export const TechTreeFilter: FC = () => {
   const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
-  const [combinedFetchStatus, setCombinedFetchStatus] = useState<FetchStatus>(
+  const [allItemsFetchStatus, setAllItemsFetchStatus] = useState<FetchStatus>(
     FetchStatus.INIT
   );
 
@@ -71,43 +68,24 @@ export const TechTreeFilter: FC = () => {
 
   const updateFetchStatus = () => {
     if (
-      isLoading(unitsStatus) ||
-      isLoading(techsStatus) ||
-      isLoading(buildingsStatus) ||
-      isLoading(agesStatus)
-    ) {
-      setCombinedFetchStatus(FetchStatus.LOADING);
-    }
-
-    if (
-      isFailed(unitsStatus) ||
-      isFailed(techsStatus) ||
-      isFailed(buildingsStatus) ||
-      isFailed(agesStatus)
-    ) {
-      setCombinedFetchStatus(FetchStatus.FAILED);
-    }
-
-    if (
       isFulfilled(unitsStatus) &&
       isFulfilled(techsStatus) &&
       isFulfilled(buildingsStatus) &&
       isFulfilled(agesStatus)
     ) {
-      setCombinedFetchStatus(FetchStatus.FULFILLED);
+      setAllItemsFetchStatus(FetchStatus.FULFILLED);
     }
   };
 
   useEffect(() => {
-    if (isFulfilled(combinedFetchStatus)) {
+    if (isFulfilled(allItemsFetchStatus)) {
       initItems();
     }
-  }, [combinedFetchStatus]);
+  }, [allItemsFetchStatus]);
 
   const initItems = () => {
     const allFetchedItems = [...allUnits, ...allTechs, ...allBuildings];
     const taggedItems = allFetchedItems.map((item) => addTagsToItem(item));
-    dispatch(setShownItems(taggedItems));
     dispatch(setTaggedItems(taggedItems));
   };
 
@@ -120,7 +98,7 @@ export const TechTreeFilter: FC = () => {
 
   return (
     <div className='tech-tree-filter-container'>
-      {!isFulfilled(combinedFetchStatus) ? (
+      {!isFulfilled(allItemsFetchStatus) ? (
         <Loading componentName='Tech Tree Filter' />
       ) : (
         <div className='tech-tree-filter-panels-container'>
