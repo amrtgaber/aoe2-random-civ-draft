@@ -23,7 +23,7 @@ import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
-import { addTagsToItem } from '../../store/tech-tree-filter-slice/TechTreeFilterService/TagsService/tags';
+import { addTagsToItem } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service';
 import { TechTreeFilterTags } from '../tech-tree-filter-tags';
 
 export const TechTreeFilter: FC = () => {

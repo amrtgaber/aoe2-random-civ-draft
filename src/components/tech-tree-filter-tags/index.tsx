@@ -8,26 +8,25 @@ import {
 import {
   FilterTag,
   filterTags,
-  getTagIdsByType,
-  TagType,
-} from '../../store/tech-tree-filter-slice/TechTreeFilterService/TagsService/tags';
+} from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
+import { TagType } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
 
 import './tech-tree-filter-tags.scss';
 
 export const TechTreeFilterTags: FC = () => {
-  const { selectedTagIds } = useAppSelector(selectTechTreeFilter);
+  const { selectedTags } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   const handleResetTags = () => {
-    dispatch(setSelectedTagIds(getTagIdsByType(TagType.KIND)));
+    dispatch(setSelectedTagIds([]));
   };
 
-  const handleToggleFilterTag = (tag: FilterTag, isOn: boolean) => {
+  const handleToggleFilterTag = (newTag: FilterTag, isOn: boolean) => {
     if (isOn) {
-      const tagIds = selectedTagIds.filter((id) => id !== tag.id);
-      dispatch(setSelectedTagIds(tagIds));
+      const tags = selectedTags.filter((tag) => tag.id !== newTag.id);
+      dispatch(setSelectedTagIds(tags));
     } else {
-      dispatch(setSelectedTagIds([...selectedTagIds, tag.id]));
+      dispatch(setSelectedTagIds([...selectedTags, newTag]));
     }
   };
 
@@ -35,6 +34,7 @@ export const TechTreeFilterTags: FC = () => {
     return filterTags
       .filter((tag) => tag.tagType === tagType)
       .map((tag) => {
+        const selectedTagIds = selectedTags.map((tag) => tag.id);
         const isOn = selectedTagIds.includes(tag.id);
 
         return (

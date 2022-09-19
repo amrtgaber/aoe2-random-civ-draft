@@ -8,7 +8,7 @@ import {
   setFilterMode,
   setSortMode,
 } from '../../store/tech-tree-filter-slice';
-import { SortBy } from '../../store/tech-tree-filter-slice/TechTreeFilterService/SortService';
+import { SortBy } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 import './tech-tree-filter-options.scss';
 
