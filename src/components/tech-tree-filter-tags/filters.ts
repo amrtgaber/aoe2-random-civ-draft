@@ -1,15 +1,13 @@
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
-import { getTagsByType, TagType, uniqueTagIds } from './tags';
+import { getTagIdsByType, TagType } from './tags';
 
 const getEnabledTagIdsByType = (
   tagType: TagType,
   enabledTagIds: number[]
 ): number[] => {
-  const tagsByType = getTagsByType(tagType);
-  const enabledTags = tagsByType.filter((tag) =>
-    enabledTagIds.includes(tag.id)
-  );
-  return enabledTags.map((tag) => tag.id);
+  const tagsIds = getTagIdsByType(tagType);
+  const enabledTags = tagsIds.filter((id) => enabledTagIds.includes(id));
+  return enabledTags;
 };
 
 export function filterByKind(
@@ -40,7 +38,10 @@ export function filterByUnique(
   }
 
   return items.filter(
-    (item) => !item.tagIds!.some((tagId) => uniqueTagIds.includes(tagId))
+    (item) =>
+      !item.tagIds!.some((tagId) =>
+        getTagIdsByType(TagType.UNIQUE).includes(tagId)
+      )
   );
 }
 

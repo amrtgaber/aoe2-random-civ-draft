@@ -47,8 +47,10 @@ export function addTagsToItem(item: ITechTreeItem): ITechTreeItem {
   };
 }
 
-export function getTagsByType(tagType: TagType): FilterTag[] {
-  return filterTags.filter((tag) => tag.tagType === tagType);
+export function getTagIdsByType(tagType: TagType): number[] {
+  return filterTags
+    .filter((tag) => tag.tagType === tagType)
+    .map((tag) => tag.id);
 }
 
 export const filterTags: FilterTag[] = [
@@ -183,19 +185,3 @@ export const filterTags: FilterTag[] = [
     tagType: TagType.BUILDING,
   },
 ];
-
-export const kindTagIds = filterTags
-  .filter((tag) => tag.tagType === TagType.KIND)
-  .map((tag) => tag.id);
-
-export const uniqueTagIds = filterTags
-  .filter((tag) => tag.tagType === TagType.UNIQUE)
-  .map((tag) => tag.id);
-
-export const ageTagIds = filterTags
-  .filter((tag) => tag.tagType === TagType.AGE)
-  .map((tag) => tag.id);
-
-export const buildingTagIds = filterTags
-  .filter((tag) => tag.tagType === TagType.BUILDING)
-  .map((tag) => tag.id);

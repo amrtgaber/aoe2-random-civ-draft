@@ -11,18 +11,20 @@ import {
   filterByKind,
   filterByUnique,
 } from './filters';
-import { FilterTag, filterTags, kindTagIds, TagType } from './tags';
+import { FilterTag, filterTags, getTagIdsByType, TagType } from './tags';
 
 import './tech-tree-filter-tags.scss';
 
 export const TechTreeFilterTags: FC = () => {
-  const [enabledTagIds, setEnabledTagIds] = useState<number[]>(kindTagIds);
+  const [enabledTagIds, setEnabledTagIds] = useState<number[]>(
+    getTagIdsByType(TagType.KIND)
+  );
 
   const { taggedItems } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
 
   const handleResetTags = () => {
-    setEnabledTagIds(kindTagIds);
+    setEnabledTagIds(getTagIdsByType(TagType.KIND));
   };
 
   const handleToggleFilterTag = (tag: FilterTag, isOn: boolean) => {
