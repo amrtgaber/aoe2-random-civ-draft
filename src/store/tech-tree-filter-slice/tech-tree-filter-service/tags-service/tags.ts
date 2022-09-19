@@ -1,5 +1,3 @@
-import { isTech, isUnit, ITechTreeItem } from '../../api/tech-tree-item-api';
-
 export enum TagType {
   KIND,
   UNIQUE,
@@ -11,46 +9,6 @@ export interface FilterTag {
   id: number;
   tagName: string;
   tagType: TagType;
-}
-
-export function getTagId(name: string): number | undefined {
-  const matchedTag = filterTags.find((tag) => tag.tagName === name);
-  return matchedTag?.id;
-}
-
-export function addTagsToItem(item: ITechTreeItem): ITechTreeItem {
-  const tagIds = [];
-
-  if (isUnit(item)) {
-    tagIds.push(getTagId('units')!);
-  } else if (isTech(item)) {
-    tagIds.push(getTagId('techs')!);
-  } else {
-    tagIds.push(getTagId('buildings')!);
-  }
-
-  if (item.isUnique) {
-    tagIds.push(getTagId('uniques')!);
-  }
-
-  tagIds.push(getTagId(item.age!.ageName)!);
-
-  if (isUnit(item) || isTech(item)) {
-    item.buildings.forEach((building) => {
-      tagIds.push(getTagId(building.itemName)!);
-    });
-  }
-
-  return {
-    ...item,
-    tagIds,
-  };
-}
-
-export function getTagIdsByType(tagType: TagType): number[] {
-  return filterTags
-    .filter((tag) => tag.tagType === tagType)
-    .map((tag) => tag.id);
 }
 
 export const filterTags: FilterTag[] = [

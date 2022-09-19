@@ -2,6 +2,7 @@ import { TechTreeItemType } from '../api/tech-tree-item-api';
 import { RootState } from '../store';
 import { FetchStatus } from '../store/shared-store-utils';
 import { FilterMode } from '../store/tech-tree-filter-slice';
+import { SortBy } from '../store/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 export const TEST_STATE: RootState = {
   civs: {
@@ -609,6 +610,9 @@ export const TEST_STATE: RootState = {
     filterMode: FilterMode.HAS_ALL,
     shownItems: [],
     taggedItems: [],
+    searchTerm: '',
+    sortMode: SortBy.ALPHA,
+    selectedTags: [],
   },
   draftResult: {
     civ: null,

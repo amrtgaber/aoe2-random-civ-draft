@@ -1,30 +1,16 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   selectTechTreeFilter,
-  setShownItems,
+  setSearchTerm,
 } from '../../store/tech-tree-filter-slice';
 
 import './tech-tree-filter-search.scss';
 
 export const TechTreeFilterSearch: FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const { shownItems } = useAppSelector(selectTechTreeFilter);
+  const { searchTerm } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    doSearch();
-  }, [searchTerm]);
-
-  const doSearch = () => {
-    const searchedItems = shownItems.filter((item) => {
-      return item.itemName.includes(searchTerm.toLowerCase());
-    });
-
-    dispatch(setShownItems(searchedItems));
-  };
 
   return (
     <div className='tech-tree-filter-search'>
@@ -33,9 +19,12 @@ export const TechTreeFilterSearch: FC = () => {
         className='search-input'
         placeholder='search'
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => dispatch(setSearchTerm(e.target.value))}
       />
-      <span className='clear-search' onClick={() => setSearchTerm('')}>
+      <span
+        className='clear-search'
+        onClick={() => dispatch(setSearchTerm(''))}
+      >
         ✖
       </span>
     </div>
