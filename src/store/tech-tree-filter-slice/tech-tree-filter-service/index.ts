@@ -7,9 +7,15 @@ import { TechTreeFilterState } from '..';
 export function assembleShownItemsOnChange(
   state: TechTreeFilterState
 ): ITechTreeItem[] {
-  const { searchTerm, selectedTags, sortMode, taggedItems } = state;
+  const { itemsFilter, searchTerm, selectedTags, sortMode, taggedItems } =
+    state;
 
-  let newShownItems = doFilter(taggedItems, selectedTags);
+  const selectedItemIds = itemsFilter.map((item) => item.id);
+  let newShownItems = taggedItems.filter(
+    (taggedItem) => !selectedItemIds.includes(taggedItem.id)
+  );
+
+  newShownItems = doFilter(newShownItems, selectedTags);
   newShownItems = doSearch(newShownItems, searchTerm);
   newShownItems = doSort(newShownItems, sortMode);
 

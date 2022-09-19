@@ -22,15 +22,11 @@ const sortByAge = (items: ITechTreeItem[]) => {
 };
 
 const getBuildingId = (item: ITechTreeItem): number => {
-  let itemId = 0;
-
-  if (isBuilding(item)) {
-    itemId = item.id;
-  } else if (isUnit(item) || isTech(item)) {
-    itemId = item.buildings[0].id;
+  if (isUnit(item) || isTech(item)) {
+    return item.buildings[0].id;
   }
 
-  return itemId;
+  return 0;
 };
 
 const sortByBuilding = (items: ITechTreeItem[]) => {
@@ -65,8 +61,13 @@ export const doSort = (
   items: ITechTreeItem[],
   sortMode: SortBy
 ): ITechTreeItem[] => {
-  const sortedItems = [...items];
+  let sortedItems = [...items];
   const sortFunction = sortFunctions[sortMode];
   sortFunction(sortedItems);
+
+  if (sortMode === SortBy.BUILDING) {
+    sortedItems = sortedItems.filter((item) => !isBuilding(item));
+  }
+
   return sortedItems;
 };

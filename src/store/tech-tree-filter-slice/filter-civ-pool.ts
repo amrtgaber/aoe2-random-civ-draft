@@ -9,18 +9,16 @@ export function filterCivPool(state: TechTreeFilterState): ICiv[] {
 
   const allCivLists = itemsFilter.map((item) => item.civs!);
 
-  return allCivLists.length > 0
-    ? allCivLists.reduce(filterFn, allCivLists[0])
-    : [];
+  return allCivLists.length > 0 ? allCivLists.reduce(filterFn) : [];
 }
 
-function filterByAll(civs: ICiv[], newCivs: ICiv[]): ICiv[] {
-  return civs.filter((civ) => hasCiv(newCivs, civ));
+function filterByAll(matchedCivs: ICiv[], itemCivs: ICiv[]): ICiv[] {
+  return matchedCivs.filter((civ) => hasCiv(itemCivs, civ));
 }
 
-function filterByAny(civs: ICiv[], newCivs: ICiv[]): ICiv[] {
-  const newUniques = newCivs.filter((newCiv) => !hasCiv(civs, newCiv));
-  return [...civs, ...newUniques];
+function filterByAny(matchedCivs: ICiv[], itemCivs: ICiv[]): ICiv[] {
+  const newCivs = itemCivs.filter((itemCiv) => !hasCiv(matchedCivs, itemCiv));
+  return [...matchedCivs, ...newCivs];
 }
 
 function hasCiv(civs: ICiv[], civToCheck: ICiv): boolean {

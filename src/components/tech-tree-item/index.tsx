@@ -9,7 +9,6 @@ import {
   removeItemFromFilter,
   removeShownItem,
 } from '../../store/tech-tree-filter-slice';
-import { doSort } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 export interface ITechTreeItemProps {
   item: ITechTreeItem;

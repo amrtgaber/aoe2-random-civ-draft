@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   selectTechTreeFilter,
-  setSelectedTagIds,
+  setSelectedTags,
 } from '../../store/tech-tree-filter-slice';
 import {
   FilterTag,
@@ -18,15 +18,15 @@ export const TechTreeFilterTags: FC = () => {
   const dispatch = useAppDispatch();
 
   const handleResetTags = () => {
-    dispatch(setSelectedTagIds([]));
+    dispatch(setSelectedTags([]));
   };
 
   const handleToggleFilterTag = (newTag: FilterTag, isOn: boolean) => {
     if (isOn) {
       const tags = selectedTags.filter((tag) => tag.id !== newTag.id);
-      dispatch(setSelectedTagIds(tags));
+      dispatch(setSelectedTags(tags));
     } else {
-      dispatch(setSelectedTagIds([...selectedTags, newTag]));
+      dispatch(setSelectedTags([...selectedTags, newTag]));
     }
   };
 

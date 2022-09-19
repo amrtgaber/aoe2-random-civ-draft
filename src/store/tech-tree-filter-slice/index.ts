@@ -70,7 +70,7 @@ export const techTreeFilterSlice = createSlice({
 
     addShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems.push(action.payload);
-      state.shownItems = doSort(state.shownItems, state.sortMode);
+      state.shownItems = assembleShownItemsOnChange(state);
     },
     removeShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems = state.shownItems.filter(
@@ -93,7 +93,7 @@ export const techTreeFilterSlice = createSlice({
       state.sortMode = action.payload;
       state.shownItems = assembleShownItemsOnChange(state);
     },
-    setSelectedTagIds: (state, action: PayloadAction<FilterTag[]>) => {
+    setSelectedTags: (state, action: PayloadAction<FilterTag[]>) => {
       state.selectedTags = action.payload;
       state.shownItems = assembleShownItemsOnChange(state);
     },
@@ -112,7 +112,7 @@ export const {
   setTaggedItems,
   setSearchTerm,
   setSortMode,
-  setSelectedTagIds,
+  setSelectedTags,
 } = techTreeFilterSlice.actions;
 
 export const selectTechTreeFilter = (state: RootState) => state.techTreeFilter;
