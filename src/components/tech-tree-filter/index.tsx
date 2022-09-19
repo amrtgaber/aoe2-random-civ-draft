@@ -120,7 +120,7 @@ export const TechTreeFilter: FC = () => {
 
   return (
     <div className='tech-tree-filter-container'>
-      {isLoading(combinedFetchStatus) ? (
+      {!isFulfilled(combinedFetchStatus) ? (
         <Loading componentName='Tech Tree Filter' />
       ) : (
         <div className='tech-tree-filter-panels-container'>
