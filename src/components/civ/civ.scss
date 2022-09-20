@@ -30,7 +30,7 @@ $civ-unit-image-size: 96px;
   @include do-transition(
     $transition-props,
     $animation-duration-small,
-    $timing-fn-enter
+    $timing-fn-default
   );
 
   &.drafted {
@@ -62,12 +62,6 @@ $civ-unit-image-size: 96px;
           $civ-bg-color-primary-30
         );
         transform: scale(1.1);
-
-        @include do-transition(
-          $transition-props,
-          $animation-duration-small,
-          $timing-fn-enter
-        );
       }
 
       &.in-pool:hover {
@@ -81,12 +75,6 @@ $civ-unit-image-size: 96px;
       box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color,
         0 0 $box-shadow-tiny $primary-color-amber;
       transform: scale(1.1);
-
-      @include do-transition(
-        $transition-props,
-        $animation-duration-small,
-        $timing-fn-enter
-      );
     }
   }
 }
@@ -103,6 +91,12 @@ $civ-unit-image-size: 96px;
   img {
     width: 25px;
     height: 25px;
+
+    @include do-transition(
+      transform,
+      $animation-duration-small,
+      $timing-fn-default
+    );
 
     &:hover {
       transform: scale(1.1);

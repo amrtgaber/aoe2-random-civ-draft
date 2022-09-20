@@ -3,6 +3,7 @@ $animation-duration-medium: 250ms;
 $animation-duration-large: 300ms;
 $animation-duration-giant: 500ms;
 
+$timing-fn-default: ease-in-out;
 $timing-fn-enter: cubic-bezier(0.12, 0.085, 0.045, 0.685);
 $timing-fn-leave: cubic-bezier(0.49, 0.195, 0.915, 0.375);
 
