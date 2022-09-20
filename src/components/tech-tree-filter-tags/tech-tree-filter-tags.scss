@@ -22,10 +22,13 @@
 }
 
 .tags-reset-button {
-  @include tech-tree-filter-button;
+  @include button-base(
+    $type: text,
+    $padding: $padding-small,
+    $box-shadow: false
+  );
 
   flex: 0;
-  background-color: $bg-color-light;
 
   font-size: calc-font-size($font-size-4);
 }
