@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
-  clearFilter,
+  clearItemsFilter,
   FilterMode,
   selectTechTreeFilter,
   setFilterMode,
@@ -27,7 +27,7 @@ export const TechTreeFilterOptions: FC = () => {
   };
 
   const handleClearFilter = () => {
-    dispatch(clearFilter());
+    dispatch(clearItemsFilter());
   };
 
   const handleChangeSortMode = (e: ChangeEvent<HTMLSelectElement>) => {

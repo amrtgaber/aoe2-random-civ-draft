@@ -16,8 +16,8 @@ export interface ITechTreeItemProps {
 }
 
 export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
-  const [leaveClass, setLeaveClass] = useState('');
   const { item, selected } = props;
+  const [leaveClass, setLeaveClass] = useState('');
   const dispatch = useAppDispatch();
 
   const kind = item.kind;

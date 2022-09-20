@@ -58,7 +58,7 @@ export const techTreeFilterSlice = createSlice({
       state.itemsFilter = action.payload;
       state.filteredCivPool = filterCivPool(state);
     },
-    clearFilter: (state) => {
+    clearItemsFilter: (state) => {
       state.itemsFilter = [];
       state.filteredCivPool = filterCivPool(state);
       state.shownItems = assembleShownItemsOnChange(state);
@@ -104,7 +104,7 @@ export const {
   addItemToFilter,
   removeItemFromFilter,
   setItemsFilter,
-  clearFilter,
+  clearItemsFilter,
   setFilterMode,
   addShownItem,
   removeShownItem,
