@@ -38,26 +38,28 @@ export const StagingCivPool: FC = () => {
 
   return (
     <div className='staging-civ-pool-container'>
-      <h3 className='staging-civ-pool-title'>Civ pool preview</h3>
-      <div className='buttons-container'>
-        <a
-          className='add-to-main-civ-pool-button'
-          onClick={handleAddToMainCivPool}
-        >
-          Add to pool
-        </a>
-        <a
-          className='replace-main-civ-pool-button'
-          onClick={handleReplaceMainCivPool}
-        >
-          Replace pool
-        </a>
-        <a
-          className='subtract-from-main-civ-pool-button'
-          onClick={handleSubtractFromMainCivPool}
-        >
-          Subtract from pool
-        </a>
+      <div className='staging-civ-pool-header'>
+        <h3 className='staging-civ-pool-title'>Civ pool preview</h3>
+        <div className='buttons-container'>
+          <a
+            className='add-to-main-civ-pool-button'
+            onClick={handleAddToMainCivPool}
+          >
+            Add to pool
+          </a>
+          <a
+            className='replace-main-civ-pool-button'
+            onClick={handleReplaceMainCivPool}
+          >
+            Replace pool
+          </a>
+          <a
+            className='subtract-from-main-civ-pool-button'
+            onClick={handleSubtractFromMainCivPool}
+          >
+            Subtract from pool
+          </a>
+        </div>
       </div>
       <div
         className={`staging-civ-pool ${

@@ -3,17 +3,12 @@
 
 .tech-tree-filter-options {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 
-  padding: calc-padding($padding-small);
+  padding: calc-padding($padding-medium);
 
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
-}
-
-.options-title,
-.filter-tags-title {
-  margin-bottom: calc-vertical-margin($vertical-margin-large);
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 }
 
 .tech-tree-filter-mode {

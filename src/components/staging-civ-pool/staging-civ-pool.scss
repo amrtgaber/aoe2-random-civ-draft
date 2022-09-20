@@ -7,6 +7,13 @@
   height: 100%;
 }
 
+.staging-civ-pool-header {
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
+  padding-bottom: calc-padding($padding-medium);
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+}
+
 .staging-civ-pool-title {
   flex: 1 1 auto;
   text-align: center;
@@ -36,8 +43,8 @@
 
   padding-bottom: calc-padding($padding-large);
 
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 
   &.draft-loading {
     grid-template-rows: 1fr 2fr;

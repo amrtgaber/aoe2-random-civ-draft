@@ -57,7 +57,7 @@ $tech-tree-color-unique: #4a2750;
   &.enter-unselected {
     @include do-animation(
       enter-unselected,
-      $animation-duration-medium,
+      $animation-duration-small,
       $timing-fn-enter
     );
   }
@@ -65,7 +65,7 @@ $tech-tree-color-unique: #4a2750;
   &.enter-selected {
     @include do-animation(
       enter-selected,
-      $animation-duration-medium,
+      $animation-duration-small,
       $timing-fn-enter
     );
   }
@@ -76,7 +76,7 @@ $tech-tree-color-unique: #4a2750;
 
     @include do-transition(
       opacity transform,
-      $animation-duration-medium,
+      $animation-duration-small,
       $timing-fn-leave
     );
   }
@@ -87,7 +87,7 @@ $tech-tree-color-unique: #4a2750;
 
     @include do-transition(
       opacity transform,
-      $animation-duration-medium,
+      $animation-duration-small,
       $timing-fn-leave
     );
   }

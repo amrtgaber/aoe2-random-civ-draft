@@ -36,8 +36,6 @@ export const TechTreeFilterOptions: FC = () => {
 
   return (
     <div className='tech-tree-filter-options'>
-      <div className='options-title'>Options</div>
-
       <div className='tech-tree-filter-mode'>
         Civ has{' '}
         <a className='filter-mode-button' onClick={handleToggleFilterMode}>

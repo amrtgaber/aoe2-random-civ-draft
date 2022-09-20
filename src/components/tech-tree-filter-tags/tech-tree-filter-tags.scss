@@ -2,10 +2,10 @@
 @import '../tech-tree-filter/tech-tree-filter';
 
 .tech-tree-filter-tags {
-  padding: calc-padding($padding-small);
+  padding: calc-padding($padding-medium);
 
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 
   overflow-y: auto;
 }
@@ -19,6 +19,7 @@
 
 .tags-title {
   flex: auto;
+  margin-bottom: calc-vertical-margin($vertical-margin-small);
 }
 
 .tags-reset-button {

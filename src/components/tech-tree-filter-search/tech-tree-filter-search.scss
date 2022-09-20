@@ -9,6 +9,9 @@
   position: relative;
 
   padding: calc-padding($padding-small);
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 }
 
 .search-input {
