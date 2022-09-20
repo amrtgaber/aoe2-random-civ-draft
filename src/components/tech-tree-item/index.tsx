@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import './tech-tree-item.scss';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
@@ -16,6 +16,7 @@ export interface ITechTreeItemProps {
 }
 
 export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
+  const [leaveClass, setLeaveClass] = useState('');
   const { item, selected } = props;
   const dispatch = useAppDispatch();
 
@@ -23,22 +24,32 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
   const name = item.itemName;
   const imgSrc = `/assets/images/tech-tree/${kind}s/${name}.png`;
   const uniqueClass = item.isUnique ? 'unique' : '';
+  const enterClass = selected ? 'enter-selected' : 'enter-unselected';
 
   const handleDeselectItem = () => {
-    dispatch(removeItemFromFilter(item));
-    dispatch(addShownItem(item));
+    setLeaveClass('leave-selected');
   };
 
   const handleSelectItem = () => {
-    dispatch(addItemToFilter(item));
-    dispatch(removeShownItem(item));
+    setLeaveClass('leave-unselected');
+  };
+
+  const handleTransitionEnd = () => {
+    if (selected) {
+      dispatch(removeItemFromFilter(item));
+      dispatch(addShownItem(item));
+    } else {
+      dispatch(addItemToFilter(item));
+      dispatch(removeShownItem(item));
+    }
   };
 
   return (
     <div className='tech-tree-item-container'>
       <div
-        className={`tech-tree-item ${kind} ${uniqueClass}`}
+        className={`tech-tree-item ${kind} ${uniqueClass} ${enterClass} ${leaveClass}`}
         onClick={selected ? handleDeselectItem : handleSelectItem}
+        onTransitionEnd={handleTransitionEnd}
       >
         <img src={imgSrc} />
         <div className='tech-tree-item-name'>{name}</div>

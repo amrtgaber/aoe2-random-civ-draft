@@ -1,4 +1,5 @@
 @import '../../shared-styles/lib';
+@import './civ-animations';
 
 .civ-container {
   display: grid;
@@ -11,18 +12,6 @@
 
   &.drafted-container {
     margin-top: 0;
-  }
-}
-
-@keyframes highlight-drafted-civ {
-  from {
-    opacity: 0.1;
-    margin-bottom: -30px;
-  }
-
-  to {
-    opacity: 1;
-    margin-bottom: calc-vertical-margin($vertical-margin-medium);
   }
 }
 
@@ -44,7 +33,11 @@ $civ-unit-image-size: 96px;
     transform: scale(1.3);
 
     &.highlight-drafted {
-      animation: highlight-drafted-civ 250ms ease-out;
+      @include do-animation(
+        highlight-drafted-civ,
+        $animation-duration-medium,
+        $timing-fn-enter
+      );
     }
   }
 
@@ -73,7 +66,8 @@ $civ-unit-image-size: 96px;
     &.in-pool {
       border: $border-thickness-medium solid $primary-color-amber;
       background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-50);
-      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color, 0 0 $box-shadow-tiny $primary-color-amber;
+      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color,
+        0 0 $box-shadow-tiny $primary-color-amber;
       transform: scale(1.1);
     }
   }

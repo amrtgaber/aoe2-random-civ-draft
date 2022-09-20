@@ -1,0 +1,31 @@
+$translate-distance: 50px;
+
+@mixin initial-state($distance) {
+  opacity: 0.1;
+  transform: translateY($distance) scale(0.5);
+}
+
+@mixin final-state {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+}
+
+@keyframes enter-selected {
+  from {
+    @include initial-state($translate-distance);
+  }
+
+  to {
+    @include final-state;
+  }
+}
+
+@keyframes enter-unselected {
+  from {
+    @include initial-state(-$translate-distance);
+  }
+
+  to {
+    @include final-state;
+  }
+}

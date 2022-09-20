@@ -1,0 +1,19 @@
+$animation-duration-small: 100ms;
+$animation-duration-medium: 250ms;
+$animation-duration-large: 300ms;
+$animation-duration-giant: 500ms;
+
+$timing-fn-enter: cubic-bezier(0.12, 0.085, 0.045, 0.685);
+$timing-fn-leave: cubic-bezier(0.49, 0.195, 0.915, 0.375);
+
+@mixin do-animation($name, $duration, $timing-fn) {
+  animation: $name;
+  animation-duration: $duration;
+  animation-timing-function: $timing-fn;
+}
+
+@mixin do-transition($props, $duration, $timing-fn) {
+  transition: $props;
+  transition-duration: $duration;
+  transition-timing-function: $timing-fn;
+}

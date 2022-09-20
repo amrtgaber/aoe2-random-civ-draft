@@ -1,4 +1,5 @@
 @import '../../shared-styles/lib';
+@import './tech-tree-item-animations';
 
 $tech-tree-color-unit: #00455c;
 $tech-tree-color-tech: #234623;
@@ -51,6 +52,44 @@ $tech-tree-color-unique: #4a2750;
 
   &.unique {
     background-color: $tech-tree-color-unique;
+  }
+
+  &.enter-unselected {
+    @include do-animation(
+      enter-unselected,
+      $animation-duration-medium,
+      $timing-fn-enter
+    );
+  }
+
+  &.enter-selected {
+    @include do-animation(
+      enter-selected,
+      $animation-duration-medium,
+      $timing-fn-enter
+    );
+  }
+
+  &.leave-unselected {
+    opacity: 0;
+    transform: translateY(-$translate-distance) scale(0.5);
+
+    @include do-transition(
+      opacity transform,
+      $animation-duration-medium,
+      $timing-fn-leave
+    );
+  }
+
+  &.leave-selected {
+    opacity: 0;
+    transform: translateY($translate-distance) scale(0.5);
+
+    @include do-transition(
+      opacity transform,
+      $animation-duration-medium,
+      $timing-fn-leave
+    );
   }
 }
 
