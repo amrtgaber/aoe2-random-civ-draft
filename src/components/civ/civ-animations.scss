@@ -1,3 +1,5 @@
+$transition-props: border background box-shadow transform;
+
 @keyframes highlight-drafted-civ {
   from {
     opacity: 0.1;
