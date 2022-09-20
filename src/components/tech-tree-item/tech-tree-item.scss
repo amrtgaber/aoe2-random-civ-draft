@@ -6,17 +6,18 @@ $tech-tree-color-tech: #234623;
 $tech-tree-color-building: #79340f;
 $tech-tree-color-unique: #4a2750;
 
+$img-size: 96px;
+$accent-size: 8px;
+
 .tech-tree-item {
-  @include box-shadow;
+  @include box-shadow($size: $box-shadow-tiny);
   display: grid;
-  justify-content: center;
 
   position: relative;
-  padding-top: calc-padding($padding-small);
   margin-bottom: calc-vertical-margin($vertical-margin-large);
 
-  width: 100px;
-  height: 100px;
+  width: calc($img-size + $accent-size);
+  height: $img-size;
 
   border-radius: $border-radius-medium;
 
@@ -31,11 +32,13 @@ $tech-tree-color-unique: #4a2750;
   }
 
   img {
-    height: 70%;
-  }
+    margin-left: $accent-size;
 
-  &:hover {
-    border: $border-thickness-small solid $border-primary-color-amber;
+    width: $img-size;
+    height: $img-size;
+
+    border-top-right-radius: $border-radius-medium;
+    border-bottom-right-radius: $border-radius-medium;
   }
 
   &.unit {
