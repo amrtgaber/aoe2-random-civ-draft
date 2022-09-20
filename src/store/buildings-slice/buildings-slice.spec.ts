@@ -28,7 +28,24 @@ describe('buildings reducer', () => {
     });
 
     it('should fetch all buildings', async () => {
-      fetchMock.mockResponse(JSON.stringify(TEST_BUILDINGS));
+      fetchMock.mockResponse(
+        JSON.stringify([
+          {
+            id: 1,
+            buildingName: 'house',
+            civs: [],
+            units: [],
+            techs: [],
+          },
+          {
+            id: 2,
+            buildingName: 'castle',
+            civs: [],
+            units: [],
+            techs: [],
+          },
+        ])
+      );
 
       await store.dispatch(fetchBuildings());
 

@@ -14,15 +14,21 @@ describe('techs api', () => {
         JSON.stringify([
           {
             id: 1,
-            itemName: 'wheelbarrow',
+            techName: 'wheelbarrow',
+            civs: [],
+            buildings: [],
           },
           {
             id: 2,
-            itemName: 'loom',
+            techName: 'loom',
+            civs: [],
+            buildings: [],
           },
           {
             id: 2,
-            itemName: 'stone mining',
+            techName: 'stone mining',
+            civs: [],
+            buildings: [],
           },
         ])
       );
