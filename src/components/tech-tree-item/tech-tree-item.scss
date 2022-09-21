@@ -37,7 +37,7 @@ $accent-size-4k-up: 8px;
 
   @include for-4k-up {
     width: 104px;
-    height: $img-size-tablet-landscape-up;
+    height: $img-size-4k-up;
   }
 
   img {
