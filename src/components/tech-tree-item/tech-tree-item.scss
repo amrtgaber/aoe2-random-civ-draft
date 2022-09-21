@@ -26,17 +26,17 @@ $accent-size-4k-up: 8px;
   cursor: pointer;
 
   @include for-phone-only {
-    width: calc($img-size-mobile + $accent-size-mobile);
+    width: $img-size-mobile + $accent-size-mobile;
     height: $img-size-mobile;
   }
 
   @include for-tablet-portrait-up {
-    width: calc($img-size-tablet-portrait-up + $accent-size-tablet-portrait-up);
+    width: $img-size-tablet-portrait-up + $accent-size-tablet-portrait-up;
     height: $img-size-tablet-portrait-up;
   }
 
   @include for-4k-up {
-    width: calc($img-size-4k-up + $accent-size-4k-up);
+    width: $img-size-4k-up + $accent-size-4k-up;
     height: $img-size-4k-up;
   }
 
@@ -122,18 +122,7 @@ $accent-size-4k-up: 8px;
 }
 
 .tech-tree-item-name {
-  display: inline-block;
-
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-
-  width: 100%;
-
-  font-weight: 700;
-  text-align: center;
-
-  background-color: rgba($black, 0.6);
+  @include grid-item-name;
 
   @include for-phone-only {
     font-size: calc-font-size($font-size-4);
@@ -141,10 +130,6 @@ $accent-size-4k-up: 8px;
 
   @include for-tablet-portrait-up {
     font-size: calc-font-size($font-size-2);
-  }
-
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-4);
   }
 
   @include for-1080p-up {

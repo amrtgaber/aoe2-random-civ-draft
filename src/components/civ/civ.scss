@@ -164,20 +164,7 @@ $civ-unit-image-size-large: 96px;
 }
 
 .civ-name {
-  display: inline-block;
-
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-
-  width: 100%;
-
-  font-weight: 700;
-  text-align: center;
-
-  background-color: rgba($black, 0.6);
-
-  border-radius: $border-radius-medium;
+  @include grid-item-name;
 
   @include for-phone-only {
     font-size: calc-font-size($font-size-2);
