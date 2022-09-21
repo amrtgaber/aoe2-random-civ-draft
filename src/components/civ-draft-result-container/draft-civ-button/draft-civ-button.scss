@@ -3,6 +3,10 @@
 .draft-civ-button {
   @include button-base(filled-primary);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-weight: 500;
 
   &:hover {
@@ -13,6 +17,7 @@
     width: 140px;
     height: 58px;
     font-size: calc-font-size($font-size-14);
+    margin-top: calc-vertical-margin($vertical-margin-medium);
   }
 
   @include for-tablet-portrait-up {
