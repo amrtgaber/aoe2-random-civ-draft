@@ -1,10 +1,10 @@
 @import '../../shared-styles/lib';
 @import './tech-tree-item-animations';
 
-$tech-tree-color-unit: #0b6b8b;
-$tech-tree-color-tech: #387138;
-$tech-tree-color-building: #a44b1b;
-$tech-tree-color-unique: #794083;
+$tech-tree-color-unit: #0e7ca1;
+$tech-tree-color-tech: #499449;
+$tech-tree-color-building: #c65f27;
+$tech-tree-color-unique: #9a52a6;
 
 $img-size-mobile: 48px;
 $accent-size-mobile: 4px;
@@ -148,10 +148,6 @@ $accent-size-4k-up: 8px;
   }
 
   @include for-1080p-up {
-    font-size: calc-font-size($font-size-2);
-  }
-
-  @include for-4k-up {
     font-size: calc-font-size($font-size-0);
   }
 }
