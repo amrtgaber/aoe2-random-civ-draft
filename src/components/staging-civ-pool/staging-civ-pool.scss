@@ -27,6 +27,18 @@
   @include grid-alignment-center;
 
   text-align: center;
+
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-4k-up {
+    font-size: calc-font-size($font-size-8);
+  }
 }
 
 .replace-main-civ-pool-button,

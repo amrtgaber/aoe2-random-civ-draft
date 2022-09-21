@@ -3,24 +3,33 @@
 @import '../tech-tree-item/tech-tree-item';
 
 .tech-tree-filter-tags {
-  padding: calc-padding($padding-medium);
-
   background-color: $bg-color-light;
   border-radius: $border-radius-medium;
 
   overflow-y: auto;
+
+  @include for-tablet-portrait-up {
+    padding: calc-padding($padding-small);
+  }
+
+  @include for-1080p-up {
+    padding: calc-padding($padding-medium);
+  }
 }
 
 .tags-top-bar {
   display: flex;
   flex-direction: row;
   align-content: space-between;
+
+  margin-top: calc-vertical-margin($vertical-margin-small);
+  margin-bottom: calc-vertical-margin($vertical-margin-small);
+
   width: 100%;
 }
 
 .tags-title {
   flex: auto;
-  margin-bottom: calc-vertical-margin($vertical-margin-small);
 }
 
 .tags-reset-button {
@@ -44,8 +53,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  overflow-y: auto;
+
   margin-top: calc-vertical-margin($vertical-margin-tiny);
+
+  overflow-y: auto;
 }
 
 .tags-button {

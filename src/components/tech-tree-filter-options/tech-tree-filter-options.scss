@@ -4,11 +4,20 @@
 .tech-tree-filter-options {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-
-  padding: calc-padding($padding-medium);
+  align-items: center;
 
   background-color: $bg-color-light;
   border-radius: $border-radius-medium;
+
+  @include for-tablet-portrait-up {
+    padding: calc-padding($padding-small);
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-1080p-up {
+    padding: calc-padding($padding-medium);
+    font-size: calc-font-size($font-size-base);
+  }
 }
 
 .tech-tree-filter-mode {
@@ -51,6 +60,14 @@
 
     &:focus {
       outline: 0;
+    }
+
+    @include for-tablet-portrait-up {
+      font-size: calc-font-size($font-size-4);
+    }
+
+    @include for-1080p-up {
+      font-size: calc-font-size($font-size-base);
     }
   }
 }

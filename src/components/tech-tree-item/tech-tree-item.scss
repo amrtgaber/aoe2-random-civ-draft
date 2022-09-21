@@ -23,14 +23,6 @@ $accent-size: 8px;
 
   cursor: pointer;
 
-  @include for-tablet-portrait-up {
-    font-size: calc-font-size($font-size-8);
-  }
-
-  @include for-4k-up {
-    font-size: calc-font-size($font-size-4);
-  }
-
   img {
     margin-left: $accent-size;
 
@@ -106,8 +98,15 @@ $accent-size: 8px;
   width: 100%;
 
   font-weight: 700;
-  font-size: calc-font-size($font-size-0);
   text-align: center;
 
   background-color: rgba($black, 0.6);
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-4k-up {
+    font-size: calc-font-size($font-size-0);
+  }
 }

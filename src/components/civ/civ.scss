@@ -136,8 +136,8 @@ $civ-unit-image-size: 96px;
     font-size: calc-font-size($font-size-12);
   }
 
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-8);
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-6);
   }
 
   @include for-1080p-up {

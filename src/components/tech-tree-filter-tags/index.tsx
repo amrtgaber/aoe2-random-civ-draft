@@ -66,9 +66,7 @@ export const TechTreeFilterTags: FC = () => {
         {renderTagsByType(TagType.UNIQUE)}
       </div>
       <div className='tags-type-title'>By Age</div>
-      <div className='tags-buttons age-tags'>
-        {renderTagsByType(TagType.AGE)}
-      </div>
+      <div className='tags-buttons'>{renderTagsByType(TagType.AGE)}</div>
       <div className='tags-type-title'>By Building</div>
       <div className='tags-buttons'>{renderTagsByType(TagType.BUILDING)}</div>
     </div>
