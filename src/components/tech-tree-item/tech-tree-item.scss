@@ -12,8 +12,8 @@ $accent-size-mobile: 4px;
 $img-size-tablet-portrait-up: 60px;
 $accent-size-tablet-portrait-up: 4px;
 
-$img-size-tablet-landscape-up: 96px;
-$accent-size-tablet-landscape-up: 8px;
+$img-size-4k-up: 96px;
+$accent-size-4k-up: 8px;
 
 .tech-tree-item {
   @include box-shadow($size: $box-shadow-tiny);
@@ -35,7 +35,7 @@ $accent-size-tablet-landscape-up: 8px;
     height: $img-size-tablet-portrait-up;
   }
 
-  @include for-tablet-landscape-up {
+  @include for-4k-up {
     width: 104px;
     height: $img-size-tablet-landscape-up;
   }
@@ -58,11 +58,11 @@ $accent-size-tablet-landscape-up: 8px;
       height: $img-size-tablet-portrait-up;
     }
 
-    @include for-tablet-landscape-up {
-      margin-left: $accent-size-tablet-landscape-up;
+    @include for-4k-up {
+      margin-left: $accent-size-4k-up;
 
-      width: $img-size-tablet-landscape-up;
-      height: $img-size-tablet-landscape-up;
+      width: $img-size-4k-up;
+      height: $img-size-4k-up;
     }
   }
 
@@ -145,6 +145,10 @@ $accent-size-tablet-landscape-up: 8px;
 
   @include for-tablet-landscape-up {
     font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-1080p-up {
+    font-size: calc-font-size($font-size-2);
   }
 
   @include for-4k-up {

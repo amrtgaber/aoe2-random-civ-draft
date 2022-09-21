@@ -35,9 +35,15 @@
       grid-template-columns: repeat(9, 1fr);
     }
 
+    @include for-1080p-up {
+      grid-template-columns: repeat(12, 1fr);
+      width: 90vw;
+      margin: auto;
+    }
+
     @include for-4k-up {
       grid-template-columns: repeat(14, 1fr);
-      width: 80%;
+      width: 80vw;
       margin: auto;
     }
   }
