@@ -9,6 +9,10 @@
   background-color: $bg-color-light;
   border-radius: $border-radius-medium;
 
+  @include for-phone-only {
+    padding: calc-padding($padding-small);
+  }
+
   @include for-tablet-portrait-up {
     padding: calc-padding($padding-small);
     font-size: calc-font-size($font-size-2);
@@ -25,6 +29,10 @@
 }
 
 .tech-tree-filter-mode {
+  @include for-phone-only {
+    padding-left: calc-padding($padding-small);
+  }
+
   @include for-tablet-portrait-up {
     padding-left: calc-padding($padding-small);
   }
@@ -38,6 +46,10 @@
 .tech-tree-filter-sort {
   padding-top: calc-vertical-margin($vertical-margin-small);
   padding-bottom: calc-vertical-margin($vertical-margin-medium);
+
+  @include for-phone-only {
+    padding-left: calc-padding($padding-small);
+  }
 
   @include for-tablet-portrait-up {
     padding-left: calc-padding($padding-small);

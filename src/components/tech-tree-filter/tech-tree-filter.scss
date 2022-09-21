@@ -13,10 +13,6 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 
 .tech-tree-filter-container {
   margin-top: calc-vertical-margin($vertical-margin-ludicrous);
-
-  @include for-phone-only {
-    display: none;
-  }
 }
 
 .tech-tree-filter-panels-container {
@@ -32,6 +28,13 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   @include box-shadow($size: $box-shadow-tiny, $isInteractive: false);
   border-radius: $border-radius-medium;
   padding: calc-padding($padding-medium);
+
+  @include for-phone-only {
+    grid-template-columns: none;
+    grid-template-rows: repeat(3, 1fr);
+
+    height: max-content;
+  }
 }
 
 .tech-tree-filter-settings-panel {
@@ -72,7 +75,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   }
 
   @include for-phone-only {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   @include for-tablet-portrait-up {

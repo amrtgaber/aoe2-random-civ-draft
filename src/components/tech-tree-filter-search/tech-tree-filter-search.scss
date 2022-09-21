@@ -39,6 +39,10 @@
   color: $grey;
   cursor: pointer;
 
+  @include for-phone-only {
+    right: 15%;
+  }
+
   @include for-tablet-portrait-up {
     right: 18%;
   }
