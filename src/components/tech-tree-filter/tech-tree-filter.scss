@@ -91,12 +91,9 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   flex: 1 1 15%;
   padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-medium);
-  border-bottom: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
 
   .selected-items-placeholder {
     width: 100%;
-    height: 10vh;
     padding: calc-padding($padding-ludicrous);
   }
 }
@@ -111,7 +108,6 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 
   .unselected-items-placeholder {
     width: 100%;
-    height: 65vh;
     padding: calc-padding($padding-ludicrous);
   }
 }
