@@ -1,6 +1,6 @@
 {
-  "name": "aoe2-civ-randomizer",
-  "version": "0.1.0",
+  "name": "aoe2-random-civ-draft",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
