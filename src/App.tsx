@@ -18,7 +18,7 @@ function App() {
       <Separator />
       <CivDraft />
 
-      <Separator className='civ-draft-parameters-separator' />
+      <Separator />
       <CivDraftParameters />
 
       <Separator />
