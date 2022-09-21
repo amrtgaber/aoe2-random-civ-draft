@@ -26,19 +26,17 @@ $accent-size-tablet-landscape-up: 8px;
   cursor: pointer;
 
   @include for-phone-only {
-    width: calc($img-size-mobile + $accent-size-mobile);
+    width: 52px;
     height: $img-size-mobile;
   }
 
   @include for-tablet-portrait-up {
-    width: calc($img-size-tablet-portrait-up + $accent-size-tablet-portrait-up);
+    width: 64px;
     height: $img-size-tablet-portrait-up;
   }
 
   @include for-tablet-landscape-up {
-    width: calc(
-      $img-size-tablet-landscape-up + $accent-size-tablet-landscape-up
-    );
+    width: 104px;
     height: $img-size-tablet-landscape-up;
   }
 
