@@ -36,7 +36,14 @@
 
 .clear-search {
   position: absolute;
-  right: 15%;
   color: $grey;
   cursor: pointer;
+
+  @include for-tablet-portrait-up {
+    right: 18%;
+  }
+
+  @include for-tablet-landscape-up {
+    right: 15%;
+  }
 }

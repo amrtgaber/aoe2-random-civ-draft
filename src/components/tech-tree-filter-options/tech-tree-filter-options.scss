@@ -11,6 +11,10 @@
 
   @include for-tablet-portrait-up {
     padding: calc-padding($padding-small);
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-landscape-up {
     font-size: calc-font-size($font-size-4);
   }
 
@@ -21,14 +25,27 @@
 }
 
 .tech-tree-filter-mode {
-  padding-left: calc-padding($padding-medium);
+  @include for-tablet-portrait-up {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-landscape-up {
+    padding-left: calc-padding($padding-medium);
+  }
 }
 
 .tech-tree-filter-clear-filter,
 .tech-tree-filter-sort {
-  padding-left: calc-padding($padding-medium);
   padding-top: calc-vertical-margin($vertical-margin-small);
   padding-bottom: calc-vertical-margin($vertical-margin-medium);
+
+  @include for-tablet-portrait-up {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-landscape-up {
+    padding-left: calc-padding($padding-medium);
+  }
 }
 
 .filter-mode-button,
@@ -39,6 +56,8 @@
 .tech-tree-filter-sort {
   display: flex;
   flex-direction: row;
+  align-items: center;
+
   width: 100%;
 
   .sort-text {

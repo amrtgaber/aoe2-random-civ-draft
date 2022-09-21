@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: row;
   align-content: space-between;
+  align-items: center;
 
   margin-top: calc-vertical-margin($vertical-margin-small);
   margin-bottom: calc-vertical-margin($vertical-margin-small);
@@ -30,6 +31,15 @@
 
 .tags-title {
   flex: auto;
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+    font-weight: 600;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-base);
+  }
 }
 
 .tags-reset-button {
@@ -46,17 +56,31 @@
 
 .tags-type-title {
   padding: calc-padding($padding-small);
-  font-size: calc-font-size($font-size-6);
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-6);
+  }
 }
 
 .tags-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 
   margin-top: calc-vertical-margin($vertical-margin-tiny);
 
   overflow-y: auto;
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .tags-button {

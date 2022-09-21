@@ -6,8 +6,11 @@ $tech-tree-color-tech: #387138;
 $tech-tree-color-building: #a44b1b;
 $tech-tree-color-unique: #794083;
 
-$img-size: 96px;
-$accent-size: 8px;
+$img-size-tablet-portrait-up: 60px;
+$accent-size-tablet-portrait-up: 4px;
+
+$img-size-tablet-landscape-up: 96px;
+$accent-size-tablet-landscape-up: 8px;
 
 .tech-tree-item {
   @include box-shadow($size: $box-shadow-tiny);
@@ -16,21 +19,39 @@ $accent-size: 8px;
   position: relative;
   margin-bottom: calc-vertical-margin($vertical-margin-large);
 
-  width: calc($img-size + $accent-size);
-  height: $img-size;
-
   border-radius: $border-radius-medium;
 
   cursor: pointer;
 
+  @include for-tablet-portrait-up {
+    width: calc($img-size-tablet-portrait-up + $accent-size-tablet-portrait-up);
+    height: $img-size-tablet-portrait-up;
+  }
+
+  @include for-tablet-landscape-up {
+    width: calc(
+      $img-size-tablet-landscape-up + $accent-size-tablet-landscape-up
+    );
+    height: $img-size-tablet-landscape-up;
+  }
+
   img {
-    margin-left: $accent-size;
-
-    width: $img-size;
-    height: $img-size;
-
     border-top-right-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
+
+    @include for-tablet-portrait-up {
+      margin-left: $accent-size-tablet-portrait-up;
+
+      width: $img-size-tablet-portrait-up;
+      height: $img-size-tablet-portrait-up;
+    }
+
+    @include for-tablet-landscape-up {
+      margin-left: $accent-size-tablet-landscape-up;
+
+      width: $img-size-tablet-landscape-up;
+      height: $img-size-tablet-landscape-up;
+    }
   }
 
   &.unit {
@@ -103,6 +124,10 @@ $accent-size: 8px;
   background-color: rgba($black, 0.6);
 
   @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-landscape-up {
     font-size: calc-font-size($font-size-4);
   }
 

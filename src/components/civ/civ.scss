@@ -1,6 +1,9 @@
 @import '../../shared-styles/lib';
 @import './civ-animations';
 
+$civ-unit-image-size-tablet-portrait-up: 72px;
+$civ-unit-image-size-tablet-landscape-up: 96px;
+
 .civ-container {
   display: grid;
   @include grid-alignment-center;
@@ -15,13 +18,9 @@
   }
 }
 
-$civ-unit-image-size: 96px;
-
 .civ-main-content {
   @include box-shadow($isInteractive: false);
   position: relative;
-  width: $civ-unit-image-size;
-  height: $civ-unit-image-size;
 
   background-color: $black;
   border-radius: $border-radius-medium;
@@ -32,6 +31,16 @@ $civ-unit-image-size: 96px;
     $animation-duration-small,
     $timing-fn-default
   );
+
+  @include for-tablet-portrait-up {
+    width: $civ-unit-image-size-tablet-portrait-up;
+    height: $civ-unit-image-size-tablet-portrait-up;
+  }
+
+  @include for-tablet-landscape-up {
+    width: $civ-unit-image-size-tablet-landscape-up;
+    height: $civ-unit-image-size-tablet-landscape-up;
+  }
 
   &.drafted {
     margin-top: calc-vertical-margin($vertical-margin-medium);
@@ -111,9 +120,17 @@ $civ-unit-image-size: 96px;
 }
 
 .civ-unit-image {
-  width: $civ-unit-image-size;
-  height: $civ-unit-image-size;
   text-align: center;
+
+  @include for-tablet-portrait-up {
+    width: $civ-unit-image-size-tablet-portrait-up;
+    height: $civ-unit-image-size-tablet-portrait-up;
+  }
+
+  @include for-tablet-landscape-up {
+    width: $civ-unit-image-size-tablet-landscape-up;
+    height: $civ-unit-image-size-tablet-landscape-up;
+  }
 }
 
 .civ-name {
@@ -133,10 +150,14 @@ $civ-unit-image-size: 96px;
   border-radius: $border-radius-medium;
 
   @include for-phone-only {
-    font-size: calc-font-size($font-size-12);
+    font-size: calc-font-size($font-size-6);
   }
 
   @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-landscape-up {
     font-size: calc-font-size($font-size-6);
   }
 

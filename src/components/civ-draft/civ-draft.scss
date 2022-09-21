@@ -28,6 +28,10 @@
     }
 
     @include for-tablet-portrait-up {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    @include for-tablet-landscape-up {
       grid-template-columns: repeat(9, 1fr);
     }
 

@@ -71,14 +71,14 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   }
 
   @include for-phone-only {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @include for-tablet-portrait-up {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include for-1080p-up {
+  @include for-tablet-landscape-up {
     grid-template-columns: repeat(5, 1fr);
   }
 
