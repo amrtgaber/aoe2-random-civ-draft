@@ -59,6 +59,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   display: grid;
   justify-items: center;
   align-content: flex-start;
+  row-gap: calc-vertical-margin($vertical-margin-large);
 
   text-align: center;
 
@@ -88,18 +89,26 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 }
 
 .tech-tree-filter-selected-items {
-  flex: 1 1 15%;
+  flex: 1 1 min-content;
   padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-medium);
 
   .selected-items-placeholder {
     width: 100%;
-    padding: calc-padding($padding-ludicrous);
+    padding: calc-padding($padding-large);
+
+    @include for-tablet-portrait-up {
+      font-size: calc-font-size($font-size-6);
+    }
+
+    @include for-tablet-landscape-up {
+      font-size: calc-font-size($font-size-base);
+    }
   }
 }
 
 .tech-tree-filter-unselected-items {
-  flex: 1 1 85%;
+  flex: 1 1 min-content;
 
   padding-bottom: calc-padding($padding-medium);
   padding-top: calc-padding($padding-medium);

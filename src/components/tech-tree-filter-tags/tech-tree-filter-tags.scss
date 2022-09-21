@@ -70,6 +70,7 @@
   display: grid;
   gap: 10px;
 
+  padding: calc-padding($padding-tiny);
   margin-top: calc-vertical-margin($vertical-margin-tiny);
 
   overflow-y: auto;
