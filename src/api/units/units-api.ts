@@ -10,7 +10,7 @@ import {
   TechTreeItemType,
 } from '../tech-tree-item-api';
 
-interface ApiUnit {
+export interface ApiUnit {
   id: number;
   unitName: string;
   age: IAge;
