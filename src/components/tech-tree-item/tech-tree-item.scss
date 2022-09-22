@@ -40,7 +40,7 @@ $accent-size-4k-up: 8px;
     height: $img-size-4k-up;
   }
 
-  img {
+  .tech-tree-item-img {
     border-top-right-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
 
@@ -118,6 +118,49 @@ $accent-size-4k-up: 8px;
       $animation-duration-small,
       $timing-fn-leave
     );
+  }
+}
+
+.tech-tree-item-icons-container {
+  display: inline-block;
+
+  position: absolute;
+  right: 1px;
+  top: 1px;
+
+  width: 100%;
+
+  .tech-tree-item-icons {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: flex-end;
+    gap: 5px;
+
+    .tech-tree-item-age-icon {
+      display: flex;
+
+      width: 15px;
+      height: 15px;
+
+      @include for-phone-only {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    .tech-tree-item-building-icon {
+      display: flex;
+
+      width: 15px;
+      height: 15px;
+
+      border-radius: $border-radius-small;
+
+      @include for-phone-only {
+        width: 10px;
+        height: 10px;
+      }
+    }
   }
 }
 

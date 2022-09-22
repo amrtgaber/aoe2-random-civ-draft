@@ -109,6 +109,9 @@ $civ-unit-image-size-large: 96px;
 .civ-tech-tree {
   display: inline-block;
 
+  width: 25px;
+  height: 25px;
+
   position: absolute;
   top: 5px;
   right: 5px;
@@ -125,11 +128,6 @@ $civ-unit-image-size-large: 96px;
     @include for-phone-only {
       width: 10px;
       height: 10px;
-    }
-
-    @include for-tablet-portrait-up {
-      width: 25px;
-      height: 25px;
     }
 
     &:hover {
