@@ -40,6 +40,10 @@ export const StagingCivPool: FC = () => {
     <div className='staging-civ-pool-container'>
       <div className='staging-civ-pool-header'>
         <h3 className='staging-civ-pool-title'>Matching civs</h3>
+        <div className='staging-civ-pool-stats'>
+          <span className='matched-civs-number'>{filteredCivPool.length}</span>{' '}
+          civs match your selection
+        </div>
         <div className='buttons-container'>
           <a
             className='add-to-main-civ-pool-button'

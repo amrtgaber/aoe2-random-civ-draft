@@ -16,7 +16,16 @@
 
 .staging-civ-pool-title {
   flex: 1 1 auto;
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
   text-align: center;
+}
+
+.staging-civ-pool-stats {
+  text-align: center;
+
+  .matched-civs-number {
+    color: $primary-color-amber;
+  }
 }
 
 .buttons-container {
@@ -25,6 +34,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   @include grid-alignment-center;
+
+  margin-top: calc-vertical-margin($vertical-margin-medium);
 
   text-align: center;
 
