@@ -109,9 +109,6 @@ $civ-unit-image-size-large: 96px;
 .civ-tech-tree {
   display: inline-block;
 
-  width: 25px;
-  height: 25px;
-
   position: absolute;
   top: 5px;
   right: 5px;
@@ -119,6 +116,9 @@ $civ-unit-image-size-large: 96px;
   font-size: calc-font-size($font-size-0);
 
   img {
+    width: 25px;
+    height: 25px;
+
     @include do-transition(
       transform,
       $animation-duration-small,
