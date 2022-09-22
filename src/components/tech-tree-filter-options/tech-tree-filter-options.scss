@@ -28,6 +28,10 @@
   }
 }
 
+.clear-filter-button {
+  @include tech-tree-filter-button;
+}
+
 .tech-tree-filter-mode {
   @include for-phone-only {
     padding-left: calc-padding($padding-small);
@@ -40,9 +44,13 @@
   @include for-tablet-landscape-up {
     padding-left: calc-padding($padding-medium);
   }
+
+  .filter-mode-button {
+    @include tech-tree-filter-button;
+  }
 }
 
-.tech-tree-filter-clear-filter,
+.tech-tree-filter-mode,
 .tech-tree-filter-sort {
   padding-top: calc-vertical-margin($vertical-margin-small);
   padding-bottom: calc-vertical-margin($vertical-margin-medium);
@@ -58,11 +66,6 @@
   @include for-tablet-landscape-up {
     padding-left: calc-padding($padding-medium);
   }
-}
-
-.filter-mode-button,
-.clear-filter-button {
-  @include tech-tree-filter-button;
 }
 
 .tech-tree-filter-sort {

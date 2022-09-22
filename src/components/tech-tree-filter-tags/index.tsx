@@ -54,7 +54,7 @@ export const TechTreeFilterTags: FC = () => {
       <div className='tags-top-bar'>
         <div className='tags-title'>Filter items</div>
         <a className='tags-reset-button' onClick={handleResetTags}>
-          Reset
+          clear filters
         </a>
       </div>
       <div className='tags-type-title'>By Type</div>

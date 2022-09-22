@@ -36,18 +36,18 @@ export const TechTreeFilterOptions: FC = () => {
 
   return (
     <div className='tech-tree-filter-options'>
+      <div className='tech-tree-filter-clear-filter'>
+        <a className='clear-filter-button' onClick={handleClearFilter}>
+          Reset selected items
+        </a>
+      </div>
+
       <div className='tech-tree-filter-mode'>
         Civ has{' '}
         <a className='filter-mode-button' onClick={handleToggleFilterMode}>
           {filterMode}
         </a>{' '}
         selected items
-      </div>
-
-      <div className='tech-tree-filter-clear-filter'>
-        <a className='clear-filter-button' onClick={handleClearFilter}>
-          Clear selected items
-        </a>
       </div>
 
       <div className='tech-tree-filter-sort'>

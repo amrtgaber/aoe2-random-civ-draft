@@ -15,6 +15,10 @@ $accent-size-tablet-portrait-up: 4px;
 $img-size-4k-up: 96px;
 $accent-size-4k-up: 8px;
 
+$icon-size-mobile: 10px;
+$icon-size-medium: 17px;
+$icon-size-large: 20px;
+
 .tech-tree-item {
   @include box-shadow($size: $box-shadow-small);
   display: grid;
@@ -125,41 +129,48 @@ $accent-size-4k-up: 8px;
   display: inline-block;
 
   position: absolute;
-  right: 1px;
   top: 1px;
 
   width: 100%;
 
+  padding-left: 1px;
+  padding-right: 1px;
+
   .tech-tree-item-icons {
     display: flex;
-    flex-flow: column-reverse nowrap;
-    align-items: flex-end;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     gap: 5px;
+
+    .tech-tree-item-age-icon,
+    .tech-tree-item-building-icon {
+      width: $icon-size-medium;
+      height: $icon-size-medium;
+
+      @include for-phone-only {
+        width: $icon-size-mobile;
+        height: $icon-size-mobile;
+      }
+
+      @include for-4k-up {
+        width: $icon-size-large;
+        height: $icon-size-large;
+      }
+    }
 
     .tech-tree-item-age-icon {
       display: flex;
+    }
 
-      width: 15px;
-      height: 15px;
-
-      @include for-phone-only {
-        width: 10px;
-        height: 10px;
-      }
+    .tech-tree-item-building-icons {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 5px;
     }
 
     .tech-tree-item-building-icon {
       display: flex;
-
-      width: 15px;
-      height: 15px;
-
       border-radius: $border-radius-small;
-
-      @include for-phone-only {
-        width: 10px;
-        height: 10px;
-      }
     }
   }
 }

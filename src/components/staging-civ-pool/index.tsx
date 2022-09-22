@@ -39,7 +39,7 @@ export const StagingCivPool: FC = () => {
   return (
     <div className='staging-civ-pool-container'>
       <div className='staging-civ-pool-header'>
-        <h3 className='staging-civ-pool-title'>Civ pool preview</h3>
+        <h3 className='staging-civ-pool-title'>Matching civs</h3>
         <div className='buttons-container'>
           <a
             className='add-to-main-civ-pool-button'

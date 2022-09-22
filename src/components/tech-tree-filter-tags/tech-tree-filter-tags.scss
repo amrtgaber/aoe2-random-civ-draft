@@ -54,7 +54,7 @@
     $box-shadow: false
   );
 
-  flex: 0;
+  flex: 0 max-content;
 
   font-size: calc-font-size($font-size-4);
 

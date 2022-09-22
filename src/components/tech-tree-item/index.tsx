@@ -78,12 +78,16 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
       >
         <div className='tech-tree-item-icons-container'>
           <div className='tech-tree-item-icons'>
-            {renderBuildingIcons(item)}
-            <img
-              src={ageIcons[age.ageName]}
-              className='tech-tree-item-age-icon'
-              alt={`${name} age`}
-            />
+            <div className='tech-tree-item-age-icons'>
+              <img
+                src={ageIcons[age.ageName]}
+                className='tech-tree-item-age-icon'
+                alt={`${name} age`}
+              />
+            </div>
+            <div className='tech-tree-item-building-icons'>
+              {renderBuildingIcons(item)}
+            </div>
           </div>
         </div>
         <img src={imgSrc} className='tech-tree-item-img' alt={`${name}`} />
