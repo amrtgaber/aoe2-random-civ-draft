@@ -15,15 +15,21 @@ describe('units api', () => {
         JSON.stringify([
           {
             id: 1,
-            itemName: 'skirmisher',
+            unitName: 'skirmisher',
+            civs: [],
+            buildings: [],
           },
           {
             id: 2,
-            itemName: 'archer',
+            unitName: 'archer',
+            civs: [],
+            buildings: [],
           },
           {
             id: 2,
-            itemName: 'villager',
+            unitName: 'villager',
+            civs: [],
+            buildings: [],
           },
         ])
       );

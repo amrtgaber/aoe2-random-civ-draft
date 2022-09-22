@@ -72,6 +72,6 @@ export function convertBuildingToTechTreeItem(
 export function techTreeItemCompare(
   item1: ITechTreeItem,
   item2: ITechTreeItem
-): 1 | -1 {
-  return item1.itemName > item2.itemName ? 1 : -1;
+): number {
+  return item1.itemName.localeCompare(item2.itemName);
 }

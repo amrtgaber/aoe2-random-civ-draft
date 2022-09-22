@@ -4,6 +4,7 @@ import fetchMock from 'jest-fetch-mock';
 import { TEST_TECHS } from '../../test/shared-test-data';
 import { FetchStatus } from '../shared-store-utils';
 import techsReducer, { fetchTechs, initialState, TechsState } from '.';
+import { TechTreeItemType } from '../../api/tech-tree-item-api';
 
 fetchMock.enableMocks();
 
@@ -24,7 +25,22 @@ describe('techs reducer', () => {
     });
 
     it('should fetch all techs', async () => {
-      fetchMock.mockResponse(JSON.stringify(TEST_TECHS));
+      fetchMock.mockResponse(
+        JSON.stringify([
+          {
+            id: 1,
+            techName: 'wheelbarrow',
+            civs: [],
+            buildings: [],
+          },
+          {
+            id: 2,
+            techName: 'loom',
+            civs: [],
+            buildings: [],
+          },
+        ])
+      );
 
       await store.dispatch(fetchTechs());
 

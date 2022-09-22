@@ -14,15 +14,24 @@ describe('buildings api', () => {
         JSON.stringify([
           {
             id: 1,
-            itemName: 'house',
+            buildingName: 'house',
+            civs: [],
+            units: [],
+            techs: [],
           },
           {
             id: 2,
-            itemName: 'castle',
+            buildingName: 'castle',
+            civs: [],
+            units: [],
+            techs: [],
           },
           {
             id: 3,
-            itemName: 'stable',
+            buildingName: 'stable',
+            civs: [],
+            units: [],
+            techs: [],
           },
         ])
       );

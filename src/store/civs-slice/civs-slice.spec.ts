@@ -35,7 +35,42 @@ describe('civs reducer', () => {
     });
 
     it('should fetch all civs', async () => {
-      fetchMock.mockResponse(JSON.stringify(TEST_CIVS));
+      fetchMock.mockResponse(
+        JSON.stringify([
+          {
+            id: 1,
+            civName: 'Vikings',
+            units: [
+              { id: 1, itemName: 'archer' },
+              { id: 2, itemName: 'skirmisher' },
+            ],
+            techs: [
+              { id: 1, itemName: 'loom' },
+              { id: 2, itemName: 'wheelbarrow' },
+            ],
+            buildings: [
+              { id: 1, itemName: 'castle' },
+              { id: 2, itemName: 'house' },
+            ],
+          },
+          {
+            id: 2,
+            civName: 'Aztecs',
+            units: [
+              { id: 1, itemName: 'archer' },
+              { id: 2, itemName: 'skirmisher' },
+            ],
+            techs: [
+              { id: 1, itemName: 'loom' },
+              { id: 2, itemName: 'wheelbarrow' },
+            ],
+            buildings: [
+              { id: 1, itemName: 'castle' },
+              { id: 2, itemName: 'house' },
+            ],
+          },
+        ])
+      );
 
       await store.dispatch(fetchCivs());
 
@@ -59,7 +94,7 @@ describe('civs reducer', () => {
       };
 
       const endState = civsReducer(startState, addAllCivsToPool());
-      expect(endState.civPool.length).toBe(2);
+      expect(endState.civPool.length).toBe(TEST_CIVS.length);
     });
   });
 
@@ -153,7 +188,7 @@ describe('civs reducer', () => {
 
       const endState = civsReducer(startState, setCivPool(TEST_CIVS));
 
-      expect(endState.civPool.length).toBe(2);
+      expect(endState.civPool.length).toBe(TEST_CIVS.length);
     });
   });
 });

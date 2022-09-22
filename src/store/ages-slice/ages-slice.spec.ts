@@ -28,6 +28,18 @@ describe('ages reducer', () => {
           {
             id: 1,
             ageName: 'dark age',
+            units: [
+              { id: 1000, itemName: 'villager' },
+              { id: 1001, itemName: 'militia' },
+            ],
+            techs: [
+              { id: 1002, itemName: 'loom' },
+              { id: 1003, itemName: 'feudal age' },
+            ],
+            buildings: [
+              { id: 1004, itemName: 'lumber camp' },
+              { id: 1005, itemName: 'house' },
+            ],
           },
         ])
       );
