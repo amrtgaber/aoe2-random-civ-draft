@@ -25,10 +25,11 @@ $button-border-color: $button-letter-color;
 @mixin button-base(
   $type: outline,
   $padding: $padding-medium,
-  $box-shadow: true
+  $box-shadow: true,
+  $box-shadow-size: large
 ) {
   @if $box-shadow {
-    @include box-shadow(large);
+    @include box-shadow($box-shadow-size);
   }
 
   cursor: pointer;

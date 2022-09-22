@@ -16,7 +16,7 @@ $img-size-4k-up: 96px;
 $accent-size-4k-up: 8px;
 
 .tech-tree-item {
-  @include box-shadow($size: $box-shadow-tiny);
+  @include box-shadow($size: $box-shadow-small);
   display: grid;
 
   position: relative;
