@@ -1,19 +1,22 @@
 import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchBuildings, selectBuildings } from '../../store/buildings-slice';
-import { fetchTechs, selectTechs } from '../../store/techs-slice';
-import { fetchUnits, selectUnits } from '../../store/units-slice';
-import { fetchAges, selectAges } from '../../store/ages-slice';
+import {
+  fetchBuildings,
+  selectBuildings,
+} from '../../store/slices/buildings-slice';
+import { fetchTechs, selectTechs } from '../../store/slices/techs-slice';
+import { fetchUnits, selectUnits } from '../../store/slices/units-slice';
+import { fetchAges, selectAges } from '../../store/slices/ages-slice';
 import {
   selectTechTreeFilter,
   setTaggedItems,
-} from '../../store/tech-tree-filter-slice';
+} from '../../store/slices/tech-tree-filter-slice';
 import {
   FetchStatus,
   isFulfilled,
   isInit,
-} from '../../store/shared-store-utils';
+} from '../../store/fetch-status-service';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
 import { Loading } from '../loading';
@@ -23,7 +26,7 @@ import { TechTreeItem } from '../tech-tree-item';
 import { StagingCivPool } from '../staging-civ-pool';
 
 import './tech-tree-filter.scss';
-import { addTagsToItem } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service';
+import { addTagsToItem } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service';
 import { TechTreeFilterTags } from '../tech-tree-filter-tags';
 
 export const TechTreeFilter: FC = () => {

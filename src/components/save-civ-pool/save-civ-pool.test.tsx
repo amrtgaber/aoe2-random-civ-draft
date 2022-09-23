@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer from '../../store/civs-slice';
-import draftResultReducer from '../../store/draft-result-slice';
-import { FetchStatus } from '../../store/shared-store-utils';
+import civsReducer from '../../store/slices/civs-slice';
+import draftResultReducer from '../../store/slices/draft-result-slice';
+import { FetchStatus } from '../../store/fetch-status-service';
 import { TEST_CIVS } from '../../test/shared-test-data';
 import { SaveCivPool } from '.';
 

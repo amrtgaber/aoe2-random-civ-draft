@@ -7,8 +7,8 @@ import {
   selectTechTreeFilter,
   setFilterMode,
   setSortMode,
-} from '../../store/tech-tree-filter-slice';
-import { SortBy } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
+} from '../../store/slices/tech-tree-filter-slice';
+import { SortBy } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 import './tech-tree-filter-options.scss';
 

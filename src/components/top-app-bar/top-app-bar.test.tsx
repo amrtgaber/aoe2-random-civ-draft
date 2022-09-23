@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import versionReducer from '../../store/version-slice';
+import versionReducer from '../../store/slices/version-slice';
 import { TopAppBar } from './';
 
 test('renders top app bar', () => {
