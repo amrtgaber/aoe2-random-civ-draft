@@ -5,6 +5,7 @@ import {
   ITechTreeItem,
   TechTreeItemType,
 } from '../../../../../api/tech-tree-item-api';
+import { IUnit } from '../../../../../api/units/units-api';
 
 import {
   getMockTechTreeBuilding,
@@ -13,21 +14,28 @@ import {
   getMockTechTreeTech,
   getMockTechTreeUnit,
 } from '../../../../mock-state-service';
+import { TagType } from './tags';
 
 import {
   addTagsToItem,
   doFilter,
   filterByTagType,
   filterByUnique,
+  getTagByName,
   tagsMap,
 } from '.';
-import { FilterTag, filterTags, TagType } from './tags';
-import { IUnit } from '../../../../../api/units/units-api';
 
 describe('tags service', () => {
-  function getTagByName(name: string): FilterTag {
-    return filterTags.find((tag) => tag.tagName === name)!;
-  }
+  describe('get tag by name', () => {
+    it('returns a tag', () => {
+      const tag = getTagByName('units');
+      expect(tag.tagName).toBe('units');
+    });
+
+    it('throws if tag is not found', () => {
+      expect(() => getTagByName('')).toThrow();
+    });
+  });
 
   describe('addTagsToItem', () => {
     it('should add units tag to unit', () => {
@@ -36,7 +44,7 @@ describe('tags service', () => {
 
       const taggedItem = addTagsToItem(mockUnit);
 
-      expect(taggedItem.tagIds).toContain(tagsMap.get('units'));
+      expect(taggedItem.tagIds).toContain(getTagByName('units').id);
     });
 
     it('should add techs tag to tech', () => {
@@ -45,7 +53,7 @@ describe('tags service', () => {
 
       const taggedItem = addTagsToItem(mockTech);
 
-      expect(taggedItem.tagIds).toContain(tagsMap.get('techs'));
+      expect(taggedItem.tagIds).toContain(getTagByName('techs').id);
     });
 
     it('should add buildings tag to building', () => {
@@ -54,7 +62,7 @@ describe('tags service', () => {
 
       const taggedItem = addTagsToItem(mockBuilding);
 
-      expect(taggedItem.tagIds).toContain(tagsMap.get('buildings'));
+      expect(taggedItem.tagIds).toContain(getTagByName('buildings').id);
     });
 
     it('should add uniques tag to unique', () => {
@@ -66,14 +74,14 @@ describe('tags service', () => {
 
       const taggedItem = addTagsToItem(mockUnique);
 
-      expect(taggedItem.tagIds).toContain(tagsMap.get('uniques'));
+      expect(taggedItem.tagIds).toContain(getTagByName('uniques').id);
     });
 
     it('should add age tag to item', () => {
       const mockUnit = getMockTechTreeUnit();
       mockUnit.tagIds = [];
 
-      const ageTagId = tagsMap.get(mockUnit.age.ageName);
+      const ageTagId = getTagByName(mockUnit.age.ageName).id;
 
       const taggedItem = addTagsToItem(mockUnit);
 
@@ -85,8 +93,8 @@ describe('tags service', () => {
       mockUnit.buildings = getMockTechTreeBuildings();
       mockUnit.tagIds = [];
 
-      const buildingTagIds = mockUnit.buildings.map((building) =>
-        tagsMap.get(building.itemName)
+      const buildingTagIds = mockUnit.buildings.map(
+        (building) => getTagByName(building.itemName).id
       );
 
       const taggedItem = addTagsToItem(mockUnit);
@@ -141,11 +149,11 @@ describe('tags service', () => {
       const mockItems = getMockTechTreeItems();
       const mockDarkAgeItem = mockItems[0];
       mockDarkAgeItem.age!.ageName = 'dark age';
-      mockDarkAgeItem.tagIds = [tagsMap.get('dark age')!];
+      mockDarkAgeItem.tagIds = [getTagByName('dark age').id];
 
       const mockFeudalAgeItem = mockItems[1];
       mockFeudalAgeItem.age!.ageName = 'feudal age';
-      mockFeudalAgeItem.tagIds = [tagsMap.get('feudal age')!];
+      mockFeudalAgeItem.tagIds = [getTagByName('feudal age').id];
 
       const darkAgeTag = getTagByName('dark age');
 
@@ -161,17 +169,17 @@ describe('tags service', () => {
     });
 
     it('should filter by a specific building tag', () => {
-      const mockArcheryRangeItem = { ...getMockTechTreeUnit() };
+      const mockArcheryRangeItem = getMockTechTreeUnit();
       mockArcheryRangeItem.buildings = [
         { id: 1, itemName: 'archery range', kind: TechTreeItemType.BUILDING },
       ];
-      mockArcheryRangeItem.tagIds = [tagsMap.get('archery range')!];
+      mockArcheryRangeItem.tagIds = [getTagByName('archery range').id];
 
-      const mockStableItem = { ...getMockTechTreeUnit() };
+      const mockStableItem = getMockTechTreeUnit();
       mockStableItem.buildings = [
         { id: 2, itemName: 'stable', kind: TechTreeItemType.BUILDING },
       ];
-      mockStableItem.tagIds = [tagsMap.get('stable')!];
+      mockStableItem.tagIds = [getTagByName('stable').id];
 
       const archeryRangeTag = getTagByName('archery range');
 

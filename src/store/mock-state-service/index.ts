@@ -11,41 +11,53 @@ import {
 import { MOCK_STATE } from './mock-state';
 
 export function getMockTechTreeItems(): ITechTreeItem[] {
-  return MOCK_STATE.techTreeFilter.taggedItems;
+  return [...MOCK_STATE.techTreeFilter.taggedItems];
 }
 
 export function getMockTechTreeUnit(): IUnit {
-  return MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
+  const mockUnit = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
     isUnit(item)
   ) as IUnit;
+
+  return { ...mockUnit };
 }
 
 export function getMockTechTreeUnits(): IUnit[] {
-  return MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
+  const mockUnits = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
     isUnit(item)
   ) as IUnit[];
+
+  return [...mockUnits];
 }
 
 export function getMockTechTreeTech(): ITech {
-  return MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
+  const mockTech = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
     isTech(item)
   ) as ITech;
+
+  return { ...mockTech };
 }
 
 export function getMockTechTreeTechs(): ITech[] {
-  return MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
+  const mockTechs = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
     isTech(item)
   ) as ITech[];
+
+  return [...mockTechs];
 }
 
 export function getMockTechTreeBuilding(): IBuilding {
-  return MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
+  const mockBuilding = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
     isBuilding(item)
   ) as IBuilding;
+
+  return { ...mockBuilding };
 }
 
 export function getMockTechTreeBuildings(): IBuilding[] {
-  return MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
+  const mockBuildings = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
     isBuilding(item)
   ) as IBuilding[];
+
+  return [...mockBuildings];
 }
