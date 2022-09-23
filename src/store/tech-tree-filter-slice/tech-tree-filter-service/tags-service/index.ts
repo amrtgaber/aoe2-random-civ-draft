@@ -5,30 +5,30 @@ import {
 } from '../../../../api/tech-tree-item-api';
 import { FilterTag, filterTags, TagType } from './tags';
 
-export function addTagsToItem(item: ITechTreeItem): ITechTreeItem {
-  const tagMap = new Map<string, number>(
-    filterTags.map((tag) => [tag.tagName, tag.id])
-  );
+export const tagsMap = new Map<string, number>(
+  filterTags.map((tag) => [tag.tagName, tag.id])
+);
 
+export function addTagsToItem(item: ITechTreeItem): ITechTreeItem {
   const tagIds = [];
 
   if (isUnit(item)) {
-    tagIds.push(tagMap.get('units')!);
+    tagIds.push(tagsMap.get('units')!);
   } else if (isTech(item)) {
-    tagIds.push(tagMap.get('techs')!);
+    tagIds.push(tagsMap.get('techs')!);
   } else {
-    tagIds.push(tagMap.get('buildings')!);
+    tagIds.push(tagsMap.get('buildings')!);
   }
 
   if (item.isUnique) {
-    tagIds.push(tagMap.get('uniques')!);
+    tagIds.push(tagsMap.get('uniques')!);
   }
 
-  tagIds.push(tagMap.get(item.age!.ageName)!);
+  tagIds.push(tagsMap.get(item.age!.ageName)!);
 
   if (isUnit(item) || isTech(item)) {
     item.buildings.forEach((building) => {
-      tagIds.push(tagMap.get(building.itemName)!);
+      tagIds.push(tagsMap.get(building.itemName)!);
     });
   }
 

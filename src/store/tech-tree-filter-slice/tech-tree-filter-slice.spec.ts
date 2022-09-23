@@ -27,7 +27,7 @@ const store = configureStore({
   reducer: techTreeFilterReducer,
 });
 
-describe('draftParameters reducer', () => {
+describe('techTreeFilter reducer', () => {
   it('should handle initial load', () => {
     expect(
       techTreeFilterReducer(undefined, { type: 'unkown' })

@@ -1,10 +1,14 @@
+import { IBuilding } from '../api/buildings/buildings-api';
+import { ITech } from '../api/techs/techs-api';
+import { IUnit } from '../api/units/units-api';
 import { TechTreeItemType } from '../api/tech-tree-item-api';
-import { RootState } from '../store';
-import { FetchStatus } from '../store/shared-store-utils';
-import { FilterMode } from '../store/tech-tree-filter-slice';
-import { SortBy } from '../store/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
+import { FetchStatus } from './shared-store-utils';
+import { FilterMode } from './tech-tree-filter-slice';
+import { SortBy } from './tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
-export const TEST_STATE: RootState = {
+import { RootState } from '.';
+
+export const MOCK_STATE: RootState = {
   civs: {
     allCivs: [
       {
@@ -14,6 +18,14 @@ export const TEST_STATE: RootState = {
       {
         id: 1377,
         civName: 'Franks',
+      },
+      {
+        id: 1387,
+        civName: 'Lithuanians',
+      },
+      {
+        id: 1394,
+        civName: 'Poles',
       },
       {
         id: 1404,
@@ -605,17 +617,436 @@ export const TEST_STATE: RootState = {
     versionStatus: FetchStatus.FULFILLED,
   },
   techTreeFilter: {
-    filteredCivPool: [],
-    itemsFilter: [],
+    filteredCivPool: [
+      {
+        id: 1387,
+        civName: 'Lithuanians',
+      },
+      {
+        id: 1394,
+        civName: 'Poles',
+      },
+    ],
+    itemsFilter: [
+      {
+        id: 1154,
+        itemName: 'winged hussar',
+        kind: TechTreeItemType.UNIT,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1387,
+            civName: 'Lithuanians',
+          },
+          {
+            id: 1394,
+            civName: 'Poles',
+          },
+        ],
+        buildings: [
+          {
+            id: 1341,
+            itemName: 'stable',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [0, 7, 23],
+      } as IUnit,
+    ],
     filterMode: FilterMode.HAS_ALL,
-    shownItems: [],
-    taggedItems: [],
+    taggedItems: [
+      {
+        id: 1183,
+        itemName: 'anarchy',
+        kind: TechTreeItemType.TECH,
+        isUnique: true,
+        age: {
+          id: 3,
+          ageName: 'castle age',
+        },
+        civs: [
+          {
+            id: 1378,
+            civName: 'Goths',
+          },
+        ],
+        buildings: [
+          {
+            id: 1338,
+            itemName: 'castle',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [1, 3, 6, 11],
+      } as ITech,
+      {
+        id: 1049,
+        itemName: 'arbalester',
+        kind: TechTreeItemType.UNIT,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1363,
+            civName: 'Aztecs',
+          },
+          {
+            id: 1384,
+            civName: 'Japanese',
+          },
+          {
+            id: 1403,
+            civName: 'Vietnamese',
+          },
+        ],
+        buildings: [
+          {
+            id: 1340,
+            itemName: 'archery range',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [0, 7, 8],
+      } as IUnit,
+      {
+        id: 1340,
+        itemName: 'archery range',
+        kind: TechTreeItemType.BUILDING,
+        isUnique: false,
+        age: {
+          id: 2,
+          ageName: 'feudal age',
+        },
+        civs: [
+          {
+            id: 1363,
+            civName: 'Aztecs',
+          },
+          {
+            id: 1377,
+            civName: 'Franks',
+          },
+          {
+            id: 1404,
+            civName: 'Vikings',
+          },
+        ],
+        units: [
+          {
+            id: 1000,
+            itemName: 'archer',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1001,
+            itemName: 'hand cannoneer',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1002,
+            itemName: 'elite skirmisher',
+            kind: TechTreeItemType.UNIT,
+          },
+        ],
+        techs: [
+          {
+            id: 1253,
+            itemName: 'parthian tactics',
+            kind: TechTreeItemType.TECH,
+          },
+          {
+            id: 1254,
+            itemName: 'thumb ring',
+            kind: TechTreeItemType.TECH,
+          },
+        ],
+        tagIds: [2, 5],
+      } as IBuilding,
+      {
+        id: 1195,
+        itemName: 'architecture',
+        kind: TechTreeItemType.TECH,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1373,
+            civName: 'Chinese',
+          },
+          {
+            id: 1391,
+            civName: 'Mayans',
+          },
+          {
+            id: 1404,
+            civName: 'Vikings',
+          },
+        ],
+        buildings: [
+          {
+            id: 1347,
+            itemName: 'university',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [1, 7, 25],
+      } as ITech,
+      {
+        id: 1329,
+        itemName: 'barracks',
+        kind: TechTreeItemType.BUILDING,
+        isUnique: false,
+        age: {
+          id: 1,
+          ageName: 'dark age',
+        },
+        civs: [
+          {
+            id: 1363,
+            civName: 'Aztecs',
+          },
+          {
+            id: 1377,
+            civName: 'Franks',
+          },
+          {
+            id: 1404,
+            civName: 'Vikings',
+          },
+        ],
+        units: [
+          {
+            id: 1019,
+            itemName: 'militia',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1039,
+            itemName: 'pikeman',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1082,
+            itemName: 'elite eagle warrior',
+            kind: TechTreeItemType.UNIT,
+          },
+        ],
+        techs: [
+          {
+            id: 1229,
+            itemName: 'squires',
+            kind: TechTreeItemType.TECH,
+          },
+          {
+            id: 1296,
+            itemName: 'arson',
+            kind: TechTreeItemType.TECH,
+          },
+          {
+            id: 1314,
+            itemName: 'supplies',
+            kind: TechTreeItemType.TECH,
+          },
+        ],
+        tagIds: [2, 4],
+      } as IBuilding,
+      {
+        id: 1154,
+        itemName: 'winged hussar',
+        kind: TechTreeItemType.UNIT,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1387,
+            civName: 'Lithuanians',
+          },
+          {
+            id: 1394,
+            civName: 'Poles',
+          },
+        ],
+        buildings: [
+          {
+            id: 1341,
+            itemName: 'stable',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [0, 7, 23],
+      } as IUnit,
+    ],
+    shownItems: [
+      {
+        id: 1183,
+        itemName: 'anarchy',
+        kind: TechTreeItemType.TECH,
+        isUnique: true,
+        age: {
+          id: 3,
+          ageName: 'castle age',
+        },
+        civs: [
+          {
+            id: 1378,
+            civName: 'Goths',
+          },
+        ],
+        buildings: [
+          {
+            id: 1338,
+            itemName: 'castle',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [1, 3, 6, 11],
+      } as ITech,
+      {
+        id: 1049,
+        itemName: 'arbalester',
+        kind: TechTreeItemType.UNIT,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1363,
+            civName: 'Aztecs',
+          },
+          {
+            id: 1384,
+            civName: 'Japanese',
+          },
+          {
+            id: 1403,
+            civName: 'Vietnamese',
+          },
+        ],
+        buildings: [
+          {
+            id: 1340,
+            itemName: 'archery range',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [0, 7, 8],
+      } as IUnit,
+      {
+        id: 1195,
+        itemName: 'architecture',
+        kind: TechTreeItemType.TECH,
+        isUnique: false,
+        age: {
+          id: 4,
+          ageName: 'imperial age',
+        },
+        civs: [
+          {
+            id: 1373,
+            civName: 'Chinese',
+          },
+          {
+            id: 1391,
+            civName: 'Mayans',
+          },
+          {
+            id: 1404,
+            civName: 'Vikings',
+          },
+        ],
+        buildings: [
+          {
+            id: 1347,
+            itemName: 'university',
+            kind: TechTreeItemType.BUILDING,
+          },
+        ],
+        tagIds: [1, 7, 25],
+      } as ITech,
+      {
+        id: 1329,
+        itemName: 'barracks',
+        kind: TechTreeItemType.BUILDING,
+        isUnique: false,
+        age: {
+          id: 1,
+          ageName: 'dark age',
+        },
+        civs: [
+          {
+            id: 1363,
+            civName: 'Aztecs',
+          },
+          {
+            id: 1377,
+            civName: 'Franks',
+          },
+          {
+            id: 1404,
+            civName: 'Vikings',
+          },
+        ],
+        units: [
+          {
+            id: 1019,
+            itemName: 'militia',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1039,
+            itemName: 'pikeman',
+            kind: TechTreeItemType.UNIT,
+          },
+          {
+            id: 1082,
+            itemName: 'elite eagle warrior',
+            kind: TechTreeItemType.UNIT,
+          },
+        ],
+        techs: [
+          {
+            id: 1229,
+            itemName: 'squires',
+            kind: TechTreeItemType.TECH,
+          },
+          {
+            id: 1296,
+            itemName: 'arson',
+            kind: TechTreeItemType.TECH,
+          },
+          {
+            id: 1314,
+            itemName: 'supplies',
+            kind: TechTreeItemType.TECH,
+          },
+        ],
+        tagIds: [2, 4],
+      } as IBuilding,
+    ],
     searchTerm: '',
     sortMode: SortBy.ALPHA,
     selectedTags: [],
   },
   draftResult: {
-    civ: null,
-    draftCount: 0,
+    civ: {
+      id: 1377,
+      civName: 'Franks',
+    },
+    draftCount: 1,
   },
 };

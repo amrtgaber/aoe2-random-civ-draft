@@ -32,8 +32,8 @@ export const initialState: TechTreeFilterState = {
   itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
 
-  shownItems: [] as ITechTreeItem[],
   taggedItems: [] as ITechTreeItem[],
+  shownItems: [] as ITechTreeItem[],
 
   searchTerm: '',
   sortMode: SortBy.ALPHA,
@@ -68,6 +68,10 @@ export const techTreeFilterSlice = createSlice({
       state.filteredCivPool = filterCivPool(state);
     },
 
+    setTaggedItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
+      state.taggedItems = doSort(action.payload, state.sortMode);
+      state.shownItems = assembleShownItemsOnChange(state);
+    },
     addShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems.push(action.payload);
       state.shownItems = assembleShownItemsOnChange(state);
@@ -79,10 +83,6 @@ export const techTreeFilterSlice = createSlice({
     },
     setShownItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
       state.shownItems = action.payload;
-    },
-    setTaggedItems: (state, action: PayloadAction<ITechTreeItem[]>) => {
-      state.taggedItems = doSort(action.payload, state.sortMode);
-      state.shownItems = assembleShownItemsOnChange(state);
     },
 
     setSearchTerm: (state, action: PayloadAction<string>) => {
@@ -106,10 +106,10 @@ export const {
   setItemsFilter,
   clearItemsFilter,
   setFilterMode,
+  setTaggedItems,
   addShownItem,
   removeShownItem,
   setShownItems,
-  setTaggedItems,
   setSearchTerm,
   setSortMode,
   setSelectedTags,

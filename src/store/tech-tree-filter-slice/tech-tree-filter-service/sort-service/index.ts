@@ -4,7 +4,7 @@ import {
   isUnit,
   ITechTreeItem,
   TechTreeItemType,
-} from '../../../api/tech-tree-item-api';
+} from '../../../../api/tech-tree-item-api';
 
 export enum SortBy {
   ALPHA = 'SORT_BY_ALPHA',

@@ -1,4 +1,4 @@
-import { ITechTreeItem } from '../../../api/tech-tree-item-api';
+import { ITechTreeItem } from '../../../../api/tech-tree-item-api';
 
 export function doSearch(
   items: ITechTreeItem[],
