@@ -1,7 +1,8 @@
-import { assembleShownItemsOnChange } from '.';
-import { isUnit } from '../../../../api/tech-tree-item-api';
 import { MOCK_STATE } from '../../../mock-state-service/mock-state';
+import { isUnit } from '../../../../api/tech-tree-item-api';
 import { getTagByName } from './tags-service';
+
+import { assembleShownItemsOnChange } from '.';
 
 describe('tech tree filter service', () => {
   describe('assembleShownItemsOnChange', () => {

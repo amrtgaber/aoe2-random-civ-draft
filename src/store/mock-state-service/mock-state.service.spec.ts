@@ -1,3 +1,5 @@
+import { isBuilding, isTech, isUnit } from '../../api/tech-tree-item-api';
+
 import {
   getMockTechTreeBuilding,
   getMockTechTreeBuildings,
@@ -7,7 +9,6 @@ import {
   getMockTechTreeUnit,
   getMockTechTreeUnits,
 } from '.';
-import { isBuilding, isTech, isUnit } from '../../api/tech-tree-item-api';
 
 describe('mock state service', () => {
   it('gets mock tech tree items', () => {

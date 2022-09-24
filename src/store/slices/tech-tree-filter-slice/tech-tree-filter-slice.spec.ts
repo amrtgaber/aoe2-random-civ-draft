@@ -1,600 +1,203 @@
-import { configureStore } from '@reduxjs/toolkit';
-
-import { ICiv } from '../../../api/civs/civs-api';
-import { IUnit } from '../../../api/units/units-api';
-import { ITech } from '../../../api/techs/techs-api';
-import { IBuilding } from '../../../api/buildings/buildings-api';
+import {
+  getMockTechTreeItems,
+  getMockTechTreeUnit,
+} from '../../mock-state-service';
+import { SortBy } from './tech-tree-filter-service/sort-service';
+import { getTagByName } from './tech-tree-filter-service/tags-service';
 
 import techTreeFilterReducer, {
   addItemToFilter,
+  addShownItem,
   clearItemsFilter,
   FilterMode,
-  initialState,
   removeItemFromFilter,
+  removeShownItem,
   setFilterMode,
   setItemsFilter,
-  TechTreeFilterState,
+  setSearchTerm,
+  setSelectedTags,
+  setShownItems,
+  setSortMode,
+  setTaggedItems,
+  techTreeFilterInitialState,
 } from '.';
-import { TechTreeItemType } from '../../../api/tech-tree-item-api';
-import {
-  TEST_BUILDINGS,
-  TEST_CIVS,
-  TEST_TECHS,
-  TEST_UNITS,
-} from '../../../test/shared-test-data';
-
-const store = configureStore({
-  reducer: techTreeFilterReducer,
-});
 
 describe('techTreeFilter reducer', () => {
   it('should handle initial load', () => {
-    expect(
-      techTreeFilterReducer(undefined, { type: 'unkown' })
-    ).toEqual<TechTreeFilterState>(initialState);
+    expect(techTreeFilterReducer(undefined, { type: 'unkown' })).toEqual(
+      techTreeFilterInitialState
+    );
   });
 
-  // describe('draftParameter units filter', () => {
-  //   it('should add unit to filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       addItemToFilter(TEST_UNITS[0])
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(1);
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //     expect(endState.filteredCivPool[0].id).toBe(1);
-  //   });
-
-  //   it('should remove unit from filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [TEST_UNITS[0]],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       removeItemFromFilter(TEST_UNITS[0])
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(0);
-  //     expect(endState.filteredCivPool.length).toBe(0);
-  //   });
-
-  //   it('should update units filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       setItemsFilter(TEST_UNITS)
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(2);
-  //     expect(endState.filteredCivPool.length).toBe(3);
-  //   });
-
-  //   it('should clear units filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: TEST_UNITS,
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
-
-  //     expect(endState.itemsFilter.length).toBe(0);
-  //     expect(endState.filteredCivPool.length).toBe(0);
-  //   });
-  // });
-
-  // describe('draftParameter techs filter', () => {
-  //   it('should add tech to filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       addItemToFilter(TEST_TECHS[0])
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(1);
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //   });
-
-  //   it('should remove tech from filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [TEST_TECHS[0]],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       removeItemFromFilter(TEST_TECHS[0])
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(0);
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //   });
-
-  //   it('should update techs filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       setItemsFilter(TEST_TECHS)
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(3);
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //     expect(endState.filteredCivPool[0].id).toBe(1);
-  //   });
-
-  //   it('should clear techs filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: TEST_TECHS,
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
-
-  //     expect(endState.itemsFilter.length).toBe(0);
-  //     expect(endState.filteredCivPool.length).toBe(0);
-  //   });
-  // });
-
-  // describe('draftParameter buildings filter', () => {
-  //   it('should add building to filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       addItemToFilter(TEST_BUILDINGS[0])
-  //     );
-
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //     expect(endState.filteredCivPool[0].id).toBe(1);
-  //   });
-
-  //   it('should remove building from filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       removeItemFromFilter(TEST_BUILDINGS[0])
-  //     );
-
-  //     expect(endState.filteredCivPool.length).toBe(0);
-  //   });
-
-  //   it('should update buildings filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: [],
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(
-  //       startState,
-  //       setItemsFilter(TEST_BUILDINGS)
-  //     );
-
-  //     expect(endState.itemsFilter.length).toBe(3);
-  //     expect(endState.filteredCivPool.length).toBe(1);
-  //     expect(endState.filteredCivPool[0].id).toBe(1);
-  //   });
-
-  //   it('should clear buildings filter', () => {
-  //     const startState: TechTreeFilterState = {
-  //       filteredCivPool: [],
-  //       itemsFilter: TEST_BUILDINGS,
-  //       filterMode: FilterMode.HAS_ALL,
-  //       searchTerm: '',
-  //     };
-
-  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
-
-  //     expect(endState.itemsFilter.length).toBe(0);
-  //     expect(endState.filteredCivPool.length).toBe(0);
-  //   });
-  // });
-
-  // describe('filter civs', () => {
-  //   describe('has all filter mode', () => {
-  //     it('should filter all tech tree types', () => {
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: [TEST_UNITS[0], TEST_TECHS[0], TEST_BUILDINGS[0]],
-  //         filterMode: FilterMode.HAS_ALL,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ALL)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(3);
-  //       expect(endState.filteredCivPool).toEqual(TEST_CIVS);
-  //     });
-
-  //     it('should have all civs in civ pool', () => {
-  //       const units = [
-  //         {
-  //           id: 1,
-  //           itemName: 'archer',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'knight',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const techs = [
-  //         {
-  //           id: 1,
-  //           itemName: 'forging',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'loom',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const buildings = [
-  //         {
-  //           id: 1,
-  //           itemName: 'castle',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'house',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: units,
-  //         filterMode: FilterMode.HAS_ALL,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ALL)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(3);
-  //       expect(endState.filteredCivPool).toEqual(TEST_CIVS);
-  //     });
-
-  //     it('should have no civs in civ pool', () => {
-  //       const units = [
-  //         {
-  //           id: 1,
-  //           itemName: 'archer',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'knight',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const techs = [
-  //         {
-  //           id: 1,
-  //           itemName: 'forging',
-  //           civs: [TEST_CIVS[1]],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'loom',
-  //           civs: [TEST_CIVS[1]],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const buildings = [
-  //         {
-  //           id: 1,
-  //           itemName: 'castle',
-  //           civs: [TEST_CIVS[2]],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'house',
-  //           civs: [TEST_CIVS[2]],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: [...units, ...techs],
-  //         filterMode: FilterMode.HAS_ALL,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ALL)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(0);
-  //     });
-  //   });
-
-  //   describe('has any filter mode', () => {
-  //     it('should filter all tech tree types', () => {
-  //       const units = [
-  //         {
-  //           id: 1,
-  //           itemName: 'archer',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'knight',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const techs = [
-  //         {
-  //           id: 1,
-  //           itemName: 'forging',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'loom',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const buildings = [
-  //         {
-  //           id: 1,
-  //           itemName: 'castle',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'house',
-  //           civs: TEST_CIVS,
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: techs,
-  //         filterMode: FilterMode.HAS_ANY,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ANY)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(3);
-  //       expect(endState.filteredCivPool).toEqual(TEST_CIVS);
-  //     });
-
-  //     it('should have 2 civs in civ pool', () => {
-  //       const units = [
-  //         {
-  //           id: 1,
-  //           itemName: 'archer',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'knight',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const techs = [
-  //         {
-  //           id: 1,
-  //           itemName: 'forging',
-  //           civs: [TEST_CIVS[0]],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'loom',
-  //           civs: [TEST_CIVS[1]],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const buildings = [
-  //         {
-  //           id: 1,
-  //           itemName: 'castle',
-  //           civs: [TEST_CIVS[1]],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'house',
-  //           civs: [TEST_CIVS[1]],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: techs,
-  //         filterMode: FilterMode.HAS_ANY,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ANY)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(2);
-  //       expect(endState.filteredCivPool).toEqual([TEST_CIVS[0], TEST_CIVS[1]]);
-  //     });
-
-  //     it('should have no civs in civ pool', () => {
-  //       const units = [
-  //         {
-  //           id: 1,
-  //           itemName: 'archer',
-  //           civs: [],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'knight',
-  //           civs: [],
-  //           kind: TechTreeItemType.UNIT,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const techs = [
-  //         {
-  //           id: 1,
-  //           itemName: 'forging',
-  //           civs: [],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'loom',
-  //           civs: [],
-  //           kind: TechTreeItemType.TECH,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const buildings = [
-  //         {
-  //           id: 1,
-  //           itemName: 'castle',
-  //           civs: [],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //         {
-  //           id: 2,
-  //           itemName: 'house',
-  //           civs: [],
-  //           kind: TechTreeItemType.BUILDING,
-  //           isUnique: false,
-  //         },
-  //       ];
-
-  //       const startState: TechTreeFilterState = {
-  //         filteredCivPool: [],
-  //         itemsFilter: techs,
-  //         filterMode: FilterMode.HAS_ANY,
-  //         searchTerm: '',
-  //       };
-
-  //       const endState = techTreeFilterReducer(
-  //         startState,
-  //         setFilterMode(FilterMode.HAS_ANY)
-  //       );
-
-  //       expect(endState.filteredCivPool.length).toBe(0);
-  //     });
-  //   });
-  // });
+  describe('items filter', () => {
+    it('should add item to filter', () => {
+      const mockUnit = getMockTechTreeUnit();
+
+      const startState = { ...techTreeFilterInitialState };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        addItemToFilter(mockUnit)
+      );
+
+      expect(endState.itemsFilter.length).toBe(1);
+      expect(endState.itemsFilter[0].id).toBe(mockUnit.id);
+    });
+
+    it('should remove item from filter', () => {
+      const mockUnit = getMockTechTreeUnit();
+
+      const startState = {
+        ...techTreeFilterInitialState,
+        itemsFilter: [mockUnit],
+      };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        removeItemFromFilter(mockUnit)
+      );
+
+      expect(endState.itemsFilter.length).toBe(0);
+    });
+
+    it('should set items filter', () => {
+      const mockItems = getMockTechTreeItems();
+
+      const startState = { ...techTreeFilterInitialState };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        setItemsFilter(mockItems)
+      );
+
+      expect(endState.itemsFilter.length).toBe(mockItems.length);
+    });
+
+    it('should clear items filter', () => {
+      const mockItems = getMockTechTreeItems();
+
+      const startState = {
+        ...techTreeFilterInitialState,
+        itemsFilter: mockItems,
+      };
+
+      const endState = techTreeFilterReducer(startState, clearItemsFilter());
+
+      expect(endState.itemsFilter.length).toBe(0);
+    });
+  });
+
+  it('should set filter mode', () => {
+    const startState = {
+      ...techTreeFilterInitialState,
+      filterMode: FilterMode.HAS_ALL,
+    };
+
+    const endState = techTreeFilterReducer(
+      startState,
+      setFilterMode(FilterMode.HAS_ANY)
+    );
+
+    expect(endState.filterMode).toEqual(FilterMode.HAS_ANY);
+  });
+
+  it('should set tagged items', () => {
+    const mockItems = getMockTechTreeItems();
+
+    const startState = { ...techTreeFilterInitialState };
+
+    const endState = techTreeFilterReducer(
+      startState,
+      setTaggedItems(mockItems)
+    );
+
+    expect(endState.taggedItems.length).toBe(mockItems.length);
+  });
+
+  describe('shown items', () => {
+    it('should add shown item', () => {
+      const mockUnit = getMockTechTreeUnit();
+
+      const startState = {
+        ...techTreeFilterInitialState,
+        taggedItems: [mockUnit],
+      };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        addShownItem(mockUnit)
+      );
+
+      expect(endState.shownItems.length).toBe(1);
+      expect(endState.shownItems[0].id).toBe(mockUnit.id);
+    });
+
+    it('should remove shown item', () => {
+      const mockUnit = getMockTechTreeUnit();
+
+      const startState = {
+        ...techTreeFilterInitialState,
+        taggedItems: [mockUnit],
+        shownItems: [mockUnit],
+      };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        removeShownItem(mockUnit)
+      );
+
+      expect(endState.shownItems.length).toBe(0);
+    });
+
+    it('should set shown items', () => {
+      const mockItems = getMockTechTreeItems();
+
+      const startState = {
+        ...techTreeFilterInitialState,
+        taggedItems: mockItems,
+      };
+
+      const endState = techTreeFilterReducer(
+        startState,
+        setShownItems(mockItems)
+      );
+
+      expect(endState.shownItems.length).toBe(mockItems.length);
+    });
+  });
+
+  it('should set search term', () => {
+    const mockSearchTerm = 'test';
+
+    const startState = { ...techTreeFilterInitialState };
+
+    const endState = techTreeFilterReducer(
+      startState,
+      setSearchTerm(mockSearchTerm)
+    );
+
+    expect(endState.searchTerm).toBe(mockSearchTerm);
+  });
+
+  it('should set sort mode', () => {
+    const startState = { ...techTreeFilterInitialState };
+
+    const endState = techTreeFilterReducer(startState, setSortMode(SortBy.AGE));
+
+    expect(endState.sortMode).toBe(SortBy.AGE);
+  });
+
+  it('should set selected tags', () => {
+    const selectedTag = getTagByName('units');
+
+    const startState = { ...techTreeFilterInitialState };
+
+    const endState = techTreeFilterReducer(
+      startState,
+      setSelectedTags([selectedTag])
+    );
+
+    expect(endState.selectedTags.length).toBe(1);
+    expect(endState.selectedTags[0].id).toBe(selectedTag.id);
+  });
 });

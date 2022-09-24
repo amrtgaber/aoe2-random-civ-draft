@@ -27,7 +27,7 @@ export interface TechTreeFilterState {
   selectedTags: FilterTag[];
 }
 
-export const initialState: TechTreeFilterState = {
+export const techTreeFilterInitialState: TechTreeFilterState = {
   filteredCivPool: [] as ICiv[],
   itemsFilter: [] as ITechTreeItem[],
   filterMode: FilterMode.HAS_ALL,
@@ -42,7 +42,7 @@ export const initialState: TechTreeFilterState = {
 
 export const techTreeFilterSlice = createSlice({
   name: 'techTreeFilter',
-  initialState,
+  initialState: techTreeFilterInitialState,
   reducers: {
     addItemToFilter: (state, action: PayloadAction<ITechTreeItem>) => {
       state.itemsFilter.push(action.payload);
