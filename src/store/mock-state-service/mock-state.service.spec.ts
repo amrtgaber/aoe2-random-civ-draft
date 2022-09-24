@@ -13,7 +13,7 @@ import {
   getMockTechTreeUnit,
   getMockTechTreeUnits,
 } from '.';
-import { initialState } from '../slices/civs-slice';
+import { civsInitialState } from '../slices/civs-slice';
 
 describe('mock state service', () => {
   describe('configure test store', () => {
@@ -27,7 +27,7 @@ describe('mock state service', () => {
 
       const mockStore = configureMockStore({
         civs: {
-          ...initialState,
+          ...civsInitialState,
           allCivs: mockCivs,
         },
       });
