@@ -2,7 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import { FetchStatus } from '../../store/fetch-status-service';
-import { configureTestStore, TEST_CIVS } from '../../test/shared-test-data';
+import { configureTestStore } from '../../store/mock-state-service';
+import { TEST_CIVS } from '../../test/shared-test-data';
+
 import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {

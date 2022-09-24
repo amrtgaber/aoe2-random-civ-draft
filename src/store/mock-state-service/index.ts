@@ -1,3 +1,6 @@
+import { configureStore } from '@reduxjs/toolkit';
+
+import { reducer, RootState } from '../';
 import { IBuilding } from '../../api/buildings/buildings-api';
 import { ITech } from '../../api/techs/techs-api';
 import { IUnit } from '../../api/units/units-api';
@@ -9,6 +12,13 @@ import {
 } from '../../api/tech-tree-item-api';
 
 import { MOCK_STATE } from './mock-state';
+
+export function configureTestStore(state?: Partial<RootState>) {
+  return configureStore({
+    reducer,
+    preloadedState: state,
+  });
+}
 
 export function getMockTechTreeItems(): ITechTreeItem[] {
   return [...MOCK_STATE.techTreeFilter.taggedItems];

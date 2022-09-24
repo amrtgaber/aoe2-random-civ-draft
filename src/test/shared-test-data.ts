@@ -1,16 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-
-import { reducer, RootState } from '../store';
 import { IAge } from '../api/ages/ages-api';
 import { ICiv } from '../api/civs/civs-api';
 import { ITechTreeItem, TechTreeItemType } from '../api/tech-tree-item-api';
-
-export function configureTestStore(state?: Partial<RootState>) {
-  return configureStore({
-    reducer,
-    preloadedState: state,
-  });
-}
 
 export const TEST_AGES: IAge[] = [
   {

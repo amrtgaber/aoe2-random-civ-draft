@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { configureTestStore } from '../../test/shared-test-data';
+import { configureTestStore } from '../../store/mock-state-service';
+
 import { TechTreeFilterSearch } from '.';
 
 describe('tech tree filter search component', () => {

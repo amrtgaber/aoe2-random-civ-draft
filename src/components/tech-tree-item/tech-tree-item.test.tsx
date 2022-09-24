@@ -1,10 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { configureTestStore } from '../../test/shared-test-data';
+import { configureTestStore } from '../../store/mock-state-service';
 import { TechTreeItemType } from '../../api/tech-tree-item-api';
-import { TechTreeItem } from '.';
 import { IUnit } from '../../api/units/units-api';
+
+import { TechTreeItem } from '.';
 
 describe('tech tree item component', () => {
   describe('renders tech tree item', () => {
