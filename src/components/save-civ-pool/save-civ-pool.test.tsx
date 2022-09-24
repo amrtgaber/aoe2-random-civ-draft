@@ -10,7 +10,7 @@ import { SaveCivPool } from '.';
 
 describe('save civ pool component', () => {
   describe('renders save civ pool', () => {
-    test('renders save civ pool', () => {
+    it('renders save civ pool', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -29,7 +29,7 @@ describe('save civ pool component', () => {
   });
 
   describe('save button', () => {
-    test('saves civ pool', () => {
+    it('saves civ pool', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,

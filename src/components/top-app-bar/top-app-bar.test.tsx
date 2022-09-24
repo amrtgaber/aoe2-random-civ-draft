@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import versionReducer from '../../store/slices/version-slice';
 import { TopAppBar } from './';
 
-test('renders top app bar', () => {
+it('renders top app bar', () => {
   const reducer = {
     version: versionReducer,
   };

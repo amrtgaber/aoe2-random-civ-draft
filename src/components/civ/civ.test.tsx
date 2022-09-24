@@ -9,7 +9,7 @@ import { Civ } from '.';
 
 describe('civ component', () => {
   describe('renders civ component', () => {
-    test('renders civ component', () => {
+    it('renders civ component', () => {
       const store = configureTestStore();
 
       const { container: civContainer } = render(
@@ -29,7 +29,7 @@ describe('civ component', () => {
   });
 
   describe('civ in civ draft component', () => {
-    test('adds civ to civ pool when clicked', () => {
+    it('adds civ to civ pool when clicked', () => {
       const store = configureTestStore();
 
       const { container: civContainer } = render(
@@ -47,7 +47,7 @@ describe('civ component', () => {
       expect(store.getState().civs.civPool[0].civName).toBe('Aztecs');
     });
 
-    test('removes civ from civ pool when clicked', () => {
+    it('removes civ from civ pool when clicked', () => {
       const store = configureTestStore({
         civs: {
           allCivs: TEST_CIVS,
@@ -71,7 +71,7 @@ describe('civ component', () => {
       expect(store.getState().civs.civPool.length).toBe(0);
     });
 
-    test('clicking tech tree does not affect pool state', () => {
+    it('clicking tech tree does not affect pool state', () => {
       const store = configureTestStore({
         civs: {
           allCivs: TEST_CIVS,
@@ -112,7 +112,7 @@ describe('civ component', () => {
   });
 
   describe('civ in draft result component', () => {
-    test('renders civ in draft result component', () => {
+    it('renders civ in draft result component', () => {
       const store = configureTestStore();
 
       const { container: civContainer } = render(
@@ -130,7 +130,7 @@ describe('civ component', () => {
       expect(civEl).toBeInTheDocument();
     });
 
-    test('removes animation class when animation ends', () => {
+    it('removes animation class when animation ends', () => {
       const store = configureTestStore();
 
       const { container: civContainer } = render(

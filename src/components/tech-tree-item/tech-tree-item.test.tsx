@@ -9,7 +9,7 @@ import { TechTreeItem } from '.';
 
 describe('tech tree item component', () => {
   describe('renders tech tree item', () => {
-    test('renders tech tree item', () => {
+    it('renders tech tree item', () => {
       const store = configureTestStore();
 
       const { container: techTreeItem } = render(

@@ -10,7 +10,7 @@ import { DraftCivButton } from '.';
 
 describe('draft civ button component', () => {
   describe('renders draft civ button', () => {
-    test('renders draft civ button', () => {
+    it('renders draft civ button', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -29,7 +29,7 @@ describe('draft civ button component', () => {
   });
 
   describe('drafts a civ', () => {
-    test('drafts a civ on button click', () => {
+    it('drafts a civ on button click', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -55,7 +55,7 @@ describe('draft civ button component', () => {
       expect(store.getState().draftResult.draftCount).toBe(1);
     });
 
-    test('does not draft civ before fetch success', () => {
+    it('does not draft civ before fetch success', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -74,7 +74,7 @@ describe('draft civ button component', () => {
       expect(store.getState().draftResult.draftCount).toBe(0);
     });
 
-    test('only drafts civs from civ pool', () => {
+    it('only drafts civs from civ pool', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,

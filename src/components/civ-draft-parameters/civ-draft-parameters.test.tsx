@@ -9,7 +9,7 @@ import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {
   describe('renders civ draft parameters', () => {
-    test('renders civ draft parameters', () => {
+    it('renders civ draft parameters', () => {
       const store = configureTestStore();
 
       const { container: civDraftParameters } = render(
@@ -27,7 +27,7 @@ describe('civ draft parameters component', () => {
   });
 
   describe('add all, remove, and invert selection', () => {
-    test('adds all civs to pool', () => {
+    it('adds all civs to pool', () => {
       const store = configureTestStore({
         civs: {
           allCivs: TEST_CIVS,
@@ -47,7 +47,7 @@ describe('civ draft parameters component', () => {
       expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length);
     });
 
-    test('removes all civs from pool', () => {
+    it('removes all civs from pool', () => {
       const store = configureTestStore({
         civs: {
           allCivs: TEST_CIVS,
@@ -67,7 +67,7 @@ describe('civ draft parameters component', () => {
       expect(store.getState().civs.civPool.length).toBe(0);
     });
 
-    test('inverts civ pool selection', () => {
+    it('inverts civ pool selection', () => {
       const store = configureTestStore({
         civs: {
           allCivs: TEST_CIVS,

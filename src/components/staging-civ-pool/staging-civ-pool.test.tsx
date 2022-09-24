@@ -8,7 +8,7 @@ import { configureTestStore } from '../../store/mock-state-service';
 import { StagingCivPool } from '.';
 
 describe('staging civ pool component', () => {
-  test('renders staging civ pool', () => {
+  it('renders staging civ pool', () => {
     const store = configureTestStore();
 
     const { container: stagingCivPoolContainer } = render(

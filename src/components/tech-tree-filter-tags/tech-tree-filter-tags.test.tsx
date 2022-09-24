@@ -7,7 +7,7 @@ import { TechTreeFilterTags } from '.';
 
 describe('tech tree filter tags component', () => {
   describe('renders tech tree filter tags', () => {
-    test('renders tech tree filter tags', () => {
+    it('renders tech tree filter tags', () => {
       const store = configureTestStore();
 
       const { container: techTreeFilterTags } = render(

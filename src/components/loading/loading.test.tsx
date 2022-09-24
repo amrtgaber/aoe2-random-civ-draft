@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { Loading } from '.';
 
-test('renders loading', () => {
+it('renders loading', () => {
   const { container: loadingContainer } = render(
     <Loading componentName='Test' />
   );

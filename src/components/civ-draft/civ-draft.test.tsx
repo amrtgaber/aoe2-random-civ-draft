@@ -10,7 +10,7 @@ import { TEST_CIVS } from '../../test/shared-test-data';
 import { CivDraft } from '.';
 
 describe('civ draft component', () => {
-  test('renders civ draft', () => {
+  it('renders civ draft', () => {
     const store = configureStore({
       reducer: {
         civs: civsReducer,
@@ -31,7 +31,7 @@ describe('civ draft component', () => {
   });
 
   describe('civ draft init', () => {
-    test('updates civ pool from query params', () => {
+    it('updates civ pool from query params', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -59,7 +59,7 @@ describe('civ draft component', () => {
   });
 
   describe('listens to civ pool changes', () => {
-    test('updates query params when civ pool changes', () => {
+    it('updates query params when civ pool changes', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,

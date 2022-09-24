@@ -10,7 +10,7 @@ import { CivDraftResultContainer } from '.';
 
 describe('civ draft result container component', () => {
   describe('renders civ draft result container', () => {
-    test('renders civ draft result container', () => {
+    it('renders civ draft result container', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
@@ -33,7 +33,7 @@ describe('civ draft result container component', () => {
     });
   });
   describe('renders a civ when drafted', () => {
-    test('renders civ draft result container', () => {
+    it('renders civ draft result container', () => {
       const store = configureStore({
         reducer: {
           civs: civsReducer,
