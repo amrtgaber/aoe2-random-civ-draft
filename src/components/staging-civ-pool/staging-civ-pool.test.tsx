@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
 import { configureMockStore } from '../../store/mock-state-service';
+import { FetchStatus } from '../../store/fetch-status-service';
 
 import { StagingCivPool } from '.';
 
@@ -22,6 +23,26 @@ describe('staging civ pool component', () => {
     const stagingCivPoolEl =
       stagingCivPoolContainer.querySelector('.staging-civ-pool');
     expect(stagingCivPoolEl).toBeInTheDocument();
+  });
+
+  it('renders loading component', () => {
+    const mockStore = configureMockStore({
+      civs: {
+        ...MOCK_STATE.civs,
+        civsStatus: FetchStatus.LOADING,
+      },
+    });
+
+    const { container: stagingCivPoolContainer } = render(
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <StagingCivPool />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    const loadingEl = stagingCivPoolContainer.querySelector('.loading-text');
+    expect(loadingEl).toBeInTheDocument();
   });
 
   it('adds staging civs to main pool', () => {
