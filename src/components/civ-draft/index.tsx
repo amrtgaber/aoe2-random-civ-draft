@@ -55,31 +55,33 @@ export const CivDraft: FC = () => {
     return civPool.some((civInPool) => civInPool.civName === civ.civName);
   };
 
+  const renderCivs = (): JSX.Element => {
+    return (
+      <div className='civ-draft'>
+        {allCivs.map((civ) => (
+          <Civ
+            key={civ.id}
+            civ={civ}
+            isDrafted={false}
+            isDraftable={true}
+            isInPool={isInPool(civ)}
+          />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <>
       <h2 className='civ-draft-title'>Civ Pool</h2>
       <p className='civ-draft-tip'>
         Click a civ to add or remove it from the civ pool
       </p>
-      <div
-        className={`civ-draft ${
-          isLoading(civsStatus) ? 'draft-loading' : 'draft-loaded'
-        }`}
-      >
-        {isLoading(civsStatus) ? (
-          <Loading componentName='Civ Pool' />
-        ) : (
-          allCivs.map((civ) => (
-            <Civ
-              key={civ.id}
-              civ={civ}
-              isDrafted={false}
-              isDraftable={true}
-              isInPool={isInPool(civ)}
-            />
-          ))
-        )}
-      </div>
+      {isLoading(civsStatus) ? (
+        <Loading componentName='Civ Pool' />
+      ) : (
+        renderCivs()
+      )}
     </>
   );
 };

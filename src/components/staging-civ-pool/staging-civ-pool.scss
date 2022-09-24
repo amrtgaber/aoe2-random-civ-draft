@@ -70,6 +70,13 @@
   @include button-base(filled-dark, $box-shadow-size: small);
 }
 
+.loading-wrapper {
+  height: 100%;
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
+}
+
 .staging-civ-pool {
   flex: 1 1 80%;
 
@@ -80,32 +87,25 @@
   background-color: $bg-color-light;
   border-radius: $border-radius-medium;
 
-  &.draft-loading {
-    grid-template-rows: 1fr 2fr;
-    height: 300px;
+  overflow-y: auto;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(5, 1fr);
   }
 
-  &.draft-loaded {
-    overflow-y: auto;
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @include for-phone-only {
-      grid-template-columns: repeat(5, 1fr);
-    }
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @include for-tablet-portrait-up {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @include for-1080p-up {
+    grid-template-columns: repeat(5, 1fr);
+  }
 
-    @include for-tablet-landscape-up {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @include for-1080p-up {
-      grid-template-columns: repeat(5, 1fr);
-    }
-
-    @include for-4k-up {
-      grid-template-columns: repeat(6, 1fr);
-    }
+  @include for-4k-up {
+    grid-template-columns: repeat(6, 1fr);
   }
 }

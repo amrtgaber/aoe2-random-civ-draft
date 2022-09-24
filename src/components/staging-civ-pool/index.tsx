@@ -36,6 +36,22 @@ export const StagingCivPool: FC = () => {
     return filteredCivPool.some((civInPool) => civInPool.id === civ.id);
   };
 
+  const renderCivs = (): JSX.Element => {
+    return (
+      <div className='staging-civ-pool'>
+        {allCivs.map((civ) => (
+          <Civ
+            key={civ.id}
+            civ={civ}
+            isDrafted={false}
+            isDraftable={false}
+            isInPool={isInPool(civ)}
+          />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className='staging-civ-pool-container'>
       <div className='staging-civ-pool-header'>
@@ -65,25 +81,13 @@ export const StagingCivPool: FC = () => {
           </a>
         </div>
       </div>
-      <div
-        className={`staging-civ-pool ${
-          isLoading(civsStatus) ? 'draft-loading' : 'draft-loaded'
-        }`}
-      >
-        {isLoading(civsStatus) ? (
+      {isLoading(civsStatus) ? (
+        <div className='loading-wrapper'>
           <Loading componentName='Staging Civ Pool' />
-        ) : (
-          allCivs.map((civ) => (
-            <Civ
-              key={civ.id}
-              civ={civ}
-              isDrafted={false}
-              isDraftable={false}
-              isInPool={isInPool(civ)}
-            />
-          ))
-        )}
-      </div>
+        </div>
+      ) : (
+        renderCivs()
+      )}
     </div>
   );
 };

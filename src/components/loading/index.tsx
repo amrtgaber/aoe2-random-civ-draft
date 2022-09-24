@@ -10,7 +10,7 @@ export const Loading: FC<ILoadingProps> = (props) => {
   const { componentName } = props;
 
   return (
-    <>
+    <div className='loading-container'>
       <p className='loading-text'>loading {componentName}...</p>
       <video className='loading-video' autoPlay loop muted>
         <source
@@ -18,6 +18,6 @@ export const Loading: FC<ILoadingProps> = (props) => {
           type='video/mp4'
         />
       </video>
-    </>
+    </div>
   );
 };
