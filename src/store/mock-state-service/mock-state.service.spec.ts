@@ -1,4 +1,5 @@
 import { isBuilding, isTech, isUnit } from '../../api/tech-tree-item-api';
+import { civsInitialState } from '../slices/civs-slice';
 import { store } from '..';
 
 import {
@@ -13,7 +14,6 @@ import {
   getMockTechTreeUnit,
   getMockTechTreeUnits,
 } from '.';
-import { civsInitialState } from '../slices/civs-slice';
 
 describe('mock state service', () => {
   describe('configure test store', () => {
