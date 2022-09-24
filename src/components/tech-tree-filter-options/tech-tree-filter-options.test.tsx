@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
@@ -79,13 +79,10 @@ describe('tech tree filter options component', () => {
     const selectEl =
       techTreeFilterOptionsContainer.querySelector('.sort-dropdown')!;
 
-    const mockEvent = {
-      target: {
-        value: SortBy.AGE,
-      },
-    };
-
-    fireEvent.change(selectEl, mockEvent);
+    fireEvent.change(
+      selectEl,
+      createEvent('change', selectEl, { target: { value: SortBy.AGE } })
+    );
 
     expect(mockStore.getState().techTreeFilter.sortMode).toBe(SortBy.AGE);
   });
