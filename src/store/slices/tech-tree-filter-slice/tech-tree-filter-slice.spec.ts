@@ -33,10 +33,8 @@ describe('techTreeFilter reducer', () => {
     it('should add item to filter', () => {
       const mockUnit = getMockTechTreeUnit();
 
-      const startState = { ...techTreeFilterInitialState };
-
       const endState = techTreeFilterReducer(
-        startState,
+        techTreeFilterInitialState,
         addItemToFilter(mockUnit)
       );
 
@@ -63,10 +61,8 @@ describe('techTreeFilter reducer', () => {
     it('should set items filter', () => {
       const mockItems = getMockTechTreeItems();
 
-      const startState = { ...techTreeFilterInitialState };
-
       const endState = techTreeFilterReducer(
-        startState,
+        techTreeFilterInitialState,
         setItemsFilter(mockItems)
       );
 
@@ -104,10 +100,8 @@ describe('techTreeFilter reducer', () => {
   it('should set tagged items', () => {
     const mockItems = getMockTechTreeItems();
 
-    const startState = { ...techTreeFilterInitialState };
-
     const endState = techTreeFilterReducer(
-      startState,
+      techTreeFilterInitialState,
       setTaggedItems(mockItems)
     );
 
@@ -169,10 +163,8 @@ describe('techTreeFilter reducer', () => {
   it('should set search term', () => {
     const mockSearchTerm = 'test';
 
-    const startState = { ...techTreeFilterInitialState };
-
     const endState = techTreeFilterReducer(
-      startState,
+      techTreeFilterInitialState,
       setSearchTerm(mockSearchTerm)
     );
 
@@ -180,9 +172,10 @@ describe('techTreeFilter reducer', () => {
   });
 
   it('should set sort mode', () => {
-    const startState = { ...techTreeFilterInitialState };
-
-    const endState = techTreeFilterReducer(startState, setSortMode(SortBy.AGE));
+    const endState = techTreeFilterReducer(
+      techTreeFilterInitialState,
+      setSortMode(SortBy.AGE)
+    );
 
     expect(endState.sortMode).toBe(SortBy.AGE);
   });
@@ -190,10 +183,8 @@ describe('techTreeFilter reducer', () => {
   it('should set selected tags', () => {
     const selectedTag = getTagByName('units');
 
-    const startState = { ...techTreeFilterInitialState };
-
     const endState = techTreeFilterReducer(
-      startState,
+      techTreeFilterInitialState,
       setSelectedTags([selectedTag])
     );
 

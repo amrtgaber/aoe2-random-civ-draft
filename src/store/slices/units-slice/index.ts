@@ -9,7 +9,7 @@ export interface UnitsState {
   unitsStatus: FetchStatus;
 }
 
-export const initialState: UnitsState = {
+export const unitsInitialState: UnitsState = {
   allUnits: [] as IUnit[],
   unitsStatus: FetchStatus.INIT,
 };
@@ -21,7 +21,7 @@ export const fetchUnits = createAsyncThunk(
 
 export const unitsSlice = createSlice({
   name: 'units',
-  initialState,
+  initialState: unitsInitialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

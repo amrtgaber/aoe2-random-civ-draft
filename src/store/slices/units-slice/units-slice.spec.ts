@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_UNITS } from '../../../test/shared-test-data';
+import { mockApiUnits } from '../../../api/units/units-api.spec';
 import { FetchStatus } from '../../fetch-status-service';
-import unitsReducer, { fetchUnits, initialState, UnitsState } from '.';
+
+import unitsReducer, { fetchUnits, unitsInitialState } from '.';
 
 fetchMock.enableMocks();
 
@@ -13,8 +14,8 @@ const store = configureStore({
 
 describe('units reducer', () => {
   it('should handle initial load', () => {
-    expect(unitsReducer(undefined, { type: 'unkown' })).toEqual<UnitsState>(
-      initialState
+    expect(unitsReducer(undefined, { type: 'unkown' })).toEqual(
+      unitsInitialState
     );
   });
 
@@ -24,27 +25,12 @@ describe('units reducer', () => {
     });
 
     it('should fetch all units', async () => {
-      fetchMock.mockResponse(
-        JSON.stringify([
-          {
-            id: 1,
-            unitName: 'skirmisher',
-            civs: [],
-            buildings: [],
-          },
-          {
-            id: 2,
-            unitName: 'archer',
-            civs: [],
-            buildings: [],
-          },
-        ])
-      );
+      fetchMock.mockResponse(JSON.stringify(mockApiUnits));
 
       await store.dispatch(fetchUnits());
 
       expect(store.getState().unitsStatus).toBe(FetchStatus.FULFILLED);
-      expect(store.getState().allUnits.length).toBe(2);
+      expect(store.getState().allUnits.length).toBe(mockApiUnits.length);
     });
 
     it('should set unitsStatus to failed if request is rejected', async () => {

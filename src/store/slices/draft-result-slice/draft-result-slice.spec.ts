@@ -1,23 +1,23 @@
 import { getMockCiv } from '../../mock-state-service';
 
-import draftResultReducer, { draftCiv, DraftResultState } from '.';
-
-const initialState: DraftResultState = {
-  civ: null,
-  draftCount: 0,
-};
+import draftResultReducer, {
+  draftCiv,
+  draftResultinitialState,
+  DraftResultState,
+} from '.';
 
 describe('civs reducer', () => {
   it('should handle initial load', () => {
-    expect(
-      draftResultReducer(undefined, { type: 'unkown' })
-    ).toEqual<DraftResultState>(initialState);
+    expect(draftResultReducer(undefined, { type: 'unkown' })).toEqual(
+      draftResultinitialState
+    );
   });
 
   it('should handle draft civ action', () => {
     const civ = getMockCiv();
+
     expect(
-      draftResultReducer(initialState, draftCiv(civ))
+      draftResultReducer(draftResultinitialState, draftCiv(civ))
     ).toEqual<DraftResultState>({
       civ,
       draftCount: 1,

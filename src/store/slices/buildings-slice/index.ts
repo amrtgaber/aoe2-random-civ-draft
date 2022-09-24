@@ -9,7 +9,7 @@ export interface BuildingsState {
   buildingsStatus: FetchStatus;
 }
 
-export const initialState: BuildingsState = {
+export const buildingsInitialState: BuildingsState = {
   allBuildings: [] as IBuilding[],
   buildingsStatus: FetchStatus.INIT,
 };
@@ -21,7 +21,7 @@ export const fetchBuildings = createAsyncThunk(
 
 export const buildingsSlice = createSlice({
   name: 'buildings',
-  initialState,
+  initialState: buildingsInitialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

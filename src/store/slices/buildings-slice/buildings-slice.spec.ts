@@ -1,13 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_BUILDINGS } from '../../../test/shared-test-data';
+import { mockApiBuildings } from '../../../api/buildings/buildings-api.spec';
 import { FetchStatus } from '../../fetch-status-service';
-import buildingsReducer, {
-  BuildingsState,
-  fetchBuildings,
-  initialState,
-} from '.';
+
+import buildingsReducer, { buildingsInitialState, fetchBuildings } from '.';
 
 fetchMock.enableMocks();
 
@@ -17,9 +14,9 @@ const store = configureStore({
 
 describe('buildings reducer', () => {
   it('should handle initial load', () => {
-    expect(
-      buildingsReducer(undefined, { type: 'unkown' })
-    ).toEqual<BuildingsState>(initialState);
+    expect(buildingsReducer(undefined, { type: 'unkown' })).toEqual(
+      buildingsInitialState
+    );
   });
 
   describe('fetch buildings', () => {
@@ -28,29 +25,14 @@ describe('buildings reducer', () => {
     });
 
     it('should fetch all buildings', async () => {
-      fetchMock.mockResponse(
-        JSON.stringify([
-          {
-            id: 1,
-            buildingName: 'house',
-            civs: [],
-            units: [],
-            techs: [],
-          },
-          {
-            id: 2,
-            buildingName: 'castle',
-            civs: [],
-            units: [],
-            techs: [],
-          },
-        ])
-      );
+      fetchMock.mockResponse(JSON.stringify(mockApiBuildings));
 
       await store.dispatch(fetchBuildings());
 
       expect(store.getState().buildingsStatus).toBe(FetchStatus.FULFILLED);
-      expect(store.getState().allBuildings.length).toBe(2);
+      expect(store.getState().allBuildings.length).toBe(
+        mockApiBuildings.length
+      );
     });
 
     it('should set buildingsStatus to failed if request is rejected', async () => {

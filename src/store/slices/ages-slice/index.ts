@@ -9,7 +9,7 @@ export interface AgesState {
   agesStatus: FetchStatus;
 }
 
-export const initialState: AgesState = {
+export const agesInitialState: AgesState = {
   allAges: [] as IAgeTechTree[],
   agesStatus: FetchStatus.INIT,
 };
@@ -21,7 +21,7 @@ export const fetchAges = createAsyncThunk(
 
 export const agesSlice = createSlice({
   name: 'ages',
-  initialState,
+  initialState: agesInitialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

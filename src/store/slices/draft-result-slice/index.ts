@@ -8,14 +8,14 @@ export interface DraftResultState {
   draftCount: number;
 }
 
-const initialState: DraftResultState = {
+export const draftResultinitialState: DraftResultState = {
   civ: null,
   draftCount: 0,
 };
 
 export const draftResultSlice = createSlice({
   name: 'draftResult',
-  initialState,
+  initialState: draftResultinitialState,
   reducers: {
     draftCiv: (state, action: PayloadAction<ICiv>) => {
       state.civ = action.payload;

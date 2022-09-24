@@ -9,7 +9,7 @@ export interface TechsState {
   techsStatus: FetchStatus;
 }
 
-export const initialState: TechsState = {
+export const techsInitialState: TechsState = {
   allTechs: [] as ITech[],
   techsStatus: FetchStatus.INIT,
 };
@@ -21,7 +21,7 @@ export const fetchTechs = createAsyncThunk(
 
 export const techsSlice = createSlice({
   name: 'techs',
-  initialState,
+  initialState: techsInitialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

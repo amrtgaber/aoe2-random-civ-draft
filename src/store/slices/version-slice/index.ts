@@ -9,7 +9,7 @@ export interface VersionState {
   versionStatus: FetchStatus;
 }
 
-export const initialState: VersionState = {
+export const versionInitialState: VersionState = {
   gameVersion: '',
   versionStatus: FetchStatus.INIT,
 };
@@ -21,7 +21,7 @@ export const fetchVersion = createAsyncThunk(
 
 export const versionSlice = createSlice({
   name: 'version',
-  initialState,
+  initialState: versionInitialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

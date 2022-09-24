@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_TECHS } from '../../../test/shared-test-data';
+import { mockApiTechs } from '../../../api/techs/techs-api.spec';
 import { FetchStatus } from '../../fetch-status-service';
-import techsReducer, { fetchTechs, initialState, TechsState } from '.';
-import { TechTreeItemType } from '../../../api/tech-tree-item-api';
+
+import techsReducer, { fetchTechs, techsInitialState } from '.';
 
 fetchMock.enableMocks();
 
@@ -14,8 +14,8 @@ const store = configureStore({
 
 describe('techs reducer', () => {
   it('should handle initial load', () => {
-    expect(techsReducer(undefined, { type: 'unkown' })).toEqual<TechsState>(
-      initialState
+    expect(techsReducer(undefined, { type: 'unkown' })).toEqual(
+      techsInitialState
     );
   });
 
@@ -25,27 +25,12 @@ describe('techs reducer', () => {
     });
 
     it('should fetch all techs', async () => {
-      fetchMock.mockResponse(
-        JSON.stringify([
-          {
-            id: 1,
-            techName: 'wheelbarrow',
-            civs: [],
-            buildings: [],
-          },
-          {
-            id: 2,
-            techName: 'loom',
-            civs: [],
-            buildings: [],
-          },
-        ])
-      );
+      fetchMock.mockResponse(JSON.stringify(mockApiTechs));
 
       await store.dispatch(fetchTechs());
 
       expect(store.getState().techsStatus).toBe(FetchStatus.FULFILLED);
-      expect(store.getState().allTechs.length).toBe(2);
+      expect(store.getState().allTechs.length).toBe(mockApiTechs.length);
     });
 
     it('should set techsStatus to failed if request is rejected', async () => {

@@ -10,7 +10,7 @@ export interface CivsState {
   civsStatus: FetchStatus;
 }
 
-export const initialState: CivsState = {
+export const civsInitialState: CivsState = {
   allCivs: [] as ICiv[],
   civPool: [] as ICiv[],
   civsStatus: FetchStatus.INIT,
@@ -23,7 +23,7 @@ export const fetchCivs = createAsyncThunk(
 
 export const civsSlice = createSlice({
   name: 'civs',
-  initialState,
+  initialState: civsInitialState,
   reducers: {
     addAllCivsToPool: (state) => {
       state.civPool = state.allCivs;
