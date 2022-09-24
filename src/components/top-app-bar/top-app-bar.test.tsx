@@ -1,24 +1,22 @@
 import { render } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import versionReducer from '../../store/slices/version-slice';
+import { configureMockStore } from '../../store/mock-state-service';
+
 import { TopAppBar } from './';
 
-it('renders top app bar', () => {
-  const reducer = {
-    version: versionReducer,
-  };
+describe('top app bar component', () => {
+  it('renders top app bar', () => {
+    const mockStore = configureMockStore();
 
-  const store = configureStore({ reducer });
+    const { container: topAppBarContainer } = render(
+      <Provider store={mockStore}>
+        <TopAppBar />
+      </Provider>
+    );
 
-  const { container: topAppBarContainer } = render(
-    <Provider store={store}>
-      <TopAppBar />
-    </Provider>
-  );
+    const topAppBarEl = topAppBarContainer.querySelector('.top-app-bar');
 
-  const topAppBarEl = topAppBarContainer.querySelector('.top-app-bar');
-
-  expect(topAppBarEl).toBeInTheDocument();
+    expect(topAppBarEl).toBeInTheDocument();
+  });
 });

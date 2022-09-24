@@ -1,21 +1,26 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { configureTestStore } from '../../store/mock-state-service';
-import { FetchStatus } from '../../store/fetch-status-service';
-import { TEST_CIVS } from '../../test/shared-test-data';
+import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
+import {
+  configureMockStore,
+  getMockCiv,
+  getMockCivs,
+} from '../../store/mock-state-service';
 
 import { Civ } from '.';
 
 describe('civ component', () => {
   describe('renders civ component', () => {
     it('renders civ component', () => {
-      const store = configureTestStore();
+      const mockCiv = getMockCiv();
+
+      const mockStore = configureMockStore();
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv}
             isDrafted={false}
             isDraftable={true}
             isInPool={false}
@@ -30,12 +35,14 @@ describe('civ component', () => {
 
   describe('civ in civ draft component', () => {
     it('adds civ to civ pool when clicked', () => {
-      const store = configureTestStore();
+      const mockCiv = getMockCiv();
+
+      const mockStore = configureMockStore();
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv}
             isDrafted={false}
             isDraftable={true}
             isInPool={false}
@@ -43,23 +50,24 @@ describe('civ component', () => {
         </Provider>
       );
 
-      fireEvent.click(screen.getByText('Aztecs'));
-      expect(store.getState().civs.civPool[0].civName).toBe('Aztecs');
+      fireEvent.click(screen.getByText(mockCiv.civName));
+      expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv.id);
     });
 
     it('removes civ from civ pool when clicked', () => {
-      const store = configureTestStore({
+      const mockCiv = getMockCiv();
+
+      const mockStore = configureMockStore({
         civs: {
-          allCivs: TEST_CIVS,
-          civPool: [TEST_CIVS[0]],
-          civsStatus: FetchStatus.FULFILLED,
+          ...MOCK_STATE.civs,
+          civPool: [mockCiv],
         },
       });
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv}
             isDrafted={false}
             isDraftable={true}
             isInPool={true}
@@ -67,35 +75,32 @@ describe('civ component', () => {
         </Provider>
       );
 
-      fireEvent.click(screen.getByText('Aztecs'));
-      expect(store.getState().civs.civPool.length).toBe(0);
+      fireEvent.click(screen.getByText(mockCiv.civName));
+      expect(mockStore.getState().civs.civPool.length).toBe(0);
     });
 
     it('clicking tech tree does not affect pool state', () => {
-      const store = configureTestStore({
+      const mockCivs = getMockCivs();
+      const mockCiv1 = mockCivs[0];
+      const mockCiv2 = mockCivs[1];
+
+      const mockStore = configureMockStore({
         civs: {
-          allCivs: TEST_CIVS,
-          civPool: [TEST_CIVS[0]],
-          civsStatus: FetchStatus.FULFILLED,
+          ...MOCK_STATE.civs,
+          civPool: [mockCiv1],
         },
       });
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv1}
             isDrafted={false}
             isDraftable={true}
             isInPool={true}
           />
           <Civ
-            civ={TEST_CIVS[1]}
-            isDrafted={false}
-            isDraftable={true}
-            isInPool={false}
-          />
-          <Civ
-            civ={TEST_CIVS[2]}
+            civ={mockCiv2}
             isDrafted={false}
             isDraftable={true}
             isInPool={false}
@@ -103,22 +108,24 @@ describe('civ component', () => {
         </Provider>
       );
 
-      fireEvent.click(screen.getByAltText('Aztecs emblem'));
-      expect(store.getState().civs.civPool[0].civName).toBe('Aztecs');
+      fireEvent.click(screen.getByAltText(`${mockCiv1.civName} emblem`));
+      expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv1.id);
 
-      fireEvent.click(screen.getByAltText('Vikings emblem'));
-      expect(store.getState().civs.civPool[0].civName).toBe('Aztecs');
+      fireEvent.click(screen.getByAltText(`${mockCiv2.civName} emblem`));
+      expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv1.id);
     });
   });
 
   describe('civ in draft result component', () => {
     it('renders civ in draft result component', () => {
-      const store = configureTestStore();
+      const mockCiv = getMockCiv();
+
+      const mockStore = configureMockStore();
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv}
             isDrafted={true}
             isDraftable={true}
             isInPool={false}
@@ -126,17 +133,19 @@ describe('civ component', () => {
         </Provider>
       );
 
-      const civEl = civContainer.querySelector('.civ-container');
+      const civEl = screen.getByText(mockCiv.civName);
       expect(civEl).toBeInTheDocument();
     });
 
     it('removes animation class when animation ends', () => {
-      const store = configureTestStore();
+      const mockCiv = getMockCiv();
+
+      const mockStore = configureMockStore();
 
       const { container: civContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <Civ
-            civ={TEST_CIVS[0]}
+            civ={mockCiv}
             isDrafted={true}
             isDraftable={true}
             isInPool={false}

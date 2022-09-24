@@ -1,19 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { reducer, RootState } from '../';
 import { IBuilding } from '../../api/buildings/buildings-api';
 import { ITech } from '../../api/techs/techs-api';
 import { IUnit } from '../../api/units/units-api';
+import { ICiv } from '../../api/civs/civs-api';
 import {
   isBuilding,
   isTech,
   isUnit,
   ITechTreeItem,
 } from '../../api/tech-tree-item-api';
+import { reducer, RootState } from '../';
 
 import { MOCK_STATE } from './mock-state';
 
-export function configureTestStore(state?: Partial<RootState>) {
+export function configureMockStore(state?: Partial<RootState>) {
   return configureStore({
     reducer,
     preloadedState: state,
@@ -70,4 +71,13 @@ export function getMockTechTreeBuildings(): IBuilding[] {
   ) as IBuilding[];
 
   return [...mockBuildings];
+}
+
+export function getMockCiv(): ICiv {
+  const mockCiv = MOCK_STATE.civs.allCivs[0];
+  return { ...mockCiv };
+}
+
+export function getMockCivs(): ICiv[] {
+  return [...MOCK_STATE.civs.allCivs];
 }

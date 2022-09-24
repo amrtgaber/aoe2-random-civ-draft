@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { TEST_CIVS } from '../../../test/shared-test-data';
+import { getMockCivs } from '../../mock-state-service';
 import { FetchStatus } from '../../fetch-status-service';
+
 import civsReducer, {
   addAllCivsToPool,
   addCivsToPool,
@@ -88,25 +89,25 @@ describe('civs reducer', () => {
   describe('add all civs to civ pool', () => {
     it('should add all civs to civ pool', () => {
       const startState: CivsState = {
-        allCivs: TEST_CIVS,
+        allCivs: getMockCivs(),
         civPool: [],
         civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(startState, addAllCivsToPool());
-      expect(endState.civPool.length).toBe(TEST_CIVS.length);
+      expect(endState.civPool.length).toBe(getMockCivs().length);
     });
   });
 
   describe('add a civ to civ pool', () => {
     it('should add a civ to civ pool', () => {
       const startState: CivsState = {
-        allCivs: TEST_CIVS,
+        allCivs: getMockCivs(),
         civPool: [],
         civsStatus: FetchStatus.FULFILLED,
       };
 
-      const endState = civsReducer(startState, addCivToPool(TEST_CIVS[0]));
+      const endState = civsReducer(startState, addCivToPool(getMockCivs()[0]));
 
       expect(endState.civPool.length).toBe(1);
       expect(endState.civPool[0].civName).toBe('Aztecs');
@@ -116,14 +117,14 @@ describe('civs reducer', () => {
   describe('add multiple civs to civ pool', () => {
     it('should add multiple civs to civ pool', () => {
       const startState: CivsState = {
-        allCivs: TEST_CIVS,
+        allCivs: getMockCivs(),
         civPool: [],
         civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(
         startState,
-        addCivsToPool([TEST_CIVS[0], TEST_CIVS[1]])
+        addCivsToPool([getMockCivs()[0], getMockCivs()[1]])
       );
 
       expect(endState.civPool.length).toBe(2);
@@ -136,7 +137,7 @@ describe('civs reducer', () => {
     it('should remove all civs from civ pool', () => {
       const startState: CivsState = {
         allCivs: [],
-        civPool: TEST_CIVS,
+        civPool: getMockCivs(),
         civsStatus: FetchStatus.FULFILLED,
       };
 
@@ -147,34 +148,38 @@ describe('civs reducer', () => {
 
   describe('remove a civ from civ pool', () => {
     it('should remove a civ from civ pool', () => {
+      const mockCivs = getMockCivs();
+
       const startState: CivsState = {
         allCivs: [],
-        civPool: TEST_CIVS,
+        civPool: mockCivs,
         civsStatus: FetchStatus.FULFILLED,
       };
 
-      const endState = civsReducer(startState, removeCivFromPool(TEST_CIVS[0]));
+      const endState = civsReducer(startState, removeCivFromPool(mockCivs[0]));
 
-      expect(endState.civPool.length).toBe(2);
-      expect(endState.civPool[0].civName).toBe('Franks');
+      expect(endState.civPool.length).toBe(mockCivs.length - 1);
+      expect(endState.civPool[0].civName).toBe(mockCivs[1].civName);
     });
   });
 
   describe('removes multiple civs from civ pool', () => {
     it('should remove multiple civs from civ pool', () => {
+      const mockCivs = getMockCivs();
+
       const startState: CivsState = {
         allCivs: [],
-        civPool: TEST_CIVS,
+        civPool: mockCivs,
         civsStatus: FetchStatus.FULFILLED,
       };
 
       const endState = civsReducer(
         startState,
-        removeCivsFromPool([TEST_CIVS[0], TEST_CIVS[1]])
+        removeCivsFromPool([mockCivs[0], mockCivs[1]])
       );
 
-      expect(endState.civPool.length).toBe(1);
-      expect(endState.civPool[0].civName).toBe('Vikings');
+      expect(endState.civPool.length).toBe(mockCivs.length - 2);
+      expect(endState.civPool[0].civName).toBe(mockCivs[2].civName);
     });
   });
 
@@ -186,9 +191,9 @@ describe('civs reducer', () => {
         civsStatus: FetchStatus.FULFILLED,
       };
 
-      const endState = civsReducer(startState, setCivPool(TEST_CIVS));
+      const endState = civsReducer(startState, setCivPool(getMockCivs()));
 
-      expect(endState.civPool.length).toBe(TEST_CIVS.length);
+      expect(endState.civPool.length).toBe(getMockCivs().length);
     });
   });
 });

@@ -3,16 +3,16 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
-import { configureTestStore } from '../../store/mock-state-service';
+import { configureMockStore } from '../../store/mock-state-service';
 
 import { StagingCivPool } from '.';
 
 describe('staging civ pool component', () => {
   it('renders staging civ pool', () => {
-    const store = configureTestStore();
+    const mockStore = configureMockStore();
 
     const { container: stagingCivPoolContainer } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <MemoryRouter>
           <StagingCivPool />
         </MemoryRouter>
@@ -29,7 +29,7 @@ describe('staging civ pool component', () => {
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
 
-    const store = configureTestStore({
+    const mockStore = configureMockStore({
       civs: {
         ...MOCK_STATE.civs,
         civPool: [mockCiv1],
@@ -41,7 +41,7 @@ describe('staging civ pool component', () => {
     });
 
     const { container: stagingCivPoolContainer } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <MemoryRouter>
           <StagingCivPool />
         </MemoryRouter>
@@ -50,7 +50,7 @@ describe('staging civ pool component', () => {
 
     fireEvent.click(screen.getByText('Add to pool'));
 
-    const civPool = store.getState().civs.civPool;
+    const civPool = mockStore.getState().civs.civPool;
 
     expect(civPool.length).toBe(2);
     expect(civPool[0].id).toBe(mockCiv1.id);
@@ -62,7 +62,7 @@ describe('staging civ pool component', () => {
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
 
-    const store = configureTestStore({
+    const mockStore = configureMockStore({
       civs: {
         ...MOCK_STATE.civs,
         civPool: [mockCiv1],
@@ -74,7 +74,7 @@ describe('staging civ pool component', () => {
     });
 
     const { container: stagingCivPoolContainer } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <MemoryRouter>
           <StagingCivPool />
         </MemoryRouter>
@@ -83,7 +83,7 @@ describe('staging civ pool component', () => {
 
     fireEvent.click(screen.getByText('Replace pool'));
 
-    const civPool = store.getState().civs.civPool;
+    const civPool = mockStore.getState().civs.civPool;
 
     expect(civPool.length).toBe(1);
     expect(civPool[0].id).toBe(mockCiv2.id);
@@ -94,7 +94,7 @@ describe('staging civ pool component', () => {
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
 
-    const store = configureTestStore({
+    const mockStore = configureMockStore({
       civs: {
         ...MOCK_STATE.civs,
         civPool: [mockCiv1, mockCiv2],
@@ -106,7 +106,7 @@ describe('staging civ pool component', () => {
     });
 
     const { container: stagingCivPoolContainer } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <MemoryRouter>
           <StagingCivPool />
         </MemoryRouter>
@@ -115,7 +115,7 @@ describe('staging civ pool component', () => {
 
     fireEvent.click(screen.getByText('Subtract from pool'));
 
-    const civPool = store.getState().civs.civPool;
+    const civPool = mockStore.getState().civs.civPool;
 
     expect(civPool.length).toBe(1);
     expect(civPool[0].id).toBe(mockCiv2.id);

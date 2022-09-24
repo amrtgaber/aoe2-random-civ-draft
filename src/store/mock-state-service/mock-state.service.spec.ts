@@ -1,6 +1,10 @@
 import { isBuilding, isTech, isUnit } from '../../api/tech-tree-item-api';
+import { store } from '..';
 
 import {
+  configureMockStore,
+  getMockCiv,
+  getMockCivs,
   getMockTechTreeBuilding,
   getMockTechTreeBuildings,
   getMockTechTreeItems,
@@ -9,8 +13,29 @@ import {
   getMockTechTreeUnit,
   getMockTechTreeUnits,
 } from '.';
+import { initialState } from '../slices/civs-slice';
 
 describe('mock state service', () => {
+  describe('configure test store', () => {
+    it('returns test store with initial state', () => {
+      const mockStore = configureMockStore();
+      expect(mockStore.getState()).toEqual(store.getState());
+    });
+
+    it('returns test store with provided state', () => {
+      const mockCivs = getMockCivs();
+
+      const mockStore = configureMockStore({
+        civs: {
+          ...initialState,
+          allCivs: mockCivs,
+        },
+      });
+
+      expect(mockStore.getState().civs.allCivs.length).toEqual(mockCivs.length);
+    });
+  });
+
   it('gets mock tech tree items', () => {
     const mockItems = getMockTechTreeItems();
     expect(mockItems.length).toBeGreaterThan(0);
@@ -54,6 +79,19 @@ describe('mock state service', () => {
       expect(mockBuildings.every((building) => isBuilding(building))).toBe(
         true
       );
+    });
+  });
+
+  describe('mock civs', () => {
+    it('gets a mock civ', () => {
+      const mockCiv = getMockCiv();
+      expect(mockCiv.civName).toBeDefined();
+    });
+
+    it('gets mock civs', () => {
+      const mockCivs = getMockCivs();
+      expect(mockCivs.length).toBeGreaterThan(0);
+      expect(mockCivs.every((civ) => civ.civName.length > 0)).toBe(true);
     });
   });
 });
