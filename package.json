@@ -1,10 +1,12 @@
 {
   "name": "aoe2-random-civ-draft",
   "version": "2.0.0",
+  "author": "debrijja",
+  "description": "Age of Empires 2 app for picking a random civ",
   "private": true,
-  "main": "public/electron.js",
+  "main": "src/electron.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron-forge start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage .",
@@ -13,8 +15,9 @@
     "lint:fix": "eslint --fix .",
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint-check": "stylelint-config-prettier-check",
-    "electron-dev": "electron .",
-    "electron-build": "electron-forge make"
+    "electron-dev": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "eslintConfig": {
     "extends": [
@@ -65,7 +68,6 @@
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "electron": "^20.2.0",
-    "electron-forge": "^5.2.4",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -88,7 +90,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "aoe2-random-civ-draft"
+            "name": "aoe2_random_civ_draft"
           }
         },
         {
