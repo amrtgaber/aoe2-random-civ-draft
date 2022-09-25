@@ -13,13 +13,13 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.ts'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
-  // and load the index.html of the app.
+  mainWindow.loadURL('https://aoe2-random-civ-draft.com');
+  // mainWindow.loadURL('http://localhost:3000'); // dev
   // mainWindow.loadFile(path.join(__dirname, 'index.html'));
-  mainWindow.loadURL('https://aoe2-random-civ-draft.app');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

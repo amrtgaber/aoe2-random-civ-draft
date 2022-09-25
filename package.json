@@ -6,7 +6,7 @@
   "private": true,
   "main": "src/electron.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage .",
@@ -15,7 +15,7 @@
     "lint:fix": "eslint --fix .",
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint-check": "stylelint-config-prettier-check",
-    "electron-dev": "electron-forge start",
+    "electron start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
@@ -85,12 +85,14 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar": true
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "aoe2_random_civ_draft"
+            "name": "aoe2-random-civ-draft"
           }
         },
         {
