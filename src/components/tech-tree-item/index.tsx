@@ -22,12 +22,10 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
 
   const kind = item.kind;
   const name = item.itemName;
+  const ageFilename = item.age!.ageName.replace(' ', '_');
 
   const imgSrc = `/assets/images/tech-tree/${kind}s/${name}.png`;
-  const ageIconSrc = `assets/images/tech-tree/age-icons/${item.age!.ageName.replace(
-    ' ',
-    '_'
-  )}.png`;
+  const ageIconSrc = `assets/images/tech-tree/age-icons/${ageFilename}.png`;
 
   const uniqueClass = item.isUnique ? 'unique' : '';
   const enterClass = selected ? 'enter-selected' : 'enter-unselected';
