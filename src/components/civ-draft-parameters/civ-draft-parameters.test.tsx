@@ -1,17 +1,21 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { FetchStatus } from '../../store/shared-store-utils';
-import { configureTestStore, TEST_CIVS } from '../../test/shared-test-data';
+import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
+import {
+  configureMockStore,
+  getMockCivs,
+} from '../../store/mock-state-service';
+
 import { CivDraftParameters } from '.';
 
 describe('civ draft parameters component', () => {
   describe('renders civ draft parameters', () => {
-    test('renders civ draft parameters', () => {
-      const store = configureTestStore();
+    it('renders civ draft parameters', () => {
+      const mockStore = configureMockStore();
 
       const { container: civDraftParameters } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <CivDraftParameters />
         </Provider>
       );
@@ -25,64 +29,66 @@ describe('civ draft parameters component', () => {
   });
 
   describe('add all, remove, and invert selection', () => {
-    test('adds all civs to pool', () => {
-      const store = configureTestStore({
-        civs: {
-          allCivs: TEST_CIVS,
-          civPool: [],
-          civsStatus: FetchStatus.FULFILLED,
-        },
+    it('adds all civs to pool', () => {
+      const mockCivs = getMockCivs();
+
+      const mockStore = configureMockStore({
+        civs: MOCK_STATE.civs,
       });
 
       const { container: civDraftParameters } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <CivDraftParameters />
         </Provider>
       );
 
-      expect(store.getState().civs.civPool.length).toBe(0);
+      expect(mockStore.getState().civs.civPool.length).toBe(0);
       fireEvent.click(screen.getByText('Add all civs'));
-      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length);
+      expect(mockStore.getState().civs.civPool.length).toBe(mockCivs.length);
     });
 
-    test('removes all civs from pool', () => {
-      const store = configureTestStore({
+    it('removes all civs from pool', () => {
+      const mockCivs = getMockCivs();
+
+      const mockStore = configureMockStore({
         civs: {
-          allCivs: TEST_CIVS,
-          civPool: TEST_CIVS,
-          civsStatus: FetchStatus.FULFILLED,
+          ...MOCK_STATE.civs,
+          civPool: mockCivs,
         },
       });
 
       const { container: civDraftParameters } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <CivDraftParameters />
         </Provider>
       );
 
-      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length);
+      expect(mockStore.getState().civs.civPool.length).toBe(mockCivs.length);
       fireEvent.click(screen.getByText('Reset'));
-      expect(store.getState().civs.civPool.length).toBe(0);
+      expect(mockStore.getState().civs.civPool.length).toBe(0);
     });
 
-    test('inverts civ pool selection', () => {
-      const store = configureTestStore({
+    it('inverts civ pool selection', () => {
+      const mockCivs = getMockCivs();
+
+      const mockStore = configureMockStore({
         civs: {
-          allCivs: TEST_CIVS,
-          civPool: [TEST_CIVS[0]],
-          civsStatus: FetchStatus.FULFILLED,
+          ...MOCK_STATE.civs,
+          civPool: [mockCivs[0]],
         },
       });
 
       const { container: civDraftParameters } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <CivDraftParameters />
         </Provider>
       );
 
-      expect(store.getState().civs.civPool.length).toBe(1);
+      expect(mockStore.getState().civs.civPool.length).toBe(1);
       fireEvent.click(screen.getByText('Invert selection'));
-      expect(store.getState().civs.civPool.length).toBe(TEST_CIVS.length - 1);
+      expect(mockStore.getState().civs.civPool.length).toBe(
+        mockCivs.length - 1
+      );
     });
   });
 });

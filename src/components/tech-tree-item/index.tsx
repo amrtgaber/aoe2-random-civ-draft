@@ -8,7 +8,7 @@ import {
   addShownItem,
   removeItemFromFilter,
   removeShownItem,
-} from '../../store/tech-tree-filter-slice';
+} from '../../store/slices/tech-tree-filter-slice';
 
 export interface ITechTreeItemProps {
   item: ITechTreeItem;

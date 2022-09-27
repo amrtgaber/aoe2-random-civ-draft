@@ -6,7 +6,7 @@ import {
   removeAllCivsFromPool,
   selectCivs,
   setCivPool,
-} from '../../store/civs-slice';
+} from '../../store/slices/civs-slice';
 import { SaveCivPool } from '../save-civ-pool';
 
 import './civ-draft-parameters.scss';

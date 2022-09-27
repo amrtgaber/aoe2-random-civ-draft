@@ -1,13 +1,13 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
-import civsReducer from '../store/civs-slice';
-import unitsReducer from '../store/units-slice';
-import techsReducer from '../store/techs-slice';
-import buildingsReducer from '../store/buildings-slice';
-import agesReducer from '../store/ages-slice';
-import versionReducer from '../store/version-slice';
-import techTreeFilterReducer from './tech-tree-filter-slice';
-import draftResultReducer from './draft-result-slice';
+import civsReducer from './slices/civs-slice';
+import unitsReducer from './slices/units-slice';
+import techsReducer from './slices/techs-slice';
+import buildingsReducer from './slices/buildings-slice';
+import agesReducer from './slices/ages-slice';
+import versionReducer from './slices/version-slice';
+import techTreeFilterReducer from './slices/tech-tree-filter-slice';
+import draftResultReducer from './slices/draft-result-slice';
 
 export const reducer = {
   civs: civsReducer,

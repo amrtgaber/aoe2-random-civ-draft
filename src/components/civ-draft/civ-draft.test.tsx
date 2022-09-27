@@ -1,25 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
-import civsReducer from '../../store/civs-slice';
-import draftResultReducer from '../../store/draft-result-slice';
-import { FetchStatus } from '../../store/shared-store-utils';
-import { TEST_CIVS } from '../../test/shared-test-data';
+import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
+import { configureMockStore } from '../../store/mock-state-service';
+
 import { CivDraft } from '.';
 
 describe('civ draft component', () => {
-  test('renders civ draft', () => {
-    const store = configureStore({
-      reducer: {
-        civs: civsReducer,
-        draftResult: draftResultReducer,
-      },
-    });
+  it('renders civ draft', () => {
+    const mockStore = configureMockStore();
 
     const { container: civDraftContainer } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <MemoryRouter>
           <CivDraft />
         </MemoryRouter>
@@ -31,51 +24,31 @@ describe('civ draft component', () => {
   });
 
   describe('civ draft init', () => {
-    test('updates civ pool from query params', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [],
-            civsStatus: FetchStatus.FULFILLED,
-          },
-        },
+    it('updates civ pool from query params', () => {
+      const mockStore = configureMockStore({
+        civs: MOCK_STATE.civs,
       });
 
       const { container: civDraftContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <MemoryRouter initialEntries={['?civPool=Aztecs,Vikings']}>
             <CivDraft />
           </MemoryRouter>
         </Provider>
       );
 
-      expect(store.getState().civs.civPool.length).toBe(2);
+      expect(mockStore.getState().civs.civPool.length).toBe(2);
     });
   });
 
   describe('listens to civ pool changes', () => {
-    test('updates query params when civ pool changes', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [],
-            civsStatus: FetchStatus.FULFILLED,
-          },
-        },
+    it('updates query params when civ pool changes', () => {
+      const mockStore = configureMockStore({
+        civs: MOCK_STATE.civs,
       });
 
       const { container: civDraftContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <BrowserRouter>
             <CivDraft />
           </BrowserRouter>

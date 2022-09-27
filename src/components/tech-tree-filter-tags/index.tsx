@@ -4,12 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   selectTechTreeFilter,
   setSelectedTags,
-} from '../../store/tech-tree-filter-slice';
+} from '../../store/slices/tech-tree-filter-slice';
 import {
   FilterTag,
   filterTags,
-} from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
-import { TagType } from '../../store/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
+} from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
+import { TagType } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
 
 import './tech-tree-filter-tags.scss';
 

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { DraftCivButton } from './draft-civ-button';
 import { Civ } from '../civ';
 import { useAppSelector } from '../../hooks';
-import { selectDraftResult } from '../../store/draft-result-slice';
+import { selectDraftResult } from '../../store/slices/draft-result-slice';
 
 import './civ-draft-result-container.scss';
 

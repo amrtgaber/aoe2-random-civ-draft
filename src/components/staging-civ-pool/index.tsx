@@ -6,9 +6,9 @@ import {
   removeCivsFromPool,
   selectCivs,
   setCivPool,
-} from '../../store/civs-slice';
-import { isLoading } from '../../store/shared-store-utils';
-import { selectTechTreeFilter } from '../../store/tech-tree-filter-slice';
+} from '../../store/slices/civs-slice';
+import { isLoading } from '../../store/fetch-status-service';
+import { selectTechTreeFilter } from '../../store/slices/tech-tree-filter-slice';
 import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
 import { Civ, ICivProps } from '../civ';

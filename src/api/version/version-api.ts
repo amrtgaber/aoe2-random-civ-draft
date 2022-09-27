@@ -1,5 +1,10 @@
 import { API_URL } from '..';
 
+export interface ApiVersion {
+  id: number;
+  gameVersion: string;
+}
+
 export interface IVersion {
   gameVersion: string;
 }
