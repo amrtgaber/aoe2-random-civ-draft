@@ -9,7 +9,7 @@ import {
   ITechTreeItem,
 } from '../tech-tree-item-api';
 
-interface ApiAge {
+export interface ApiAge {
   id: number;
   ageName: string;
   units: ApiConnectedUnit[];

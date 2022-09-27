@@ -1,25 +1,89 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { configureTestStore } from '../../test/shared-test-data';
+import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
+import { configureMockStore } from '../../store/mock-state-service';
+import { FilterMode } from '../../store/slices/tech-tree-filter-slice';
+import { SortBy } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
+
 import { TechTreeFilterOptions } from '.';
 
 describe('tech tree filter options component', () => {
-  describe('renders tech tree filter options', () => {
-    test('renders tech tree filter options', () => {
-      const store = configureTestStore();
+  it('renders tech tree filter options', () => {
+    const mockStore = configureMockStore();
 
-      const { container: techTreeFilterOptions } = render(
-        <Provider store={store}>
-          <TechTreeFilterOptions />
-        </Provider>
-      );
+    const { container: techTreeFilterOptionsContainer } = render(
+      <Provider store={mockStore}>
+        <TechTreeFilterOptions />
+      </Provider>
+    );
 
-      const techTreeFilterOptionsEl = techTreeFilterOptions.querySelector(
-        '.tech-tree-filter-options'
-      );
+    const techTreeFilterOptionsEl =
+      techTreeFilterOptionsContainer.querySelector('.tech-tree-filter-options');
 
-      expect(techTreeFilterOptionsEl).toBeInTheDocument();
+    expect(techTreeFilterOptionsEl).toBeInTheDocument();
+  });
+
+  it('toggles the filter mode', () => {
+    const mockStore = configureMockStore();
+
+    const { container: techTreeFilterOptionsContainer } = render(
+      <Provider store={mockStore}>
+        <TechTreeFilterOptions />
+      </Provider>
+    );
+
+    fireEvent.click(screen.getByText('ALL'));
+    expect(mockStore.getState().techTreeFilter.filterMode).toBe(
+      FilterMode.HAS_ANY
+    );
+
+    fireEvent.click(screen.getByText('ANY'));
+    expect(mockStore.getState().techTreeFilter.filterMode).toBe(
+      FilterMode.HAS_ALL
+    );
+  });
+
+  it('clears items filter', () => {
+    const mockStore = configureMockStore({
+      techTreeFilter: MOCK_STATE.techTreeFilter,
     });
+
+    const { container: techTreeFilterOptionsContainer } = render(
+      <Provider store={mockStore}>
+        <TechTreeFilterOptions />
+      </Provider>
+    );
+
+    expect(
+      mockStore.getState().techTreeFilter.itemsFilter.length
+    ).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getByText('Reset selected items'));
+    expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(0);
+  });
+
+  it('sets sort mode', () => {
+    const mockStore = configureMockStore({
+      techTreeFilter: MOCK_STATE.techTreeFilter,
+    });
+
+    const { container: techTreeFilterOptionsContainer } = render(
+      <Provider store={mockStore}>
+        <TechTreeFilterOptions />
+      </Provider>
+    );
+
+    expect(mockStore.getState().techTreeFilter.sortMode).toBe(SortBy.ALPHA);
+
+    const selectEl =
+      techTreeFilterOptionsContainer.querySelector('.sort-dropdown')!;
+
+    fireEvent.change(
+      selectEl,
+      createEvent('change', selectEl, { target: { value: SortBy.AGE } })
+    );
+
+    expect(mockStore.getState().techTreeFilter.sortMode).toBe(SortBy.AGE);
   });
 });

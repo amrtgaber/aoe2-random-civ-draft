@@ -2,8 +2,8 @@ import { AnimationEvent, FC, MouseEvent, useEffect, useRef } from 'react';
 
 import { ICiv } from '../../api/civs/civs-api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addCivToPool, removeCivFromPool } from '../../store/civs-slice';
-import { selectDraftResult } from '../../store/draft-result-slice';
+import { addCivToPool, removeCivFromPool } from '../../store/slices/civs-slice';
+import { selectDraftResult } from '../../store/slices/draft-result-slice';
 
 import './civ.scss';
 

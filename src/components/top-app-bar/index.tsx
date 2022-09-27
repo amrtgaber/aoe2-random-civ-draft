@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { isFulfilled, isInit } from '../../store/shared-store-utils';
-import { fetchVersion, selectVersion } from '../../store/version-slice';
+import { isFulfilled, isInit } from '../../store/fetch-status-service';
+import { fetchVersion, selectVersion } from '../../store/slices/version-slice';
 
 import './top-app-bar.scss';
 

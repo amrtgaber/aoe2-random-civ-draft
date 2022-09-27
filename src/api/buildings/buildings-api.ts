@@ -12,7 +12,7 @@ import {
   TechTreeItemType,
 } from '../tech-tree-item-api';
 
-interface ApiBuilding {
+export interface ApiBuilding {
   id: number;
   buildingName: string;
   age: IAge;

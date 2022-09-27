@@ -1,25 +1,22 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import civsReducer from '../../../store/civs-slice';
-import draftResultReducer from '../../../store/draft-result-slice';
-import { FetchStatus } from '../../../store/shared-store-utils';
-import { TEST_CIVS } from '../../../test/shared-test-data';
+import { MOCK_STATE } from '../../../store/mock-state-service/mock-state';
+import {
+  configureMockStore,
+  getMockCiv,
+} from '../../../store/mock-state-service';
+import { FetchStatus } from '../../../store/fetch-status-service';
+
 import { DraftCivButton } from '.';
 
 describe('draft civ button component', () => {
   describe('renders draft civ button', () => {
-    test('renders draft civ button', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-      });
+    it('renders draft civ button', () => {
+      const mockStore = configureMockStore();
 
       const { container: draftCivButtonContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <DraftCivButton />
         </Provider>
       );
@@ -29,82 +26,73 @@ describe('draft civ button component', () => {
   });
 
   describe('drafts a civ', () => {
-    test('drafts a civ on button click', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [],
-            civsStatus: FetchStatus.FULFILLED,
-          },
-        },
+    it('drafts a civ on button click', () => {
+      const mockStore = configureMockStore({
+        civs: MOCK_STATE.civs,
       });
 
       const { container: draftCivButtonContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <DraftCivButton />
         </Provider>
       );
 
-      expect(store.getState().draftResult.draftCount).toBe(0);
+      expect(mockStore.getState().draftResult.draftCount).toBe(0);
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.draftCount).toBe(1);
+      expect(mockStore.getState().draftResult.draftCount).toBe(1);
     });
 
-    test('does not draft civ before fetch success', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
+    it('does not draft civ before fetch success', () => {
+      const mockStore = configureMockStore({
+        civs: {
+          ...MOCK_STATE.civs,
+          civsStatus: FetchStatus.LOADING,
         },
       });
 
       const { container: draftCivButtonContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <DraftCivButton />
         </Provider>
       );
 
-      expect(store.getState().draftResult.draftCount).toBe(0);
+      expect(mockStore.getState().draftResult.draftCount).toBe(0);
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.draftCount).toBe(0);
+      expect(mockStore.getState().draftResult.draftCount).toBe(0);
     });
 
-    test('only drafts civs from civ pool', () => {
-      const store = configureStore({
-        reducer: {
-          civs: civsReducer,
-          draftResult: draftResultReducer,
-        },
-        preloadedState: {
-          civs: {
-            allCivs: TEST_CIVS,
-            civPool: [TEST_CIVS[0]],
-            civsStatus: FetchStatus.FULFILLED,
-          },
+    it('only drafts civs from civ pool if civ pool is not empty', () => {
+      const mockCiv = getMockCiv();
+      const mockCivName = mockCiv.civName;
+
+      const mockStore = configureMockStore({
+        civs: {
+          ...MOCK_STATE.civs,
+          civPool: [mockCiv],
         },
       });
 
       const { container: draftCivButtonContainer } = render(
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <DraftCivButton />
         </Provider>
       );
 
-      expect(store.getState().draftResult.draftCount).toBe(0);
+      expect(mockStore.getState().draftResult.draftCount).toBe(0);
+
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.civ?.civName).toBe('Aztecs');
+      expect(mockStore.getState().draftResult.civ?.civName).toBe(mockCivName);
+
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.civ?.civName).toBe('Aztecs');
+      expect(mockStore.getState().draftResult.civ?.civName).toBe(mockCivName);
+
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.civ?.civName).toBe('Aztecs');
+      expect(mockStore.getState().draftResult.civ?.civName).toBe(mockCivName);
+
       fireEvent.click(screen.getByText('Draft Civ'));
-      expect(store.getState().draftResult.civ?.civName).toBe('Aztecs');
-      expect(store.getState().draftResult.draftCount).toBe(4);
+      expect(mockStore.getState().draftResult.civ?.civName).toBe(mockCivName);
+
+      expect(mockStore.getState().draftResult.draftCount).toBe(4);
     });
   });
 });
