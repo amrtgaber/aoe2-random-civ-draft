@@ -1,11 +1,11 @@
-import { FC, useEffect } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchCivs, selectCivs, setCivPool } from '../../store/civs-slice';
 import { isFulfilled, isInit, isLoading } from '../../store/shared-store-utils';
 import { ICiv } from '../../api/civs/civs-api';
-import { Civ } from '../civ';
+import { Civ, ICivProps } from '../civ';
 import { Loading } from '../loading';
 
 import './civ-draft.scss';
@@ -55,20 +55,16 @@ export const CivDraft: FC = () => {
     return civPool.some((civInPool) => civInPool.civName === civ.civName);
   };
 
-  const renderCivs = (): JSX.Element => {
-    return (
-      <div className='civ-draft'>
-        {allCivs.map((civ) => (
-          <Civ
-            key={civ.id}
-            civ={civ}
-            isDrafted={false}
-            isDraftable={true}
-            isInPool={isInPool(civ)}
-          />
-        ))}
-      </div>
-    );
+  const renderCivs = (): ReactElement<ICivProps>[] => {
+    return allCivs.map((civ) => (
+      <Civ
+        key={civ.id}
+        civ={civ}
+        isDrafted={false}
+        isDraftable={true}
+        isInPool={isInPool(civ)}
+      />
+    ));
   };
 
   return (
@@ -80,7 +76,7 @@ export const CivDraft: FC = () => {
       {isLoading(civsStatus) ? (
         <Loading componentName='Civ Pool' />
       ) : (
-        renderCivs()
+        <div className='civ-draft'>{renderCivs()}</div>
       )}
     </>
   );

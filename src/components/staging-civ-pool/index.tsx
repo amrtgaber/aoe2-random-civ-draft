@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -11,7 +11,7 @@ import { isLoading } from '../../store/shared-store-utils';
 import { selectTechTreeFilter } from '../../store/tech-tree-filter-slice';
 import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
-import { Civ } from '../civ';
+import { Civ, ICivProps } from '../civ';
 
 import './staging-civ-pool.scss';
 
@@ -36,20 +36,16 @@ export const StagingCivPool: FC = () => {
     return filteredCivPool.some((civInPool) => civInPool.id === civ.id);
   };
 
-  const renderCivs = (): JSX.Element => {
-    return (
-      <div className='staging-civ-pool'>
-        {allCivs.map((civ) => (
-          <Civ
-            key={civ.id}
-            civ={civ}
-            isDrafted={false}
-            isDraftable={false}
-            isInPool={isInPool(civ)}
-          />
-        ))}
-      </div>
-    );
+  const renderCivs = (): ReactElement<ICivProps>[] => {
+    return allCivs.map((civ) => (
+      <Civ
+        key={civ.id}
+        civ={civ}
+        isDrafted={false}
+        isDraftable={false}
+        isInPool={isInPool(civ)}
+      />
+    ));
   };
 
   return (
@@ -86,7 +82,7 @@ export const StagingCivPool: FC = () => {
           <Loading componentName='Staging Civ Pool' />
         </div>
       ) : (
-        renderCivs()
+        <div className='staging-civ-pool'>{renderCivs()}</div>
       )}
     </div>
   );

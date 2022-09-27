@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
 
 import './tech-tree-item.scss';
 import { isTech, isUnit, ITechTreeItem } from '../../api/tech-tree-item-api';
@@ -22,17 +22,15 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
 
   const kind = item.kind;
   const name = item.itemName;
-  const age = item.age!;
+
   const imgSrc = `/assets/images/tech-tree/${kind}s/${name}.png`;
+  const ageIconSrc = `assets/images/tech-tree/age-icons/${item.age!.ageName.replace(
+    ' ',
+    '_'
+  )}.png`;
+
   const uniqueClass = item.isUnique ? 'unique' : '';
   const enterClass = selected ? 'enter-selected' : 'enter-unselected';
-
-  const ageIcons: { [key: string]: string } = {
-    ['dark age']: '/assets/images/tech-tree/age-icons/dark_age.png',
-    ['feudal age']: '/assets/images/tech-tree/age-icons/feudal_age.png',
-    ['castle age']: '/assets/images/tech-tree/age-icons/castle_age.png',
-    ['imperial age']: '/assets/images/tech-tree/age-icons/imperial_age.png',
-  };
 
   const handleDeselectItem = () => {
     setLeaveClass('leave-selected');
@@ -52,7 +50,9 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
     }
   };
 
-  const renderBuildingIcons = (item: ITechTreeItem): JSX.Element[] => {
+  const renderBuildingIcons = (
+    item: ITechTreeItem
+  ): ReactElement<HTMLImageElement>[] => {
     const imgBase = '/assets/images/tech-tree/buildings/';
 
     if (isUnit(item) || isTech(item)) {
@@ -80,7 +80,7 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
           <div className='tech-tree-item-icons'>
             <div className='tech-tree-item-age-icons'>
               <img
-                src={ageIcons[age.ageName]}
+                src={ageIconSrc}
                 className='tech-tree-item-age-icon'
                 alt={`${name} age`}
               />
@@ -90,7 +90,7 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
             </div>
           </div>
         </div>
-        <img src={imgSrc} className='tech-tree-item-img' alt={`${name}`} />
+        <img src={imgSrc} className='tech-tree-item-img' alt={name} />
         <div className='tech-tree-item-name'>{name}</div>
       </div>
     </div>

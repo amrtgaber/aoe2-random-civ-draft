@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -30,7 +30,9 @@ export const TechTreeFilterTags: FC = () => {
     }
   };
 
-  const renderTagsByType = (tagType: TagType): JSX.Element[] => {
+  const renderTagsByType = (
+    tagType: TagType
+  ): ReactElement<HTMLAnchorElement>[] => {
     return filterTags
       .filter((tag) => tag.tagType === tagType)
       .map((tag) => {
