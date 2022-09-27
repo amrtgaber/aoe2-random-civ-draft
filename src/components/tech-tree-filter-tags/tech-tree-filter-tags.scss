@@ -1,48 +1,98 @@
 @import '../../shared-styles/lib';
 @import '../tech-tree-filter/tech-tree-filter';
+@import '../tech-tree-item/tech-tree-item';
 
 .tech-tree-filter-tags {
-  padding: calc-padding($padding-small);
-
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 
   overflow-y: auto;
+
+  @include for-phone-only {
+    padding: calc-padding($padding-small);
+  }
+
+  @include for-tablet-portrait-up {
+    padding: calc-padding($padding-small);
+  }
+
+  @include for-1080p-up {
+    padding: calc-padding($padding-medium);
+  }
 }
 
 .tags-top-bar {
   display: flex;
   flex-direction: row;
   align-content: space-between;
+  align-items: center;
+
+  margin-top: calc-vertical-margin($vertical-margin-small);
+  margin-bottom: calc-vertical-margin($vertical-margin-small);
+
   width: 100%;
 }
 
 .tags-title {
   flex: auto;
+
+  font-weight: 600;
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-base);
+  }
 }
 
 .tags-reset-button {
-  @include tech-tree-filter-button;
+  @include button-base(
+    $type: text,
+    $padding: $padding-small,
+    $box-shadow: false
+  );
 
-  flex: 0;
-  background-color: $bg-color-light;
+  flex: 0 max-content;
 
   font-size: calc-font-size($font-size-4);
+
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-8);
+  }
 }
 
 .tags-type-title {
   padding: calc-padding($padding-small);
-  font-size: calc-font-size($font-size-6);
+
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-6);
+  }
 }
 
 .tags-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  overflow-y: auto;
+
+  padding: calc-padding($padding-tiny);
   margin-top: calc-vertical-margin($vertical-margin-tiny);
 
-  &.age-tags {
+  overflow-y: auto;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @include for-tablet-landscape-up {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -55,7 +105,35 @@
 
   font-size: calc-font-size($font-size-4);
 
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-8);
+  }
+
   &.tag-on {
     border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+}
+
+.kind-tags {
+  .tags-button {
+    &:nth-child(1) {
+      border-left: $border-thickness-medium solid $tech-tree-color-unit;
+    }
+
+    &:nth-child(2) {
+      border-left: $border-thickness-medium solid $tech-tree-color-tech;
+    }
+
+    &:nth-child(3) {
+      border-left: $border-thickness-medium solid $tech-tree-color-building;
+    }
+  }
+}
+
+.unique-tags {
+  .tags-button {
+    &:nth-child(1) {
+      border-left: $border-thickness-medium solid $tech-tree-color-unique;
+    }
   }
 }

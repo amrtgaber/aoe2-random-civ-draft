@@ -7,7 +7,7 @@ import { IBuilding } from '../../api/buildings/buildings-api';
 
 import techTreeFilterReducer, {
   addItemToFilter,
-  clearFilter,
+  clearItemsFilter,
   FilterMode,
   initialState,
   removeItemFromFilter,
@@ -95,7 +95,7 @@ describe('draftParameters reducer', () => {
   //       searchTerm: '',
   //     };
 
-  //     const endState = techTreeFilterReducer(startState, clearFilter());
+  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
 
   //     expect(endState.itemsFilter.length).toBe(0);
   //     expect(endState.filteredCivPool.length).toBe(0);
@@ -163,7 +163,7 @@ describe('draftParameters reducer', () => {
   //       searchTerm: '',
   //     };
 
-  //     const endState = techTreeFilterReducer(startState, clearFilter());
+  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
 
   //     expect(endState.itemsFilter.length).toBe(0);
   //     expect(endState.filteredCivPool.length).toBe(0);
@@ -230,7 +230,7 @@ describe('draftParameters reducer', () => {
   //       searchTerm: '',
   //     };
 
-  //     const endState = techTreeFilterReducer(startState, clearFilter());
+  //     const endState = techTreeFilterReducer(startState, clearItemsFilter());
 
   //     expect(endState.itemsFilter.length).toBe(0);
   //     expect(endState.filteredCivPool.length).toBe(0);

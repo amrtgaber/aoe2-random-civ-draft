@@ -24,7 +24,22 @@ describe('units reducer', () => {
     });
 
     it('should fetch all units', async () => {
-      fetchMock.mockResponse(JSON.stringify(TEST_UNITS));
+      fetchMock.mockResponse(
+        JSON.stringify([
+          {
+            id: 1,
+            unitName: 'skirmisher',
+            civs: [],
+            buildings: [],
+          },
+          {
+            id: 2,
+            unitName: 'archer',
+            civs: [],
+            buildings: [],
+          },
+        ])
+      );
 
       await store.dispatch(fetchUnits());
 

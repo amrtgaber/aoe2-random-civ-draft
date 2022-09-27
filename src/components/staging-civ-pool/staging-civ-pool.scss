@@ -7,9 +7,25 @@
   height: 100%;
 }
 
+.staging-civ-pool-header {
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
+  padding-bottom: calc-padding($padding-medium);
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+}
+
 .staging-civ-pool-title {
   flex: 1 1 auto;
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
   text-align: center;
+}
+
+.staging-civ-pool-stats {
+  text-align: center;
+
+  .matched-civs-number {
+    color: $primary-color-amber;
+  }
 }
 
 .buttons-container {
@@ -19,14 +35,46 @@
   grid-template-columns: repeat(3, 1fr);
   @include grid-alignment-center;
 
+  margin-top: calc-vertical-margin($vertical-margin-medium);
+
   text-align: center;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+
+    font-size: calc-font-size($font-size-8);
+  }
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  @include for-4k-up {
+    font-size: calc-font-size($font-size-8);
+  }
 }
 
 .replace-main-civ-pool-button,
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
-  @include button-base(filled-dark);
+  @include button-base(filled-dark, $box-shadow-size: small);
+}
+
+.loading-wrapper {
+  height: 100%;
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 }
 
 .staging-civ-pool {
@@ -36,31 +84,28 @@
 
   padding-bottom: calc-padding($padding-large);
 
-  border-top: $tech-tree-filter-border-thickness solid
-    $tech-tree-filter-border-color;
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 
-  &.draft-loading {
-    grid-template-rows: 1fr 2fr;
-    height: 300px;
+  overflow-y: auto;
+
+  @include for-phone-only {
+    grid-template-columns: repeat(5, 1fr);
   }
 
-  &.draft-loaded {
-    overflow-y: auto;
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @include for-phone-only {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @include for-tablet-portrait-up {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  @include for-1080p-up {
+    grid-template-columns: repeat(5, 1fr);
+  }
 
-    @include for-1080p-up {
-      grid-template-columns: repeat(5, 1fr);
-    }
-
-    @include for-4k-up {
-      grid-template-columns: repeat(6, 1fr);
-    }
+  @include for-4k-up {
+    grid-template-columns: repeat(6, 1fr);
   }
 }

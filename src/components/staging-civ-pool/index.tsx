@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -11,7 +11,7 @@ import { isLoading } from '../../store/shared-store-utils';
 import { selectTechTreeFilter } from '../../store/tech-tree-filter-slice';
 import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
-import { Civ } from '../civ';
+import { Civ, ICivProps } from '../civ';
 
 import './staging-civ-pool.scss';
 
@@ -36,48 +36,54 @@ export const StagingCivPool: FC = () => {
     return filteredCivPool.some((civInPool) => civInPool.id === civ.id);
   };
 
+  const renderCivs = (): ReactElement<ICivProps>[] => {
+    return allCivs.map((civ) => (
+      <Civ
+        key={civ.id}
+        civ={civ}
+        isDrafted={false}
+        isDraftable={false}
+        isInPool={isInPool(civ)}
+      />
+    ));
+  };
+
   return (
     <div className='staging-civ-pool-container'>
-      <h3 className='staging-civ-pool-title'>Civ pool preview</h3>
-      <div className='buttons-container'>
-        <a
-          className='add-to-main-civ-pool-button'
-          onClick={handleAddToMainCivPool}
-        >
-          Add to pool
-        </a>
-        <a
-          className='replace-main-civ-pool-button'
-          onClick={handleReplaceMainCivPool}
-        >
-          Replace pool
-        </a>
-        <a
-          className='subtract-from-main-civ-pool-button'
-          onClick={handleSubtractFromMainCivPool}
-        >
-          Subtract from pool
-        </a>
+      <div className='staging-civ-pool-header'>
+        <h3 className='staging-civ-pool-title'>Matching civs</h3>
+        <div className='staging-civ-pool-stats'>
+          <span className='matched-civs-number'>{filteredCivPool.length}</span>{' '}
+          civs match your selection
+        </div>
+        <div className='buttons-container'>
+          <a
+            className='add-to-main-civ-pool-button'
+            onClick={handleAddToMainCivPool}
+          >
+            Add to pool
+          </a>
+          <a
+            className='replace-main-civ-pool-button'
+            onClick={handleReplaceMainCivPool}
+          >
+            Replace pool
+          </a>
+          <a
+            className='subtract-from-main-civ-pool-button'
+            onClick={handleSubtractFromMainCivPool}
+          >
+            Subtract from pool
+          </a>
+        </div>
       </div>
-      <div
-        className={`staging-civ-pool ${
-          isLoading(civsStatus) ? 'draft-loading' : 'draft-loaded'
-        }`}
-      >
-        {isLoading(civsStatus) ? (
+      {isLoading(civsStatus) ? (
+        <div className='loading-wrapper'>
           <Loading componentName='Staging Civ Pool' />
-        ) : (
-          allCivs.map((civ) => (
-            <Civ
-              key={civ.id}
-              civ={civ}
-              isDrafted={false}
-              isDraftable={false}
-              isInPool={isInPool(civ)}
-            />
-          ))
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className='staging-civ-pool'>{renderCivs()}</div>
+      )}
     </div>
   );
 };

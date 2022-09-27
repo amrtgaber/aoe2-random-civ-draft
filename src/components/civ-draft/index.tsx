@@ -1,11 +1,11 @@
-import { FC, useEffect } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchCivs, selectCivs, setCivPool } from '../../store/civs-slice';
 import { isFulfilled, isInit, isLoading } from '../../store/shared-store-utils';
 import { ICiv } from '../../api/civs/civs-api';
-import { Civ } from '../civ';
+import { Civ, ICivProps } from '../civ';
 import { Loading } from '../loading';
 
 import './civ-draft.scss';
@@ -55,31 +55,29 @@ export const CivDraft: FC = () => {
     return civPool.some((civInPool) => civInPool.civName === civ.civName);
   };
 
+  const renderCivs = (): ReactElement<ICivProps>[] => {
+    return allCivs.map((civ) => (
+      <Civ
+        key={civ.id}
+        civ={civ}
+        isDrafted={false}
+        isDraftable={true}
+        isInPool={isInPool(civ)}
+      />
+    ));
+  };
+
   return (
     <>
       <h2 className='civ-draft-title'>Civ Pool</h2>
       <p className='civ-draft-tip'>
         Click a civ to add or remove it from the civ pool
       </p>
-      <div
-        className={`civ-draft ${
-          isLoading(civsStatus) ? 'draft-loading' : 'draft-loaded'
-        }`}
-      >
-        {isLoading(civsStatus) ? (
-          <Loading componentName='Civ Pool' />
-        ) : (
-          allCivs.map((civ) => (
-            <Civ
-              key={civ.id}
-              civ={civ}
-              isDrafted={false}
-              isDraftable={true}
-              isInPool={isInPool(civ)}
-            />
-          ))
-        )}
-      </div>
+      {isLoading(civsStatus) ? (
+        <Loading componentName='Civ Pool' />
+      ) : (
+        <div className='civ-draft'>{renderCivs()}</div>
+      )}
     </>
   );
 };

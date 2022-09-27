@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -30,7 +30,9 @@ export const TechTreeFilterTags: FC = () => {
     }
   };
 
-  const renderTagsByType = (tagType: TagType): JSX.Element[] => {
+  const renderTagsByType = (
+    tagType: TagType
+  ): ReactElement<HTMLAnchorElement>[] => {
     return filterTags
       .filter((tag) => tag.tagType === tagType)
       .map((tag) => {
@@ -54,17 +56,19 @@ export const TechTreeFilterTags: FC = () => {
       <div className='tags-top-bar'>
         <div className='tags-title'>Filter items</div>
         <a className='tags-reset-button' onClick={handleResetTags}>
-          Reset
+          clear filters
         </a>
       </div>
       <div className='tags-type-title'>By Type</div>
-      <div className='tags-buttons'>{renderTagsByType(TagType.KIND)}</div>
-      <div className='tags-type-title'>By Unique</div>
-      <div className='tags-buttons'>{renderTagsByType(TagType.UNIQUE)}</div>
-      <div className='tags-type-title'>By Age</div>
-      <div className='tags-buttons age-tags'>
-        {renderTagsByType(TagType.AGE)}
+      <div className='tags-buttons kind-tags'>
+        {renderTagsByType(TagType.KIND)}
       </div>
+      <div className='tags-type-title'>Include Uniques</div>
+      <div className='tags-buttons unique-tags'>
+        {renderTagsByType(TagType.UNIQUE)}
+      </div>
+      <div className='tags-type-title'>By Age</div>
+      <div className='tags-buttons'>{renderTagsByType(TagType.AGE)}</div>
       <div className='tags-type-title'>By Building</div>
       <div className='tags-buttons'>{renderTagsByType(TagType.BUILDING)}</div>
     </div>

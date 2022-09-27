@@ -9,6 +9,9 @@
   position: relative;
 
   padding: calc-padding($padding-small);
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
 }
 
 .search-input {
@@ -33,7 +36,18 @@
 
 .clear-search {
   position: absolute;
-  right: 15%;
   color: $grey;
   cursor: pointer;
+
+  @include for-phone-only {
+    right: 15%;
+  }
+
+  @include for-tablet-portrait-up {
+    right: 18%;
+  }
+
+  @include for-tablet-landscape-up {
+    right: 15%;
+  }
 }

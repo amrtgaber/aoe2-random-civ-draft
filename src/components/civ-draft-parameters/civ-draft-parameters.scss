@@ -9,6 +9,10 @@
   grid-template-columns: 1fr 1fr 1fr;
   @include grid-alignment-center;
 
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-6);
+  }
+
   @include for-1080p-up {
     width: 80%;
     margin: auto;

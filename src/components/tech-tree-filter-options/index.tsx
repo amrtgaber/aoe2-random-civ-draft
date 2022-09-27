@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
-  clearFilter,
+  clearItemsFilter,
   FilterMode,
   selectTechTreeFilter,
   setFilterMode,
@@ -27,7 +27,7 @@ export const TechTreeFilterOptions: FC = () => {
   };
 
   const handleClearFilter = () => {
-    dispatch(clearFilter());
+    dispatch(clearItemsFilter());
   };
 
   const handleChangeSortMode = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +36,11 @@ export const TechTreeFilterOptions: FC = () => {
 
   return (
     <div className='tech-tree-filter-options'>
-      <div className='options-title'>Options</div>
+      <div className='tech-tree-filter-reset'>
+        <a className='clear-filter-button' onClick={handleClearFilter}>
+          Reset selected items
+        </a>
+      </div>
 
       <div className='tech-tree-filter-mode'>
         Civ has{' '}
@@ -44,12 +48,6 @@ export const TechTreeFilterOptions: FC = () => {
           {filterMode}
         </a>{' '}
         selected items
-      </div>
-
-      <div className='tech-tree-filter-clear-filter'>
-        <a className='clear-filter-button' onClick={handleClearFilter}>
-          Clear selected items
-        </a>
       </div>
 
       <div className='tech-tree-filter-sort'>

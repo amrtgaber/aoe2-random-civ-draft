@@ -14,23 +14,22 @@ $button-filled-dark-bg-color: $black;
 $button-filled-dark-bg-color-active: $black;
 $button-filled-dark-bg-color-hover: #0b0b0b;
 
-$button-filled-light-bg-color: #252a2e;
-$button-filled-light-bg-color-active: #1e2226;
-$button-filled-light-bg-color-hover: #2a3036;
+$button-filled-light-bg-color: $bg-color-lightest;
+$button-filled-light-bg-color-active: #191925;
 
-$button-outline-bg-color: $bg-color;
-$button-outline-bg-color-active: #121314;
-$button-outline-bg-color-hover: #1f2325;
+$button-outline-bg-color-active: #191925;
+$button-outline-bg-color-hover: #282845;
 
 $button-border-color: $button-letter-color;
 
 @mixin button-base(
   $type: outline,
   $padding: $padding-medium,
-  $box-shadow: true
+  $box-shadow: true,
+  $box-shadow-size: large
 ) {
   @if $box-shadow {
-    @include box-shadow(large);
+    @include box-shadow($box-shadow-size);
   }
 
   cursor: pointer;
@@ -47,7 +46,6 @@ $button-border-color: $button-letter-color;
   } @else if $type == filled-light {
     background-color: $button-filled-light-bg-color;
   } @else if $type == outline {
-    background-color: $button-outline-bg-color;
     border: $border-thickness-tiny solid $button-border-color;
   }
 
@@ -67,7 +65,7 @@ $button-border-color: $button-letter-color;
     } @else if $type == filled-dark {
       background-color: $button-filled-dark-bg-color-active;
       border: $border-thickness-tiny solid $button-border-color;
-    } @else if $type == filled-dark {
+    } @else if $type == filled-light {
       background-color: $button-filled-light-bg-color-active;
       border: $border-thickness-tiny solid $button-border-color;
     } @else {
