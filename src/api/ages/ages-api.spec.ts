@@ -4,22 +4,6 @@ import { ApiAge, getAges } from './ages-api';
 
 export const mockApiAges: ApiAge[] = [
   {
-    id: 1,
-    ageName: 'dark age',
-    units: [
-      { id: 1000, unitName: 'villager' },
-      { id: 1001, unitName: 'militia' },
-    ],
-    techs: [
-      { id: 1002, techName: 'loom' },
-      { id: 1003, techName: 'feudal age' },
-    ],
-    buildings: [
-      { id: 1004, buildingName: 'lumber camp' },
-      { id: 1005, buildingName: 'house' },
-    ],
-  },
-  {
     id: 2,
     ageName: 'feudal age',
     units: [
@@ -33,6 +17,22 @@ export const mockApiAges: ApiAge[] = [
     buildings: [
       { id: 1010, buildingName: 'archery range' },
       { id: 1011, buildingName: 'blacksmith' },
+    ],
+  },
+  {
+    id: 1,
+    ageName: 'dark age',
+    units: [
+      { id: 1000, unitName: 'villager' },
+      { id: 1001, unitName: 'militia' },
+    ],
+    techs: [
+      { id: 1002, techName: 'loom' },
+      { id: 1003, techName: 'feudal age' },
+    ],
+    buildings: [
+      { id: 1004, buildingName: 'lumber camp' },
+      { id: 1005, buildingName: 'house' },
     ],
   },
   {
