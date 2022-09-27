@@ -1,4 +1,9 @@
 @import '../../shared-styles/lib';
+@import './civ-animations';
+
+$civ-unit-image-size-mobile: 48px;
+$civ-unit-image-size-small: 72px;
+$civ-unit-image-size-large: 96px;
 
 .civ-container {
   display: grid;
@@ -14,38 +19,58 @@
   }
 }
 
-@keyframes highlight-drafted-civ {
-  from {
-    opacity: 0.1;
-    margin-bottom: -30px;
-  }
-
-  to {
-    opacity: 1;
-    margin-bottom: calc-vertical-margin($vertical-margin-medium);
-  }
-}
-
-$civ-unit-image-size: 96px;
-
 .civ-main-content {
-  @include box-shadow;
-
+  @include box-shadow($isInteractive: false);
   position: relative;
-  width: $civ-unit-image-size;
-  height: $civ-unit-image-size;
 
   background-color: $black;
   border-radius: $border-radius-medium;
   border: $border-thickness-tiny solid $border-neutral-color;
+
+  @include do-transition(
+    $transition-props,
+    $animation-duration-small,
+    $timing-fn-default
+  );
+
+  @include for-phone-only {
+    width: $civ-unit-image-size-mobile;
+    height: $civ-unit-image-size-mobile;
+  }
+
+  @include for-tablet-portrait-up {
+    width: $civ-unit-image-size-small;
+    height: $civ-unit-image-size-small;
+  }
+
+  @include for-tablet-landscape-up {
+    width: $civ-unit-image-size-large;
+    height: $civ-unit-image-size-large;
+  }
 
   &.drafted {
     margin-top: calc-vertical-margin($vertical-margin-medium);
     margin-bottom: calc-vertical-margin($vertical-margin-medium);
     transform: scale(1.3);
 
+    @include for-phone-only {
+      transform: scale(2);
+    }
+
     &.highlight-drafted {
-      animation: highlight-drafted-civ 250ms ease-out;
+      @include do-animation(
+        highlight-drafted-civ,
+        $animation-duration-large,
+        $timing-fn-enter
+      );
+
+      @include for-phone-only {
+        @include do-animation(
+          highlight-drafted-civ-mobile,
+          $animation-duration-large,
+          $timing-fn-enter
+        );
+      }
     }
   }
 
@@ -54,21 +79,29 @@ $civ-unit-image-size: 96px;
     $civ-bg-color-primary-50: rgba($primary-color-red-light, 0.5);
     $civ-bg-color-base: $black;
 
-    &:hover {
-      cursor: pointer;
-      background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-30);
-      transform: scale(1.1);
+    &.draftable {
+      @include box-shadow;
+
+      &:hover {
+        cursor: pointer;
+        background: linear-gradient(
+          $civ-bg-color-base,
+          $civ-bg-color-primary-30
+        );
+        transform: scale(1.1);
+      }
+
+      &.in-pool:hover {
+        background-color: $civ-bg-color-base;
+      }
     }
 
     &.in-pool {
-      border: $border-thickness-tiny solid $primary-color-amber;
+      border: $border-thickness-medium solid $primary-color-amber;
       background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-50);
-      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color;
+      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color,
+        0 0 $box-shadow-small $primary-color-amber;
       transform: scale(1.1);
-
-      &:hover {
-        background-color: $civ-bg-color-base;
-      }
     }
   }
 }
@@ -80,11 +113,22 @@ $civ-unit-image-size: 96px;
   top: 5px;
   right: 5px;
 
-  font-size: calc-font-size($font-size-zero);
+  font-size: calc-font-size($font-size-0);
 
   img {
     width: 25px;
     height: 25px;
+
+    @include do-transition(
+      transform,
+      $animation-duration-small,
+      $timing-fn-default
+    );
+
+    @include for-phone-only {
+      width: 10px;
+      height: 10px;
+    }
 
     &:hover {
       transform: scale(1.1);
@@ -99,36 +143,40 @@ $civ-unit-image-size: 96px;
 }
 
 .civ-unit-image {
-  width: $civ-unit-image-size;
-  height: $civ-unit-image-size;
   text-align: center;
-}
-
-.civ-name {
-  display: inline-block;
-
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-
-  width: 100%;
-
-  font-weight: 700;
-  text-align: center;
-
-  background-color: rgba($black, 0.6);
-
-  border-radius: $border-radius-medium;
 
   @include for-phone-only {
-    font-size: calc-font-size($font-size-base-ex);
+    width: $civ-unit-image-size-mobile;
+    height: $civ-unit-image-size-mobile;
+  }
+
+  @include for-tablet-portrait-up {
+    width: $civ-unit-image-size-small;
+    height: $civ-unit-image-size-small;
   }
 
   @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-base);
+    width: $civ-unit-image-size-large;
+    height: $civ-unit-image-size-large;
+  }
+}
+
+.civ-name {
+  @include grid-item-name;
+
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-2);
   }
 
-  @include for-desktop-up {
-    font-size: calc-font-size($font-size-tiny);
+  @include for-tablet-portrait-up {
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-6);
+  }
+
+  @include for-1080p-up {
+    font-size: calc-font-size($font-size-0);
   }
 }

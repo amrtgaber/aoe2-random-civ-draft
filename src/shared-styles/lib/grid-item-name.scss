@@ -1,0 +1,17 @@
+@mixin grid-item-name {
+  display: inline-block;
+
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+
+  width: 100%;
+
+  font-weight: 700;
+  text-align: center;
+
+  background-color: rgba($black, 0.6);
+
+  border-bottom-left-radius: $border-radius-medium;
+  border-bottom-right-radius: $border-radius-medium;
+}

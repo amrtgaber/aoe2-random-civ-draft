@@ -2,8 +2,6 @@ import { FC } from 'react';
 
 import './separator.scss';
 
-export interface ISeparatorProps {}
-
-export const Separator: FC<ISeparatorProps> = (props) => {
+export const Separator: FC = () => {
   return <div className='separator'></div>;
 };

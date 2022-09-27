@@ -1,17 +1,16 @@
-import { FC, MouseEvent } from 'react';
+import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   addAllCivsToPool,
   removeAllCivsFromPool,
   selectCivs,
-  updateCivPool,
-} from '../../store/civs-slice';
+  setCivPool,
+} from '../../store/slices/civs-slice';
 import { SaveCivPool } from '../save-civ-pool';
-import { Separator } from '../separator';
 
 import './civ-draft-parameters.scss';
-import { TechTreeFilter } from './tech-tree-filter';
+import { TechTreeFilter } from '../tech-tree-filter';
 
 export interface ICivDraftParametersProps {}
 
@@ -22,34 +21,24 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
   const handleRemoveAllCivs = () => dispatch(removeAllCivsFromPool());
   const handleAddAllCivs = () => dispatch(addAllCivsToPool());
   const handleInvertPool = () => {
-    const invertedSelection = allCivs.filter((civ) => !civPool.includes(civ));
-    dispatch(updateCivPool(invertedSelection));
+    const invertedSelection = allCivs.filter(
+      (civ) => !civPool.some((civInPool) => civInPool.id === civ.id)
+    );
+    dispatch(setCivPool(invertedSelection));
   };
 
   return (
     <>
-      <div className='civ-draft-parameters-separator'>
-        <Separator />
-      </div>
       <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
       <SaveCivPool />
       <div className='civ-draft-parameters civ-pool-buttons'>
-        <a
-          className='button add-all-civs-button'
-          onClick={(e) => handleAddAllCivs()}
-        >
+        <a className='add-all-civs-button' onClick={handleAddAllCivs}>
           Add all civs
         </a>
-        <a
-          className='button reset-pool-button'
-          onClick={(e) => handleRemoveAllCivs()}
-        >
+        <a className='reset-pool-button' onClick={handleRemoveAllCivs}>
           Reset
         </a>
-        <a
-          className='button invert-pool-button'
-          onClick={(e) => handleInvertPool()}
-        >
+        <a className='invert-pool-button' onClick={handleInvertPool}>
           Invert selection
         </a>
       </div>

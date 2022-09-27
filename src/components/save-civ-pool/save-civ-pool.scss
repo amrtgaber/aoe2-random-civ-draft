@@ -10,7 +10,7 @@
   text-align: center;
 
   .save-civ-pool-button {
-    @include button-base(filled);
+    @include button-base(filled-primary);
 
     &:active {
       border: $border-thickness-tiny solid $primary-color-amber-dark;

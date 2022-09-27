@@ -1,16 +1,14 @@
 import { FC, MouseEvent } from 'react';
 
-import { ICiv } from '../../../api/civs-api';
+import { ICiv } from '../../../api/civs/civs-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { selectCivs } from '../../../store/civs-slice';
-import { draftCiv } from '../../../store/draft-result-slice';
-import { FetchStatus } from '../../../store/shared-store-utils';
+import { selectCivs } from '../../../store/slices/civs-slice';
+import { draftCiv } from '../../../store/slices/draft-result-slice';
+import { FetchStatus } from '../../../store/fetch-status-service';
 
 import './draft-civ-button.scss';
 
-export interface IDraftCivButtonProps {}
-
-export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
+export const DraftCivButton: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -29,7 +27,7 @@ export const DraftCivButton: FC<IDraftCivButtonProps> = (props) => {
   };
 
   return (
-    <a className='button draft-civ-button' onClick={(e) => handleDraftCiv(e)}>
+    <a className='draft-civ-button' onClick={handleDraftCiv}>
       Draft Civ
     </a>
   );

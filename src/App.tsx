@@ -3,6 +3,7 @@ import { CivDraftResultContainer } from './components/civ-draft-result-container
 import { CivDraft } from './components/civ-draft';
 import { CivDraftParameters } from './components/civ-draft-parameters';
 import { Footer } from './components/footer';
+import { Separator } from './components/separator';
 
 import './App.scss';
 
@@ -10,9 +11,17 @@ function App() {
   return (
     <div className='App'>
       <TopAppBar />
+
+      <Separator />
       <CivDraftResultContainer />
+
+      <Separator />
       <CivDraft />
+
+      <Separator />
       <CivDraftParameters />
+
+      <Separator />
       <Footer />
     </div>
   );

@@ -26,7 +26,20 @@
 
   color: $primary-color-amber;
 
-  font-size: calc-font-size($font-size-small);
+  font-size: calc-font-size($font-size-14);
   font-variant: small-caps;
   text-align: center;
+}
+
+.game-version {
+  margin-top: calc-vertical-margin($vertical-margin-small);
+  margin-bottom: calc-vertical-margin($vertical-margin-small);
+
+  font-size: calc-font-size($font-size-6);
+  font-weight: 300;
+  text-align: center;
+
+  @include for-4k-up {
+    font-size: calc-font-size($font-size-4);
+  }
 }

@@ -1,19 +1,8 @@
 @import '../../shared-styles/lib';
 
-.footer {
-  @include for-phone-only {
-    margin-top: calc-vertical-margin($vertical-margin-medium);
-  }
-
-  @include for-tablet-landscape-up {
-    margin-top: calc-vertical-margin($vertical-margin-large);
-  }
-
-  @include for-big-desktop-up {
-    margin-top: calc-vertical-margin($vertical-margin-giant);
-  }
-
+footer {
   .credits-title {
+    margin-top: 0;
     text-align: center;
   }
 
@@ -23,7 +12,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    font-size: calc-font-size($font-size-tiny);
+    font-size: calc-font-size($font-size-4);
     text-align: center;
 
     @include for-phone-only {

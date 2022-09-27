@@ -1,20 +1,21 @@
 import { AnimationEvent, FC, MouseEvent, useEffect, useRef } from 'react';
 
-import { ICiv } from '../../api/civs-api';
+import { ICiv } from '../../api/civs/civs-api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addCivToPool, removeCivFromPool } from '../../store/civs-slice';
-import { selectDraftResult } from '../../store/draft-result-slice';
+import { addCivToPool, removeCivFromPool } from '../../store/slices/civs-slice';
+import { selectDraftResult } from '../../store/slices/draft-result-slice';
 
 import './civ.scss';
 
 export interface ICivProps {
   civ: ICiv;
   isDrafted: boolean;
+  isDraftable: boolean;
   isInPool: boolean;
 }
 
 export const Civ: FC<ICivProps> = (props) => {
-  const { civ, isDrafted, isInPool } = props;
+  const { civ, isDrafted, isDraftable, isInPool } = props;
   const name = civ.civName;
 
   const civEl = useRef<HTMLDivElement>(null);
@@ -42,45 +43,47 @@ export const Civ: FC<ICivProps> = (props) => {
   ) => {
     const el = event.target as HTMLDivElement | HTMLImageElement;
 
-    if (isDrafted || el instanceof HTMLImageElement) {
+    if (isDrafted || !isDraftable || el instanceof HTMLImageElement) {
       return;
     }
 
     if (isInPool) {
-      el.classList.remove('in-pool');
       dispatch(removeCivFromPool(civ));
     } else {
-      el.classList.add('in-pool');
       dispatch(addCivToPool(civ));
     }
   };
 
   const getClassNames = (): string => {
-    let classNames = '';
+    const classNames = [];
 
     if (isDrafted) {
-      classNames += 'drafted highlight-drafted';
+      classNames.push('drafted', 'highlight-drafted');
     } else {
-      classNames += 'poolable';
+      classNames.push('poolable');
+    }
+
+    if (isDraftable) {
+      classNames.push('draftable');
     }
 
     if (isInPool) {
-      classNames += ' in-pool';
+      classNames.push('in-pool');
     }
 
-    return classNames;
+    return classNames.join(' ');
   };
 
   const unitImageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
-  const techTreeImageUrl = `/assets/images/game-images/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
+  const techTreeImageUrl = `/assets/images/tech-tree/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
 
   return (
     <div className={`civ-container ${isDrafted ? 'drafted-container' : ''}`}>
       <div
         ref={civEl}
         className={`civ-main-content ${getClassNames()}`}
-        onClick={(e) => handleToggleInPool(e)}
-        onAnimationEnd={(e) => handleAnimationEnd(e)}
+        onClick={handleToggleInPool}
+        onAnimationEnd={handleAnimationEnd}
       >
         <a
           className='civ-tech-tree'

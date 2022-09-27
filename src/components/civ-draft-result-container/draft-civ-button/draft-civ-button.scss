@@ -1,7 +1,11 @@
 @import '../../../shared-styles/lib';
 
 .draft-civ-button {
-  @include button-base(filled);
+  @include button-base(filled-primary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-weight: 500;
 
@@ -12,20 +16,21 @@
   @include for-phone-only {
     width: 140px;
     height: 58px;
-    font-size: calc-font-size($font-size-small);
+    font-size: calc-font-size($font-size-14);
+    margin-top: calc-vertical-margin($vertical-margin-medium);
   }
 
   @include for-tablet-portrait-up {
     width: 220px;
     height: 65px;
-    font-size: calc-font-size($font-size-small);
+    font-size: calc-font-size($font-size-14);
   }
 
-  @include for-desktop-up {
-    font-size: calc-font-size($font-size-medium);
+  @include for-1080p-up {
+    font-size: calc-font-size($font-size-18);
   }
 
-  @include for-big-desktop-up {
+  @include for-4k-up {
     width: 260px;
     height: 80px;
   }

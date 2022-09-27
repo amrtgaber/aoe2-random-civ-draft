@@ -2,18 +2,20 @@
 
 $shadow-color: $black;
 
-$box-shadow-small: 10px;
-$box-shadow-large: 20px;
-$box-shadow-hover: 30px;
+$box-shadow-small: 5px;
+$box-shadow-large: 10px;
+$box-shadow-hover: 15px;
 
-@mixin box-shadow($size: small) {
+@mixin box-shadow($size: small, $isInteractive: true) {
   @if $size == large {
     box-shadow: 0px 0px $box-shadow-large 0px $shadow-color;
   } @else {
     box-shadow: 0px 0px $box-shadow-small 0px $shadow-color;
   }
 
-  &:hover {
-    box-shadow: 0px 0px $box-shadow-hover 0px $shadow-color;
+  @if $isInteractive {
+    &:hover {
+      box-shadow: 0px 0px $box-shadow-hover 0px $shadow-color;
+    }
   }
 }

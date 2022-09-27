@@ -1,17 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import './color';
+
+$font-family: 'Inter', sans-serif;
 
 $font-color: $white;
 
-$font-size-zero: 0px;
-$font-size-tiny: 4px;
+$font-size-0: 0px;
+$font-size-2: 2px;
+$font-size-4: 4px;
+$font-size-6: 6px;
+$font-size-8: 8px;
 $font-size-base: 10px;
-$font-size-base-ex: 12px;
-$font-size-small: 14px;
-$font-size-medium: 18px;
-$font-size-large: 20px;
-$font-size-giant: 22px;
-$font-size-ludicrous: 26px;
-$font-size-extreme: 30px;
+$font-size-12: 12px;
+$font-size-14: 14px;
+$font-size-16: 14px;
+$font-size-18: 18px;
+$font-size-20: 20px;
+$font-size-22: 22px;
+$font-size-26: 26px;
+$font-size-30: 30px;
 
 @function calc-font-size($font-level) {
   @return calc(#{$font-level} + 1vmin);

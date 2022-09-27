@@ -1,0 +1,53 @@
+@import '../../shared-styles/lib';
+@import '../tech-tree-filter/tech-tree-filter';
+
+.tech-tree-filter-search {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include grid-alignment-center;
+
+  position: relative;
+
+  padding: calc-padding($padding-small);
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
+}
+
+.search-input {
+  width: 80%;
+  height: 50px;
+
+  color: $white;
+  background-color: $tech-tree-filter-border-color;
+
+  font-size: calc-font-size($font-size-8);
+
+  padding: calc-padding($padding-small);
+
+  border: none;
+  border-radius: $border-radius-medium;
+
+  &:focus {
+    outline: 0;
+    border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+}
+
+.clear-search {
+  position: absolute;
+  color: $grey;
+  cursor: pointer;
+
+  @include for-phone-only {
+    right: 15%;
+  }
+
+  @include for-tablet-portrait-up {
+    right: 18%;
+  }
+
+  @include for-tablet-landscape-up {
+    right: 15%;
+  }
+}
