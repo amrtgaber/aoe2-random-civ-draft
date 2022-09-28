@@ -1,19 +1,19 @@
 @import '../../shared-styles/lib';
 
-.civ-draft-title,
-.civ-draft-tip {
+.civ-pool-title,
+.civ-pool-tip {
   text-align: center;
 }
 
-.civ-draft-title {
+.civ-pool-title {
   margin-top: calc-vertical-margin($vertical-margin-small);
 }
 
-.civ-draft-tip {
+.civ-pool-tip {
   margin-top: -20px;
 }
 
-.civ-draft {
+.civ-pool {
   display: grid;
   @include grid-alignment-center;
 

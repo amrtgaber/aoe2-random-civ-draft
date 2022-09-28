@@ -5,34 +5,34 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
 import { configureMockStore } from '../../store/mock-state-service';
 
-import { CivDraft } from '.';
+import { CivPool } from '.';
 
-describe('civ draft component', () => {
-  it('renders civ draft', () => {
+describe('civ pool component', () => {
+  it('renders civ pool', () => {
     const mockStore = configureMockStore();
 
-    const { container: civDraftContainer } = render(
+    const { container: civPoolContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <CivDraft />
+          <CivPool />
         </MemoryRouter>
       </Provider>
     );
 
-    const civDraftEl = civDraftContainer.querySelector('.civ-draft');
-    expect(civDraftEl).toBeInTheDocument();
+    const civPoolEl = civPoolContainer.querySelector('.civ-draft');
+    expect(civPoolEl).toBeInTheDocument();
   });
 
-  describe('civ draft init', () => {
+  describe('civ pool init', () => {
     it('updates civ pool from query params', () => {
       const mockStore = configureMockStore({
         civs: MOCK_STATE.civs,
       });
 
-      const { container: civDraftContainer } = render(
+      const { container: civPoolContainer } = render(
         <Provider store={mockStore}>
           <MemoryRouter initialEntries={['?civPool=Aztecs,Vikings']}>
-            <CivDraft />
+            <CivPool />
           </MemoryRouter>
         </Provider>
       );
@@ -47,10 +47,10 @@ describe('civ draft component', () => {
         civs: MOCK_STATE.civs,
       });
 
-      const { container: civDraftContainer } = render(
+      const { container: civPoolContainer } = render(
         <Provider store={mockStore}>
           <BrowserRouter>
-            <CivDraft />
+            <CivPool />
           </BrowserRouter>
         </Provider>
       );

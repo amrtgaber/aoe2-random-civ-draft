@@ -16,9 +16,9 @@ import { ICiv } from '../../api/civs/civs-api';
 import { Civ, ICivProps } from '../civ';
 import { Loading } from '../loading';
 
-import './civ-draft.scss';
+import './civ-pool.scss';
 
-export const CivDraft: FC = () => {
+export const CivPool: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -28,13 +28,12 @@ export const CivDraft: FC = () => {
     : [];
 
   useEffect(() => {
-    initCivDraft();
+    initCivPool();
   }, [civsStatus]);
 
-  const initCivDraft = () => {
+  const initCivPool = () => {
     if (isInit(civsStatus)) {
-      /* istanbul ignore next */
-      dispatch(fetchCivs()).catch((error) => console.log(error));
+      dispatch(fetchCivs());
     }
 
     if (isFulfilled(civsStatus)) {
@@ -77,14 +76,14 @@ export const CivDraft: FC = () => {
 
   return (
     <>
-      <h2 className='civ-draft-title'>Civ Pool</h2>
-      <p className='civ-draft-tip'>
+      <h2 className='civ-pool-title'>Civ Pool</h2>
+      <p className='civ-pool-tip'>
         Click a civ to add or remove it from the civ pool
       </p>
       {isLoading(civsStatus) ? (
         <Loading componentName='Civ Pool' />
       ) : (
-        <div className='civ-draft'>{renderCivs()}</div>
+        <div className='civ-pool'>{renderCivs()}</div>
       )}
     </>
   );
