@@ -13,9 +13,9 @@ import { ICiv } from '../../api/civs/civs-api';
 import { Loading } from '../loading';
 import { Civ, ICivProps } from '../civ';
 
-import './staging-civ-pool.scss';
+import './matching-civs.scss';
 
-export const StagingCivPool: FC = () => {
+export const MatchingCivs: FC = () => {
   const { allCivs, civsStatus } = useAppSelector(selectCivs);
   const { filteredCivPool } = useAppSelector(selectTechTreeFilter);
   const dispatch = useAppDispatch();
@@ -49,10 +49,10 @@ export const StagingCivPool: FC = () => {
   };
 
   return (
-    <div className='staging-civ-pool-container'>
-      <div className='staging-civ-pool-header'>
-        <h3 className='staging-civ-pool-title'>Matching civs</h3>
-        <div className='staging-civ-pool-stats'>
+    <div className='matching-civs-container'>
+      <div className='matching-civs-header'>
+        <h3 className='matching-civs-title'>Matching civs</h3>
+        <div className='matching-civs-stats'>
           <span className='matched-civs-number'>{filteredCivPool.length}</span>{' '}
           civs match your selection
         </div>
@@ -79,10 +79,10 @@ export const StagingCivPool: FC = () => {
       </div>
       {isLoading(civsStatus) ? (
         <div className='loading-wrapper'>
-          <Loading componentName='Staging Civ Pool' />
+          <Loading componentName='Matching Civs' />
         </div>
       ) : (
-        <div className='staging-civ-pool'>{renderCivs()}</div>
+        <div className='matching-civs'>{renderCivs()}</div>
       )}
     </div>
   );

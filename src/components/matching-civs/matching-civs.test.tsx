@@ -6,23 +6,23 @@ import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
 import { configureMockStore } from '../../store/mock-state-service';
 import { FetchStatus } from '../../store/fetch-status-service';
 
-import { StagingCivPool } from '.';
+import { MatchingCivs } from '.';
 
-describe('staging civ pool component', () => {
-  it('renders staging civ pool', () => {
+describe('matching civs component', () => {
+  it('renders matching civs', () => {
     const mockStore = configureMockStore();
 
-    const { container: stagingCivPoolContainer } = render(
+    const { container: matchingCivsContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <StagingCivPool />
+          <MatchingCivs />
         </MemoryRouter>
       </Provider>
     );
 
-    const stagingCivPoolEl =
-      stagingCivPoolContainer.querySelector('.staging-civ-pool');
-    expect(stagingCivPoolEl).toBeInTheDocument();
+    const matchingCivsEl =
+      matchingCivsContainer.querySelector('.matching-civs');
+    expect(matchingCivsEl).toBeInTheDocument();
   });
 
   it('renders loading component', () => {
@@ -33,19 +33,19 @@ describe('staging civ pool component', () => {
       },
     });
 
-    const { container: stagingCivPoolContainer } = render(
+    const { container: matchingCivsContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <StagingCivPool />
+          <MatchingCivs />
         </MemoryRouter>
       </Provider>
     );
 
-    const loadingEl = stagingCivPoolContainer.querySelector('.loading-text');
+    const loadingEl = matchingCivsContainer.querySelector('.loading-text');
     expect(loadingEl).toBeInTheDocument();
   });
 
-  it('adds staging civs to main pool', () => {
+  it('adds matching civs to main pool', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
@@ -61,10 +61,10 @@ describe('staging civ pool component', () => {
       },
     });
 
-    const { container: stagingCivPoolContainer } = render(
+    const { container: matchingCivsContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <StagingCivPool />
+          <MatchingCivs />
         </MemoryRouter>
       </Provider>
     );
@@ -78,7 +78,7 @@ describe('staging civ pool component', () => {
     expect(civPool[1].id).toBe(mockCiv2.id);
   });
 
-  it('replaces main pool with staging civs', () => {
+  it('replaces main pool with matching civs', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
@@ -94,10 +94,10 @@ describe('staging civ pool component', () => {
       },
     });
 
-    const { container: stagingCivPoolContainer } = render(
+    const { container: matchingCivsContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <StagingCivPool />
+          <MatchingCivs />
         </MemoryRouter>
       </Provider>
     );
@@ -110,7 +110,7 @@ describe('staging civ pool component', () => {
     expect(civPool[0].id).toBe(mockCiv2.id);
   });
 
-  it('subtracts staging civs from main pool', () => {
+  it('subtracts matching civs from main pool', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
@@ -126,10 +126,10 @@ describe('staging civ pool component', () => {
       },
     });
 
-    const { container: stagingCivPoolContainer } = render(
+    const { container: matchingCivsContainer } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <StagingCivPool />
+          <MatchingCivs />
         </MemoryRouter>
       </Provider>
     );
