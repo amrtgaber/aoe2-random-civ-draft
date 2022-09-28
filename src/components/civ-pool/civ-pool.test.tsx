@@ -19,7 +19,7 @@ describe('civ pool component', () => {
       </Provider>
     );
 
-    const civPoolEl = civPoolContainer.querySelector('.civ-draft');
+    const civPoolEl = civPoolContainer.querySelector('.civ-pool-title');
     expect(civPoolEl).toBeInTheDocument();
   });
 

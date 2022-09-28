@@ -9,12 +9,12 @@ import {
 } from '../../store/slices/civs-slice';
 import { SaveCivPool } from '../save-civ-pool';
 
-import './civ-draft-parameters.scss';
+import './civ-pool-settings.scss';
 import { TechTreeFilter } from '../tech-tree-filter';
 
-export interface ICivDraftParametersProps {}
+export interface ICivPoolSettingsProps {}
 
-export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
+export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
   const { allCivs, civPool } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -29,9 +29,9 @@ export const CivDraftParameters: FC<ICivDraftParametersProps> = (props) => {
 
   return (
     <>
-      <h2 className='civ-parameters-title'>Civ Pool Settings</h2>
+      <h2 className='civ-pool-settings-title'>Civ Pool Settings</h2>
       <SaveCivPool />
-      <div className='civ-draft-parameters civ-pool-buttons'>
+      <div className='civ-pool-settings civ-pool-buttons'>
         <a className='add-all-civs-button' onClick={handleAddAllCivs}>
           Add all civs
         </a>

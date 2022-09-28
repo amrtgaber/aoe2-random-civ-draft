@@ -1,10 +1,10 @@
 @import '../../shared-styles/lib';
 
-.civ-parameters-title {
+.civ-pool-settings-title {
   text-align: center;
 }
 
-.civ-draft-parameters.civ-pool-buttons {
+.civ-pool-settings.civ-pool-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   @include grid-alignment-center;

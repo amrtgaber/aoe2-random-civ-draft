@@ -7,24 +7,23 @@ import {
   getMockCivs,
 } from '../../store/mock-state-service';
 
-import { CivDraftParameters } from '.';
+import { CivPoolSettings } from '.';
 
-describe('civ draft parameters component', () => {
-  describe('renders civ draft parameters', () => {
-    it('renders civ draft parameters', () => {
+describe('civ pool settings component', () => {
+  describe('renders civ pool settings', () => {
+    it('renders civ pool settings', () => {
       const mockStore = configureMockStore();
 
-      const { container: civDraftParameters } = render(
+      const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
-          <CivDraftParameters />
+          <CivPoolSettings />
         </Provider>
       );
 
-      const civDraftParametersEl = civDraftParameters.querySelector(
-        '.civ-draft-parameters'
-      );
+      const civPoolSettingsEl =
+        civPoolSettings.querySelector('.civ-pool-settings');
 
-      expect(civDraftParametersEl).toBeInTheDocument();
+      expect(civPoolSettingsEl).toBeInTheDocument();
     });
   });
 
@@ -36,9 +35,9 @@ describe('civ draft parameters component', () => {
         civs: MOCK_STATE.civs,
       });
 
-      const { container: civDraftParameters } = render(
+      const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
-          <CivDraftParameters />
+          <CivPoolSettings />
         </Provider>
       );
 
@@ -57,9 +56,9 @@ describe('civ draft parameters component', () => {
         },
       });
 
-      const { container: civDraftParameters } = render(
+      const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
-          <CivDraftParameters />
+          <CivPoolSettings />
         </Provider>
       );
 
@@ -78,9 +77,9 @@ describe('civ draft parameters component', () => {
         },
       });
 
-      const { container: civDraftParameters } = render(
+      const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
-          <CivDraftParameters />
+          <CivPoolSettings />
         </Provider>
       );
 
