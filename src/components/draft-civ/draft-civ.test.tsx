@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
 import { configureMockStore } from '../../store/mock-state-service';
 
-import { CivDraftResultContainer } from '.';
+import { DraftCiv } from '.';
 
 describe('civ draft result container component', () => {
   it('renders civ draft result container', () => {
@@ -12,14 +12,12 @@ describe('civ draft result container component', () => {
 
     const { container: civDraftResultContainerContainer } = render(
       <Provider store={mockStore}>
-        <CivDraftResultContainer />
+        <DraftCiv />
       </Provider>
     );
 
     const civDraftResultContainerEl =
-      civDraftResultContainerContainer.querySelector(
-        '.civ-draft-result-container'
-      );
+      civDraftResultContainerContainer.querySelector('.draft-civ');
 
     expect(civDraftResultContainerEl).toBeInTheDocument();
   });
@@ -31,7 +29,7 @@ describe('civ draft result container component', () => {
 
     const { container: civDraftResultContainerContainer } = render(
       <Provider store={mockStore}>
-        <CivDraftResultContainer />
+        <DraftCiv />
       </Provider>
     );
 

@@ -5,14 +5,14 @@ import { Civ } from '../civ';
 import { useAppSelector } from '../../hooks';
 import { selectDraftResult } from '../../store/slices/draft-result-slice';
 
-import './civ-draft-result-container.scss';
+import './draft-civ.scss';
 
-export const CivDraftResultContainer: FC = () => {
+export const DraftCiv: FC = () => {
   const { civ } = useAppSelector(selectDraftResult);
 
   return (
     <>
-      <div className='civ-draft-result-container'>
+      <div className='draft-civ'>
         <DraftCivButton />
         {civ ? (
           <Civ

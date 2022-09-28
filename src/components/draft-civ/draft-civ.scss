@@ -1,6 +1,6 @@
 @import '../../shared-styles/lib';
 
-.civ-draft-result-container {
+.draft-civ {
   display: grid;
   grid-template-rows: 1fr 1fr;
   @include grid-alignment-center;
