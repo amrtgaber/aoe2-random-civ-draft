@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
-import { configureMockStore } from '../../store/mock-state-service';
-import { FetchStatus } from '../../store/fetch-status-service';
+import { MOCK_STATE } from '../../../store/mock-state-service/mock-state';
+import { configureMockStore } from '../../../store/mock-state-service';
+import { FetchStatus } from '../../../store/fetch-status-service';
 
 import { MatchingCivs } from '.';
 

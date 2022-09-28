@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import {
   configureMockStore,
   getMockTechTreeUnit,
-} from '../../store/mock-state-service';
-import { techTreeFilterInitialState } from '../../store/slices/tech-tree-filter-slice';
+} from '../../../store/mock-state-service';
+import { techTreeFilterInitialState } from '../../../store/slices/tech-tree-filter-slice';
 
 import { TechTreeItem } from '.';
 

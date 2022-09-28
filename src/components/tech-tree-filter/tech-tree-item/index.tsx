@@ -1,14 +1,14 @@
 import { FC, ReactElement, useState } from 'react';
 
 import './tech-tree-item.scss';
-import { isTech, isUnit, ITechTreeItem } from '../../api/tech-tree-item-api';
-import { useAppDispatch } from '../../hooks';
+import { isTech, isUnit, ITechTreeItem } from '../../../api/tech-tree-item-api';
+import { useAppDispatch } from '../../../hooks';
 import {
   addItemToFilter,
   addShownItem,
   removeItemFromFilter,
   removeShownItem,
-} from '../../store/slices/tech-tree-filter-slice';
+} from '../../../store/slices/tech-tree-filter-slice';
 
 export interface ITechTreeItemProps {
   item: ITechTreeItem;

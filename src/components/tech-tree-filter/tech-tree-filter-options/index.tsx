@@ -1,14 +1,14 @@
 import { ChangeEvent, FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
   clearItemsFilter,
   FilterMode,
   selectTechTreeFilter,
   setFilterMode,
   setSortMode,
-} from '../../store/slices/tech-tree-filter-slice';
-import { SortBy } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
+} from '../../../store/slices/tech-tree-filter-slice';
+import { SortBy } from '../../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 import './tech-tree-filter-options.scss';
 

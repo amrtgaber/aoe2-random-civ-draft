@@ -1,17 +1,17 @@
 import { FC, ReactElement } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
   addCivsToPool,
   removeCivsFromPool,
   selectCivs,
   setCivPool,
-} from '../../store/slices/civs-slice';
-import { isLoading } from '../../store/fetch-status-service';
-import { selectTechTreeFilter } from '../../store/slices/tech-tree-filter-slice';
-import { ICiv } from '../../api/civs/civs-api';
-import { Loading } from '../loading';
-import { Civ, ICivProps } from '../civ';
+} from '../../../store/slices/civs-slice';
+import { isLoading } from '../../../store/fetch-status-service';
+import { selectTechTreeFilter } from '../../../store/slices/tech-tree-filter-slice';
+import { ICiv } from '../../../api/civs/civs-api';
+import { Loading } from '../../loading';
+import { Civ, ICivProps } from '../../civ';
 
 import './matching-civs.scss';
 

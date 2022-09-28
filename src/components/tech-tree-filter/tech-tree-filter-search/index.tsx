@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
   selectTechTreeFilter,
   setSearchTerm,
-} from '../../store/slices/tech-tree-filter-slice';
+} from '../../../store/slices/tech-tree-filter-slice';
 
 import './tech-tree-filter-search.scss';
 

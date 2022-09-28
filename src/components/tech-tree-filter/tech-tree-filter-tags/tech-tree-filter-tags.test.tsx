@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
-import { configureMockStore } from '../../store/mock-state-service';
-import { filterTags } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
+import { MOCK_STATE } from '../../../store/mock-state-service/mock-state';
+import { configureMockStore } from '../../../store/mock-state-service';
+import { filterTags } from '../../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service/tags';
 
 import { TechTreeFilterTags } from '.';
 

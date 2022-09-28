@@ -1,10 +1,10 @@
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
-import { configureMockStore } from '../../store/mock-state-service';
-import { FilterMode } from '../../store/slices/tech-tree-filter-slice';
-import { SortBy } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
+import { MOCK_STATE } from '../../../store/mock-state-service/mock-state';
+import { configureMockStore } from '../../../store/mock-state-service';
+import { FilterMode } from '../../../store/slices/tech-tree-filter-slice';
+import { SortBy } from '../../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
 
 import { TechTreeFilterOptions } from '.';
 
