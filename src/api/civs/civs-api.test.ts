@@ -24,7 +24,7 @@ describe('civs api', () => {
     fetchMock.resetMocks();
   });
 
-  it('should get and sort civs', async () => {
+  test('should get and sort civs', async () => {
     fetchMock.mockResponse(JSON.stringify(mockApiCivs));
 
     const civs = await getCivs();

@@ -14,7 +14,7 @@ describe('version api', () => {
     fetchMock.resetMocks();
   });
 
-  it('should get game version', async () => {
+  test('should get game version', async () => {
     fetchMock.mockResponse(JSON.stringify(mockApiVersion));
 
     const version = await getVersion();

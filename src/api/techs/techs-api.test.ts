@@ -33,7 +33,7 @@ describe('techs api', () => {
     fetchMock.resetMocks();
   });
 
-  it('should get and sort techs', async () => {
+  test('should get and sort techs', async () => {
     fetchMock.mockResponse(JSON.stringify(mockApiTechs));
 
     const techs = await getTechs();

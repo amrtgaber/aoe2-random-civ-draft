@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { mockApiVersion } from '../../../api/version/version-api.spec';
+import { mockApiVersion } from '../../../api/version/version-api.test';
 import { FetchStatus } from '../../fetch-status-service';
 
 import versionReducer, { fetchVersion, versionInitialState } from '.';
@@ -13,7 +13,7 @@ const store = configureStore({
 });
 
 describe('version reducer', () => {
-  it('should handle initial load', () => {
+  test('should handle initial load', () => {
     expect(versionReducer(undefined, { type: 'unkown' })).toEqual(
       versionInitialState
     );
@@ -24,7 +24,7 @@ describe('version reducer', () => {
       fetchMock.resetMocks();
     });
 
-    it('should fetch game version', async () => {
+    test('should fetch game version', async () => {
       fetchMock.mockResponse(JSON.stringify(mockApiVersion));
 
       await store.dispatch(fetchVersion());
@@ -33,7 +33,7 @@ describe('version reducer', () => {
       expect(store.getState().gameVersion).toBe(mockApiVersion.gameVersion);
     });
 
-    it('should set versionStatus to failed if request is rejected', async () => {
+    test('should set versionStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchVersion());
       expect(store.getState().versionStatus).toBe(FetchStatus.FAILED);

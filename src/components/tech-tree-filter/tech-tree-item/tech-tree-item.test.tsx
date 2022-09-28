@@ -10,7 +10,7 @@ import { techTreeFilterInitialState } from '../../../store/slices/tech-tree-filt
 import { TechTreeItem } from '.';
 
 describe('tech tree item component', () => {
-  it('renders tech tree item', () => {
+  test('renders tech tree item', () => {
     const mockUnit = getMockTechTreeUnit();
     const mockStore = configureMockStore();
 
@@ -28,7 +28,7 @@ describe('tech tree item component', () => {
   });
 
   describe('animation classes', () => {
-    it('adds animation on select', () => {
+    test('adds animation on select', () => {
       const mockUnit = getMockTechTreeUnit();
       const mockStore = configureMockStore();
 
@@ -46,7 +46,7 @@ describe('tech tree item component', () => {
       expect(selectedAnimationClassEl).toBeInTheDocument();
     });
 
-    it('adds animation on deselect', () => {
+    test('adds animation on deselect', () => {
       const mockUnit = getMockTechTreeUnit();
       const mockStore = configureMockStore();
 
@@ -66,7 +66,7 @@ describe('tech tree item component', () => {
   });
 
   describe('updates state', () => {
-    it('updates state on select', () => {
+    test('updates state on select', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const mockStore = configureMockStore({
@@ -94,7 +94,7 @@ describe('tech tree item component', () => {
       expect(mockStore.getState().techTreeFilter.shownItems.length).toBe(0);
     });
 
-    it('updates state on deselect', () => {
+    test('updates state on deselect', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const mockStore = configureMockStore({

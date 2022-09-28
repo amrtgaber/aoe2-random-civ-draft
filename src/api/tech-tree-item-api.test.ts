@@ -13,7 +13,7 @@ import {
 } from './tech-tree-item-api';
 
 describe('tech-tree-item-api', () => {
-  it('converts unit to tech tree item', () => {
+  test('converts unit to tech tree item', () => {
     const mockApiUnit: ApiConnectedUnit = {
       id: 1000,
       unitName: 'archer',
@@ -29,7 +29,7 @@ describe('tech-tree-item-api', () => {
     });
   });
 
-  it('converts tech to tech tree item', () => {
+  test('converts tech to tech tree item', () => {
     const mockApiTech: ApiConnectedTech = {
       id: 1000,
       techName: 'loom',
@@ -45,7 +45,7 @@ describe('tech-tree-item-api', () => {
     });
   });
 
-  it('converts building to tech tree item', () => {
+  test('converts building to tech tree item', () => {
     const mockApiBuilding: ApiConnectedBuilding = {
       id: 1000,
       buildingName: 'house',

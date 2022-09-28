@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { mockApiAges } from '../../../api/ages/ages-api.spec';
+import { mockApiAges } from '../../../api/ages/ages-api.test';
 import { FetchStatus } from '../../fetch-status-service';
 
 import agesReducer, { agesInitialState, fetchAges } from '.';
@@ -13,7 +13,7 @@ const store = configureStore({
 });
 
 describe('ages reducer', () => {
-  it('should handle initial load', () => {
+  test('should handle initial load', () => {
     expect(agesReducer(undefined, { type: 'unkown' })).toEqual(
       agesInitialState
     );
@@ -24,7 +24,7 @@ describe('ages reducer', () => {
       fetchMock.resetMocks();
     });
 
-    it('should fetch game ages', async () => {
+    test('should fetch game ages', async () => {
       fetchMock.mockResponse(JSON.stringify(mockApiAges));
 
       await store.dispatch(fetchAges());
@@ -33,7 +33,7 @@ describe('ages reducer', () => {
       expect(store.getState().allAges.length).toBe(mockApiAges.length);
     });
 
-    it('should set agesStatus to failed if request is rejected', async () => {
+    test('should set agesStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchAges());
       expect(store.getState().agesStatus).toBe(FetchStatus.FAILED);

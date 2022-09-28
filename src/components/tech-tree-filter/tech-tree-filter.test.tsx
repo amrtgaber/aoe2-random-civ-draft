@@ -7,7 +7,7 @@ import { configureMockStore } from '../../store/mock-state-service';
 import { TechTreeFilter } from '.';
 
 describe('tech tree filter component', () => {
-  it('renders tech tree filter', () => {
+  test('renders tech tree filter', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterContainer } = render(
@@ -23,7 +23,7 @@ describe('tech tree filter component', () => {
     expect(techTreeFilterEl).toBeInTheDocument();
   });
 
-  it('updates state after fetch', () => {
+  test('updates state after fetch', () => {
     const mockStore = configureMockStore({
       units: MOCK_STATE.units,
       techs: MOCK_STATE.techs,
@@ -42,7 +42,7 @@ describe('tech tree filter component', () => {
     expect(taggedItems.length).toBeGreaterThan(0);
   });
 
-  it('renders a selected item', () => {
+  test('renders a selected item', () => {
     const mockUnit = MOCK_STATE.units.allUnits[0];
 
     const mockStore = configureMockStore({

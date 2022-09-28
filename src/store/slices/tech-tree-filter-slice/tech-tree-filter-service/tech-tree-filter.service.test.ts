@@ -6,7 +6,7 @@ import { assembleShownItemsOnChange } from '.';
 
 describe('tech tree filter service', () => {
   describe('assembleShownItemsOnChange', () => {
-    it('searches and filters items', () => {
+    test('searches and filters items', () => {
       const state = { ...MOCK_STATE.techTreeFilter };
 
       state.searchTerm = 'a';
@@ -20,7 +20,7 @@ describe('tech tree filter service', () => {
       );
     });
 
-    it('removes selected items', () => {
+    test('removes selected items', () => {
       const state = { ...MOCK_STATE.techTreeFilter };
 
       const shownItems = assembleShownItemsOnChange(state);

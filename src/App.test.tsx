@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import { store } from './store';
 
-it('renders app', () => {
+test('renders app', () => {
   const { container: appContainer } = render(
     <Provider store={store}>
       <BrowserRouter>

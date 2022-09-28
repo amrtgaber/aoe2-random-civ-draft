@@ -12,7 +12,7 @@ import { DraftCivButton } from '.';
 
 describe('draft civ button component', () => {
   describe('renders draft civ button', () => {
-    it('renders draft civ button', () => {
+    test('renders draft civ button', () => {
       const mockStore = configureMockStore();
 
       const { container: draftCivButtonContainer } = render(
@@ -26,7 +26,7 @@ describe('draft civ button component', () => {
   });
 
   describe('drafts a civ', () => {
-    it('drafts a civ on button click', () => {
+    test('drafts a civ on button click', () => {
       const mockStore = configureMockStore({
         civs: MOCK_STATE.civs,
       });
@@ -42,7 +42,7 @@ describe('draft civ button component', () => {
       expect(mockStore.getState().draftResult.draftCount).toBe(1);
     });
 
-    it('does not draft civ before fetch success', () => {
+    test('does not draft civ before fetch success', () => {
       const mockStore = configureMockStore({
         civs: {
           ...MOCK_STATE.civs,
@@ -61,7 +61,7 @@ describe('draft civ button component', () => {
       expect(mockStore.getState().draftResult.draftCount).toBe(0);
     });
 
-    it('only drafts civs from civ pool if civ pool is not empty', () => {
+    test('only drafts civs from civ pool if civ pool is not empty', () => {
       const mockCiv = getMockCiv();
       const mockCivName = mockCiv.civName;
 

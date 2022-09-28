@@ -23,14 +23,14 @@ import techTreeFilterReducer, {
 } from '.';
 
 describe('techTreeFilter reducer', () => {
-  it('should handle initial load', () => {
+  test('should handle initial load', () => {
     expect(techTreeFilterReducer(undefined, { type: 'unkown' })).toEqual(
       techTreeFilterInitialState
     );
   });
 
   describe('items filter', () => {
-    it('should add item to filter', () => {
+    test('should add item to filter', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const endState = techTreeFilterReducer(
@@ -42,7 +42,7 @@ describe('techTreeFilter reducer', () => {
       expect(endState.itemsFilter[0].id).toBe(mockUnit.id);
     });
 
-    it('should remove item from filter', () => {
+    test('should remove item from filter', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const startState = {
@@ -58,7 +58,7 @@ describe('techTreeFilter reducer', () => {
       expect(endState.itemsFilter.length).toBe(0);
     });
 
-    it('should set items filter', () => {
+    test('should set items filter', () => {
       const mockItems = getMockTechTreeItems();
 
       const endState = techTreeFilterReducer(
@@ -69,7 +69,7 @@ describe('techTreeFilter reducer', () => {
       expect(endState.itemsFilter.length).toBe(mockItems.length);
     });
 
-    it('should clear items filter', () => {
+    test('should clear items filter', () => {
       const mockItems = getMockTechTreeItems();
 
       const startState = {
@@ -83,7 +83,7 @@ describe('techTreeFilter reducer', () => {
     });
   });
 
-  it('should set filter mode', () => {
+  test('should set filter mode', () => {
     const startState = {
       ...techTreeFilterInitialState,
       filterMode: FilterMode.HAS_ALL,
@@ -97,7 +97,7 @@ describe('techTreeFilter reducer', () => {
     expect(endState.filterMode).toEqual(FilterMode.HAS_ANY);
   });
 
-  it('should set tagged items', () => {
+  test('should set tagged items', () => {
     const mockItems = getMockTechTreeItems();
 
     const endState = techTreeFilterReducer(
@@ -109,7 +109,7 @@ describe('techTreeFilter reducer', () => {
   });
 
   describe('shown items', () => {
-    it('should add shown item', () => {
+    test('should add shown item', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const startState = {
@@ -126,7 +126,7 @@ describe('techTreeFilter reducer', () => {
       expect(endState.shownItems[0].id).toBe(mockUnit.id);
     });
 
-    it('should remove shown item', () => {
+    test('should remove shown item', () => {
       const mockUnit = getMockTechTreeUnit();
 
       const startState = {
@@ -143,7 +143,7 @@ describe('techTreeFilter reducer', () => {
       expect(endState.shownItems.length).toBe(0);
     });
 
-    it('should set shown items', () => {
+    test('should set shown items', () => {
       const mockItems = getMockTechTreeItems();
 
       const startState = {
@@ -160,7 +160,7 @@ describe('techTreeFilter reducer', () => {
     });
   });
 
-  it('should set search term', () => {
+  test('should set search term', () => {
     const mockSearchTerm = 'test';
 
     const endState = techTreeFilterReducer(
@@ -171,7 +171,7 @@ describe('techTreeFilter reducer', () => {
     expect(endState.searchTerm).toBe(mockSearchTerm);
   });
 
-  it('should set sort mode', () => {
+  test('should set sort mode', () => {
     const endState = techTreeFilterReducer(
       techTreeFilterInitialState,
       setSortMode(SortBy.AGE)
@@ -180,7 +180,7 @@ describe('techTreeFilter reducer', () => {
     expect(endState.sortMode).toBe(SortBy.AGE);
   });
 
-  it('should set selected tags', () => {
+  test('should set selected tags', () => {
     const selectedTag = getTagByName('units');
 
     const endState = techTreeFilterReducer(

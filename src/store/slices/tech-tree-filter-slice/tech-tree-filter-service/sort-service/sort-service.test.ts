@@ -11,7 +11,7 @@ import { doSort, SortBy } from '.';
 
 describe('sort service', () => {
   describe('doSort', () => {
-    it('should sort by a-z', () => {
+    test('should sort by a-z', () => {
       const mockItems = getMockTechTreeItems();
       const itemsToSort = [mockItems[1], mockItems[0]];
 
@@ -21,7 +21,7 @@ describe('sort service', () => {
       expect(sortedItems[1].id).toBe(mockItems[1].id);
     });
 
-    it('should sort by age', () => {
+    test('should sort by age', () => {
       const mockItems = getMockTechTreeItems();
 
       const mockDarkAgeItem = mockItems[0];
@@ -38,7 +38,7 @@ describe('sort service', () => {
       expect(sortedItems[1].id).toBe(mockFeudalAgeItem.id);
     });
 
-    it('should sort by building', () => {
+    test('should sort by building', () => {
       const mockUnit = getMockTechTreeUnit();
       const mockTech = getMockTechTreeTech();
       const mockBuilding = getMockTechTreeBuilding();
@@ -55,7 +55,7 @@ describe('sort service', () => {
       expect(sortedItems.every((item) => !isBuilding(item))).toBe(true);
     });
 
-    it('should sort by kind', () => {
+    test('should sort by kind', () => {
       const mockUnit = getMockTechTreeUnit();
       const mockTech = getMockTechTreeTech();
       const mockBuilding = getMockTechTreeBuilding();

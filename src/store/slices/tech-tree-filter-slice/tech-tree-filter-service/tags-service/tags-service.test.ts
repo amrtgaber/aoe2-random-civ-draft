@@ -27,18 +27,18 @@ import {
 
 describe('tags service', () => {
   describe('get tag by name', () => {
-    it('returns a tag', () => {
+    test('returns a tag', () => {
       const tag = getTagByName('units');
       expect(tag.tagName).toBe('units');
     });
 
-    it('throws if tag is not found', () => {
+    test('throws if tag is not found', () => {
       expect(() => getTagByName('')).toThrow();
     });
   });
 
   describe('addTagsToItem', () => {
-    it('should add units tag to unit', () => {
+    test('should add units tag to unit', () => {
       const mockUnit = getMockTechTreeUnit();
       mockUnit.tagIds = [];
 
@@ -47,7 +47,7 @@ describe('tags service', () => {
       expect(taggedItem.tagIds).toContain(getTagByName('units').id);
     });
 
-    it('should add techs tag to tech', () => {
+    test('should add techs tag to tech', () => {
       const mockTech = getMockTechTreeTech();
       mockTech.tagIds = [];
 
@@ -56,7 +56,7 @@ describe('tags service', () => {
       expect(taggedItem.tagIds).toContain(getTagByName('techs').id);
     });
 
-    it('should add buildings tag to building', () => {
+    test('should add buildings tag to building', () => {
       const mockBuilding = getMockTechTreeBuilding();
       mockBuilding.tagIds = [];
 
@@ -65,7 +65,7 @@ describe('tags service', () => {
       expect(taggedItem.tagIds).toContain(getTagByName('buildings').id);
     });
 
-    it('should add uniques tag to unique', () => {
+    test('should add uniques tag to unique', () => {
       const mockUnique = getMockTechTreeItems().find(
         (item) => item.isUnique
       ) as ITechTreeItem;
@@ -77,7 +77,7 @@ describe('tags service', () => {
       expect(taggedItem.tagIds).toContain(getTagByName('uniques').id);
     });
 
-    it('should add age tag to item', () => {
+    test('should add age tag to item', () => {
       const mockUnit = getMockTechTreeUnit();
       mockUnit.tagIds = [];
 
@@ -88,7 +88,7 @@ describe('tags service', () => {
       expect(taggedItem.tagIds).toContain(ageTagId);
     });
 
-    it('should add building tags to item', () => {
+    test('should add building tags to item', () => {
       const mockUnit = getMockTechTreeUnit();
       mockUnit.buildings = getMockTechTreeBuildings();
       mockUnit.tagIds = [];
@@ -106,7 +106,7 @@ describe('tags service', () => {
   });
 
   describe('filter by tag type', () => {
-    it('should filter by units tag', () => {
+    test('should filter by units tag', () => {
       const mockItems = getMockTechTreeItems();
       const unitsTag = getTagByName('units');
 
@@ -119,7 +119,7 @@ describe('tags service', () => {
       expect(filterResults.every((item) => isUnit(item))).toBe(true);
     });
 
-    it('should filter by techs tag', () => {
+    test('should filter by techs tag', () => {
       const mockItems = getMockTechTreeItems();
       const techsTag = getTagByName('techs');
 
@@ -132,7 +132,7 @@ describe('tags service', () => {
       expect(filterResults.every((item) => isTech(item))).toBe(true);
     });
 
-    it('should filter by buildings tag', () => {
+    test('should filter by buildings tag', () => {
       const mockItems = getMockTechTreeItems();
       const buildingsTag = getTagByName('buildings');
 
@@ -145,7 +145,7 @@ describe('tags service', () => {
       expect(filterResults.every((item) => isBuilding(item))).toBe(true);
     });
 
-    it('should filter by age tag', () => {
+    test('should filter by age tag', () => {
       const mockItems = getMockTechTreeItems();
       const mockDarkAgeItem = mockItems[0];
       mockDarkAgeItem.age!.ageName = 'dark age';
@@ -168,7 +168,7 @@ describe('tags service', () => {
       ).toBe(true);
     });
 
-    it('should filter by a specific building tag', () => {
+    test('should filter by a specific building tag', () => {
       const mockArcheryRangeItem = getMockTechTreeUnit();
       mockArcheryRangeItem.buildings = [
         { id: 1, itemName: 'archery range', kind: TechTreeItemType.BUILDING },
@@ -198,7 +198,7 @@ describe('tags service', () => {
       ).toBe(true);
     });
 
-    it('should filter by a multiple tags', () => {
+    test('should filter by a multiple tags', () => {
       const mockItems = getMockTechTreeItems();
 
       const unitsTag = getTagByName('units');
@@ -215,7 +215,7 @@ describe('tags service', () => {
       );
     });
 
-    it('should return all items if there are no selected tags', () => {
+    test('should return all items if there are no selected tags', () => {
       const mockItems = getMockTechTreeItems();
       const filterResults = filterByTagType(mockItems, [], TagType.KIND);
       expect(filterResults.length).toBe(mockItems.length);
@@ -223,7 +223,7 @@ describe('tags service', () => {
   });
 
   describe('filter by uniques tag', () => {
-    it('should include uniques if uniques tag is selected', () => {
+    test('should include uniques if uniques tag is selected', () => {
       const mockItems = getMockTechTreeItems();
 
       const uniquesTag = getTagByName('uniques');
@@ -233,7 +233,7 @@ describe('tags service', () => {
       expect(filterResults.some((item) => item.isUnique)).toBe(true);
     });
 
-    it('should filter out uniques if uniques tag is not selected', () => {
+    test('should filter out uniques if uniques tag is not selected', () => {
       const mockItems = getMockTechTreeItems();
 
       const filterResults = filterByUnique(mockItems, []);
@@ -243,7 +243,7 @@ describe('tags service', () => {
   });
 
   describe('doFilter', () => {
-    it('should filter by multiple tag types', () => {
+    test('should filter by multiple tag types', () => {
       const mockItems = getMockTechTreeItems();
       const unitsTag = getTagByName('units');
       const feudalAgeTag = getTagByName('feudal age');

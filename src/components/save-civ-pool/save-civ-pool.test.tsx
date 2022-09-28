@@ -14,7 +14,7 @@ import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
 
 describe('save civ pool component', () => {
   describe('renders save civ pool', () => {
-    it('renders save civ pool', () => {
+    test('renders save civ pool', () => {
       const mockStore = configureMockStore();
 
       const { container: saveCivPool } = render(
@@ -28,7 +28,7 @@ describe('save civ pool component', () => {
   });
 
   describe('save button', () => {
-    it('saves civ pool', () => {
+    test('saves civ pool', () => {
       const mockStore = configureMockStore();
 
       const { container: saveCivPool } = render(

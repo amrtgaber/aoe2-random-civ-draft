@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import fetchMock from 'jest-fetch-mock';
 
-import { mockApiUnits } from '../../../api/units/units-api.spec';
+import { mockApiUnits } from '../../../api/units/units-api.test';
 import { FetchStatus } from '../../fetch-status-service';
 
 import unitsReducer, { fetchUnits, unitsInitialState } from '.';
@@ -13,7 +13,7 @@ const store = configureStore({
 });
 
 describe('units reducer', () => {
-  it('should handle initial load', () => {
+  test('should handle initial load', () => {
     expect(unitsReducer(undefined, { type: 'unkown' })).toEqual(
       unitsInitialState
     );
@@ -24,7 +24,7 @@ describe('units reducer', () => {
       fetchMock.resetMocks();
     });
 
-    it('should fetch all units', async () => {
+    test('should fetch all units', async () => {
       fetchMock.mockResponse(JSON.stringify(mockApiUnits));
 
       await store.dispatch(fetchUnits());
@@ -33,7 +33,7 @@ describe('units reducer', () => {
       expect(store.getState().allUnits.length).toBe(mockApiUnits.length);
     });
 
-    it('should set unitsStatus to failed if request is rejected', async () => {
+    test('should set unitsStatus to failed if request is rejected', async () => {
       fetchMock.mockReject();
       await store.dispatch(fetchUnits());
       expect(store.getState().unitsStatus).toBe(FetchStatus.FAILED);

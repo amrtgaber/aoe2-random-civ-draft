@@ -33,7 +33,7 @@ describe('units api', () => {
     fetchMock.resetMocks();
   });
 
-  it('should get and sort units', async () => {
+  test('should get and sort units', async () => {
     fetchMock.mockResponse(JSON.stringify(mockApiUnits));
 
     const units = await getUnits();

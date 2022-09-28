@@ -8,7 +8,7 @@ import { configureMockStore } from '../../store/mock-state-service';
 import { CivPool } from '.';
 
 describe('civ pool component', () => {
-  it('renders civ pool', () => {
+  test('renders civ pool', () => {
     const mockStore = configureMockStore();
 
     const { container: civPoolContainer } = render(
@@ -24,7 +24,7 @@ describe('civ pool component', () => {
   });
 
   describe('civ pool init', () => {
-    it('updates civ pool from query params', () => {
+    test('updates civ pool from query params', () => {
       const mockStore = configureMockStore({
         civs: MOCK_STATE.civs,
       });
@@ -42,7 +42,7 @@ describe('civ pool component', () => {
   });
 
   describe('listens to civ pool changes', () => {
-    it('updates query params when civ pool changes', () => {
+    test('updates query params when civ pool changes', () => {
       const mockStore = configureMockStore({
         civs: MOCK_STATE.civs,
       });

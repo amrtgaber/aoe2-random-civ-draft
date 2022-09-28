@@ -9,7 +9,7 @@ import { SortBy } from '../../../store/slices/tech-tree-filter-slice/tech-tree-f
 import { TechTreeFilterOptions } from '.';
 
 describe('tech tree filter options component', () => {
-  it('renders tech tree filter options', () => {
+  test('renders tech tree filter options', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterOptionsContainer } = render(
@@ -24,7 +24,7 @@ describe('tech tree filter options component', () => {
     expect(techTreeFilterOptionsEl).toBeInTheDocument();
   });
 
-  it('toggles the filter mode', () => {
+  test('toggles the filter mode', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterOptionsContainer } = render(
@@ -44,7 +44,7 @@ describe('tech tree filter options component', () => {
     );
   });
 
-  it('clears items filter', () => {
+  test('clears items filter', () => {
     const mockStore = configureMockStore({
       techTreeFilter: MOCK_STATE.techTreeFilter,
     });
@@ -63,7 +63,7 @@ describe('tech tree filter options component', () => {
     expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(0);
   });
 
-  it('sets sort mode', () => {
+  test('sets sort mode', () => {
     const mockStore = configureMockStore({
       techTreeFilter: MOCK_STATE.techTreeFilter,
     });

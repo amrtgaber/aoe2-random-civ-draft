@@ -8,7 +8,7 @@ import { filterTags } from '../../../store/slices/tech-tree-filter-slice/tech-tr
 import { TechTreeFilterTags } from '.';
 
 describe('tech tree filter tags component', () => {
-  it('renders tech tree filter tags', () => {
+  test('renders tech tree filter tags', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterTagsContainer } = render(
@@ -25,7 +25,7 @@ describe('tech tree filter tags component', () => {
   });
 
   describe('toggle filter tag', () => {
-    it('selects filter tag', () => {
+    test('selects filter tag', () => {
       const mockTag = filterTags[0];
       const mockStore = configureMockStore();
 
@@ -45,7 +45,7 @@ describe('tech tree filter tags component', () => {
       );
     });
 
-    it('deselects filter tag', () => {
+    test('deselects filter tag', () => {
       const mockTag = filterTags[0];
       const mockStore = configureMockStore({
         techTreeFilter: {
@@ -68,7 +68,7 @@ describe('tech tree filter tags component', () => {
     });
   });
 
-  it('clears selected tags', () => {
+  test('clears selected tags', () => {
     const mockTags = filterTags;
 
     const mockStore = configureMockStore({

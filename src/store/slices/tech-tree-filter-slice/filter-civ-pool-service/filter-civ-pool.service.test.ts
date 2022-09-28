@@ -5,7 +5,7 @@ import { FilterMode } from '..';
 import { filterCivPool } from '.';
 
 describe('filter civ pool service', () => {
-  it('returns no civs if no items in filter', () => {
+  test('returns no civs if no items in filter', () => {
     const state = { ...MOCK_STATE.techTreeFilter };
 
     state.itemsFilter = [];
@@ -16,7 +16,7 @@ describe('filter civ pool service', () => {
   });
 
   describe('filter by all', () => {
-    it('returns civs that have all of the items in their tech tree', () => {
+    test('returns civs that have all of the items in their tech tree', () => {
       const mockItems = getMockTechTreeItems();
       mockItems[0].civs = [
         { id: 1, civName: 'Aztecs' },
@@ -39,7 +39,7 @@ describe('filter civ pool service', () => {
   });
 
   describe('filter by any', () => {
-    it('returns civs that have any of the items in their tech tree', () => {
+    test('returns civs that have any of the items in their tech tree', () => {
       const mockItems = getMockTechTreeItems();
       mockItems[0].civs = [
         { id: 1, civName: 'Aztecs' },

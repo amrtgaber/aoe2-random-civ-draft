@@ -60,7 +60,7 @@ describe('ages api', () => {
     fetchMock.resetMocks();
   });
 
-  it('should get and sort ages', async () => {
+  test('should get and sort ages', async () => {
     fetchMock.mockResponse(JSON.stringify(mockApiAges));
 
     const ages = await getAges();

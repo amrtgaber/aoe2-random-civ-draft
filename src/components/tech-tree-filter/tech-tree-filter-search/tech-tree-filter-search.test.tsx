@@ -7,7 +7,7 @@ import { configureMockStore } from '../../../store/mock-state-service';
 import { TechTreeFilterSearch } from '.';
 
 describe('tech tree filter search component', () => {
-  it('renders tech tree filter search', () => {
+  test('renders tech tree filter search', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterSearchContainer } = render(
@@ -23,7 +23,7 @@ describe('tech tree filter search component', () => {
     expect(techTreeFilterSearchEl).toBeInTheDocument();
   });
 
-  it('sets search term', () => {
+  test('sets search term', () => {
     const mockStore = configureMockStore();
 
     const { container: techTreeFilterSearchContainer } = render(
@@ -43,7 +43,7 @@ describe('tech tree filter search component', () => {
     expect(mockStore.getState().techTreeFilter.searchTerm).toBe('a');
   });
 
-  it('clears search term', () => {
+  test('clears search term', () => {
     const mockStore = configureMockStore({
       techTreeFilter: {
         ...MOCK_STATE.techTreeFilter,

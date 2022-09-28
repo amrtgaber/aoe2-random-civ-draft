@@ -7,7 +7,7 @@ import { configureMockStore } from '../../store/mock-state-service';
 import { DraftCiv } from '.';
 
 describe('civ draft result container component', () => {
-  it('renders civ draft result container', () => {
+  test('renders civ draft result container', () => {
     const mockStore = configureMockStore();
 
     const { container: civDraftResultContainerContainer } = render(
@@ -22,7 +22,7 @@ describe('civ draft result container component', () => {
     expect(civDraftResultContainerEl).toBeInTheDocument();
   });
 
-  it('drafts a civ and renders the result', () => {
+  test('drafts a civ and renders the result', () => {
     const mockStore = configureMockStore({
       civs: MOCK_STATE.civs,
     });

@@ -12,7 +12,7 @@ describe('search service', () => {
       mockItems = getMockTechTreeItems();
     });
 
-    it('should find items', () => {
+    test('should find items', () => {
       const term = 'a';
 
       const searchResults = doSearch(mockItems, term);
@@ -20,7 +20,7 @@ describe('search service', () => {
       expect(searchResults.length).toBeGreaterThan(0);
     });
 
-    it('should be case insensitive', () => {
+    test('should be case insensitive', () => {
       const term = 'A';
 
       const searchResults = doSearch(mockItems, term);
@@ -28,7 +28,7 @@ describe('search service', () => {
       expect(searchResults.length).toBeGreaterThan(0);
     });
 
-    it('should find one item', () => {
+    test('should find one item', () => {
       const term = 'arbalester';
 
       const searchResults = doSearch(mockItems, term);
@@ -37,13 +37,13 @@ describe('search service', () => {
       expect(searchResults[0].itemName).toBe('arbalester');
     });
 
-    it('should return all items if search term is blank', () => {
+    test('should return all items if search term is blank', () => {
       const searchResults = doSearch(mockItems, '');
 
       expect(searchResults.length).toBe(mockItems.length);
     });
 
-    it('should return empty array if items list is empty', () => {
+    test('should return empty array if items list is empty', () => {
       const term = 'a';
 
       const searchResults = doSearch([], term);

@@ -12,7 +12,7 @@ import { Civ } from '.';
 
 describe('civ component', () => {
   describe('renders civ component', () => {
-    it('renders civ component', () => {
+    test('renders civ component', () => {
       const mockCiv = getMockCiv();
 
       const mockStore = configureMockStore();
@@ -34,7 +34,7 @@ describe('civ component', () => {
   });
 
   describe('civ in civ draft component', () => {
-    it('adds civ to civ pool when clicked', () => {
+    test('adds civ to civ pool when clicked', () => {
       const mockCiv = getMockCiv();
 
       const mockStore = configureMockStore();
@@ -54,7 +54,7 @@ describe('civ component', () => {
       expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv.id);
     });
 
-    it('removes civ from civ pool when clicked', () => {
+    test('removes civ from civ pool when clicked', () => {
       const mockCiv = getMockCiv();
 
       const mockStore = configureMockStore({
@@ -79,7 +79,7 @@ describe('civ component', () => {
       expect(mockStore.getState().civs.civPool.length).toBe(0);
     });
 
-    it('clicking tech tree does not affect pool state', () => {
+    test('clicking tech tree does not affect pool state', () => {
       const mockCivs = getMockCivs();
       const mockCiv1 = mockCivs[0];
       const mockCiv2 = mockCivs[1];
@@ -117,7 +117,7 @@ describe('civ component', () => {
   });
 
   describe('civ in draft result component', () => {
-    it('renders civ in draft result component', () => {
+    test('renders civ in draft result component', () => {
       const mockCiv = getMockCiv();
 
       const mockStore = configureMockStore();
@@ -137,7 +137,7 @@ describe('civ component', () => {
       expect(civEl).toBeInTheDocument();
     });
 
-    it('removes animation class when animation ends', () => {
+    test('removes animation class when animation ends', () => {
       const mockCiv = getMockCiv();
 
       const mockStore = configureMockStore();

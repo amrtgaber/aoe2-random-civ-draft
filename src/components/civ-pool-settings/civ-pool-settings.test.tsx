@@ -11,7 +11,7 @@ import { CivPoolSettings } from '.';
 
 describe('civ pool settings component', () => {
   describe('renders civ pool settings', () => {
-    it('renders civ pool settings', () => {
+    test('renders civ pool settings', () => {
       const mockStore = configureMockStore();
 
       const { container: civPoolSettings } = render(
@@ -28,7 +28,7 @@ describe('civ pool settings component', () => {
   });
 
   describe('add all, remove, and invert selection', () => {
-    it('adds all civs to pool', () => {
+    test('adds all civs to pool', () => {
       const mockCivs = getMockCivs();
 
       const mockStore = configureMockStore({
@@ -46,7 +46,7 @@ describe('civ pool settings component', () => {
       expect(mockStore.getState().civs.civPool.length).toBe(mockCivs.length);
     });
 
-    it('removes all civs from pool', () => {
+    test('removes all civs from pool', () => {
       const mockCivs = getMockCivs();
 
       const mockStore = configureMockStore({
@@ -67,7 +67,7 @@ describe('civ pool settings component', () => {
       expect(mockStore.getState().civs.civPool.length).toBe(0);
     });
 
-    it('inverts civ pool selection', () => {
+    test('inverts civ pool selection', () => {
       const mockCivs = getMockCivs();
 
       const mockStore = configureMockStore({

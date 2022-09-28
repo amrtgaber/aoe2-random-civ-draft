@@ -7,13 +7,13 @@ import draftResultReducer, {
 } from '.';
 
 describe('civs reducer', () => {
-  it('should handle initial load', () => {
+  test('should handle initial load', () => {
     expect(draftResultReducer(undefined, { type: 'unkown' })).toEqual(
       draftResultinitialState
     );
   });
 
-  it('should handle draft civ action', () => {
+  test('should handle draft civ action', () => {
     const civ = getMockCiv();
 
     expect(

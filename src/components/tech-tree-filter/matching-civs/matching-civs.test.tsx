@@ -9,7 +9,7 @@ import { FetchStatus } from '../../../store/fetch-status-service';
 import { MatchingCivs } from '.';
 
 describe('matching civs component', () => {
-  it('renders matching civs', () => {
+  test('renders matching civs', () => {
     const mockStore = configureMockStore();
 
     const { container: matchingCivsContainer } = render(
@@ -25,7 +25,7 @@ describe('matching civs component', () => {
     expect(matchingCivsEl).toBeInTheDocument();
   });
 
-  it('renders loading component', () => {
+  test('renders loading component', () => {
     const mockStore = configureMockStore({
       civs: {
         ...MOCK_STATE.civs,
@@ -45,7 +45,7 @@ describe('matching civs component', () => {
     expect(loadingEl).toBeInTheDocument();
   });
 
-  it('adds matching civs to main pool', () => {
+  test('adds matching civs to main pool', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
@@ -78,7 +78,7 @@ describe('matching civs component', () => {
     expect(civPool[1].id).toBe(mockCiv2.id);
   });
 
-  it('replaces main pool with matching civs', () => {
+  test('replaces main pool with matching civs', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
@@ -110,7 +110,7 @@ describe('matching civs component', () => {
     expect(civPool[0].id).toBe(mockCiv2.id);
   });
 
-  it('subtracts matching civs from main pool', () => {
+  test('subtracts matching civs from main pool', () => {
     const mockCivs = MOCK_STATE.civs.allCivs;
     const mockCiv1 = mockCivs[0];
     const mockCiv2 = mockCivs[1];
