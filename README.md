@@ -2,6 +2,10 @@
 
 This app is a fan made project that randomly selects a civilization from the game. The app can customize the pool of civilizations to draft from and also has features for editing and saving the civ pool.
 
+## Hosted at
+
+https://aoe2-random-civ-draft.app/
+
 ## API
 
 The app relies on an api to get the list of civilizations. The code for this api can be found at https://github.com/amrtgaber/aoe2-data-api.
@@ -32,3 +36,19 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run make`
+
+Creates an electron executable.
+
+### `npm run electron start`
+
+Runs a development window for electron build.
+
+## License
+
+[MIT licensed](LICENSE).
+
+---
+
+Age of Empires II © Microsoft Corporation. Age of Empires II Data Api was created under Microsoft's "[Game Content Usage Rules](https://www.xbox.com/en-us/developers/rules)" using assets from Age of Empires II and it is not endorsed by or affiliated with Microsoft.
