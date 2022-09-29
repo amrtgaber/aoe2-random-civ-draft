@@ -17,17 +17,17 @@ import {
   isFulfilled,
   isInit,
 } from '../../store/fetch-status-service';
+import { addTagsToItem } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service';
 import { ITechTreeItem } from '../../api/tech-tree-item-api';
 
 import { Loading } from '../loading';
-import { TechTreeFilterSearch } from '../tech-tree-filter-search';
-import { TechTreeFilterOptions } from '../tech-tree-filter-options';
-import { TechTreeItem } from '../tech-tree-item';
-import { StagingCivPool } from '../staging-civ-pool';
+import { TechTreeFilterSearch } from './tech-tree-filter-search';
+import { TechTreeFilterOptions } from './tech-tree-filter-options';
+import { TechTreeItem } from './tech-tree-item';
+import { MatchingCivs } from './matching-civs';
+import { TechTreeFilterTags } from './tech-tree-filter-tags';
 
 import './tech-tree-filter.scss';
-import { addTagsToItem } from '../../store/slices/tech-tree-filter-slice/tech-tree-filter-service/tags-service';
-import { TechTreeFilterTags } from '../tech-tree-filter-tags';
 
 export const TechTreeFilter: FC = () => {
   const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
@@ -144,8 +144,8 @@ export const TechTreeFilter: FC = () => {
               </>
             </div>
           </div>
-          <div className='tech-tree-filter-staging-panel'>
-            <StagingCivPool />
+          <div className='tech-tree-filter-matching-civs-panel'>
+            <MatchingCivs />
           </div>
         </div>
       )}

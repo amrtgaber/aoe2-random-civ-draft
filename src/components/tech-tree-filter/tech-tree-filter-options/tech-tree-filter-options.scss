@@ -1,0 +1,120 @@
+@import '../../../shared-styles/lib';
+@import '../tech-tree-filter';
+
+.tech-tree-filter-options {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+
+  background-color: $bg-color-light;
+  border-radius: $border-radius-medium;
+
+  @include for-phone-only {
+    padding: calc-padding($padding-small);
+  }
+
+  @include for-tablet-portrait-up {
+    padding: calc-padding($padding-small);
+    font-size: calc-font-size($font-size-2);
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: calc-font-size($font-size-4);
+  }
+
+  @include for-1080p-up {
+    padding: calc-padding($padding-medium);
+    font-size: calc-font-size($font-size-base);
+  }
+}
+
+.tech-tree-filter-reset {
+  @include for-phone-only {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-portrait-up {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-landscape-up {
+    padding-left: calc-padding($padding-medium);
+  }
+}
+
+.clear-filter-button {
+  @include tech-tree-filter-button;
+}
+
+.tech-tree-filter-mode {
+  @include for-phone-only {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-portrait-up {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-landscape-up {
+    padding-left: calc-padding($padding-medium);
+  }
+
+  .filter-mode-button {
+    @include tech-tree-filter-button;
+  }
+}
+
+.tech-tree-filter-mode,
+.tech-tree-filter-sort {
+  padding-top: calc-vertical-margin($vertical-margin-medium);
+
+  @include for-phone-only {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-portrait-up {
+    padding-left: calc-padding($padding-small);
+  }
+
+  @include for-tablet-landscape-up {
+    padding-left: calc-padding($padding-medium);
+  }
+}
+
+.tech-tree-filter-sort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+
+  .sort-text {
+    flex: 1 1 20%;
+  }
+
+  .sort-dropdown {
+    flex: 1 1 80%;
+
+    color: $primary-color-amber;
+    background-color: $button-filled-light-bg-color;
+
+    padding: calc-padding($padding-small);
+
+    border: none;
+    border-radius: $border-radius-small;
+
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+
+    @include for-tablet-portrait-up {
+      font-size: calc-font-size($font-size-4);
+    }
+
+    @include for-1080p-up {
+      font-size: calc-font-size($font-size-base);
+    }
+  }
+}

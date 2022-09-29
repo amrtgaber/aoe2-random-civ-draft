@@ -1,7 +1,7 @@
 import { TopAppBar } from './components/top-app-bar';
-import { CivDraftResultContainer } from './components/civ-draft-result-container';
-import { CivDraft } from './components/civ-draft';
-import { CivDraftParameters } from './components/civ-draft-parameters';
+import { DraftCiv } from './components/draft-civ';
+import { CivPool } from './components/civ-pool';
+import { CivPoolSettings } from './components/civ-pool-settings';
 import { Footer } from './components/footer';
 import { Separator } from './components/separator';
 
@@ -13,13 +13,13 @@ function App() {
       <TopAppBar />
 
       <Separator />
-      <CivDraftResultContainer />
+      <DraftCiv />
 
       <Separator />
-      <CivDraft />
+      <CivPool />
 
       <Separator />
-      <CivDraftParameters />
+      <CivPoolSettings />
 
       <Separator />
       <Footer />

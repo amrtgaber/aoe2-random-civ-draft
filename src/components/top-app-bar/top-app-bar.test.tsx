@@ -7,7 +7,7 @@ import { configureMockStore } from '../../store/mock-state-service';
 import { TopAppBar } from './';
 
 describe('top app bar component', () => {
-  it('renders top app bar', () => {
+  test('renders top app bar', () => {
     const mockStore = configureMockStore({
       version: MOCK_STATE.version,
     });

@@ -1,0 +1,30 @@
+@import '../../shared-styles/lib';
+
+.civ-pool-settings-title {
+  text-align: center;
+}
+
+.civ-pool-settings.civ-pool-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @include grid-alignment-center;
+
+  @include for-phone-only {
+    font-size: calc-font-size($font-size-6);
+  }
+
+  @include for-1080p-up {
+    width: 80%;
+    margin: auto;
+  }
+
+  .add-all-civs-button,
+  .reset-pool-button,
+  .invert-pool-button {
+    @include button-base(filled-dark);
+
+    @include for-tablet-portrait-up {
+      width: 80%;
+    }
+  }
+}
