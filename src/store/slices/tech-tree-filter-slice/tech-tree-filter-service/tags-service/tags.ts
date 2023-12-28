@@ -89,67 +89,67 @@ export const filterTags: FilterTag[] = [
   },
   {
     id: 15,
-    tagName: 'harbor',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 16,
-    tagName: 'krepost',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 17,
-    tagName: 'lumber camp',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 18,
-    tagName: 'market',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 19,
-    tagName: 'mill',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 20,
-    tagName: 'mining camp',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 21,
-    tagName: 'monastery',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 22,
-    tagName: 'siege workshop',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 23,
-    tagName: 'stable',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 24,
-    tagName: 'town center',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 25,
-    tagName: 'university',
-    tagType: TagType.BUILDING,
-  },
-  {
-    id: 26,
     tagName: 'fortified church',
     tagType: TagType.BUILDING,
   },
   {
-    id: 27,
+    id: 16,
+    tagName: 'harbor',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 17,
+    tagName: 'krepost',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 18,
+    tagName: 'lumber camp',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 19,
+    tagName: 'market',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 20,
+    tagName: 'mill',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 21,
+    tagName: 'mining camp',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 22,
+    tagName: 'monastery',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 23,
     tagName: 'mule cart',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 24,
+    tagName: 'siege workshop',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 25,
+    tagName: 'stable',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 26,
+    tagName: 'town center',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 27,
+    tagName: 'university',
     tagType: TagType.BUILDING,
   },
 ];
