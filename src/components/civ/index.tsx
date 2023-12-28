@@ -75,7 +75,7 @@ export const Civ: FC<ICivProps> = (props) => {
   };
 
   const unitImageUrl = `/assets/images/units-animated/${name.toLowerCase()}.apng`;
-  const techTreeImageUrl = `/assets/images/tech-tree/tech-tree-icons/menu_techtree_${name.toLowerCase()}.png`;
+  const civEmblemImageUrl = `/assets/images/civ-emblems/${name.toLowerCase()}.png`;
 
   return (
     <div className={`civ-container ${isDrafted ? 'drafted-container' : ''}`}>
@@ -85,14 +85,11 @@ export const Civ: FC<ICivProps> = (props) => {
         onClick={handleToggleInPool}
         onAnimationEnd={handleAnimationEnd}
       >
-        <a
-          className='civ-tech-tree'
-          href={`https://aoe2techtree.net/#${name}`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <img src={techTreeImageUrl} alt={`${name} emblem`} />
-        </a>
+        <img
+          className='civ-emblem'
+          src={civEmblemImageUrl}
+          alt={`${name} emblem`}
+        />
         <img
           className='civ-unit-image'
           src={unitImageUrl}

@@ -106,38 +106,26 @@ $civ-unit-image-size-large: 96px;
   }
 }
 
-.civ-tech-tree {
+.civ-emblem {
   display: inline-block;
 
   position: absolute;
   top: 5px;
   right: 5px;
+  width: 25px;
+  height: 25px;
 
   font-size: calc-font-size($font-size-0);
 
-  img {
-    width: 25px;
-    height: 25px;
-
-    @include do-transition(
-      transform,
-      $animation-duration-small,
-      $timing-fn-default
-    );
-
-    @include for-phone-only {
-      width: 10px;
-      height: 10px;
-    }
-
-    &:hover {
-      transform: scale(1.1);
-    }
+  @include for-phone-only {
+    width: 10px;
+    height: 10px;
   }
 }
 
 .civ-unit-image,
-.civ-name {
+.civ-name,
+.civ-emblem {
   pointer-events: none;
   touch-action: none;
 }
