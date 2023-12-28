@@ -142,4 +142,14 @@ export const filterTags: FilterTag[] = [
     tagName: 'university',
     tagType: TagType.BUILDING,
   },
+  {
+    id: 26,
+    tagName: 'fortified church',
+    tagType: TagType.BUILDING,
+  },
+  {
+    id: 27,
+    tagName: 'mule cart',
+    tagType: TagType.BUILDING,
+  },
 ];

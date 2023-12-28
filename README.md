@@ -4,7 +4,7 @@ This app is a fan made project that randomly selects a civilization from the gam
 
 ## Hosted at
 
-https://aoe2-random-civ-draft.app/
+https://aoe2-random-civ-draft.com/
 
 ## API
 
