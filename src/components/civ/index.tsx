@@ -38,12 +38,10 @@ export const Civ: FC<ICivProps> = (props) => {
     el.classList.remove('highlight-drafted');
   };
 
-  const handleToggleInPool = (
-    event: MouseEvent<HTMLDivElement | HTMLImageElement>
-  ) => {
-    const el = event.target as HTMLDivElement | HTMLImageElement;
+  const handleToggleInPool = (event: MouseEvent<HTMLDivElement>) => {
+    const el = event.target as HTMLDivElement;
 
-    if (isDrafted || !isDraftable || el instanceof HTMLImageElement) {
+    if (isDrafted || !isDraftable) {
       return;
     }
 
