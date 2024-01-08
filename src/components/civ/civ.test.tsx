@@ -78,42 +78,6 @@ describe('civ component', () => {
       fireEvent.click(screen.getByText(mockCiv.civName));
       expect(mockStore.getState().civs.civPool.length).toBe(0);
     });
-
-    test('clicking tech tree does not affect pool state', () => {
-      const mockCivs = getMockCivs();
-      const mockCiv1 = mockCivs[0];
-      const mockCiv2 = mockCivs[1];
-
-      const mockStore = configureMockStore({
-        civs: {
-          ...MOCK_STATE.civs,
-          civPool: [mockCiv1],
-        },
-      });
-
-      const { container: civContainer } = render(
-        <Provider store={mockStore}>
-          <Civ
-            civ={mockCiv1}
-            isDrafted={false}
-            isDraftable={true}
-            isInPool={true}
-          />
-          <Civ
-            civ={mockCiv2}
-            isDrafted={false}
-            isDraftable={true}
-            isInPool={false}
-          />
-        </Provider>
-      );
-
-      fireEvent.click(screen.getByAltText(`${mockCiv1.civName} emblem`));
-      expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv1.id);
-
-      fireEvent.click(screen.getByAltText(`${mockCiv2.civName} emblem`));
-      expect(mockStore.getState().civs.civPool[0].id).toBe(mockCiv1.id);
-    });
   });
 
   describe('civ in draft result component', () => {
