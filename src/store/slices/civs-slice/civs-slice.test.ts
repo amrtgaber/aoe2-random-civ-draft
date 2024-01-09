@@ -14,6 +14,7 @@ import civsReducer, {
   removeAllCivsFromPool,
   removeCivFromPool,
   removeCivsFromPool,
+  removeDuplicateCivs,
   setCivPool,
 } from '.';
 
@@ -72,8 +73,33 @@ describe('civs reducer', () => {
     expect(endState.civPool[0].id).toBe(mockCiv.id);
   });
 
+  test('should not add a duplicate civ to civ pool', () => {
+    const mockCiv = getMockCiv();
+
+    civsReducer(civsInitialState, addCivToPool(mockCiv));
+    const endState = civsReducer(civsInitialState, addCivToPool(mockCiv));
+
+    expect(endState.civPool.length).toBe(1);
+    expect(endState.civPool[0].id).toBe(mockCiv.id);
+  });
+
   test('should add multiple civs to civ pool', () => {
     const mockCivs = getMockCivs();
+
+    const endState = civsReducer(
+      civsInitialState,
+      addCivsToPool([mockCivs[0], mockCivs[1]])
+    );
+
+    expect(endState.civPool.length).toBe(2);
+    expect(endState.civPool[0].id).toBe(mockCivs[0].id);
+    expect(endState.civPool[1].id).toBe(mockCivs[1].id);
+  });
+
+  test('should not add duplicate multiple civs to civ pool', () => {
+    const mockCivs = getMockCivs();
+
+    civsReducer(civsInitialState, addCivsToPool([mockCivs[0], mockCivs[1]]));
 
     const endState = civsReducer(
       civsInitialState,

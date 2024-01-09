@@ -21,6 +21,12 @@ export const fetchCivs = createAsyncThunk(
   async () => await getCivs()
 );
 
+export const removeDuplicateCivs = (newCivs: ICiv[], currentCivs: ICiv[]) => {
+  return newCivs.filter(
+    (civToAdd) => !currentCivs.some((civ) => civ.civName === civToAdd.civName)
+  );
+};
+
 export const civsSlice = createSlice({
   name: 'civs',
   initialState: civsInitialState,
@@ -29,10 +35,12 @@ export const civsSlice = createSlice({
       state.civPool = state.allCivs;
     },
     addCivToPool: (state, action: PayloadAction<ICiv>) => {
-      state.civPool.push(action.payload);
+      state.civPool.push(
+        ...removeDuplicateCivs([action.payload], state.civPool)
+      );
     },
     addCivsToPool: (state, action: PayloadAction<ICiv[]>) => {
-      state.civPool.push(...action.payload);
+      state.civPool.push(...removeDuplicateCivs(action.payload, state.civPool));
     },
     removeAllCivsFromPool: (state) => {
       state.civPool = [];
