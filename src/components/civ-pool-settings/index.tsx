@@ -11,6 +11,7 @@ import { SaveCivPool } from '../save-civ-pool';
 
 import './civ-pool-settings.scss';
 import { TechTreeFilter } from '../tech-tree-filter';
+import { resetDraft } from '../../store/slices/draft-result-slice';
 
 export interface ICivPoolSettingsProps {}
 
@@ -18,8 +19,11 @@ export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
   const { allCivs, civPool } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
-  const handleRemoveAllCivs = () => dispatch(removeAllCivsFromPool());
   const handleAddAllCivs = () => dispatch(addAllCivsToPool());
+  const handleReset = () => {
+    dispatch(removeAllCivsFromPool());
+    dispatch(resetDraft());
+  };
   const handleInvertPool = () => {
     const invertedSelection = allCivs.filter(
       (civ) => !civPool.some((civInPool) => civInPool.id === civ.id)
@@ -35,7 +39,7 @@ export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
         <a className='add-all-civs-button' onClick={handleAddAllCivs}>
           Add all civs
         </a>
-        <a className='reset-pool-button' onClick={handleRemoveAllCivs}>
+        <a className='reset-pool-button' onClick={handleReset}>
           Reset
         </a>
         <a className='invert-pool-button' onClick={handleInvertPool}>
