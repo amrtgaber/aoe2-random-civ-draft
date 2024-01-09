@@ -6,9 +6,15 @@ $button-letter-color: $primary-color-amber;
 $button-letter-color-active: $primary-color-amber-dark;
 $button-letter-color-hover: $primary-color-amber-light;
 
+$button-inverse-letter-color: $black;
+
 $button-filled-primary-bg-color: $primary-color-red;
 $button-filled-primary-bg-color-active: $primary-color-red-dark;
 $button-filled-bg-color-hover: $primary-color-red-light;
+
+$button-filled-inverse-bg-color: $primary-color-amber;
+$button-filled-inverse-bg-color-active: $primary-color-amber-dark;
+$button-filled-bg-color-hover: $primary-color-amber-light;
 
 $button-filled-dark-bg-color: $black;
 $button-filled-dark-bg-color-active: $black;
@@ -37,19 +43,26 @@ $button-border-color: $button-letter-color;
 
   text-align: center;
   border-radius: $border-radius-medium;
-  color: $button-letter-color;
 
   @if $type == filled-primary {
     background-color: $button-filled-primary-bg-color;
+    color: $button-letter-color;
+  } @else if $type == filled-inverse {
+    background-color: $button-filled-inverse-bg-color;
+    color: $button-inverse-letter-color;
   } @else if $type == filled-dark {
     background-color: $button-filled-dark-bg-color;
+    color: $button-letter-color;
   } @else if $type == filled-light {
     background-color: $button-filled-light-bg-color;
+    color: $button-letter-color;
   } @else if $type == outline {
     border: $border-thickness-tiny solid $button-border-color;
+    color: $button-letter-color;
   }
 
-  @if $type == filled-primary or $type == filled-dark {
+  @if $type == filled-primary or $type == filled-inverse or $type == filled-dark
+  {
     &:hover {
       transform: scale(1.01);
     }
@@ -62,6 +75,8 @@ $button-border-color: $button-letter-color;
   &:active {
     @if $type == filled-primary {
       background-color: $button-filled-primary-bg-color-active;
+    } @else if $type == filled-inverse {
+      background-color: $button-filled-inverse-bg-color-active;
     } @else if $type == filled-dark {
       background-color: $button-filled-dark-bg-color-active;
       border: $border-thickness-tiny solid $button-border-color;

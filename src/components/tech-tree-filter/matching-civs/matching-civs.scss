@@ -67,7 +67,7 @@
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
-  @include button-base(filled-dark, $box-shadow-size: small);
+  @include button-base(filled-inverse, $box-shadow-size: small);
 }
 
 .loading-wrapper {

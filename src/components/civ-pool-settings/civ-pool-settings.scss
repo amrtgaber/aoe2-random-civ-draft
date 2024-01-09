@@ -21,7 +21,7 @@
   .add-all-civs-button,
   .reset-pool-button,
   .invert-pool-button {
-    @include button-base(filled-dark);
+    @include button-base(filled-primary);
 
     @include for-tablet-portrait-up {
       width: 80%;
