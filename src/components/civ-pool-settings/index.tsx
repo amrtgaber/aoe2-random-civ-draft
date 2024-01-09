@@ -33,7 +33,7 @@ export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
 
   return (
     <>
-      <h2 className='civ-pool-settings-title'>Civ Pool Settings</h2>
+      <h2 className='civ-pool-settings-title'>Draft Pool Settings</h2>
       <SaveCivPool />
       <div className='civ-pool-settings civ-pool-buttons'>
         <a className='add-all-civs-button' onClick={handleAddAllCivs}>

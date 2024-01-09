@@ -12,7 +12,7 @@ export const SaveCivPool: FC = () => {
   return (
     <div className='save-civ-pool-button-container'>
       <a className='save-civ-pool-button' onClick={handleSaveCivPool}>
-        Save current civ pool
+        Save current draft pool
       </a>
       <div className='save-civ-pool-tip'>
         Clicking save copies the url to the clipboard

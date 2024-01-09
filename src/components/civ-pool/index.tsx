@@ -20,6 +20,7 @@ import './civ-pool.scss';
 
 export const CivPool: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
+  const civPoolCount = civPool.length > 0 ? civPool.length : allCivs.length;
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -62,10 +63,6 @@ export const CivPool: FC = () => {
     return civPool.some((civInPool) => civInPool.civName === civ.civName);
   };
 
-  const civPoolCount = () => {
-    return civPool.length > 0 ? civPool.length : allCivs.length;
-  };
-
   const renderCivs = (): ReactElement<ICivProps>[] => {
     return allCivs.map((civ) => (
       <Civ
@@ -80,13 +77,13 @@ export const CivPool: FC = () => {
 
   return (
     <>
-      <h2 className='civ-pool-title'>Civ Pool</h2>
+      <h2 className='civ-pool-title'>Draft Pool</h2>
       <p className='civ-pool-tip'>
-        Click a civ to add or remove it from the civ pool
+        Click a civ to add or remove it from the draft pool
       </p>
       <p className='civ-pool-tip'>
-        <span className='civ-pool-count'>{civPoolCount()}</span> civs selected
-        for current draft
+        <span className='civ-pool-count'>{civPoolCount}</span> civ
+        {civPoolCount !== 1 && 's'} in current draft pool
       </p>
       {isLoading(civsStatus) ? (
         <Loading componentName='Civ Pool' />

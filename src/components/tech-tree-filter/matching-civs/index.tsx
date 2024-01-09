@@ -61,19 +61,19 @@ export const MatchingCivs: FC = () => {
             className='add-to-main-civ-pool-button'
             onClick={handleAddToMainCivPool}
           >
-            Add to pool
+            Add to draft
           </a>
           <a
             className='replace-main-civ-pool-button'
             onClick={handleReplaceMainCivPool}
           >
-            Replace pool
+            Replace draft
           </a>
           <a
             className='subtract-from-main-civ-pool-button'
             onClick={handleSubtractFromMainCivPool}
           >
-            Subtract from pool
+            Subtract from draft
           </a>
         </div>
       </div>
