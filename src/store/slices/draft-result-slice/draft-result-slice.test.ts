@@ -7,7 +7,7 @@ import draftResultReducer, {
   resetDraft,
 } from '.';
 
-describe('civs reducer', () => {
+describe('draft result reducer', () => {
   test('should handle initial load', () => {
     expect(draftResultReducer(undefined, { type: 'unkown' })).toEqual(
       draftResultInitialState

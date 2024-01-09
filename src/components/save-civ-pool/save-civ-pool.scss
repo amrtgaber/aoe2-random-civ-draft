@@ -7,6 +7,8 @@
   padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-large);
 
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+
   text-align: center;
 
   .save-civ-pool-button {
@@ -19,10 +21,5 @@
     @include for-tablet-portrait-up {
       width: 80%;
     }
-  }
-
-  .save-civ-pool-tip {
-    padding: calc-padding($padding-medium);
-    padding-top: calc-padding($padding-giant);
   }
 }

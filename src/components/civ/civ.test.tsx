@@ -2,11 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import { MOCK_STATE } from '../../store/mock-state-service/mock-state';
-import {
-  configureMockStore,
-  getMockCiv,
-  getMockCivs,
-} from '../../store/mock-state-service';
+import { configureMockStore, getMockCiv } from '../../store/mock-state-service';
 
 import { Civ } from '.';
 

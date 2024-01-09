@@ -1049,4 +1049,7 @@ export const MOCK_STATE: RootState = {
     },
     draftCount: 1,
   },
+  snackbar: {
+    message: 'test snackbar message',
+  },
 };

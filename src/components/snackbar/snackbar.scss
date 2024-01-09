@@ -1,0 +1,46 @@
+@import '../../shared-styles/lib';
+@import './snackbar-animations';
+
+.snackbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.snackbar {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  @include grid-alignment-center;
+
+  position: fixed;
+  bottom: 25px;
+
+  padding: calc-padding($padding-small);
+  min-width: 10vw;
+  max-width: 90vw;
+
+  background-color: $black;
+  border-radius: $border-radius-medium;
+  border: $border-thickness-small solid $border-primary-color-amber;
+
+  box-shadow: 0px 0px 10px 5px $black;
+
+  .message {
+    display: inline;
+    padding: calc-padding($padding-small);
+  }
+
+  .dismiss {
+    display: inline;
+    padding-right: calc-padding($padding-small);
+    cursor: pointer;
+  }
+
+  &.show {
+    @include do-animation(
+      show-snackbar,
+      $animation-duration-large,
+      $timing-fn-enter
+    );
+  }
+}

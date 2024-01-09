@@ -8,6 +8,7 @@ import agesReducer from './slices/ages-slice';
 import versionReducer from './slices/version-slice';
 import techTreeFilterReducer from './slices/tech-tree-filter-slice';
 import draftResultReducer from './slices/draft-result-slice';
+import snackbarReducer from './slices/snackbar-slice';
 
 export const reducer = {
   civs: civsReducer,
@@ -18,6 +19,7 @@ export const reducer = {
   version: versionReducer,
   techTreeFilter: techTreeFilterReducer,
   draftResult: draftResultReducer,
+  snackbar: snackbarReducer,
 };
 
 export const store = configureStore({ reducer });

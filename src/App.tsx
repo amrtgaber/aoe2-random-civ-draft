@@ -4,6 +4,7 @@ import { CivPool } from './components/civ-pool';
 import { CivPoolSettings } from './components/civ-pool-settings';
 import { Footer } from './components/footer';
 import { Separator } from './components/separator';
+import { Snackbar } from './components/snackbar';
 
 import './App.scss';
 
@@ -23,6 +24,7 @@ function App() {
 
       <Separator />
       <Footer />
+      <Snackbar />
     </div>
   );
 }

@@ -23,7 +23,7 @@ describe('save civ pool component', () => {
         </Provider>
       );
 
-      expect(screen.getByText('Save current civ pool')).toBeInTheDocument();
+      expect(screen.getByText('Save current draft pool')).toBeInTheDocument();
     });
   });
 
@@ -46,8 +46,10 @@ describe('save civ pool component', () => {
       const clipboardSpy = jest.spyOn(navigator.clipboard, 'writeText');
 
       expect(clipboardSpy).not.toHaveBeenCalled();
-      fireEvent.click(screen.getByText('Save current civ pool'));
+      fireEvent.click(screen.getByText('Save current draft pool'));
       expect(clipboardSpy).toHaveBeenCalled();
+
+      expect(mockStore.getState().snackbar.message.length).toBeGreaterThan(0);
     });
   });
 });

@@ -69,7 +69,7 @@ describe('matching civs component', () => {
       </Provider>
     );
 
-    fireEvent.click(screen.getByText('Add to pool'));
+    fireEvent.click(screen.getByText('Add to draft'));
 
     const civPool = mockStore.getState().civs.civPool;
 
@@ -102,7 +102,7 @@ describe('matching civs component', () => {
       </Provider>
     );
 
-    fireEvent.click(screen.getByText('Replace pool'));
+    fireEvent.click(screen.getByText('Replace draft'));
 
     const civPool = mockStore.getState().civs.civPool;
 
@@ -134,7 +134,7 @@ describe('matching civs component', () => {
       </Provider>
     );
 
-    fireEvent.click(screen.getByText('Subtract from pool'));
+    fireEvent.click(screen.getByText('Subtract from draft'));
 
     const civPool = mockStore.getState().civs.civPool;
 
