@@ -44,10 +44,10 @@ export const TechTreeFilter: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchFuckingEverything();
+    fetchAllTechTreeItems();
   }, [unitsStatus, techsStatus, buildingsStatus, agesStatus]);
 
-  const fetchFuckingEverything = () => {
+  const fetchAllTechTreeItems = () => {
     if (isInit(unitsStatus)) {
       dispatch(fetchUnits());
     }
