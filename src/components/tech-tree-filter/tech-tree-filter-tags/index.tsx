@@ -54,12 +54,12 @@ export const TechTreeFilterTags: FC = () => {
   return (
     <div className='tech-tree-filter-tags'>
       <div className='tags-top-bar'>
-        <div className='tags-title'>Filter items</div>
+        <div className='tags-title'>Filter by</div>
         <a className='tags-reset-button' onClick={handleResetTags}>
           clear filters
         </a>
       </div>
-      <div className='tags-type-title'>By Type</div>
+      <div className='tags-type-title'>Type</div>
       <div className='tags-buttons kind-tags'>
         {renderTagsByType(TagType.KIND)}
       </div>
@@ -67,9 +67,9 @@ export const TechTreeFilterTags: FC = () => {
       <div className='tags-buttons unique-tags'>
         {renderTagsByType(TagType.UNIQUE)}
       </div>
-      <div className='tags-type-title'>By Age</div>
+      <div className='tags-type-title'>Age</div>
       <div className='tags-buttons'>{renderTagsByType(TagType.AGE)}</div>
-      <div className='tags-type-title'>By Building</div>
+      <div className='tags-type-title'>Building</div>
       <div className='tags-buttons'>{renderTagsByType(TagType.BUILDING)}</div>
     </div>
   );

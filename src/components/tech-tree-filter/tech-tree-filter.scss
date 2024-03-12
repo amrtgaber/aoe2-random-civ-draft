@@ -37,9 +37,22 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   }
 }
 
-.tech-tree-filter-settings-panel {
+.tech-tree-filter-panel-header {
+  margin-top: calc-vertical-margin($vertical-margin-tiny);
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.tech-tree-filter-panel-border {
+  @include for-tablet-landscape-up {
+    padding-right: calc-padding($padding-giant);
+    border-right: solid 1px $primary-color-amber;
+  }
+}
+
+.tech-tree-filter-options-panel {
   display: grid;
-  grid-template-rows: 100px min-content auto;
+  grid-template-rows: auto 100px min-content auto;
   height: calc(82vh - 3px);
   gap: 20px;
 }
@@ -54,7 +67,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 }
 
 .tech-tree-filter-matching-civs-panel {
-  height: calc(82vh - 3px);
+  height: calc(82vh - 36px);
 }
 
 .tech-tree-filter-selected-items,

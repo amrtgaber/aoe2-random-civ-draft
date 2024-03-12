@@ -51,7 +51,6 @@ export const MatchingCivs: FC = () => {
   return (
     <div className='matching-civs-container'>
       <div className='matching-civs-header'>
-        <h3 className='matching-civs-title'>Matching civs</h3>
         <div className='matching-civs-stats'>
           <span className='matched-civs-number'>{filteredCivPool.length}</span>{' '}
           civs match your selection

@@ -10,14 +10,10 @@
 .matching-civs-header {
   background-color: $bg-color-light;
   border-radius: $border-radius-medium;
+  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+  padding-top: calc-padding($padding-medium);
   padding-bottom: calc-padding($padding-medium);
-  margin-bottom: calc-vertical-margin($vertical-margin-medium);
-}
-
-.matching-civs-title {
-  flex: 1 1 auto;
-  margin-bottom: calc-vertical-margin($vertical-margin-medium);
-  text-align: center;
 }
 
 .matching-civs-stats {
@@ -56,6 +52,7 @@
   @include for-tablet-landscape-up {
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
+    font-size: calc-font-size($font-size-6);
   }
 
   @include for-4k-up {
@@ -67,7 +64,11 @@
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
-  @include button-base(filled-inverse, $box-shadow-size: small);
+  @include button-base(
+    filled-inverse,
+    $padding: $padding-small,
+    $box-shadow-size: small
+  );
 }
 
 .loading-wrapper {

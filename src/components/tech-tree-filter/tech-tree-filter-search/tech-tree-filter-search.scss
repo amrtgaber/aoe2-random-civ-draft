@@ -19,7 +19,7 @@
   height: 50px;
 
   color: $white;
-  background-color: $tech-tree-filter-border-color;
+  background-color: $black;
 
   font-size: calc-font-size($font-size-8);
 
@@ -31,6 +31,11 @@
   &:focus {
     outline: 0;
     border: $border-thickness-tiny solid $border-primary-color-amber;
+  }
+
+  &::placeholder {
+    color: $white;
+    opacity: 0.75;
   }
 }
 

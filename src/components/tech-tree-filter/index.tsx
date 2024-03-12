@@ -105,12 +105,14 @@ export const TechTreeFilter: FC = () => {
         <Loading componentName='Tech Tree Filter' />
       ) : (
         <div className='tech-tree-filter-panels-container'>
-          <div className='tech-tree-filter-settings-panel'>
+          <div className='tech-tree-filter-options-panel tech-tree-filter-panel-border'>
+            <h3 className='tech-tree-filter-panel-header'>Options</h3>
             <TechTreeFilterSearch />
             <TechTreeFilterOptions />
             <TechTreeFilterTags />
           </div>
-          <div className='tech-tree-filter-items-panel'>
+          <div className='tech-tree-filter-items-panel tech-tree-filter-panel-border'>
+            <h3 className='tech-tree-filter-panel-header'>Tech Tree</h3>
             <div
               className={`tech-tree-filter-selected-items ${
                 !hasSelectedItems ? ' empty-filter' : ''
@@ -145,6 +147,7 @@ export const TechTreeFilter: FC = () => {
             </div>
           </div>
           <div className='tech-tree-filter-matching-civs-panel'>
+            <h3 className='tech-tree-filter-panel-header'>Matching Civs</h3>
             <MatchingCivs />
           </div>
         </div>
