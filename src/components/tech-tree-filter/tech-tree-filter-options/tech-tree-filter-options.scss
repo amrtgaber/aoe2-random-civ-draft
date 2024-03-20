@@ -43,7 +43,11 @@
 }
 
 .clear-filter-button {
-  @include tech-tree-filter-button;
+  @include button-base(
+    filled-inverse,
+    $padding: $padding-small,
+    $box-shadow-size: small
+  );
 }
 
 .tech-tree-filter-mode {
