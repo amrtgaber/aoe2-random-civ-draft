@@ -38,7 +38,7 @@ export const TechTreeFilterOptions: FC = () => {
     <div className='tech-tree-filter-options'>
       <div className='tech-tree-filter-reset'>
         <a className='clear-filter-button' onClick={handleClearFilter}>
-          Reset selected items
+          Clear selections
         </a>
       </div>
 

@@ -48,13 +48,12 @@
 }
 
 .tags-reset-button {
-  @include button-base(
-    $type: text,
-    $padding: $padding-small,
-    $box-shadow: false
-  );
+  @include tech-tree-filter-button;
 
   flex: 0 max-content;
+
+  color: $white;
+  border: $border-thickness-tiny solid $transparent;
 
   font-size: calc-font-size($font-size-4);
 

@@ -59,7 +59,7 @@ describe('tech tree filter options component', () => {
       mockStore.getState().techTreeFilter.itemsFilter.length
     ).toBeGreaterThan(0);
 
-    fireEvent.click(screen.getByText('Reset selected items'));
+    fireEvent.click(screen.getByText('Clear selections'));
     expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(0);
   });
 
