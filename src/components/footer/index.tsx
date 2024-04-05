@@ -44,7 +44,9 @@ export const Footer: FC = () => {
         <p>
           Thank you to <a href='https://siegeengineers.org/'>Siege Engineers</a>
           . Inspiration and some assets were taken (wololo 11) from their
-          projects. If u like this app u might also like{' '}
+          projects. If you like this app you might also like{' '}
+          <a href='https://aoe2techtree.net/'>aoe2techtree.net</a>
+          {' and '}
           <a href='https://www.aoe2database.com/'>aoe2database.com</a>.
         </p>
         <p>
