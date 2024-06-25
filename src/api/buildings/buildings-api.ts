@@ -1,8 +1,6 @@
 import { API_URL } from '..';
 import { IAge } from '../ages/ages-api';
 import { ICiv } from '../civs/civs-api';
-import { ApiConnectedUnit } from '../units/units-api';
-import { ApiConnectedTech } from '../techs/techs-api';
 import {
   convertTechToTechTreeItem,
   convertUnitToTechTreeItem,
@@ -11,6 +9,8 @@ import {
   techTreeItemCompare,
   TechTreeItemType,
 } from '../tech-tree-item-api';
+import { ApiConnectedTech } from '../techs/techs-api';
+import { ApiConnectedUnit } from '../units/units-api';
 
 export interface ApiBuilding {
   id: number;
@@ -34,7 +34,7 @@ export interface IBuilding extends ITechTreeItem {
 
 export async function getBuildings(): Promise<IBuilding[]> {
   const queryOptions =
-    '?includeAges=true&includeCivs=true&includeUnits=true&includeTechs=true';
+    '?includeAge=true&includeCivs=true&includeUnits=true&includeTechs=true';
   const response = await fetch(`${API_URL}/buildings${queryOptions}`);
   const buildings = (await response.json()) as ApiBuilding[];
 
