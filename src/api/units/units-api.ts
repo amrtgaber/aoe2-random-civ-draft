@@ -1,7 +1,7 @@
 import { API_URL } from '..';
 import { IAge } from '../ages/ages-api';
-import { ICiv } from '../civs/civs-api';
 import { ApiConnectedBuilding } from '../buildings/buildings-api';
+import { ICiv } from '../civs/civs-api';
 import {
   convertBuildingToTechTreeItem,
   isUnique,
@@ -30,7 +30,7 @@ export interface IUnit extends ITechTreeItem {
 
 export async function getUnits(): Promise<IUnit[]> {
   const queryOptions =
-    '?includeAges=true&includeCivs=true&includeBuildings=true';
+    '?includeAge=true&includeCivs=true&includeBuildings=true';
   const response = await fetch(`${API_URL}/units${queryOptions}`);
   const units = (await response.json()) as ApiUnit[];
 
