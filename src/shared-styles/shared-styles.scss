@@ -16,6 +16,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  padding: calc-padding($padding-medium);
+  background-color: $bg-color;
+  color: $white;
+  border: 0;
+  cursor: pointer;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
