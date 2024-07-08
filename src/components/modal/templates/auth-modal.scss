@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.auth-input-container {
+  padding: calc-padding($padding-small);
+}
+
 .auth-modal-input {
   height: 60px;
 
@@ -27,6 +31,26 @@
   &::placeholder {
     color: $white;
     opacity: 0.75;
+  }
+
+  width: 80vw;
+
+  @include for-tablet-landscape-up {
+    width: 60vw;
+  }
+
+  @include for-1080p-up {
+    width: 400px;
+  }
+}
+
+.auth-error {
+  color: $primary-color-red-light;
+
+  width: 80vw;
+
+  @include for-tablet-landscape-up {
+    width: 60vw;
   }
 
   @include for-1080p-up {
