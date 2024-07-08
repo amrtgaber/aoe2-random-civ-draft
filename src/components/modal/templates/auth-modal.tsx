@@ -1,5 +1,13 @@
 import { FC, useRef, useState } from 'react';
 
+import { AuthBody } from '../../../api/auth/auth-api';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { isFulfilled, isLoading } from '../../../store/fetch-status-service';
+import {
+  authLogin,
+  authSignup,
+  selectAuth,
+} from '../../../store/slices/auth-slice';
 import './auth-modal.scss';
 
 // copied from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#validation
@@ -25,6 +33,9 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
+
+  const { loginStatus, signupStatus } = useAppSelector(selectAuth);
+  const dispatch = useAppDispatch();
 
   const validateEmail = () => {
     let isValid = true;
@@ -115,13 +126,20 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
       return;
     }
 
-    const authDto = {
-      email: emailRef.current?.value,
-      username: usernameRef?.current?.value,
-      password: passwordRef.current?.value,
+    const authDto: AuthBody = {
+      email: emailRef.current?.value ?? '',
+      password: passwordRef.current?.value ?? '',
     };
 
-    console.log(authDto);
+    if (usernameRef?.current && usernameRef.current?.value !== '') {
+      authDto.username = usernameRef.current.value;
+    }
+
+    if (isSignup) {
+      dispatch(authSignup(authDto));
+    } else {
+      dispatch(authLogin(authDto));
+    }
   };
 
   const renderError = (message: string) => {
@@ -177,6 +195,10 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
       <button className='auth-button' onClick={handleAuth}>
         {name}
       </button>
+      {isLoading(loginStatus) ||
+        (isLoading(signupStatus) && <div>loading...</div>)}
+      {isFulfilled(loginStatus) ||
+        (isFulfilled(signupStatus) && <div>fulfilled</div>)}
     </div>
   );
 };

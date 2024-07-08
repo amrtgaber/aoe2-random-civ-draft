@@ -8,12 +8,12 @@ export interface ApiAuth {
 
 export interface AuthBody {
   email: string;
-  username: string | null;
+  username?: string | null;
   password: string;
 }
 
 export async function signup(authBody: AuthBody): Promise<ApiAuth> {
-  const response = await fetch(`${API_URL}/signup`, {
+  const response = await fetch(`${API_URL}/auth/signup`, {
     method: 'post',
     body: JSON.stringify(authBody),
     headers: generateHeaders({ isJson: true }),
@@ -28,7 +28,7 @@ export async function signup(authBody: AuthBody): Promise<ApiAuth> {
 }
 
 export async function login(authBody: AuthBody): Promise<ApiAuth> {
-  const response = await fetch(`${API_URL}/login`, {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: 'post',
     body: JSON.stringify(authBody),
     headers: generateHeaders({ isJson: true }),
@@ -43,7 +43,7 @@ export async function login(authBody: AuthBody): Promise<ApiAuth> {
 }
 
 export async function logout(): Promise<void> {
-  const response = await fetch(`${API_URL}/logout`, {
+  const response = await fetch(`${API_URL}/auth/logout`, {
     method: 'post',
     headers: generateHeaders({ useAuth: true }),
   });
@@ -54,7 +54,7 @@ export async function logout(): Promise<void> {
 }
 
 export async function refresh(): Promise<ApiAuth> {
-  const response = await fetch(`${API_URL}/refresh`, {
+  const response = await fetch(`${API_URL}/auth/refresh`, {
     method: 'post',
     headers: generateHeaders({
       additionalHeaders: [
