@@ -1067,6 +1067,12 @@ export const MOCK_STATE: RootState = {
     },
     draftCount: 1,
   },
+  drafts: {
+    drafts: [],
+    draftsGetStatus: FetchStatus.INIT,
+    draftUpdateStatus: FetchStatus.INIT,
+    draftDeleteStatus: FetchStatus.INIT,
+  },
   snackbar: {
     message: 'test snackbar message',
   },

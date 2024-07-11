@@ -5,6 +5,7 @@ import authReducer from './slices/auth-slice';
 import buildingsReducer from './slices/buildings-slice';
 import civsReducer from './slices/civs-slice';
 import draftResultReducer from './slices/draft-result-slice';
+import draftsReducer from './slices/drafts-slice';
 import snackbarReducer from './slices/snackbar-slice';
 import techTreeFilterReducer from './slices/tech-tree-filter-slice';
 import techsReducer from './slices/techs-slice';
@@ -23,6 +24,7 @@ export const reducer = {
   version: versionReducer,
   techTreeFilter: techTreeFilterReducer,
   draftResult: draftResultReducer,
+  drafts: draftsReducer,
   snackbar: snackbarReducer,
 };
 
