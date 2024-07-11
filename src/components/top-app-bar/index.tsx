@@ -1,9 +1,15 @@
 import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { isFulfilled, isInit } from '../../store/fetch-status-service';
+import {
+  isFulfilled,
+  isInit,
+  isLoading,
+} from '../../store/fetch-status-service';
 import { fetchVersion, selectVersion } from '../../store/slices/version-slice';
 
+import { selectAuth } from '../../store/slices/auth-slice';
+import { selectUsers, userGet } from '../../store/slices/users-slice';
 import { Modal } from '../modal';
 import { AuthModal } from '../modal/templates/auth-modal';
 import './top-app-bar.scss';
@@ -12,6 +18,8 @@ export const TopAppBar: FC = () => {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { gameVersion, versionStatus } = useAppSelector(selectVersion);
+  const { loginStatus, signupStatus } = useAppSelector(selectAuth);
+  const { userGetStatus, user } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,6 +27,12 @@ export const TopAppBar: FC = () => {
       dispatch(fetchVersion());
     }
   }, [versionStatus]);
+
+  useEffect(() => {
+    if (isFulfilled(loginStatus) || isFulfilled(signupStatus)) {
+      dispatch(userGet());
+    }
+  }, [loginStatus, signupStatus]);
 
   const showSignupModal = () => {
     setIsSignupModalOpen(true);
@@ -54,19 +68,33 @@ export const TopAppBar: FC = () => {
         )}
       </div>
       <div className='auth-container'>
-        <button className='login-button' onClick={showLoginModal}>
-          Login
-        </button>
-        <Modal show={isLoginModalOpen} dismissFn={hideLoginModal}>
-          <AuthModal name='Login' isSignup={false} />
-        </Modal>
+        {(!isFulfilled(signupStatus) || !isFulfilled(loginStatus)) && (
+          <>
+            <button className='login-button' onClick={showLoginModal}>
+              Login
+            </button>
+            <Modal show={isLoginModalOpen} dismissFn={hideLoginModal}>
+              <AuthModal
+                name='Login'
+                isSignup={false}
+                dismissFn={hideLoginModal}
+              />
+            </Modal>
 
-        <button className='signup-button' onClick={showSignupModal}>
-          Sign Up
-        </button>
-        <Modal show={isSignupModalOpen} dismissFn={hideSignupModal}>
-          <AuthModal name='Sign up' isSignup={true} />
-        </Modal>
+            <button className='signup-button' onClick={showSignupModal}>
+              Sign Up
+            </button>
+            <Modal show={isSignupModalOpen} dismissFn={hideSignupModal}>
+              <AuthModal
+                name='Sign up'
+                isSignup={true}
+                dismissFn={hideSignupModal}
+              />
+            </Modal>
+          </>
+        )}
+        {isLoading(userGetStatus) && <div>Loading...</div>}
+        {isFulfilled(userGetStatus) && <div>{user?.email}</div>}
       </div>
     </div>
   );

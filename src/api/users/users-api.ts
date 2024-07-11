@@ -13,8 +13,8 @@ export interface ApiUser {
 
 export interface IUser {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   email: string;
   username: string | null;
 }
@@ -35,8 +35,8 @@ export async function getUser(): Promise<IUser> {
 
   return {
     id: user.id,
-    createdAt: new Date(user.createdAt),
-    updatedAt: new Date(user.updatedAt),
+    createdAt: new Date(user.createdAt).toISOString(),
+    updatedAt: new Date(user.updatedAt).toISOString(),
     email: user.email,
     username: user.username,
   };
@@ -57,8 +57,8 @@ export async function updateUser(body: UpdateUserBody): Promise<IUser> {
 
   return {
     id: user.id,
-    createdAt: new Date(user.createdAt),
-    updatedAt: new Date(user.updatedAt),
+    createdAt: new Date(user.createdAt).toISOString(),
+    updatedAt: new Date(user.updatedAt).toISOString(),
     email: user.email,
     username: user.username,
   };

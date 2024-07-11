@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import { AuthBody } from '../../../api/auth/auth-api';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -17,10 +17,11 @@ const EMAIL_VALIDATION_REGEX =
 interface AuthModalProps {
   name: string;
   isSignup: boolean;
+  dismissFn: () => void;
 }
 
 export const AuthModal: FC<AuthModalProps> = (props) => {
-  const { name, isSignup } = props;
+  const { name, isSignup, dismissFn } = props;
 
   const [emailError, setEmailError] = useState<string | null>(null);
   const [usernameError, setUsernameError] = useState<string | null>(null);
@@ -36,6 +37,12 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
 
   const { loginStatus, signupStatus } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isFulfilled(loginStatus) || isFulfilled(signupStatus)) {
+      dismissFn();
+    }
+  }, [loginStatus, signupStatus]);
 
   const validateEmail = () => {
     let isValid = true;
@@ -196,9 +203,7 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
         {name}
       </button>
       {isLoading(loginStatus) ||
-        (isLoading(signupStatus) && <div>loading...</div>)}
-      {isFulfilled(loginStatus) ||
-        (isFulfilled(signupStatus) && <div>fulfilled</div>)}
+        (isLoading(signupStatus) && <div>please wait...</div>)}
     </div>
   );
 };

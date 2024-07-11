@@ -18,8 +18,8 @@ export const MOCK_STATE: RootState = {
   users: {
     user: {
       id: 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       email: 'test@test.com',
       username: 'test username',
     },
