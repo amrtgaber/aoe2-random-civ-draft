@@ -60,6 +60,7 @@ const storeJwtTokens = (state: AuthState, action: PayloadAction<ApiAuth>) => {
   state.loginStatus = FetchStatus.FULFILLED;
   state.refreshStatus = FetchStatus.FULFILLED;
   state.logoutStatus = FetchStatus.INIT;
+  state.refreshStatus = FetchStatus.INIT;
 };
 
 export const authSlice = createSlice({
