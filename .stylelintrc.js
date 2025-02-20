@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
+  extends: ['stylelint-config-standard-scss'],
   plugins: ['stylelint-scss', 'stylelint-prettier'],
   rules: {
     // recommended rules
