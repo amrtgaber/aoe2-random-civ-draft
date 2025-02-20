@@ -1,18 +1,24 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/box-shadow';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/button';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
+@use '../../shared-styles/lib/spacing';
 
-$tech-tree-filter-border-thickness: $border-thickness-small;
-$tech-tree-filter-border-color: rgba($black, 0.5);
+$tech-tree-filter-border-thickness: border.$border-thickness-small;
+$tech-tree-filter-border-color: rgba(color.$black, 0.5);
 
 @mixin tech-tree-filter-button {
-  @include button-base(
+  @include button.button-base(
     $type: filled-light,
-    $padding: $padding-small,
+    $padding: spacing.$padding-small,
     $box-shadow: false
   );
 }
 
 .tech-tree-filter-container {
-  margin-top: calc-vertical-margin($vertical-margin-ludicrous);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-ludicrous);
 }
 
 .tech-tree-filter-panels-container {
@@ -25,11 +31,11 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   margin-left: auto;
   margin-right: auto;
 
-  @include box-shadow($size: $box-shadow-small, $isInteractive: false);
-  border-radius: $border-radius-medium;
-  padding: calc-padding($padding-medium);
+  @include box-shadow.box-shadow($size: box-shadow.$box-shadow-small, $isInteractive: false);
+  border-radius: border.$border-radius-medium;
+  padding: spacing.calc-padding(spacing.$padding-medium);
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: none;
     grid-template-rows: repeat(3, 1fr);
 
@@ -38,15 +44,15 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 }
 
 .tech-tree-filter-panel-header {
-  margin-top: calc-vertical-margin($vertical-margin-tiny);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-tiny);
   margin-bottom: 0;
   text-align: center;
 }
 
 .tech-tree-filter-panel-border {
-  @include for-tablet-landscape-up {
-    padding-right: calc-padding($padding-giant);
-    border-right: solid 1px $primary-color-amber;
+  @include breakpoint.for-tablet-landscape-up {
+    padding-right: spacing.calc-padding(spacing.$padding-giant);
+    border-right: solid 1px color.$primary-color-amber;
   }
 }
 
@@ -63,7 +69,7 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   gap: 20px;
 
   height: 82vh;
-  padding-bottom: calc-padding($padding-tiny);
+  padding-bottom: spacing.calc-padding(spacing.$padding-tiny);
 }
 
 .tech-tree-filter-matching-civs-panel {
@@ -75,54 +81,54 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
   display: grid;
   justify-items: center;
   align-content: flex-start;
-  row-gap: calc-vertical-margin($vertical-margin-large);
+  row-gap: spacing.calc-vertical-margin(spacing.$vertical-margin-large);
 
   text-align: center;
 
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 
   &.empty-filter {
     display: block;
     text-align: center;
   }
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     grid-template-columns: repeat(6, 1fr);
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     grid-template-columns: repeat(7, 1fr);
   }
 }
 
 .tech-tree-filter-selected-items {
   flex: 1 1 min-content;
-  padding-top: calc-padding($padding-medium);
-  padding-bottom: calc-padding($padding-medium);
+  padding-top: spacing.calc-padding(spacing.$padding-medium);
+  padding-bottom: spacing.calc-padding(spacing.$padding-medium);
 
   .selected-items-placeholder {
     width: 100%;
-    padding: calc-padding($padding-large);
+    padding: spacing.calc-padding(spacing.$padding-large);
 
-    @include for-tablet-portrait-up {
-      font-size: calc-font-size($font-size-6);
+    @include breakpoint.for-tablet-portrait-up {
+      font-size: font.calc-font-size(font.$font-size-6);
     }
 
-    @include for-tablet-landscape-up {
-      font-size: calc-font-size($font-size-base);
+    @include breakpoint.for-tablet-landscape-up {
+      font-size: font.calc-font-size(font.$font-size-base);
     }
   }
 }
@@ -130,13 +136,13 @@ $tech-tree-filter-border-color: rgba($black, 0.5);
 .tech-tree-filter-unselected-items {
   flex: 1 1 min-content;
 
-  padding-bottom: calc-padding($padding-medium);
-  padding-top: calc-padding($padding-medium);
+  padding-bottom: spacing.calc-padding(spacing.$padding-medium);
+  padding-top: spacing.calc-padding(spacing.$padding-medium);
 
   overflow-y: auto;
 
   .unselected-items-placeholder {
     width: 100%;
-    padding: calc-padding($padding-ludicrous);
+    padding: spacing.calc-padding(spacing.$padding-ludicrous);
   }
 }

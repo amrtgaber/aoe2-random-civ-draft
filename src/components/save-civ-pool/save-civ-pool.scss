@@ -1,24 +1,28 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/button';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/spacing';
 
 .save-civ-pool-button-container {
   // really strange vertical space rendering in this component
   // it clips the top border by 13px, not sure why, but padding
   // works better than margin which is completely ignored
-  padding-top: calc-padding($padding-medium);
-  padding-bottom: calc-padding($padding-large);
+  padding-top: spacing.calc-padding(spacing.$padding-medium);
+  padding-bottom: spacing.calc-padding(spacing.$padding-large);
 
-  margin-bottom: calc-vertical-margin($vertical-margin-medium);
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
   text-align: center;
 
   .save-civ-pool-button {
-    @include button-base(filled-dark);
+    @include button.button-base(filled-dark);
 
     &:active {
-      border: $border-thickness-tiny solid $primary-color-amber-dark;
+      border: border.$border-thickness-tiny solid color.$primary-color-amber-dark;
     }
 
-    @include for-tablet-portrait-up {
+    @include breakpoint.for-tablet-portrait-up {
       width: 80%;
     }
   }

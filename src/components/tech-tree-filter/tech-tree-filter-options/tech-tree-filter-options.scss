@@ -1,87 +1,92 @@
-@import '../../../shared-styles/lib';
-@import '../tech-tree-filter';
+@use '../tech-tree-filter';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/button';
+@use '../../../shared-styles/lib/color';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .tech-tree-filter-options {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   align-items: center;
 
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 
-  @include for-phone-only {
-    padding: calc-padding($padding-small);
+  @include breakpoint.for-phone-only {
+    padding: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-portrait-up {
-    padding: calc-padding($padding-small);
-    font-size: calc-font-size($font-size-2);
+  @include breakpoint.for-tablet-portrait-up {
+    padding: spacing.calc-padding(spacing.$padding-small);
+    font-size: font.calc-font-size(font.$font-size-2);
   }
 
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-4);
+  @include breakpoint.for-tablet-landscape-up {
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 
-  @include for-1080p-up {
-    padding: calc-padding($padding-medium);
-    font-size: calc-font-size($font-size-base);
+  @include breakpoint.for-1080p-up {
+    padding: spacing.calc-padding(spacing.$padding-medium);
+    font-size: font.calc-font-size(font.$font-size-base);
   }
 }
 
 .tech-tree-filter-reset {
-  @include for-phone-only {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-phone-only {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-portrait-up {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-tablet-portrait-up {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-landscape-up {
-    padding-left: calc-padding($padding-medium);
+  @include breakpoint.for-tablet-landscape-up {
+    padding-left: spacing.calc-padding(spacing.$padding-medium);
   }
 }
 
 .clear-filter-button {
-  @include button-base(
+  @include button.button-base(
     filled-inverse,
-    $padding: $padding-small,
+    $padding: spacing.$padding-small,
     $box-shadow-size: small
   );
 }
 
 .tech-tree-filter-mode {
-  @include for-phone-only {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-phone-only {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-portrait-up {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-tablet-portrait-up {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-landscape-up {
-    padding-left: calc-padding($padding-medium);
+  @include breakpoint.for-tablet-landscape-up {
+    padding-left: spacing.calc-padding(spacing.$padding-medium);
   }
 
   .filter-mode-button {
-    @include tech-tree-filter-button;
+    @include tech-tree-filter.tech-tree-filter-button;
   }
 }
 
 .tech-tree-filter-mode,
 .tech-tree-filter-sort {
-  padding-top: calc-vertical-margin($vertical-margin-medium);
+  padding-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
-  @include for-phone-only {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-phone-only {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-portrait-up {
-    padding-left: calc-padding($padding-small);
+  @include breakpoint.for-tablet-portrait-up {
+    padding-left: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-landscape-up {
-    padding-left: calc-padding($padding-medium);
+  @include breakpoint.for-tablet-landscape-up {
+    padding-left: spacing.calc-padding(spacing.$padding-medium);
   }
 }
 
@@ -99,13 +104,13 @@
   .sort-dropdown {
     flex: 1 1 80%;
 
-    color: $primary-color-amber;
-    background-color: $button-filled-light-bg-color;
+    color: color.$primary-color-amber;
+    background-color: button.$button-filled-light-bg-color;
 
-    padding: calc-padding($padding-small);
+    padding: spacing.calc-padding(spacing.$padding-small);
 
     border: none;
-    border-radius: $border-radius-small;
+    border-radius: border.$border-radius-small;
 
     cursor: pointer;
 
@@ -113,12 +118,12 @@
       outline: 0;
     }
 
-    @include for-tablet-portrait-up {
-      font-size: calc-font-size($font-size-4);
+    @include breakpoint.for-tablet-portrait-up {
+      font-size: font.calc-font-size(font.$font-size-4);
     }
 
-    @include for-1080p-up {
-      font-size: calc-font-size($font-size-base);
+    @include breakpoint.for-1080p-up {
+      font-size: font.calc-font-size(font.$font-size-base);
     }
   }
 }

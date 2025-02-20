@@ -1,4 +1,5 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/spacing';
 
 .separator {
   background-image: url('../../../public/assets/images/game-images/seperator.png');
@@ -8,9 +9,9 @@
 
   height: 60px;
 
-  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     background-size: 100%;
     height: 40px;
   }

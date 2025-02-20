@@ -1,5 +1,9 @@
-@import '../../shared-styles/lib';
-@import './modal-animations';
+@use './modal-animations';
+@use '../../shared-styles/lib/animation';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/box-shadow';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/spacing';
 
 .modal-container {
   display: flex;
@@ -12,10 +16,10 @@
   height: 100vh;
   z-index: 10;
 
-  @include do-animation(
+  @include animation.do-animation(
     show-modal,
-    $animation-duration-small,
-    $timing-fn-default
+    animation.$animation-duration-small,
+    animation.$timing-fn-default
   );
 }
 
@@ -29,20 +33,20 @@
 .modal {
   position: fixed;
 
-  padding: calc-padding($padding-giant);
+  padding: spacing.calc-padding(spacing.$padding-giant);
   min-width: 10vw;
   max-width: 90vw;
 
-  background-color: $bg-color;
-  border-radius: $border-radius-large;
+  background-color: color.$bg-color;
+  border-radius: border.$border-radius-large;
 
-  @include box-shadow($box-shadow-large, false);
+  @include box-shadow.box-shadow(box-shadow.$box-shadow-large, false);
 
   &.show {
-    @include do-animation(
+    @include animation.do-animation(
       show-modal,
-      $animation-duration-small,
-      $timing-fn-default
+      animation.$animation-duration-small,
+      animation.$timing-fn-default
     );
   }
 }

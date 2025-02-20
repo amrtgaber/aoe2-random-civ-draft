@@ -1,20 +1,21 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/breakpoint';
 
 .draft-civ {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     height: 220px;
     align-items: baseline;
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     height: 260px;
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     height: 310px;
   }
 }

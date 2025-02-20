@@ -1,26 +1,27 @@
-@import './color';
-@import './border';
-@import './box-shadow';
+@use './color';
+@use './border';
+@use './box-shadow';
+@use './spacing';
 
-$button-letter-color: $primary-color-amber;
-$button-letter-color-active: $primary-color-amber-dark;
-$button-letter-color-hover: $primary-color-amber-light;
+$button-letter-color: color.$primary-color-amber;
+$button-letter-color-active: color.$primary-color-amber-dark;
+$button-letter-color-hover: color.$primary-color-amber-light;
 
-$button-inverse-letter-color: $black;
+$button-inverse-letter-color: color.$black;
 
-$button-filled-primary-bg-color: $primary-color-red;
-$button-filled-primary-bg-color-active: $primary-color-red-dark;
-$button-filled-bg-color-hover: $primary-color-red-light;
+$button-filled-primary-bg-color: color.$primary-color-red;
+$button-filled-primary-bg-color-active: color.$primary-color-red-dark;
+$button-filled-bg-color-hover: color.$primary-color-red-light;
 
-$button-filled-inverse-bg-color: $primary-color-amber;
-$button-filled-inverse-bg-color-active: $primary-color-amber-dark;
-$button-filled-bg-color-hover: $primary-color-amber-light;
+$button-filled-inverse-bg-color: color.$primary-color-amber;
+$button-filled-inverse-bg-color-active: color.$primary-color-amber-dark;
+$button-filled-bg-color-hover: color.$primary-color-amber-light;
 
-$button-filled-dark-bg-color: $black;
-$button-filled-dark-bg-color-active: $black;
+$button-filled-dark-bg-color: color.$black;
+$button-filled-dark-bg-color-active: color.$black;
 $button-filled-dark-bg-color-hover: #0b0b0b;
 
-$button-filled-light-bg-color: $bg-color-lightest;
+$button-filled-light-bg-color: color.$bg-color-lightest;
 $button-filled-light-bg-color-active: #191925;
 
 $button-outline-bg-color-active: #191925;
@@ -30,19 +31,19 @@ $button-border-color: $button-letter-color;
 
 @mixin button-base(
   $type: outline,
-  $padding: $padding-medium,
+  $padding: spacing.$padding-medium,
   $box-shadow: true,
   $box-shadow-size: large
 ) {
   @if $box-shadow {
-    @include box-shadow($box-shadow-size);
+    @include box-shadow.box-shadow($box-shadow-size);
   }
 
   cursor: pointer;
-  padding: calc-padding($padding);
+  padding: spacing.calc-padding($padding);
 
   text-align: center;
-  border-radius: $border-radius-medium;
+  border-radius: border.$border-radius-medium;
 
   @if $type == filled-primary {
     background-color: $button-filled-primary-bg-color;
@@ -57,7 +58,7 @@ $button-border-color: $button-letter-color;
     background-color: $button-filled-light-bg-color;
     color: $button-letter-color;
   } @else if $type == outline {
-    border: $border-thickness-tiny solid $button-border-color;
+    border: border.$border-thickness-tiny solid $button-border-color;
     color: $button-letter-color;
   }
 
@@ -79,10 +80,10 @@ $button-border-color: $button-letter-color;
       background-color: $button-filled-inverse-bg-color-active;
     } @else if $type == filled-dark {
       background-color: $button-filled-dark-bg-color-active;
-      border: $border-thickness-tiny solid $button-border-color;
+      border: border.$border-thickness-tiny solid $button-border-color;
     } @else if $type == filled-light {
       background-color: $button-filled-light-bg-color-active;
-      border: $border-thickness-tiny solid $button-border-color;
+      border: border.$border-thickness-tiny solid $button-border-color;
     } @else {
       background-color: $button-outline-bg-color-active;
     }

@@ -1,5 +1,13 @@
-@import '../../shared-styles/lib';
-@import './civ-animations';
+@use './civ-animations';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/animation';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/box-shadow';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
+@use '../../shared-styles/lib/grid-item-name';
+@use '../../shared-styles/lib/spacing';
 
 $civ-unit-image-size-mobile: 48px;
 $civ-unit-image-size-small: 72px;
@@ -7,12 +15,12 @@ $civ-unit-image-size-large: 96px;
 
 .civ-container {
   display: grid;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
   width: 100%;
   height: 100%;
 
-  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
   &.drafted-container {
     margin-top: 0;
@@ -20,67 +28,67 @@ $civ-unit-image-size-large: 96px;
 }
 
 .civ-main-content {
-  @include box-shadow($isInteractive: false);
+  @include box-shadow.box-shadow($isInteractive: false);
   position: relative;
 
-  background-color: $black;
-  border-radius: $border-radius-medium;
-  border: $border-thickness-tiny solid $border-neutral-color;
+  background-color: color.$black;
+  border-radius: border.$border-radius-medium;
+  border: border.$border-thickness-tiny solid border.$border-neutral-color;
 
-  @include do-transition(
-    $transition-props,
-    $animation-duration-small,
-    $timing-fn-default
+  @include animation.do-transition(
+    civ-animations.$transition-props,
+    animation.$animation-duration-small,
+    animation.$timing-fn-default
   );
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     width: $civ-unit-image-size-mobile;
     height: $civ-unit-image-size-mobile;
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     width: $civ-unit-image-size-small;
     height: $civ-unit-image-size-small;
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     width: $civ-unit-image-size-large;
     height: $civ-unit-image-size-large;
   }
 
   &.drafted {
-    margin-top: calc-vertical-margin($vertical-margin-medium);
-    margin-bottom: calc-vertical-margin($vertical-margin-medium);
+    margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
+    margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
     transform: scale(1.3);
 
-    @include for-phone-only {
+    @include breakpoint.for-phone-only {
       transform: scale(2);
     }
 
     &.highlight-drafted {
-      @include do-animation(
+      @include animation.do-animation(
         highlight-drafted-civ,
-        $animation-duration-large,
-        $timing-fn-enter
+        animation.$animation-duration-large,
+        animation.$timing-fn-enter
       );
 
-      @include for-phone-only {
-        @include do-animation(
+      @include breakpoint.for-phone-only {
+        @include animation.do-animation(
           highlight-drafted-civ-mobile,
-          $animation-duration-large,
-          $timing-fn-enter
+          animation.$animation-duration-large,
+          animation.$timing-fn-enter
         );
       }
     }
   }
 
   &.poolable {
-    $civ-bg-color-primary-30: rgba($primary-color-red-light, 0.3);
-    $civ-bg-color-primary-50: rgba($primary-color-red-light, 0.5);
-    $civ-bg-color-base: $black;
+    $civ-bg-color-primary-30: rgba(color.$primary-color-red-light, 0.3);
+    $civ-bg-color-primary-50: rgba(color.$primary-color-red-light, 0.5);
+    $civ-bg-color-base: color.$black;
 
     &.draftable {
-      @include box-shadow;
+      @include box-shadow.box-shadow;
 
       &:hover {
         cursor: pointer;
@@ -97,10 +105,10 @@ $civ-unit-image-size-large: 96px;
     }
 
     &.in-pool {
-      border: $border-thickness-medium solid $primary-color-amber;
+      border: border.$border-thickness-medium solid color.$primary-color-amber;
       background: linear-gradient($civ-bg-color-base, $civ-bg-color-primary-50);
-      box-shadow: 0px 0px $box-shadow-hover 0 $shadow-color,
-        0 0 $box-shadow-small $primary-color-amber;
+      box-shadow: 0px 0px box-shadow.$box-shadow-hover 0 box-shadow.$shadow-color,
+        0 0 box-shadow.$box-shadow-small color.$primary-color-amber;
       transform: scale(1.1);
     }
   }
@@ -115,9 +123,9 @@ $civ-unit-image-size-large: 96px;
   width: 25px;
   height: 25px;
 
-  font-size: calc-font-size($font-size-0);
+  font-size: font.calc-font-size(font.$font-size-0);
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     width: 10px;
     height: 10px;
   }
@@ -133,38 +141,38 @@ $civ-unit-image-size-large: 96px;
 .civ-unit-image {
   text-align: center;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     width: $civ-unit-image-size-mobile;
     height: $civ-unit-image-size-mobile;
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     width: $civ-unit-image-size-small;
     height: $civ-unit-image-size-small;
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     width: $civ-unit-image-size-large;
     height: $civ-unit-image-size-large;
   }
 }
 
 .civ-name {
-  @include grid-item-name;
+  @include grid-item-name.grid-item-name;
 
-  @include for-phone-only {
-    font-size: calc-font-size($font-size-2);
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-2);
   }
 
-  @include for-tablet-portrait-up {
-    font-size: calc-font-size($font-size-2);
+  @include breakpoint.for-tablet-portrait-up {
+    font-size: font.calc-font-size(font.$font-size-2);
   }
 
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-6);
+  @include breakpoint.for-tablet-landscape-up {
+    font-size: font.calc-font-size(font.$font-size-6);
   }
 
-  @include for-1080p-up {
-    font-size: calc-font-size($font-size-0);
+  @include breakpoint.for-1080p-up {
+    font-size: font.calc-font-size(font.$font-size-0);
   }
 }

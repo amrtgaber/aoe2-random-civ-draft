@@ -1,5 +1,10 @@
-@import '../../shared-styles/lib';
-@import './snackbar-animations';
+@use './snackbar-animations';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/animation';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/box-shadow';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/spacing';
 
 .snackbar-container {
   display: flex;
@@ -10,36 +15,36 @@
 .snackbar {
   display: grid;
   grid-template-columns: 9fr 1fr;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
   position: fixed;
   bottom: 25px;
 
-  padding: calc-padding($padding-small);
+  padding: spacing.calc-padding(spacing.$padding-small);
   min-width: 10vw;
   max-width: 90vw;
 
-  background-color: $black;
-  border-radius: $border-radius-large;
+  background-color: color.$black;
+  border-radius: border.$border-radius-large;
 
-  @include box-shadow($box-shadow-large, false);
+  @include box-shadow.box-shadow(box-shadow.$box-shadow-large, false);
 
   .message {
     display: inline;
-    padding: calc-padding($padding-small);
+    padding: spacing.calc-padding(spacing.$padding-small);
   }
 
   .dismiss {
     display: inline;
-    padding-right: calc-padding($padding-small);
+    padding-right: spacing.calc-padding(spacing.$padding-small);
     cursor: pointer;
   }
 
   &.show {
-    @include do-animation(
+    @include animation.do-animation(
       show-snackbar,
-      $animation-duration-small,
-      $timing-fn-default
+      animation.$animation-duration-small,
+      animation.$timing-fn-default
     );
   }
 }

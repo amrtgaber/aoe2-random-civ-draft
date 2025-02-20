@@ -1,4 +1,9 @@
-@import '../../../shared-styles/lib';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/button';
+@use '../../../shared-styles/lib/color';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .auth-modal-container {
   display: flex;
@@ -6,61 +11,61 @@
 }
 
 .auth-input-container {
-  padding: calc-padding($padding-small);
+  padding: spacing.calc-padding(spacing.$padding-small);
 }
 
 .auth-modal-input {
   height: 60px;
 
-  color: $white;
-  background-color: $black;
+  color: color.$white;
+  background-color: color.$black;
 
-  font-size: calc-font-size($font-size-8);
+  font-size: font.calc-font-size(font.$font-size-8);
 
-  margin-bottom: calc-vertical-margin($vertical-margin-medium);
-  padding: calc-padding($padding-small);
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
+  padding: spacing.calc-padding(spacing.$padding-small);
 
   border: none;
-  border-radius: $border-radius-medium;
+  border-radius: border.$border-radius-medium;
 
   &:focus {
     outline: 0;
-    border: $border-thickness-tiny solid $border-primary-color-amber;
+    border: border.$border-thickness-tiny solid border.$border-primary-color-amber;
   }
 
   &::placeholder {
-    color: $white;
+    color: color.$white;
     opacity: 0.75;
   }
 
   width: 80vw;
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     width: 60vw;
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     width: 400px;
   }
 }
 
 .auth-error {
-  color: $primary-color-red-light;
+  color: color.$primary-color-red-light;
 
   width: 80vw;
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     width: 60vw;
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     width: 400px;
   }
 }
 
 .auth-button {
-  @include button-base(filled-primary);
+  @include button.button-base(filled-primary);
 
-  margin-top: calc-vertical-margin($vertical-margin-large);
-  font-size: calc-font-size($font-size-12);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-large);
+  font-size: font.calc-font-size(font.$font-size-12);
 }

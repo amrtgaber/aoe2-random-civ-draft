@@ -1,4 +1,7 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/spacing';
 
 .civ-pool-title,
 .civ-pool-tip {
@@ -6,40 +9,40 @@
 }
 
 .civ-pool-title {
-  margin-top: calc-vertical-margin($vertical-margin-small);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
 }
 
 .civ-pool-tip {
   margin-top: -20px;
 
   .civ-pool-count {
-    color: $primary-color-amber;
+    color: color.$primary-color-amber;
   }
 }
 
 .civ-pool {
   display: grid;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     grid-template-columns: repeat(7, 1fr);
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     grid-template-columns: repeat(9, 1fr);
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     grid-template-columns: repeat(12, 1fr);
     width: 90vw;
     margin: auto;
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     grid-template-columns: repeat(14, 1fr);
     width: 80vw;
     margin: auto;
