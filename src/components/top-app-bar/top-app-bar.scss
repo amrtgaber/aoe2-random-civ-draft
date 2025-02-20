@@ -48,7 +48,8 @@
   display: grid;
 }
 
-.signup-button {
+.signup-button,
+.logout-button {
   font-size: calc-font-size($font-size-8);
   color: $primary-color-amber;
 

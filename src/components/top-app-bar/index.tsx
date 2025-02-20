@@ -8,8 +8,12 @@ import {
 } from '../../store/fetch-status-service';
 import { fetchVersion, selectVersion } from '../../store/slices/version-slice';
 
-import { selectAuth } from '../../store/slices/auth-slice';
-import { selectUsers, userGet } from '../../store/slices/users-slice';
+import { authLogout, selectAuth } from '../../store/slices/auth-slice';
+import {
+  selectUsers,
+  userGet,
+  userLogout,
+} from '../../store/slices/users-slice';
 import { Modal } from '../modal';
 import { AuthModal } from '../modal/templates/auth-modal';
 import './top-app-bar.scss';
@@ -18,7 +22,8 @@ export const TopAppBar: FC = () => {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { gameVersion, versionStatus } = useAppSelector(selectVersion);
-  const { loginStatus, signupStatus } = useAppSelector(selectAuth);
+  const { loginStatus, signupStatus, logoutStatus } =
+    useAppSelector(selectAuth);
   const { userGetStatus, user } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
 
@@ -48,6 +53,11 @@ export const TopAppBar: FC = () => {
 
   const hideLoginModal = () => {
     setIsLoginModalOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(authLogout());
+    dispatch(userLogout());
   };
 
   return (
@@ -94,7 +104,14 @@ export const TopAppBar: FC = () => {
           </>
         )}
         {isLoading(userGetStatus) && <div>Loading...</div>}
-        {isFulfilled(userGetStatus) && <div>{user?.email}</div>}
+        {isFulfilled(userGetStatus) && (
+          <>
+            <div>{user?.email}</div>
+            <button className='logout-button' onClick={handleLogout}>
+              logout
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

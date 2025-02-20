@@ -59,6 +59,7 @@ const storeJwtTokens = (state: AuthState, action: PayloadAction<ApiAuth>) => {
   state.signupStatus = FetchStatus.FULFILLED;
   state.loginStatus = FetchStatus.FULFILLED;
   state.refreshStatus = FetchStatus.FULFILLED;
+  state.logoutStatus = FetchStatus.INIT;
 };
 
 export const authSlice = createSlice({
@@ -86,6 +87,8 @@ export const authSlice = createSlice({
       })
       .addCase(authLogout.fulfilled, (state) => {
         state.logoutStatus = FetchStatus.FULFILLED;
+        state.loginStatus = FetchStatus.INIT;
+        state.signupStatus = FetchStatus.INIT;
       })
       .addCase(authLogout.rejected, (state) => {
         state.logoutStatus = FetchStatus.FAILED;
