@@ -1,0 +1,48 @@
+@import '../../shared-styles/lib';
+@import './modal-animations';
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+
+  @include do-animation(
+    show-modal,
+    $animation-duration-small,
+    $timing-fn-default
+  );
+}
+
+.modal-scrim {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+
+  padding: calc-padding($padding-giant);
+  min-width: 10vw;
+  max-width: 90vw;
+
+  background-color: $bg-color;
+  border-radius: $border-radius-large;
+
+  @include box-shadow($box-shadow-large, false);
+
+  &.show {
+    @include do-animation(
+      show-modal,
+      $animation-duration-small,
+      $timing-fn-default
+    );
+  }
+}

@@ -2,7 +2,7 @@
 
 .top-app-bar {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 2fr 8fr 2fr;
   @include grid-alignment-center;
 
   margin-top: calc-vertical-margin($vertical-margin-medium);
@@ -41,5 +41,34 @@
 
   @include for-4k-up {
     font-size: calc-font-size($font-size-4);
+  }
+}
+
+.auth-container {
+  display: grid;
+}
+
+.signup-button,
+.logout-button {
+  font-size: calc-font-size($font-size-8);
+  color: $primary-color-amber;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: $primary-color-amber-dark;
+  }
+}
+
+.login-button {
+  @include button-base(filled-primary);
+
+  font-size: calc-font-size($font-size-8);
+  border: $border-thickness-tiny solid $transparent;
+
+  &:hover {
+    border: $border-thickness-tiny solid $button-border-color;
   }
 }

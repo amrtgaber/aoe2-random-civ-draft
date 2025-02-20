@@ -1,7 +1,7 @@
 import { IBuilding } from '../../api/buildings/buildings-api';
+import { TechTreeItemType } from '../../api/tech-tree-item-api';
 import { ITech } from '../../api/techs/techs-api';
 import { IUnit } from '../../api/units/units-api';
-import { TechTreeItemType } from '../../api/tech-tree-item-api';
 import { FetchStatus } from '../fetch-status-service';
 import { FilterMode } from '../slices/tech-tree-filter-slice';
 import { SortBy } from '../slices/tech-tree-filter-slice/tech-tree-filter-service/sort-service';
@@ -9,6 +9,24 @@ import { SortBy } from '../slices/tech-tree-filter-slice/tech-tree-filter-servic
 import { RootState } from '../';
 
 export const MOCK_STATE: RootState = {
+  auth: {
+    signupStatus: FetchStatus.FULFILLED,
+    loginStatus: FetchStatus.FULFILLED,
+    logoutStatus: FetchStatus.INIT,
+    refreshStatus: FetchStatus.FULFILLED,
+  },
+  users: {
+    user: {
+      id: 1,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      email: 'test@test.com',
+      username: 'test username',
+    },
+    userGetStatus: FetchStatus.FULFILLED,
+    userUpdateStatus: FetchStatus.INIT,
+    userDeleteStatus: FetchStatus.INIT,
+  },
   civs: {
     allCivs: [
       {
@@ -1048,6 +1066,12 @@ export const MOCK_STATE: RootState = {
       civName: 'Franks',
     },
     draftCount: 1,
+  },
+  drafts: {
+    drafts: [],
+    draftsGetStatus: FetchStatus.INIT,
+    draftUpdateStatus: FetchStatus.INIT,
+    draftDeleteStatus: FetchStatus.INIT,
   },
   snackbar: {
     message: 'test snackbar message',

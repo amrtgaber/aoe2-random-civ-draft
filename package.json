@@ -5,6 +5,9 @@
   "description": "Age of Empires 2 app for picking a random civ",
   "private": true,
   "main": "src/electron.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
