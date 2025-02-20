@@ -1,11 +1,17 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/button';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
+@use '../../shared-styles/lib/spacing';
 
 .top-app-bar {
   display: grid;
   grid-template-columns: 2fr 8fr 2fr;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 }
 
 .logo-container {
@@ -22,25 +28,25 @@
 }
 
 .app-title {
-  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
-  color: $primary-color-amber;
+  color: color.$primary-color-amber;
 
-  font-size: calc-font-size($font-size-14);
+  font-size: font.calc-font-size(font.$font-size-14);
   font-variant: small-caps;
   text-align: center;
 }
 
 .game-version {
-  margin-top: calc-vertical-margin($vertical-margin-small);
-  margin-bottom: calc-vertical-margin($vertical-margin-small);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
 
-  font-size: calc-font-size($font-size-6);
+  font-size: font.calc-font-size(font.$font-size-6);
   font-weight: 300;
   text-align: center;
 
-  @include for-4k-up {
-    font-size: calc-font-size($font-size-4);
+  @include breakpoint.for-4k-up {
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 }
 
@@ -50,25 +56,25 @@
 
 .signup-button,
 .logout-button {
-  font-size: calc-font-size($font-size-8);
-  color: $primary-color-amber;
+  font-size: font.calc-font-size(font.$font-size-8);
+  color: color.$primary-color-amber;
 
   &:hover {
     text-decoration: underline;
   }
 
   &:active {
-    color: $primary-color-amber-dark;
+    color: color.$primary-color-amber-dark;
   }
 }
 
 .login-button {
-  @include button-base(filled-primary);
+  @include button.button-base(filled-primary);
 
-  font-size: calc-font-size($font-size-8);
-  border: $border-thickness-tiny solid $transparent;
+  font-size: font.calc-font-size(font.$font-size-8);
+  border: border.$border-thickness-tiny solid color.$transparent;
 
   &:hover {
-    border: $border-thickness-tiny solid $button-border-color;
+    border: border.$border-thickness-tiny solid button.$button-border-color;
   }
 }

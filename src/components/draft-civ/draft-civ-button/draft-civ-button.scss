@@ -1,7 +1,11 @@
-@import '../../../shared-styles/lib';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/button';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .draft-civ-button {
-  @include button-base(filled-primary);
+  @include button.button-base(filled-primary);
 
   display: flex;
   justify-content: center;
@@ -10,27 +14,27 @@
   font-weight: 500;
 
   &:hover {
-    border: $border-thickness-tiny solid $button-border-color;
+    border: border.$border-thickness-tiny solid button.$button-border-color;
   }
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     width: 140px;
     height: 58px;
-    font-size: calc-font-size($font-size-14);
-    margin-top: calc-vertical-margin($vertical-margin-medium);
+    font-size: font.calc-font-size(font.$font-size-14);
+    margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     width: 220px;
     height: 65px;
-    font-size: calc-font-size($font-size-14);
+    font-size: font.calc-font-size(font.$font-size-14);
   }
 
-  @include for-1080p-up {
-    font-size: calc-font-size($font-size-18);
+  @include breakpoint.for-1080p-up {
+    font-size: font.calc-font-size(font.$font-size-18);
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     width: 260px;
     height: 80px;
   }

@@ -1,6 +1,6 @@
-@import './color';
+@use './color';
 
-$shadow-color: $black;
+$shadow-color: color.$black;
 
 $box-shadow-small: 5px;
 $box-shadow-large: 10px;

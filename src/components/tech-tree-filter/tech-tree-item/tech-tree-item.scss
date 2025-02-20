@@ -1,5 +1,10 @@
-@import '../../../shared-styles/lib';
-@import './tech-tree-item-animations';
+@use './tech-tree-item-animations';
+@use '../../../shared-styles/lib/animation';
+@use '../../../shared-styles/lib/box-shadow';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/grid-item-name';
 
 $tech-tree-color-unit: #0e7ca1;
 $tech-tree-color-tech: #499449;
@@ -20,49 +25,49 @@ $icon-size-medium: 17px;
 $icon-size-large: 20px;
 
 .tech-tree-item {
-  @include box-shadow($size: $box-shadow-small);
+  @include box-shadow.box-shadow($size: box-shadow.$box-shadow-small);
   display: grid;
 
   position: relative;
 
-  border-radius: $border-radius-medium;
+  border-radius: border.$border-radius-medium;
 
   cursor: pointer;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     width: $img-size-mobile + $accent-size-mobile;
     height: $img-size-mobile;
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     width: $img-size-tablet-portrait-up + $accent-size-tablet-portrait-up;
     height: $img-size-tablet-portrait-up;
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     width: $img-size-4k-up + $accent-size-4k-up;
     height: $img-size-4k-up;
   }
 
   .tech-tree-item-img {
-    border-top-right-radius: $border-radius-medium;
-    border-bottom-right-radius: $border-radius-medium;
+    border-top-right-radius: border.$border-radius-medium;
+    border-bottom-right-radius: border.$border-radius-medium;
 
-    @include for-phone-only {
+    @include breakpoint.for-phone-only {
       margin-left: $accent-size-mobile;
 
       width: $img-size-mobile;
       height: $img-size-mobile;
     }
 
-    @include for-tablet-portrait-up {
+    @include breakpoint.for-tablet-portrait-up {
       margin-left: $accent-size-tablet-portrait-up;
 
       width: $img-size-tablet-portrait-up;
       height: $img-size-tablet-portrait-up;
     }
 
-    @include for-4k-up {
+    @include breakpoint.for-4k-up {
       margin-left: $accent-size-4k-up;
 
       width: $img-size-4k-up;
@@ -87,40 +92,40 @@ $icon-size-large: 20px;
   }
 
   &.enter-unselected {
-    @include do-animation(
+    @include animation.do-animation(
       enter-unselected,
-      $animation-duration-small,
-      $timing-fn-enter
+      animation.$animation-duration-small,
+      animation.$timing-fn-enter
     );
   }
 
   &.enter-selected {
-    @include do-animation(
+    @include animation.do-animation(
       enter-selected,
-      $animation-duration-small,
-      $timing-fn-enter
+      animation.$animation-duration-small,
+      animation.$timing-fn-enter
     );
   }
 
   &.leave-unselected {
     opacity: 0;
-    transform: translateY(-$translate-distance) scale(0.5);
+    transform: translateY(-(tech-tree-item-animations.$translate-distance)) scale(0.5);
 
-    @include do-transition(
+    @include animation.do-transition(
       opacity transform,
-      $animation-duration-small,
-      $timing-fn-leave
+      animation.$animation-duration-small,
+      animation.$timing-fn-leave
     );
   }
 
   &.leave-selected {
     opacity: 0;
-    transform: translateY($translate-distance) scale(0.5);
+    transform: translateY(tech-tree-item-animations.$translate-distance) scale(0.5);
 
-    @include do-transition(
+    @include animation.do-transition(
       opacity transform,
-      $animation-duration-small,
-      $timing-fn-leave
+      animation.$animation-duration-small,
+      animation.$timing-fn-leave
     );
   }
 }
@@ -147,12 +152,12 @@ $icon-size-large: 20px;
       width: $icon-size-medium;
       height: $icon-size-medium;
 
-      @include for-phone-only {
+      @include breakpoint.for-phone-only {
         width: $icon-size-mobile;
         height: $icon-size-mobile;
       }
 
-      @include for-4k-up {
+      @include breakpoint.for-4k-up {
         width: $icon-size-large;
         height: $icon-size-large;
       }
@@ -170,23 +175,23 @@ $icon-size-large: 20px;
 
     .tech-tree-item-building-icon {
       display: flex;
-      border-radius: $border-radius-small;
+      border-radius: border.$border-radius-small;
     }
   }
 }
 
 .tech-tree-item-name {
-  @include grid-item-name;
+  @include grid-item-name.grid-item-name;
 
-  @include for-phone-only {
-    font-size: calc-font-size($font-size-4);
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 
-  @include for-tablet-portrait-up {
-    font-size: calc-font-size($font-size-2);
+  @include breakpoint.for-tablet-portrait-up {
+    font-size: font.calc-font-size(font.$font-size-2);
   }
 
-  @include for-1080p-up {
-    font-size: calc-font-size($font-size-0);
+  @include breakpoint.for-1080p-up {
+    font-size: font.calc-font-size(font.$font-size-0);
   }
 }

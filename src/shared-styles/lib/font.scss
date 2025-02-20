@@ -1,9 +1,9 @@
+@use './color';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import './color';
 
 $font-family: 'Inter', sans-serif;
 
-$font-color: $white;
+$font-color: color.$white;
 
 $font-size-0: 0px;
 $font-size-2: 2px;

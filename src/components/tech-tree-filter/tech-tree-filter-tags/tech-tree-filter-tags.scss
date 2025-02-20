@@ -1,23 +1,28 @@
-@import '../../../shared-styles/lib';
-@import '../tech-tree-filter';
-@import '../tech-tree-item/tech-tree-item';
+@use '../tech-tree-filter';
+@use '../tech-tree-item/tech-tree-item';
+@use '../../../shared-styles/lib/alignment';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/color';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .tech-tree-filter-tags {
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 
   overflow-y: auto;
 
-  @include for-phone-only {
-    padding: calc-padding($padding-small);
+  @include breakpoint.for-phone-only {
+    padding: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-tablet-portrait-up {
-    padding: calc-padding($padding-small);
+  @include breakpoint.for-tablet-portrait-up {
+    padding: spacing.calc-padding(spacing.$padding-small);
   }
 
-  @include for-1080p-up {
-    padding: calc-padding($padding-medium);
+  @include breakpoint.for-1080p-up {
+    padding: spacing.calc-padding(spacing.$padding-medium);
   }
 }
 
@@ -27,8 +32,8 @@
   align-content: space-between;
   align-items: center;
 
-  margin-top: calc-vertical-margin($vertical-margin-small);
-  margin-bottom: calc-vertical-margin($vertical-margin-small);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
 
   width: 100%;
 }
@@ -38,39 +43,39 @@
 
   font-weight: 600;
 
-  @include for-tablet-portrait-up {
-    font-size: calc-font-size($font-size-4);
+  @include breakpoint.for-tablet-portrait-up {
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-base);
+  @include breakpoint.for-tablet-landscape-up {
+    font-size: font.calc-font-size(font.$font-size-base);
   }
 }
 
 .tags-reset-button {
-  @include tech-tree-filter-button;
+  @include tech-tree-filter.tech-tree-filter-button;
 
   flex: 0 max-content;
 
-  color: $white;
-  border: $border-thickness-tiny solid $transparent;
+  color: color.$white;
+  border: border.$border-thickness-tiny solid color.$transparent;
 
-  font-size: calc-font-size($font-size-4);
+  font-size: font.calc-font-size(font.$font-size-4);
 
-  @include for-phone-only {
-    font-size: calc-font-size($font-size-8);
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-8);
   }
 }
 
 .tags-type-title {
-  padding: calc-padding($padding-small);
+  padding: spacing.calc-padding(spacing.$padding-small);
 
-  @include for-tablet-portrait-up {
-    font-size: calc-font-size($font-size-4);
+  @include breakpoint.for-tablet-portrait-up {
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 
-  @include for-tablet-landscape-up {
-    font-size: calc-font-size($font-size-6);
+  @include breakpoint.for-tablet-landscape-up {
+    font-size: font.calc-font-size(font.$font-size-6);
   }
 }
 
@@ -78,53 +83,53 @@
   display: grid;
   gap: 10px;
 
-  padding: calc-padding($padding-tiny);
-  margin-top: calc-vertical-margin($vertical-margin-tiny);
+  padding: spacing.calc-padding(spacing.$padding-tiny);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-tiny);
 
   overflow-y: auto;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .tags-button {
-  @include tech-tree-filter-button;
+  @include tech-tree-filter.tech-tree-filter-button;
 
   display: grid;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  font-size: calc-font-size($font-size-4);
+  font-size: font.calc-font-size(font.$font-size-4);
 
-  @include for-phone-only {
-    font-size: calc-font-size($font-size-8);
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-8);
   }
 
   &.tag-on {
-    border: $border-thickness-tiny solid $border-primary-color-amber;
+    border: border.$border-thickness-tiny solid border.$border-primary-color-amber;
   }
 }
 
 .kind-tags {
   .tags-button {
     &:nth-child(1) {
-      border-left: $border-thickness-medium solid $tech-tree-color-unit;
+      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-unit;
     }
 
     &:nth-child(2) {
-      border-left: $border-thickness-medium solid $tech-tree-color-tech;
+      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-tech;
     }
 
     &:nth-child(3) {
-      border-left: $border-thickness-medium solid $tech-tree-color-building;
+      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-building;
     }
   }
 }
@@ -132,7 +137,7 @@
 .unique-tags {
   .tags-button {
     &:nth-child(1) {
-      border-left: $border-thickness-medium solid $tech-tree-color-unique;
+      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-unique;
     }
   }
 }

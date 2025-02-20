@@ -1,5 +1,11 @@
-@import '../../../shared-styles/lib';
-@import '../tech-tree-filter';
+@use '../tech-tree-filter';
+@use '../../../shared-styles/lib/alignment';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/button';
+@use '../../../shared-styles/lib/color';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .matching-civs-container {
   display: flex;
@@ -8,19 +14,19 @@
 }
 
 .matching-civs-header {
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
-  margin-top: calc-vertical-margin($vertical-margin-medium);
-  margin-bottom: calc-vertical-margin($vertical-margin-medium);
-  padding-top: calc-padding($padding-medium);
-  padding-bottom: calc-padding($padding-medium);
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
+  padding-top: spacing.calc-padding(spacing.$padding-medium);
+  padding-bottom: spacing.calc-padding(spacing.$padding-medium);
 }
 
 .matching-civs-stats {
   text-align: center;
 
   .matched-civs-number {
-    color: $primary-color-amber;
+    color: color.$primary-color-amber;
   }
 }
 
@@ -29,34 +35,34 @@
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  margin-top: calc-vertical-margin($vertical-margin-medium);
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
 
   text-align: center;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
 
-    font-size: calc-font-size($font-size-8);
+    font-size: font.calc-font-size(font.$font-size-8);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
 
-    font-size: calc-font-size($font-size-4);
+    font-size: font.calc-font-size(font.$font-size-4);
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    font-size: calc-font-size($font-size-6);
+    font-size: font.calc-font-size(font.$font-size-6);
   }
 
-  @include for-4k-up {
-    font-size: calc-font-size($font-size-8);
+  @include breakpoint.for-4k-up {
+    font-size: font.calc-font-size(font.$font-size-8);
   }
 }
 
@@ -64,9 +70,9 @@
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
-  @include button-base(
+  @include button.button-base(
     filled-inverse,
-    $padding: $padding-small,
+    $padding: spacing.$padding-small,
     $box-shadow-size: small
   );
 }
@@ -74,8 +80,8 @@
 .loading-wrapper {
   height: 100%;
 
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 }
 
 .matching-civs {
@@ -83,30 +89,30 @@
 
   display: grid;
 
-  padding-bottom: calc-padding($padding-large);
+  padding-bottom: spacing.calc-padding(spacing.$padding-large);
 
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 
   overflow-y: auto;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @include for-4k-up {
+  @include breakpoint.for-4k-up {
     grid-template-columns: repeat(6, 1fr);
   }
 }

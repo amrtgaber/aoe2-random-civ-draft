@@ -1,4 +1,7 @@
-@import '../../shared-styles/lib';
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/button';
+@use '../../shared-styles/lib/font';
 
 .civ-pool-settings-title {
   text-align: center;
@@ -7,13 +10,13 @@
 .civ-pool-settings.civ-pool-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
-  @include for-phone-only {
-    font-size: calc-font-size($font-size-6);
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-6);
   }
 
-  @include for-1080p-up {
+  @include breakpoint.for-1080p-up {
     width: 80%;
     margin: auto;
   }
@@ -21,9 +24,9 @@
   .add-all-civs-button,
   .reset-pool-button,
   .invert-pool-button {
-    @include button-base(filled-primary);
+    @include button.button-base(filled-primary);
 
-    @include for-tablet-portrait-up {
+    @include breakpoint.for-tablet-portrait-up {
       width: 80%;
     }
   }

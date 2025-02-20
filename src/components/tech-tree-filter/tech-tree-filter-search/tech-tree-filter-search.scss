@@ -1,58 +1,63 @@
-@import '../../../shared-styles/lib';
-@import '../tech-tree-filter';
+@use '../tech-tree-filter';
+@use '../../../shared-styles/lib/alignment';
+@use '../../../shared-styles/lib/border';
+@use '../../../shared-styles/lib/breakpoint';
+@use '../../../shared-styles/lib/color';
+@use '../../../shared-styles/lib/font';
+@use '../../../shared-styles/lib/spacing';
 
 .tech-tree-filter-search {
   display: grid;
   grid-template-columns: 1fr;
-  @include grid-alignment-center;
+  @include alignment.grid-alignment-center;
 
   position: relative;
 
-  padding: calc-padding($padding-small);
+  padding: spacing.calc-padding(spacing.$padding-small);
 
-  background-color: $bg-color-light;
-  border-radius: $border-radius-medium;
+  background-color: color.$bg-color-light;
+  border-radius: border.$border-radius-medium;
 }
 
 .search-input {
   width: 80%;
   height: 50px;
 
-  color: $white;
-  background-color: $black;
+  color: color.$white;
+  background-color: color.$black;
 
-  font-size: calc-font-size($font-size-8);
+  font-size: font.calc-font-size(font.$font-size-8);
 
-  padding: calc-padding($padding-small);
+  padding: spacing.calc-padding(spacing.$padding-small);
 
   border: none;
-  border-radius: $border-radius-medium;
+  border-radius: border.$border-radius-medium;
 
   &:focus {
     outline: 0;
-    border: $border-thickness-tiny solid $border-primary-color-amber;
+    border: border.$border-thickness-tiny solid border.$border-primary-color-amber;
   }
 
   &::placeholder {
-    color: $white;
+    color: color.$white;
     opacity: 0.75;
   }
 }
 
 .clear-search {
   position: absolute;
-  color: $grey;
+  color: color.$grey;
   cursor: pointer;
 
-  @include for-phone-only {
+  @include breakpoint.for-phone-only {
     right: 15%;
   }
 
-  @include for-tablet-portrait-up {
+  @include breakpoint.for-tablet-portrait-up {
     right: 18%;
   }
 
-  @include for-tablet-landscape-up {
+  @include breakpoint.for-tablet-landscape-up {
     right: 15%;
   }
 }
