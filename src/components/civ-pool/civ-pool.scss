@@ -3,25 +3,9 @@
 @use '../../shared-styles/lib/color';
 @use '../../shared-styles/lib/spacing';
 
-.civ-pool-title,
-.civ-pool-tip {
-  text-align: center;
-}
-
-.civ-pool-title {
-  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
-}
-
-.civ-pool-tip {
-  margin-top: -20px;
-
-  .civ-pool-count {
-    color: color.$primary-color-amber;
-  }
-}
-
 .civ-pool {
   display: grid;
+
   @include alignment.grid-alignment-center;
 
   @include breakpoint.for-phone-only {
@@ -33,7 +17,7 @@
   }
 
   @include breakpoint.for-tablet-landscape-up {
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(16, 1fr);
   }
 
   @include breakpoint.for-1080p-up {

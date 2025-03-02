@@ -1,0 +1,41 @@
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/box-shadow';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/spacing';
+
+.civ-pool-title,
+.civ-pool-tip {
+  text-align: center;
+}
+
+.civ-pool-title {
+  margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+}
+
+.civ-pool-tip {
+  margin-top: -20px;
+
+  .civ-pool-count {
+    color: color.$primary-color-amber;
+  }
+}
+
+.civ-pool-container {
+  width: 95vw;
+  margin-right: auto;
+  margin-left: auto;
+
+  background-color: color.$bg-color-light;
+
+  @include box-shadow.box-shadow(
+    $size: box-shadow.$box-shadow-small,
+    $isInteractive: false
+  );
+
+  border-radius: border.$border-radius-medium;
+  padding: spacing.calc-padding(spacing.$padding-medium);
+}
+
+.civ-pool {
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-giant);
+}
