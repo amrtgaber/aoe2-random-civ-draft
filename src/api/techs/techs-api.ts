@@ -45,7 +45,7 @@ export async function getTechs(): Promise<ITech[]> {
         age,
         civs,
         buildings: buildings.map((building) =>
-          convertBuildingToTechTreeItem(building)
+          convertBuildingToTechTreeItem(building),
         ),
         tagIds: [],
       };

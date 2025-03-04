@@ -67,7 +67,7 @@ describe('tags service', () => {
 
     test('should add uniques tag to unique', () => {
       const mockUnique = getMockTechTreeItems().find(
-        (item) => item.isUnique
+        (item) => item.isUnique,
       ) as ITechTreeItem;
 
       mockUnique.tagIds = [];
@@ -94,7 +94,7 @@ describe('tags service', () => {
       mockUnit.tagIds = [];
 
       const buildingTagIds = mockUnit.buildings.map(
-        (building) => getTagByName(building.itemName).id
+        (building) => getTagByName(building.itemName).id,
       );
 
       const taggedItem = addTagsToItem(mockUnit);
@@ -113,7 +113,7 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         mockItems,
         [unitsTag],
-        TagType.KIND
+        TagType.KIND,
       );
 
       expect(filterResults.every((item) => isUnit(item))).toBe(true);
@@ -126,7 +126,7 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         mockItems,
         [techsTag],
-        TagType.KIND
+        TagType.KIND,
       );
 
       expect(filterResults.every((item) => isTech(item))).toBe(true);
@@ -139,7 +139,7 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         mockItems,
         [buildingsTag],
-        TagType.KIND
+        TagType.KIND,
       );
 
       expect(filterResults.every((item) => isBuilding(item))).toBe(true);
@@ -160,11 +160,11 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         [mockDarkAgeItem, mockFeudalAgeItem],
         [darkAgeTag],
-        TagType.AGE
+        TagType.AGE,
       );
 
       expect(
-        filterResults.every((item) => item.age!.ageName === 'dark age')
+        filterResults.every((item) => item.age!.ageName === 'dark age'),
       ).toBe(true);
     });
 
@@ -186,15 +186,15 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         [mockArcheryRangeItem, mockStableItem],
         [archeryRangeTag],
-        TagType.BUILDING
+        TagType.BUILDING,
       );
 
       expect(
         filterResults.every((item) =>
           (item as IUnit).buildings.some(
-            (building) => building.itemName === 'archery range'
-          )
-        )
+            (building) => building.itemName === 'archery range',
+          ),
+        ),
       ).toBe(true);
     });
 
@@ -207,11 +207,11 @@ describe('tags service', () => {
       const filterResults = filterByTagType(
         mockItems,
         [unitsTag, techsTag],
-        TagType.KIND
+        TagType.KIND,
       );
 
       expect(filterResults.every((item) => isUnit(item) || isTech(item))).toBe(
-        true
+        true,
       );
     });
 
@@ -261,9 +261,9 @@ describe('tags service', () => {
             isUnit(item) &&
             item.age.ageName === 'feudal age' &&
             item.buildings.some(
-              (building) => building.itemName === 'archery range'
-            )
-        )
+              (building) => building.itemName === 'archery range',
+            ),
+        ),
       ).toBe(true);
     });
   });

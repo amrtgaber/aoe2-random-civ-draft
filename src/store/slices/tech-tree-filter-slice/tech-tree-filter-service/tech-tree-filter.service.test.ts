@@ -16,7 +16,7 @@ describe('tech tree filter service', () => {
 
       expect(shownItems.every((item) => isUnit(item))).toBe(true);
       expect(shownItems.every((item) => item.itemName.includes('a'))).toBe(
-        true
+        true,
       );
     });
 
@@ -26,7 +26,7 @@ describe('tech tree filter service', () => {
       const shownItems = assembleShownItemsOnChange(state);
 
       expect(
-        shownItems.every((item) => !(item.itemName === 'winged hussar'))
+        shownItems.every((item) => !(item.itemName === 'winged hussar')),
       ).toBe(true);
     });
   });

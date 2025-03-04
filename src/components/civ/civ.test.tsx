@@ -21,7 +21,7 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={false}
           />
-        </Provider>
+        </Provider>,
       );
 
       const civEl = civContainer.querySelector('.civ-container');
@@ -43,7 +43,7 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={false}
           />
-        </Provider>
+        </Provider>,
       );
 
       fireEvent.click(screen.getByText(mockCiv.civName));
@@ -68,7 +68,7 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={true}
           />
-        </Provider>
+        </Provider>,
       );
 
       fireEvent.click(screen.getByText(mockCiv.civName));
@@ -90,7 +90,7 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={false}
           />
-        </Provider>
+        </Provider>,
       );
 
       const civEl = screen.getByText(mockCiv.civName);
@@ -110,7 +110,7 @@ describe('civ component', () => {
             isDraftable={true}
             isInPool={false}
           />
-        </Provider>
+        </Provider>,
       );
 
       const mainContentEl = civContainer.querySelector('.civ-main-content');

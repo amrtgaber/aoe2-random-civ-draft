@@ -31,7 +31,7 @@ export const TechTreeFilterTags: FC = () => {
   };
 
   const renderTagsByType = (
-    tagType: TagType
+    tagType: TagType,
   ): ReactElement<HTMLAnchorElement>[] => {
     return filterTags
       .filter((tag) => tag.tagType === tagType)

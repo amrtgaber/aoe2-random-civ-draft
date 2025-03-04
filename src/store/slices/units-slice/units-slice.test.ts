@@ -15,7 +15,7 @@ const store = configureStore({
 describe('units reducer', () => {
   test('should handle initial load', () => {
     expect(unitsReducer(undefined, { type: 'unkown' })).toEqual(
-      unitsInitialState
+      unitsInitialState,
     );
   });
 

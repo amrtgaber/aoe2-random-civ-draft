@@ -26,17 +26,17 @@ export const usersInitialState: UsersState = {
 
 export const userGet = createAsyncThunk(
   'user/get',
-  async () => await getUser()
+  async () => await getUser(),
 );
 
 export const userUpdate = createAsyncThunk(
   'user/update',
-  async (body: UpdateUserBody) => await updateUser(body)
+  async (body: UpdateUserBody) => await updateUser(body),
 );
 
 export const userDelete = createAsyncThunk(
   'user/delete',
-  async () => await deleteUser()
+  async () => await deleteUser(),
 );
 
 export const usersSlice = createSlice({

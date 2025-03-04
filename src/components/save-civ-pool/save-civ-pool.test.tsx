@@ -20,7 +20,7 @@ describe('save civ pool component', () => {
       const { container: saveCivPool } = render(
         <Provider store={mockStore}>
           <SaveCivPool />
-        </Provider>
+        </Provider>,
       );
 
       expect(screen.getByText('Save current draft pool')).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('save civ pool component', () => {
       const { container: saveCivPool } = render(
         <Provider store={mockStore}>
           <SaveCivPool />
-        </Provider>
+        </Provider>,
       );
 
       Object.assign(navigator, {

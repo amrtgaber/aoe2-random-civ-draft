@@ -12,7 +12,7 @@ describe('snackbar component', () => {
     const { container: snackbarContainer } = render(
       <Provider store={mockStore}>
         <Snackbar />
-      </Provider>
+      </Provider>,
     );
     const snackbarEl = snackbarContainer.querySelector('.snackbar');
     expect(snackbarEl).not.toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('snackbar component', () => {
     const { container: snackbarContainer } = render(
       <Provider store={mockStore}>
         <Snackbar />
-      </Provider>
+      </Provider>,
     );
 
     const snackbarEl = snackbarContainer.querySelector('.snackbar');
@@ -45,7 +45,7 @@ describe('snackbar component', () => {
     const { container: snackbarContainer } = render(
       <Provider store={mockStore}>
         <Snackbar />
-      </Provider>
+      </Provider>,
     );
 
     const snackbarEl = snackbarContainer.querySelector('.snackbar');
@@ -63,7 +63,7 @@ describe('snackbar component', () => {
     const { container: snackbarContainer } = render(
       <Provider store={mockStore}>
         <Snackbar />
-      </Provider>
+      </Provider>,
     );
 
     const setTimeoutSpy = jest.spyOn(global, 'setTimeout');

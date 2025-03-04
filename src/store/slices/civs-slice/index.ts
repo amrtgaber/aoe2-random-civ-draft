@@ -18,12 +18,12 @@ export const civsInitialState: CivsState = {
 
 export const fetchCivs = createAsyncThunk(
   'civs/fetch',
-  async () => await getCivs()
+  async () => await getCivs(),
 );
 
 export const removeDuplicateCivs = (newCivs: ICiv[], currentCivs: ICiv[]) => {
   return newCivs.filter(
-    (civToAdd) => !currentCivs.some((civ) => civ.civName === civToAdd.civName)
+    (civToAdd) => !currentCivs.some((civ) => civ.civName === civToAdd.civName),
   );
 };
 
@@ -36,7 +36,7 @@ export const civsSlice = createSlice({
     },
     addCivToPool: (state, action: PayloadAction<ICiv>) => {
       state.civPool.push(
-        ...removeDuplicateCivs([action.payload], state.civPool)
+        ...removeDuplicateCivs([action.payload], state.civPool),
       );
     },
     addCivsToPool: (state, action: PayloadAction<ICiv[]>) => {
@@ -47,13 +47,13 @@ export const civsSlice = createSlice({
     },
     removeCivFromPool: (state, action: PayloadAction<ICiv>) => {
       state.civPool = state.civPool.filter(
-        (civ) => civ.id !== action.payload.id
+        (civ) => civ.id !== action.payload.id,
       );
     },
     removeCivsFromPool: (state, action: PayloadAction<ICiv[]>) => {
       const civIdsToRemove = action.payload.map((civ) => civ.id);
       state.civPool = state.civPool.filter(
-        (civ) => !civIdsToRemove.includes(civ.id)
+        (civ) => !civIdsToRemove.includes(civ.id),
       );
     },
     setCivPool: (state, action: PayloadAction<ICiv[]>) => {

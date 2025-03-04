@@ -27,22 +27,22 @@ export const authInitialState: AuthState = {
 
 export const authSignup = createAsyncThunk(
   'auth/signup',
-  async (authBody: AuthBody) => await signup(authBody)
+  async (authBody: AuthBody) => await signup(authBody),
 );
 
 export const authLogin = createAsyncThunk(
   'auth/login',
-  async (authBody: AuthBody) => await login(authBody)
+  async (authBody: AuthBody) => await login(authBody),
 );
 
 export const authLogout = createAsyncThunk(
   'auth/logout',
-  async () => await logout()
+  async () => await logout(),
 );
 
 export const authRefresh = createAsyncThunk(
   'auth/refresh',
-  async () => await refresh()
+  async () => await refresh(),
 );
 
 const storeJwtTokens = (state: AuthState, action: PayloadAction<ApiAuth>) => {

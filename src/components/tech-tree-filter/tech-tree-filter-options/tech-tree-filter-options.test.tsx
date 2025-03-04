@@ -15,7 +15,7 @@ describe('tech tree filter options component', () => {
     const { container: techTreeFilterOptionsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterOptions />
-      </Provider>
+      </Provider>,
     );
 
     const techTreeFilterOptionsEl =
@@ -30,17 +30,17 @@ describe('tech tree filter options component', () => {
     const { container: techTreeFilterOptionsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterOptions />
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText('ALL'));
     expect(mockStore.getState().techTreeFilter.filterMode).toBe(
-      FilterMode.HAS_ANY
+      FilterMode.HAS_ANY,
     );
 
     fireEvent.click(screen.getByText('ANY'));
     expect(mockStore.getState().techTreeFilter.filterMode).toBe(
-      FilterMode.HAS_ALL
+      FilterMode.HAS_ALL,
     );
   });
 
@@ -52,11 +52,11 @@ describe('tech tree filter options component', () => {
     const { container: techTreeFilterOptionsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterOptions />
-      </Provider>
+      </Provider>,
     );
 
     expect(
-      mockStore.getState().techTreeFilter.itemsFilter.length
+      mockStore.getState().techTreeFilter.itemsFilter.length,
     ).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByText('Clear selections'));
@@ -71,7 +71,7 @@ describe('tech tree filter options component', () => {
     const { container: techTreeFilterOptionsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterOptions />
-      </Provider>
+      </Provider>,
     );
 
     expect(mockStore.getState().techTreeFilter.sortMode).toBe(SortBy.ALPHA);
@@ -81,7 +81,7 @@ describe('tech tree filter options component', () => {
 
     fireEvent.change(
       selectEl,
-      createEvent('change', selectEl, { target: { value: SortBy.AGE } })
+      createEvent('change', selectEl, { target: { value: SortBy.AGE } }),
     );
 
     expect(mockStore.getState().techTreeFilter.sortMode).toBe(SortBy.AGE);

@@ -18,7 +18,7 @@ describe('draft civ button component', () => {
       const { container: draftCivButtonContainer } = render(
         <Provider store={mockStore}>
           <DraftCivButton />
-        </Provider>
+        </Provider>,
       );
 
       expect(screen.getByText('Draft Civ')).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('draft civ button component', () => {
       const { container: draftCivButtonContainer } = render(
         <Provider store={mockStore}>
           <DraftCivButton />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().draftResult.draftCount).toBe(0);
@@ -53,7 +53,7 @@ describe('draft civ button component', () => {
       const { container: draftCivButtonContainer } = render(
         <Provider store={mockStore}>
           <DraftCivButton />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().draftResult.draftCount).toBe(0);
@@ -75,7 +75,7 @@ describe('draft civ button component', () => {
       const { container: draftCivButtonContainer } = render(
         <Provider store={mockStore}>
           <DraftCivButton />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().draftResult.draftCount).toBe(0);

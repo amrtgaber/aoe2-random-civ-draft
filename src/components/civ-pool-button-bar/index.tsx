@@ -7,14 +7,13 @@ import {
   selectCivs,
   setCivPool,
 } from '../../store/slices/civs-slice';
-import { SaveCivPool } from '../save-civ-pool';
 
-import './civ-pool-settings.scss';
+import './civ-pool-button-bar.scss';
 import { resetDraft } from '../../store/slices/draft-result-slice';
 
-export interface ICivPoolSettingsProps {}
+export interface ICivPoolButtonBarProps {}
 
-export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
+export const CivPoolButtonBar: FC<ICivPoolButtonBarProps> = (props) => {
   const { allCivs, civPool } = useAppSelector(selectCivs);
   const dispatch = useAppDispatch();
 
@@ -32,14 +31,12 @@ export const CivPoolSettings: FC<ICivPoolSettingsProps> = (props) => {
 
   return (
     <>
-      <h2 className='civ-pool-settings-title'>Draft Pool Settings</h2>
-      <SaveCivPool />
-      <div className='civ-pool-settings civ-pool-buttons'>
-        <a className='add-all-civs-button' onClick={handleAddAllCivs}>
-          Add all civs
-        </a>
+      <div className='civ-pool-button-bar civ-pool-buttons'>
         <a className='reset-pool-button' onClick={handleReset}>
           Reset
+        </a>
+        <a className='add-all-civs-button' onClick={handleAddAllCivs}>
+          Add all civs
         </a>
         <a className='invert-pool-button' onClick={handleInvertPool}>
           Invert selection

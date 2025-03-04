@@ -16,7 +16,7 @@ export const versionInitialState: VersionState = {
 
 export const fetchVersion = createAsyncThunk(
   'version/fetch',
-  async () => await getVersion()
+  async () => await getVersion(),
 );
 
 export const versionSlice = createSlice({
@@ -33,7 +33,7 @@ export const versionSlice = createSlice({
         (state, action: PayloadAction<string>) => {
           state.gameVersion = action.payload;
           state.versionStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(fetchVersion.rejected, (state) => {
         state.versionStatus = FetchStatus.FAILED;

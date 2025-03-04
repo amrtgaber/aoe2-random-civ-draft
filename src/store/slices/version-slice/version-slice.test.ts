@@ -15,7 +15,7 @@ const store = configureStore({
 describe('version reducer', () => {
   test('should handle initial load', () => {
     expect(versionReducer(undefined, { type: 'unkown' })).toEqual(
-      versionInitialState
+      versionInitialState,
     );
   });
 

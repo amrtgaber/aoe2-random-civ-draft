@@ -16,7 +16,7 @@ export const techsInitialState: TechsState = {
 
 export const fetchTechs = createAsyncThunk(
   'techs/fetch',
-  async () => await getTechs()
+  async () => await getTechs(),
 );
 
 export const techsSlice = createSlice({
@@ -33,7 +33,7 @@ export const techsSlice = createSlice({
         (state, action: PayloadAction<ITech[]>) => {
           state.allTechs = action.payload;
           state.techsStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(fetchTechs.rejected, (state) => {
         state.techsStatus = FetchStatus.FAILED;

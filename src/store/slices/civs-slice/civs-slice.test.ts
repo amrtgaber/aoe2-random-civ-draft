@@ -26,7 +26,7 @@ const store = configureStore({
 describe('civs reducer', () => {
   test('should handle initial load', () => {
     expect(civsReducer(undefined, { type: 'unkown' })).toEqual(
-      civsInitialState
+      civsInitialState,
     );
   });
 
@@ -91,7 +91,7 @@ describe('civs reducer', () => {
 
     const endState = civsReducer(
       civsInitialState,
-      addCivsToPool([mockCivs[0], mockCivs[1]])
+      addCivsToPool([mockCivs[0], mockCivs[1]]),
     );
 
     expect(endState.civPool.length).toBe(2);
@@ -109,7 +109,7 @@ describe('civs reducer', () => {
 
     const endState = civsReducer(
       startState,
-      addCivsToPool([mockCivs[0], mockCivs[1]])
+      addCivsToPool([mockCivs[0], mockCivs[1]]),
     );
 
     expect(endState.civPool.length).toBe(2);
@@ -153,7 +153,7 @@ describe('civs reducer', () => {
 
     const endState = civsReducer(
       startState,
-      removeCivsFromPool([mockCivs[0], mockCivs[1]])
+      removeCivsFromPool([mockCivs[0], mockCivs[1]]),
     );
 
     expect(endState.civPool.length).toBe(mockCivs.length - 2);

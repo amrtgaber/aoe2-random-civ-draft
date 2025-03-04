@@ -27,7 +27,7 @@ export function getMockTechTreeItems(): ITechTreeItem[] {
 
 export function getMockTechTreeUnit(): IUnit {
   const mockUnit = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
-    isUnit(item)
+    isUnit(item),
   ) as IUnit;
 
   return { ...mockUnit };
@@ -35,7 +35,7 @@ export function getMockTechTreeUnit(): IUnit {
 
 export function getMockTechTreeUnits(): IUnit[] {
   const mockUnits = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
-    isUnit(item)
+    isUnit(item),
   ) as IUnit[];
 
   return [...mockUnits];
@@ -43,7 +43,7 @@ export function getMockTechTreeUnits(): IUnit[] {
 
 export function getMockTechTreeTech(): ITech {
   const mockTech = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
-    isTech(item)
+    isTech(item),
   ) as ITech;
 
   return { ...mockTech };
@@ -51,7 +51,7 @@ export function getMockTechTreeTech(): ITech {
 
 export function getMockTechTreeTechs(): ITech[] {
   const mockTechs = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
-    isTech(item)
+    isTech(item),
   ) as ITech[];
 
   return [...mockTechs];
@@ -59,7 +59,7 @@ export function getMockTechTreeTechs(): ITech[] {
 
 export function getMockTechTreeBuilding(): IBuilding {
   const mockBuilding = MOCK_STATE.techTreeFilter.taggedItems.find((item) =>
-    isBuilding(item)
+    isBuilding(item),
   ) as IBuilding;
 
   return { ...mockBuilding };
@@ -67,7 +67,7 @@ export function getMockTechTreeBuilding(): IBuilding {
 
 export function getMockTechTreeBuildings(): IBuilding[] {
   const mockBuildings = MOCK_STATE.techTreeFilter.taggedItems.filter((item) =>
-    isBuilding(item)
+    isBuilding(item),
   ) as IBuilding[];
 
   return [...mockBuildings];

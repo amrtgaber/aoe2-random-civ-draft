@@ -17,7 +17,7 @@ describe('matching civs component', () => {
         <MemoryRouter>
           <MatchingCivs />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const matchingCivsEl =
@@ -38,7 +38,7 @@ describe('matching civs component', () => {
         <MemoryRouter>
           <MatchingCivs />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const loadingEl = matchingCivsContainer.querySelector('.loading-text');
@@ -66,7 +66,7 @@ describe('matching civs component', () => {
         <MemoryRouter>
           <MatchingCivs />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText('Add to draft'));
@@ -99,7 +99,7 @@ describe('matching civs component', () => {
         <MemoryRouter>
           <MatchingCivs />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText('Replace draft'));
@@ -131,7 +131,7 @@ describe('matching civs component', () => {
         <MemoryRouter>
           <MatchingCivs />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText('Subtract from draft'));

@@ -35,7 +35,8 @@
 
   &:focus {
     outline: 0;
-    border: border.$border-thickness-tiny solid border.$border-primary-color-amber;
+    border: border.$border-thickness-tiny solid
+      border.$border-primary-color-amber;
   }
 
   &::placeholder {

@@ -16,7 +16,7 @@ export const generateHeaders = (options: Options = {}) => {
   if (useAuth) {
     headers.append(
       'Authorization',
-      `Bearer ${localStorage.getItem('access_token') ?? ''}`
+      `Bearer ${localStorage.getItem('access_token') ?? ''}`,
     );
   }
 

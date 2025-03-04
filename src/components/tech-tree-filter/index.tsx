@@ -32,7 +32,7 @@ import './tech-tree-filter.scss';
 export const TechTreeFilter: FC = () => {
   const [selectedItems, setSelectedItems] = useState<ITechTreeItem[]>([]);
   const [allItemsFetchStatus, setAllItemsFetchStatus] = useState<FetchStatus>(
-    FetchStatus.INIT
+    FetchStatus.INIT,
   );
 
   const { allUnits, unitsStatus } = useAppSelector(selectUnits);
@@ -100,58 +100,61 @@ export const TechTreeFilter: FC = () => {
   const hasShownItems = shownItems.length > 0;
 
   return (
-    <div className='tech-tree-filter-container'>
-      {!isFulfilled(allItemsFetchStatus) ? (
-        <Loading componentName='Tech Tree Filter' />
-      ) : (
-        <div className='tech-tree-filter-panels-container'>
-          <div className='tech-tree-filter-options-panel tech-tree-filter-panel-border'>
-            <h3 className='tech-tree-filter-panel-header'>Options</h3>
-            <TechTreeFilterSearch />
-            <TechTreeFilterOptions />
-            <TechTreeFilterTags />
-          </div>
-          <div className='tech-tree-filter-items-panel tech-tree-filter-panel-border'>
-            <h3 className='tech-tree-filter-panel-header'>Tech Tree</h3>
-            <div
-              className={`tech-tree-filter-selected-items ${
-                !hasSelectedItems ? ' empty-filter' : ''
-              }`}
-            >
-              <>
-                {!hasSelectedItems && (
-                  <div className='selected-items-placeholder'>
-                    Selected items will show up here
-                  </div>
-                )}
-                {selectedItems.map((item) => (
-                  <TechTreeItem key={item.id} item={item} selected={true} />
-                ))}
-              </>
+    <>
+      <h2 className='tech-tree-filter-title'>Tech Tree Filter</h2>
+      <div className='tech-tree-filter-container'>
+        {!isFulfilled(allItemsFetchStatus) ? (
+          <Loading componentName='Tech Tree Filter' />
+        ) : (
+          <div className='tech-tree-filter-panels-container'>
+            <div className='tech-tree-filter-options-panel tech-tree-filter-panel-border'>
+              <h3 className='tech-tree-filter-panel-header'>Options</h3>
+              <TechTreeFilterSearch />
+              <TechTreeFilterOptions />
+              <TechTreeFilterTags />
             </div>
-            <div
-              className={`tech-tree-filter-unselected-items ${
-                !hasShownItems ? ' empty-filter' : ''
-              }`}
-            >
-              <>
-                {!hasShownItems && (
-                  <div className='unselected-items-placeholder'>
-                    No matching items
-                  </div>
-                )}
-                {shownItems.map((item) => (
-                  <TechTreeItem key={item.id} item={item} selected={false} />
-                ))}
-              </>
+            <div className='tech-tree-filter-items-panel tech-tree-filter-panel-border'>
+              <h3 className='tech-tree-filter-panel-header'>Tech Tree</h3>
+              <div
+                className={`tech-tree-filter-selected-items ${
+                  !hasSelectedItems ? ' empty-filter' : ''
+                }`}
+              >
+                <>
+                  {!hasSelectedItems && (
+                    <div className='selected-items-placeholder'>
+                      Selected items will show up here
+                    </div>
+                  )}
+                  {selectedItems.map((item) => (
+                    <TechTreeItem key={item.id} item={item} selected={true} />
+                  ))}
+                </>
+              </div>
+              <div
+                className={`tech-tree-filter-unselected-items ${
+                  !hasShownItems ? ' empty-filter' : ''
+                }`}
+              >
+                <>
+                  {!hasShownItems && (
+                    <div className='unselected-items-placeholder'>
+                      No matching items
+                    </div>
+                  )}
+                  {shownItems.map((item) => (
+                    <TechTreeItem key={item.id} item={item} selected={false} />
+                  ))}
+                </>
+              </div>
+            </div>
+            <div className='tech-tree-filter-matching-civs-panel'>
+              <h3 className='tech-tree-filter-panel-header'>Matching Civs</h3>
+              <MatchingCivs />
             </div>
           </div>
-          <div className='tech-tree-filter-matching-civs-panel'>
-            <h3 className='tech-tree-filter-panel-header'>Matching Civs</h3>
-            <MatchingCivs />
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };

@@ -19,7 +19,8 @@
     @include button.button-base(filled-dark);
 
     &:active {
-      border: border.$border-thickness-tiny solid color.$primary-color-amber-dark;
+      border: border.$border-thickness-tiny solid
+        color.$primary-color-amber-dark;
     }
 
     @include breakpoint.for-tablet-portrait-up {

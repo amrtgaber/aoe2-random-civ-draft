@@ -1,0 +1,41 @@
+@use '../../shared-styles/lib/alignment';
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/breakpoint';
+@use '../../shared-styles/lib/button';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
+@use '../../shared-styles/lib/spacing';
+
+.civ-pool-button-bar.civ-pool-buttons {
+  display: flex;
+  gap: 16px;
+
+  padding: spacing.calc-padding(spacing.$padding-medium);
+  background-color: color.$bg-color-lightest;
+  border-radius: border.$border-radius-medium;
+
+  @include breakpoint.for-phone-only {
+    font-size: font.calc-font-size(font.$font-size-6);
+  }
+
+  @include breakpoint.for-1080p-up {
+    width: 80%;
+    margin: auto;
+  }
+
+  .reset-pool-button,
+  .add-all-civs-button,
+  .invert-pool-button {
+    width: fit-content;
+
+    @include button.button-base(
+      filled-primary,
+      spacing.$padding-small,
+      true,
+      small
+    );
+
+    border-radius: border.$border-radius-small;
+    font-size: font.calc-font-size(font.$font-size-8);
+  }
+}

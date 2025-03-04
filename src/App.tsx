@@ -1,15 +1,14 @@
-import { CivPool } from './components/civ-pool';
-import { CivPoolSettings } from './components/civ-pool-settings';
+import { useEffect } from 'react';
+import './App.scss';
+import { useAppDispatch } from './hooks';
+import { authRefresh } from './store/slices/auth-slice';
+import { CivPoolContainer } from './components/civ-pool-container';
+import { TechTreeFilter } from './components/tech-tree-filter';
 import { DraftCiv } from './components/draft-civ';
 import { Footer } from './components/footer';
 import { Separator } from './components/separator';
 import { Snackbar } from './components/snackbar';
 import { TopAppBar } from './components/top-app-bar';
-
-import { useEffect } from 'react';
-import './App.scss';
-import { useAppDispatch } from './hooks';
-import { authRefresh } from './store/slices/auth-slice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -29,10 +28,10 @@ function App() {
       <DraftCiv />
 
       <Separator />
-      <CivPool />
+      <CivPoolContainer />
 
       <Separator />
-      <CivPoolSettings />
+      <TechTreeFilter />
 
       <Separator />
       <Footer />

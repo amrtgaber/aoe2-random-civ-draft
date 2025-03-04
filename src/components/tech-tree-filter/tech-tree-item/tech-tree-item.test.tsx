@@ -17,11 +17,11 @@ describe('tech tree item component', () => {
     const { container: techTreeItemContainer } = render(
       <Provider store={mockStore}>
         <TechTreeItem item={mockUnit} selected={false} />
-      </Provider>
+      </Provider>,
     );
 
     const techTreeItemEl = techTreeItemContainer.querySelector(
-      '.tech-tree-item-container'
+      '.tech-tree-item-container',
     );
 
     expect(techTreeItemEl).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('tech tree item component', () => {
       const { container: techTreeItemContainer } = render(
         <Provider store={mockStore}>
           <TechTreeItem item={mockUnit} selected={false} />
-        </Provider>
+        </Provider>,
       );
 
       fireEvent.click(screen.getByText(mockUnit.itemName));
@@ -53,7 +53,7 @@ describe('tech tree item component', () => {
       const { container: techTreeItemContainer } = render(
         <Provider store={mockStore}>
           <TechTreeItem item={mockUnit} selected={true} />
-        </Provider>
+        </Provider>,
       );
 
       fireEvent.click(screen.getByText(mockUnit.itemName));
@@ -79,7 +79,7 @@ describe('tech tree item component', () => {
       const { container: techTreeItemContainer } = render(
         <Provider store={mockStore}>
           <TechTreeItem item={mockUnit} selected={false} />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(0);
@@ -89,7 +89,7 @@ describe('tech tree item component', () => {
 
       expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(1);
       expect(mockStore.getState().techTreeFilter.itemsFilter[0].id).toBe(
-        mockUnit.id
+        mockUnit.id,
       );
       expect(mockStore.getState().techTreeFilter.shownItems.length).toBe(0);
     });
@@ -108,7 +108,7 @@ describe('tech tree item component', () => {
       const { container: techTreeItemContainer } = render(
         <Provider store={mockStore}>
           <TechTreeItem item={mockUnit} selected={true} />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(1);
@@ -119,7 +119,7 @@ describe('tech tree item component', () => {
       expect(mockStore.getState().techTreeFilter.itemsFilter.length).toBe(0);
       expect(mockStore.getState().techTreeFilter.shownItems.length).toBe(1);
       expect(mockStore.getState().techTreeFilter.shownItems[0].id).toBe(
-        mockUnit.id
+        mockUnit.id,
       );
     });
   });

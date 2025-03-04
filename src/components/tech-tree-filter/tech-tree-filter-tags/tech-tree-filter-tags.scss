@@ -114,22 +114,26 @@
   }
 
   &.tag-on {
-    border: border.$border-thickness-tiny solid border.$border-primary-color-amber;
+    border: border.$border-thickness-tiny solid
+      border.$border-primary-color-amber;
   }
 }
 
 .kind-tags {
   .tags-button {
     &:nth-child(1) {
-      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-unit;
+      border-left: border.$border-thickness-medium solid
+        tech-tree-item.$tech-tree-color-unit;
     }
 
     &:nth-child(2) {
-      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-tech;
+      border-left: border.$border-thickness-medium solid
+        tech-tree-item.$tech-tree-color-tech;
     }
 
     &:nth-child(3) {
-      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-building;
+      border-left: border.$border-thickness-medium solid
+        tech-tree-item.$tech-tree-color-building;
     }
   }
 }
@@ -137,7 +141,8 @@
 .unique-tags {
   .tags-button {
     &:nth-child(1) {
-      border-left: border.$border-thickness-medium solid tech-tree-item.$tech-tree-color-unique;
+      border-left: border.$border-thickness-medium solid
+        tech-tree-item.$tech-tree-color-unique;
     }
   }
 }

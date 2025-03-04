@@ -15,7 +15,7 @@ const store = configureStore({
 describe('buildings reducer', () => {
   test('should handle initial load', () => {
     expect(buildingsReducer(undefined, { type: 'unkown' })).toEqual(
-      buildingsInitialState
+      buildingsInitialState,
     );
   });
 
@@ -31,7 +31,7 @@ describe('buildings reducer', () => {
 
       expect(store.getState().buildingsStatus).toBe(FetchStatus.FULFILLED);
       expect(store.getState().allBuildings.length).toBe(
-        mockApiBuildings.length
+        mockApiBuildings.length,
       );
     });
 

@@ -59,7 +59,7 @@ const sortFunctions = {
 
 export const doSort = (
   items: ITechTreeItem[],
-  sortMode: SortBy
+  sortMode: SortBy,
 ): ITechTreeItem[] => {
   let sortedItems = [...items];
   const sortFunction = sortFunctions[sortMode];

@@ -50,7 +50,7 @@ export const techTreeFilterSlice = createSlice({
     },
     removeItemFromFilter: (state, action: PayloadAction<ITechTreeItem>) => {
       state.itemsFilter = state.itemsFilter.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload.id,
       );
       state.filteredCivPool = filterCivPool(state);
     },
@@ -78,7 +78,7 @@ export const techTreeFilterSlice = createSlice({
     },
     removeShownItem: (state, action: PayloadAction<ITechTreeItem>) => {
       state.shownItems = state.shownItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload.id,
       );
     },
     setShownItems: (state, action: PayloadAction<ITechTreeItem[]>) => {

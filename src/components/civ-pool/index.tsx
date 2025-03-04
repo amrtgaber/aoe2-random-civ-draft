@@ -20,7 +20,6 @@ import './civ-pool.scss';
 
 export const CivPool: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
-  const civPoolCount = civPool.length > 0 ? civPool.length : allCivs.length;
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,7 +38,7 @@ export const CivPool: FC = () => {
 
     if (isFulfilled(civsStatus)) {
       const newCivPool = allCivs.filter((civ) =>
-        civPoolQueryParams.includes(civ.civName)
+        civPoolQueryParams.includes(civ.civName),
       );
       dispatch(setCivPool(newCivPool));
     }
@@ -75,21 +74,9 @@ export const CivPool: FC = () => {
     ));
   };
 
-  return (
-    <>
-      <h2 className='civ-pool-title'>Draft Pool</h2>
-      <p className='civ-pool-tip'>
-        Click a civ to add or remove it from the draft pool
-      </p>
-      <p className='civ-pool-tip'>
-        <span className='civ-pool-count'>{civPoolCount}</span> civ
-        {civPoolCount !== 1 && 's'} in current draft pool
-      </p>
-      {isLoading(civsStatus) ? (
-        <Loading componentName='Civ Pool' />
-      ) : (
-        <div className='civ-pool'>{renderCivs()}</div>
-      )}
-    </>
+  return isLoading(civsStatus) ? (
+    <Loading componentName='Civ Pool' />
+  ) : (
+    <div className='civ-pool'>{renderCivs()}</div>
   );
 };

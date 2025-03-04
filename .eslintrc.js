@@ -36,12 +36,6 @@ module.exports = {
         allowSeparatedGroups: true,
       },
     ],
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5"
-      }
-    ]
   },
   settings: {
     // react plugin recommended settings

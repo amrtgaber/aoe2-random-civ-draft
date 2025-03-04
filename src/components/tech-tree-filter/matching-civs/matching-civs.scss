@@ -35,6 +35,7 @@
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   @include alignment.grid-alignment-center;
 
   margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-medium);
@@ -70,6 +71,7 @@
 .add-to-main-civ-pool-button,
 .subtract-from-main-civ-pool-button {
   width: 90%;
+
   @include button.button-base(
     filled-inverse,
     $padding: spacing.$padding-small,
@@ -105,10 +107,6 @@
   }
 
   @include breakpoint.for-tablet-landscape-up {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include breakpoint.for-1080p-up {
     grid-template-columns: repeat(5, 1fr);
   }
 
