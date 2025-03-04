@@ -5,14 +5,14 @@ import { ITechTreeItem } from '../../../../api/tech-tree-item-api';
 import { TechTreeFilterState } from '..';
 
 export function assembleShownItemsOnChange(
-  state: TechTreeFilterState
+  state: TechTreeFilterState,
 ): ITechTreeItem[] {
   const { itemsFilter, searchTerm, selectedTags, sortMode, taggedItems } =
     state;
 
   const selectedItemIds = itemsFilter.map((item) => item.id);
   let newShownItems = taggedItems.filter(
-    (taggedItem) => !selectedItemIds.includes(taggedItem.id)
+    (taggedItem) => !selectedItemIds.includes(taggedItem.id),
   );
 
   newShownItems = doFilter(newShownItems, selectedTags);

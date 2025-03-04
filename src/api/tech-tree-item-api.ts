@@ -37,7 +37,7 @@ export function isUnique(civs: ICiv[]): boolean {
 }
 
 export function convertUnitToTechTreeItem(
-  item: ApiConnectedUnit
+  item: ApiConnectedUnit,
 ): ITechTreeItem {
   const { id, unitName: itemName } = item;
   return {
@@ -48,7 +48,7 @@ export function convertUnitToTechTreeItem(
 }
 
 export function convertTechToTechTreeItem(
-  item: ApiConnectedTech
+  item: ApiConnectedTech,
 ): ITechTreeItem {
   const { id, techName: itemName } = item;
   return {
@@ -59,7 +59,7 @@ export function convertTechToTechTreeItem(
 }
 
 export function convertBuildingToTechTreeItem(
-  item: ApiConnectedBuilding
+  item: ApiConnectedBuilding,
 ): ITechTreeItem {
   const { id, buildingName: itemName } = item;
   return {
@@ -71,7 +71,7 @@ export function convertBuildingToTechTreeItem(
 
 export function techTreeItemCompare(
   item1: ITechTreeItem,
-  item2: ITechTreeItem
+  item2: ITechTreeItem,
 ): number {
   return item1.itemName.localeCompare(item2.itemName);
 }

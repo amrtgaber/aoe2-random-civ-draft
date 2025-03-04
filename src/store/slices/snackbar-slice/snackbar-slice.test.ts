@@ -7,13 +7,13 @@ import snackbarReducer, {
 describe('snackbar reducer', () => {
   test('should handle initial load', () => {
     expect(snackbarReducer(undefined, { type: 'unkown' })).toEqual(
-      snackbarInitialState
+      snackbarInitialState,
     );
   });
 
   test('should handle set message action', () => {
     expect(
-      snackbarReducer(snackbarInitialState, setSnackbarMessage('test'))
+      snackbarReducer(snackbarInitialState, setSnackbarMessage('test')),
     ).toEqual<SnackbarState>({
       message: 'test',
     });

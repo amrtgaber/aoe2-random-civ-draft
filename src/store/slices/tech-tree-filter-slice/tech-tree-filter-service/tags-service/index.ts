@@ -7,7 +7,7 @@ import {
 import { FilterTag, filterTags, TagType } from './tags';
 
 export const tagsMap = new Map<string, FilterTag>(
-  filterTags.map((tag) => [tag.tagName, tag])
+  filterTags.map((tag) => [tag.tagName, tag]),
 );
 
 export function getTagByName(name: string): FilterTag {
@@ -57,7 +57,7 @@ export function doFilter(items: ITechTreeItem[], selectedTags: FilterTag[]) {
   filteredItems = filterByTagType(
     filteredItems,
     selectedTags,
-    TagType.BUILDING
+    TagType.BUILDING,
   );
   filteredItems = filterByUnique(filteredItems, selectedTags);
 
@@ -67,7 +67,7 @@ export function doFilter(items: ITechTreeItem[], selectedTags: FilterTag[]) {
 export function filterByTagType(
   items: ITechTreeItem[],
   allSelectedTags: FilterTag[],
-  tagType: TagType
+  tagType: TagType,
 ): ITechTreeItem[] {
   const selectedTypeTagIds = allSelectedTags
     .filter((tag) => tag.tagType === tagType)
@@ -78,16 +78,16 @@ export function filterByTagType(
   }
 
   return items.filter((item) =>
-    item.tagIds!.some((tagId) => selectedTypeTagIds.includes(tagId))
+    item.tagIds!.some((tagId) => selectedTypeTagIds.includes(tagId)),
   );
 }
 
 export function filterByUnique(
   items: ITechTreeItem[],
-  allSelectedTags: FilterTag[]
+  allSelectedTags: FilterTag[],
 ): ITechTreeItem[] {
   const isUniquesTagSelected = allSelectedTags.some(
-    (selectedTag) => selectedTag.tagType === TagType.UNIQUE
+    (selectedTag) => selectedTag.tagType === TagType.UNIQUE,
   );
 
   if (isUniquesTagSelected) {

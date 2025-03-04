@@ -14,11 +14,11 @@ describe('tech tree filter tags component', () => {
     const { container: techTreeFilterTagsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterTags />
-      </Provider>
+      </Provider>,
     );
 
     const techTreeFilterTagsEl = techTreeFilterTagsContainer.querySelector(
-      '.tech-tree-filter-tags'
+      '.tech-tree-filter-tags',
     );
 
     expect(techTreeFilterTagsEl).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('tech tree filter tags component', () => {
       const { container: techTreeFilterTagsContainer } = render(
         <Provider store={mockStore}>
           <TechTreeFilterTags />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().techTreeFilter.selectedTags.length).toBe(0);
@@ -41,7 +41,7 @@ describe('tech tree filter tags component', () => {
 
       expect(mockStore.getState().techTreeFilter.selectedTags.length).toBe(1);
       expect(mockStore.getState().techTreeFilter.selectedTags[0].id).toBe(
-        mockTag.id
+        mockTag.id,
       );
     });
 
@@ -57,7 +57,7 @@ describe('tech tree filter tags component', () => {
       const { container: techTreeFilterTagsContainer } = render(
         <Provider store={mockStore}>
           <TechTreeFilterTags />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().techTreeFilter.selectedTags.length).toBe(1);
@@ -81,11 +81,11 @@ describe('tech tree filter tags component', () => {
     const { container: techTreeFilterTagsContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterTags />
-      </Provider>
+      </Provider>,
     );
 
     expect(
-      mockStore.getState().techTreeFilter.selectedTags.length
+      mockStore.getState().techTreeFilter.selectedTags.length,
     ).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByText('clear filters'));

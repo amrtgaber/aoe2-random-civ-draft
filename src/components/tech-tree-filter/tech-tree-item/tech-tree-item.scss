@@ -109,7 +109,8 @@ $icon-size-large: 20px;
 
   &.leave-unselected {
     opacity: 0;
-    transform: translateY(-(tech-tree-item-animations.$translate-distance)) scale(0.5);
+    transform: translateY(-(tech-tree-item-animations.$translate-distance))
+      scale(0.5);
 
     @include animation.do-transition(
       opacity transform,
@@ -120,7 +121,8 @@ $icon-size-large: 20px;
 
   &.leave-selected {
     opacity: 0;
-    transform: translateY(tech-tree-item-animations.$translate-distance) scale(0.5);
+    transform: translateY(tech-tree-item-animations.$translate-distance)
+      scale(0.5);
 
     @include animation.do-transition(
       opacity transform,

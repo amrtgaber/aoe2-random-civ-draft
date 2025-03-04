@@ -13,11 +13,11 @@ describe('tech tree filter search component', () => {
     const { container: techTreeFilterSearchContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterSearch />
-      </Provider>
+      </Provider>,
     );
 
     const techTreeFilterSearchEl = techTreeFilterSearchContainer.querySelector(
-      '.tech-tree-filter-search'
+      '.tech-tree-filter-search',
     );
 
     expect(techTreeFilterSearchEl).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('tech tree filter search component', () => {
     const { container: techTreeFilterSearchContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterSearch />
-      </Provider>
+      </Provider>,
     );
 
     const inputEl =
@@ -37,7 +37,7 @@ describe('tech tree filter search component', () => {
 
     fireEvent.change(
       inputEl,
-      createEvent('input', inputEl, { target: { value: 'a' } })
+      createEvent('input', inputEl, { target: { value: 'a' } }),
     );
 
     expect(mockStore.getState().techTreeFilter.searchTerm).toBe('a');
@@ -54,11 +54,11 @@ describe('tech tree filter search component', () => {
     const { container: techTreeFilterSearchContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilterSearch />
-      </Provider>
+      </Provider>,
     );
 
     expect(
-      mockStore.getState().techTreeFilter.searchTerm.length
+      mockStore.getState().techTreeFilter.searchTerm.length,
     ).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByText('✖'));

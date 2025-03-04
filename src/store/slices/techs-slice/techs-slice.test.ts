@@ -15,7 +15,7 @@ const store = configureStore({
 describe('techs reducer', () => {
   test('should handle initial load', () => {
     expect(techsReducer(undefined, { type: 'unkown' })).toEqual(
-      techsInitialState
+      techsInitialState,
     );
   });
 

@@ -13,11 +13,11 @@ describe('tech tree filter component', () => {
     const { container: techTreeFilterContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilter />
-      </Provider>
+      </Provider>,
     );
 
     const techTreeFilterEl = techTreeFilterContainer.querySelector(
-      '.tech-tree-filter-container'
+      '.tech-tree-filter-container',
     );
 
     expect(techTreeFilterEl).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('tech tree filter component', () => {
     const { container: techTreeFilterContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilter />
-      </Provider>
+      </Provider>,
     );
 
     const taggedItems = mockStore.getState().techTreeFilter.taggedItems;
@@ -56,13 +56,13 @@ describe('tech tree filter component', () => {
     const { container: techTreeFilterContainer } = render(
       <Provider store={mockStore}>
         <TechTreeFilter />
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText(mockUnit.itemName));
 
     const selectedEl = techTreeFilterContainer.querySelector(
-      '.tech-tree-filter-selected-items .unit'
+      '.tech-tree-filter-selected-items .unit',
     );
 
     expect(selectedEl).toBeInTheDocument();

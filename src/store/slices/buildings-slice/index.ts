@@ -16,7 +16,7 @@ export const buildingsInitialState: BuildingsState = {
 
 export const fetchBuildings = createAsyncThunk(
   'buildings/fetch',
-  async () => await getBuildings()
+  async () => await getBuildings(),
 );
 
 export const buildingsSlice = createSlice({
@@ -33,7 +33,7 @@ export const buildingsSlice = createSlice({
         (state, action: PayloadAction<IBuilding[]>) => {
           state.allBuildings = action.payload;
           state.buildingsStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(fetchBuildings.rejected, (state) => {
         state.buildingsStatus = FetchStatus.FAILED;

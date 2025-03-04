@@ -81,7 +81,7 @@ export const AuthModal: FC<AuthModalProps> = (props) => {
       if (isValid && !usernameRef.current.value.match(/^[\w][\w-]+$/)) {
         isValid = false;
         setUsernameError(
-          'username must include only letters, numbers, and dashes'
+          'username must include only letters, numbers, and dashes',
         );
       }
     }

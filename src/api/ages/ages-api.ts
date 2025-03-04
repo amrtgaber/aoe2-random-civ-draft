@@ -43,7 +43,7 @@ export async function getAges(): Promise<IAgeTechTree[]> {
         units: units.map((unit) => convertUnitToTechTreeItem(unit)),
         techs: techs.map((tech) => convertTechToTechTreeItem(tech)),
         buildings: buildings.map((building) =>
-          convertBuildingToTechTreeItem(building)
+          convertBuildingToTechTreeItem(building),
         ),
       };
     })

@@ -13,7 +13,7 @@ test('renders app', () => {
           <Route path='/' element={<App />} />
         </Routes>
       </BrowserRouter>
-    </Provider>
+    </Provider>,
   );
   const appEl = appContainer.querySelector('.App');
   expect(appEl).toBeInTheDocument();

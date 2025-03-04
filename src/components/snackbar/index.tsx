@@ -32,7 +32,7 @@ export const Snackbar: FC = () => {
   };
 
   const handleDismiss = (
-    event: AnimationEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>
+    event: AnimationEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>,
   ) => {
     const el = event.target as HTMLDivElement;
     el.classList.remove('show');

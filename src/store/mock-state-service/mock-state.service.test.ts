@@ -77,7 +77,7 @@ describe('mock state service', () => {
       const mockBuildings = getMockTechTreeBuildings();
       expect(mockBuildings.length).toBeGreaterThan(0);
       expect(mockBuildings.every((building) => isBuilding(building))).toBe(
-        true
+        true,
       );
     });
   });

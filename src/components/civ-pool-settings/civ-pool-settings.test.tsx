@@ -17,7 +17,7 @@ describe('civ pool settings component', () => {
       const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
           <CivPoolSettings />
-        </Provider>
+        </Provider>,
       );
 
       const civPoolSettingsEl =
@@ -38,7 +38,7 @@ describe('civ pool settings component', () => {
       const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
           <CivPoolSettings />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().civs.civPool.length).toBe(0);
@@ -59,7 +59,7 @@ describe('civ pool settings component', () => {
       const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
           <CivPoolSettings />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().civs.civPool.length).toBe(mockCivs.length);
@@ -80,13 +80,13 @@ describe('civ pool settings component', () => {
       const { container: civPoolSettings } = render(
         <Provider store={mockStore}>
           <CivPoolSettings />
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().civs.civPool.length).toBe(1);
       fireEvent.click(screen.getByText('Invert selection'));
       expect(mockStore.getState().civs.civPool.length).toBe(
-        mockCivs.length - 1
+        mockCivs.length - 1,
       );
     });
   });

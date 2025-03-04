@@ -13,7 +13,7 @@ describe('civ draft result container component', () => {
     const { container: civDraftResultContainerContainer } = render(
       <Provider store={mockStore}>
         <DraftCiv />
-      </Provider>
+      </Provider>,
     );
 
     const civDraftResultContainerEl =
@@ -30,7 +30,7 @@ describe('civ draft result container component', () => {
     const { container: civDraftResultContainerContainer } = render(
       <Provider store={mockStore}>
         <DraftCiv />
-      </Provider>
+      </Provider>,
     );
 
     fireEvent.click(screen.getByText('Draft Civ'));

@@ -5,7 +5,7 @@ import { Loading } from '.';
 describe('loading component', () => {
   test('renders loading', () => {
     const { container: loadingContainer } = render(
-      <Loading componentName='Test' />
+      <Loading componentName='Test' />,
     );
 
     const loadingEl = loadingContainer.querySelector('.loading-text');

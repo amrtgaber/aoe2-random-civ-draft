@@ -16,7 +16,7 @@ describe('civ pool component', () => {
         <MemoryRouter>
           <CivPool />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const civPoolEl = civPoolContainer.querySelector('.civ-pool-title');
@@ -34,7 +34,7 @@ describe('civ pool component', () => {
           <MemoryRouter initialEntries={['?civPool=Aztecs,Vikings']}>
             <CivPool />
           </MemoryRouter>
-        </Provider>
+        </Provider>,
       );
 
       expect(mockStore.getState().civs.civPool.length).toBe(2);
@@ -52,7 +52,7 @@ describe('civ pool component', () => {
           <BrowserRouter>
             <CivPool />
           </BrowserRouter>
-        </Provider>
+        </Provider>,
       );
 
       expect(location.search).not.toContain('civPool=Aztecs');

@@ -49,7 +49,7 @@ export const TechTreeItem: FC<ITechTreeItemProps> = (props) => {
   };
 
   const renderBuildingIcons = (
-    item: ITechTreeItem
+    item: ITechTreeItem,
   ): ReactElement<HTMLImageElement>[] => {
     const imgBase = '/assets/images/tech-tree/buildings/';
 

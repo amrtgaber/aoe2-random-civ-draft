@@ -10,7 +10,7 @@ import draftResultReducer, {
 describe('draft result reducer', () => {
   test('should handle initial load', () => {
     expect(draftResultReducer(undefined, { type: 'unkown' })).toEqual(
-      draftResultInitialState
+      draftResultInitialState,
     );
   });
 
@@ -18,7 +18,7 @@ describe('draft result reducer', () => {
     const civ = getMockCiv();
 
     expect(
-      draftResultReducer(draftResultInitialState, draftCiv(civ))
+      draftResultReducer(draftResultInitialState, draftCiv(civ)),
     ).toEqual<DraftResultState>({
       civ,
       draftCount: 1,
@@ -35,7 +35,7 @@ describe('draft result reducer', () => {
     };
 
     expect(
-      draftResultReducer(startState, resetDraft())
+      draftResultReducer(startState, resetDraft()),
     ).toEqual<DraftResultState>({
       civ: null,
       draftCount: 0,

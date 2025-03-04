@@ -28,23 +28,23 @@ export const draftsInitialState: DraftsState = {
 
 export const draftCreate = createAsyncThunk(
   'draft/update',
-  async (body: CreateDraftBody) => await createDraft(body)
+  async (body: CreateDraftBody) => await createDraft(body),
 );
 
 export const draftsGet = createAsyncThunk(
   'draft/getAll',
-  async () => await getDrafts()
+  async () => await getDrafts(),
 );
 
 export const draftUpdate = createAsyncThunk(
   'draft/update',
   async ({ id, body }: { id: number; body: UpdateDraftBody }) =>
-    await updateDraft(id, body)
+    await updateDraft(id, body),
 );
 
 export const draftDelete = createAsyncThunk(
   'draft/delete',
-  async (id: number) => await deleteDraft(id)
+  async (id: number) => await deleteDraft(id),
 );
 
 export const draftsSlice = createSlice({
@@ -61,7 +61,7 @@ export const draftsSlice = createSlice({
         (state, action: PayloadAction<IDraft[]>) => {
           state.drafts = action.payload;
           state.draftsGetStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(draftsGet.rejected, (state) => {
         state.draftsGetStatus = FetchStatus.FAILED;
@@ -73,7 +73,7 @@ export const draftsSlice = createSlice({
         draftUpdate.fulfilled,
         (state, action: PayloadAction<IDraft>) => {
           state.draftUpdateStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(draftUpdate.rejected, (state) => {
         state.draftUpdateStatus = FetchStatus.FAILED;

@@ -45,7 +45,7 @@ export async function getUnits(): Promise<IUnit[]> {
         age,
         civs,
         buildings: buildings.map((building) =>
-          convertBuildingToTechTreeItem(building)
+          convertBuildingToTechTreeItem(building),
         ),
         tagIds: [],
       };

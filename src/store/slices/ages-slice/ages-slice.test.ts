@@ -15,7 +15,7 @@ const store = configureStore({
 describe('ages reducer', () => {
   test('should handle initial load', () => {
     expect(agesReducer(undefined, { type: 'unkown' })).toEqual(
-      agesInitialState
+      agesInitialState,
     );
   });
 

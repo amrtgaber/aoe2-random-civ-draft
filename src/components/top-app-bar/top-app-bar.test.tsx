@@ -15,7 +15,7 @@ describe('top app bar component', () => {
     const { container: topAppBarContainer } = render(
       <Provider store={mockStore}>
         <TopAppBar />
-      </Provider>
+      </Provider>,
     );
 
     const topAppBarEl = topAppBarContainer.querySelector('.top-app-bar');

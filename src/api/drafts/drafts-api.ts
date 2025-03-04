@@ -96,7 +96,7 @@ export async function getDraft(id: number): Promise<IDraft> {
 
 export async function updateDraft(
   id: number,
-  body: UpdateDraftBody
+  body: UpdateDraftBody,
 ): Promise<IDraft> {
   const response = await fetch(`${API_URL}/drafts/${id}`, {
     method: 'patch',

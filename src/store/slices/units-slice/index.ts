@@ -16,7 +16,7 @@ export const unitsInitialState: UnitsState = {
 
 export const fetchUnits = createAsyncThunk(
   'units/fetch',
-  async () => await getUnits()
+  async () => await getUnits(),
 );
 
 export const unitsSlice = createSlice({
@@ -33,7 +33,7 @@ export const unitsSlice = createSlice({
         (state, action: PayloadAction<IUnit[]>) => {
           state.allUnits = action.payload;
           state.unitsStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(fetchUnits.rejected, (state) => {
         state.unitsStatus = FetchStatus.FAILED;

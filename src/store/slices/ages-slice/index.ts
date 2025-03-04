@@ -16,7 +16,7 @@ export const agesInitialState: AgesState = {
 
 export const fetchAges = createAsyncThunk(
   'ages/fetch',
-  async () => await getAges()
+  async () => await getAges(),
 );
 
 export const agesSlice = createSlice({
@@ -33,7 +33,7 @@ export const agesSlice = createSlice({
         (state, action: PayloadAction<IAgeTechTree[]>) => {
           state.allAges = action.payload;
           state.agesStatus = FetchStatus.FULFILLED;
-        }
+        },
       )
       .addCase(fetchAges.rejected, (state) => {
         state.agesStatus = FetchStatus.FAILED;

@@ -21,8 +21,8 @@ export const TechTreeFilterOptions: FC = () => {
       setFilterMode(
         filterMode === FilterMode.HAS_ALL
           ? FilterMode.HAS_ANY
-          : FilterMode.HAS_ALL
-      )
+          : FilterMode.HAS_ALL,
+      ),
     );
   };
 
