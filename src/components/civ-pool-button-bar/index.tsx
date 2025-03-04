@@ -1,4 +1,7 @@
 import { FC } from 'react';
+import { VscSave, VscSaveAs } from 'react-icons/vsc';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { PiShareNetworkFill } from 'react-icons/pi';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -7,9 +10,9 @@ import {
   selectCivs,
   setCivPool,
 } from '../../store/slices/civs-slice';
+import { resetDraft } from '../../store/slices/draft-result-slice';
 
 import './civ-pool-button-bar.scss';
-import { resetDraft } from '../../store/slices/draft-result-slice';
 
 export interface ICivPoolButtonBarProps {}
 
@@ -41,10 +44,18 @@ export const CivPoolButtonBar: FC<ICivPoolButtonBarProps> = (props) => {
         Invert selection
       </button>
       <div className='civ-pool-button-bar-pad' />
-      <button className='save-new-pool-button'>Save as new</button>
-      <button className='save-pool-button'>Save</button>
-      <button className='like-pool-button'>Like</button>
-      <button className='share-pool-button'>Share</button>
+      <button className='like-pool-button'>
+        {allCivs.length > 0 ? <HiOutlineHeart /> : <HiHeart />}
+      </button>
+      <button className='share-pool-button'>
+        <PiShareNetworkFill />
+      </button>
+      <button className='save-new-pool-button'>
+        <VscSaveAs /> Save as new
+      </button>
+      <button className='save-pool-button'>
+        <VscSave /> Save
+      </button>
     </div>
   );
 };

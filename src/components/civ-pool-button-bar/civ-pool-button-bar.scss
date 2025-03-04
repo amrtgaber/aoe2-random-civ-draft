@@ -55,7 +55,14 @@
       true,
       small
     );
+
     border-radius: border.$border-radius-small;
     font-size: font.calc-font-size(font.$font-size-8);
+  }
+
+  .like-pool-button,
+  .share-pool-button {
+    font-size: font.calc-font-size(font.$font-size-base);
+    padding-top: spacing.calc-padding(spacing.$padding-tiny);
   }
 }
