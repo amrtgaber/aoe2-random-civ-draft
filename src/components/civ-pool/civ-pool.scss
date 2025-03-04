@@ -5,6 +5,7 @@
 
 .civ-pool {
   display: grid;
+  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-giant);
 
   @include alignment.grid-alignment-center;
 

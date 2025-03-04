@@ -33,9 +33,5 @@
   );
 
   border-radius: border.$border-radius-medium;
-  padding: spacing.calc-padding(spacing.$padding-medium);
-}
-
-.civ-pool {
-  margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-giant);
+  padding: spacing.calc-padding(spacing.$padding-large);
 }
