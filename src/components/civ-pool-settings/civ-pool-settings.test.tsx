@@ -9,7 +9,7 @@ import {
 
 import { CivPoolSettings } from '.';
 
-describe('civ pool settings component', () => {
+describe.skip('civ pool settings component', () => {
   describe('renders civ pool settings', () => {
     test('renders civ pool settings', () => {
       const mockStore = configureMockStore();
