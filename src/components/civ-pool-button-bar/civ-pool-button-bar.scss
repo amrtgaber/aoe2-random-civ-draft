@@ -29,6 +29,27 @@
     width: fit-content;
 
     @include button.button-base(
+      filled-dark,
+      spacing.$padding-small,
+      true,
+      small
+    );
+
+    border-radius: border.$border-radius-small;
+    font-size: font.calc-font-size(font.$font-size-8);
+  }
+
+  .civ-pool-button-bar-pad {
+    flex-grow: 1;
+  }
+
+  .save-pool-button,
+  .save-new-pool-button,
+  .like-pool-button,
+  .share-pool-button {
+    width: fit-content;
+
+    @include button.button-base(
       filled-primary,
       spacing.$padding-small,
       true,
@@ -37,5 +58,11 @@
 
     border-radius: border.$border-radius-small;
     font-size: font.calc-font-size(font.$font-size-8);
+  }
+
+  .like-pool-button,
+  .share-pool-button {
+    font-size: font.calc-font-size(font.$font-size-base);
+    padding-top: spacing.calc-padding(spacing.$padding-tiny);
   }
 }

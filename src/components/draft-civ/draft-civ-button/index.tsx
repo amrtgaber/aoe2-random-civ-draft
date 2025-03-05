@@ -18,7 +18,7 @@ export const DraftCivButton: FC = () => {
     return pool[randomIndex];
   };
 
-  const handleDraftCiv = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleDraftCiv = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (civsStatus === FetchStatus.FULFILLED) {
       const draftResult = calculateDraftResult();
@@ -27,8 +27,8 @@ export const DraftCivButton: FC = () => {
   };
 
   return (
-    <a className='draft-civ-button' onClick={handleDraftCiv}>
+    <button className='draft-civ-button' onClick={handleDraftCiv}>
       Draft Civ
-    </a>
+    </button>
   );
 };

@@ -27,11 +27,11 @@
   @include breakpoint.for-tablet-portrait-up {
     width: 220px;
     height: 65px;
-    font-size: font.calc-font-size(font.$font-size-14);
+    font-size: font.calc-font-size(font.$font-size-18);
   }
 
   @include breakpoint.for-1080p-up {
-    font-size: font.calc-font-size(font.$font-size-18);
+    font-size: font.calc-font-size(font.$font-size-20);
   }
 
   @include breakpoint.for-4k-up {
