@@ -1068,7 +1068,9 @@ export const MOCK_STATE: RootState = {
     draftCount: 1,
   },
   drafts: {
+    draft: null,
     drafts: [],
+    draftGetStatus: FetchStatus.INIT,
     draftsGetStatus: FetchStatus.INIT,
     draftUpdateStatus: FetchStatus.INIT,
     draftDeleteStatus: FetchStatus.INIT,
