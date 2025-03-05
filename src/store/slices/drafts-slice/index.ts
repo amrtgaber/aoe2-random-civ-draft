@@ -5,6 +5,7 @@ import {
   createDraft,
   CreateDraftBody,
   deleteDraft,
+  getDraft,
   getDrafts,
   IDraft,
   updateDraft,
@@ -13,14 +14,18 @@ import {
 import { FetchStatus } from '../../fetch-status-service';
 
 export interface DraftsState {
+  draft: IDraft | null;
   drafts: IDraft[];
+  draftGetStatus: FetchStatus;
   draftsGetStatus: FetchStatus;
   draftUpdateStatus: FetchStatus;
   draftDeleteStatus: FetchStatus;
 }
 
 export const draftsInitialState: DraftsState = {
+  draft: null,
   drafts: [],
+  draftGetStatus: FetchStatus.INIT,
   draftsGetStatus: FetchStatus.INIT,
   draftUpdateStatus: FetchStatus.INIT,
   draftDeleteStatus: FetchStatus.INIT,
@@ -34,6 +39,11 @@ export const draftCreate = createAsyncThunk(
 export const draftsGet = createAsyncThunk(
   'draft/getAll',
   async () => await getDrafts(),
+);
+
+export const draftGet = createAsyncThunk(
+  'draft/get',
+  async (id: string) => await getDraft(id),
 );
 
 export const draftUpdate = createAsyncThunk(
@@ -65,6 +75,16 @@ export const draftsSlice = createSlice({
       )
       .addCase(draftsGet.rejected, (state) => {
         state.draftsGetStatus = FetchStatus.FAILED;
+      })
+      .addCase(draftGet.pending, (state) => {
+        state.draftGetStatus = FetchStatus.LOADING;
+      })
+      .addCase(draftGet.fulfilled, (state, action: PayloadAction<IDraft>) => {
+        state.draft = action.payload;
+        state.draftGetStatus = FetchStatus.FULFILLED;
+      })
+      .addCase(draftGet.rejected, (state) => {
+        state.draftGetStatus = FetchStatus.FAILED;
       })
       .addCase(draftUpdate.pending, (state) => {
         state.draftUpdateStatus = FetchStatus.LOADING;

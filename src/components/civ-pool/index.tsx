@@ -1,5 +1,5 @@
 import { FC, ReactElement, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -17,44 +17,36 @@ import { Civ, ICivProps } from '../civ';
 import { Loading } from '../loading';
 
 import './civ-pool.scss';
+import { draftGet, selectDrafts } from '../../store/slices/drafts-slice';
 
 export const CivPool: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
+  const { draft } = useAppSelector(selectDrafts);
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const civPoolQueryParams: string[] = searchParams.get('civPool')
-    ? searchParams.get('civPool')!.split(',')
-    : [];
+  const draftId: string = searchParams.get('d') ?? '';
 
   useEffect(() => {
     initCivPool();
-  }, [civsStatus]);
+  }, [civsStatus, draft]);
 
   const initCivPool = () => {
     if (isInit(civsStatus)) {
       dispatch(fetchCivs());
     }
 
-    if (isFulfilled(civsStatus)) {
+    if (draftId && !draft) {
+      dispatch(draftGet(draftId));
+    }
+
+    if (isFulfilled(civsStatus) && draft) {
       const newCivPool = allCivs.filter((civ) =>
-        civPoolQueryParams.includes(civ.civName),
+        draft.civs.some(
+          (civInDraft: ICiv) => civInDraft.civName === civ.civName,
+        ),
       );
       dispatch(setCivPool(newCivPool));
-    }
-  };
-
-  useEffect(() => {
-    updateCivPoolQueryParams();
-  }, [civPool]);
-
-  const updateCivPoolQueryParams = () => {
-    if (isFulfilled(civsStatus)) {
-      const newCivPool = civPool.map((civ) => civ.civName);
-
-      newCivPool.length > 0
-        ? setSearchParams({ civPool: newCivPool.join(',') }, { replace: true })
-        : setSearchParams({});
     }
   };
 

@@ -75,7 +75,7 @@ export async function getDrafts(): Promise<IDraft[]> {
   }));
 }
 
-export async function getDraft(id: number): Promise<IDraft> {
+export async function getDraft(id: string): Promise<IDraft> {
   const response = await fetch(`${API_URL}/drafts/${id}`, {
     method: 'get',
   });
