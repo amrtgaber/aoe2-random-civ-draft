@@ -34,4 +34,22 @@
 
   border-radius: border.$border-radius-medium;
   padding: spacing.calc-padding(spacing.$padding-large);
+
+  .draft-name-container {
+    display: flex;
+    align-items: baseline;
+
+    .draft-name, .draft-description {
+      margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-tiny);
+      margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+    }
+
+    .draft-name {
+      margin-right: spacing.calc-padding(spacing.$padding-medium);
+    }
+
+    .draft-description {
+      font-weight: 300;
+    }
+  }
 }
