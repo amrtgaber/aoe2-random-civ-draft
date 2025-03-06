@@ -155,7 +155,7 @@ $civ-unit-image-size-large: 72px;
 
   @include grid-item-name.grid-item-name;
 
-  @include breakpoint.for-tablet-landscape-up {
+  @include breakpoint.for-1080p-up {
     font-size: font.calc-font-size(font.$font-size-3);
   }
 }
