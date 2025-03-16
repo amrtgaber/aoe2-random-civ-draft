@@ -1,6 +1,7 @@
 @use '../../shared-styles/lib/border';
 @use '../../shared-styles/lib/box-shadow';
 @use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
 @use '../../shared-styles/lib/spacing';
 
 .civ-pool-title,
@@ -39,17 +40,31 @@
     display: flex;
     align-items: baseline;
 
-    .draft-name, .draft-description {
+    .draft-name,
+    .draft-description {
       margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-tiny);
       margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+      padding: spacing.calc-padding(spacing.$padding-medium);
+      background-color: transparent;
+      color: color.$white;
+      outline: none;
+      border: none;
+
+      &:hover,
+      :focus {
+        border-bottom: border.$border-thickness-tiny solid color.$primary-color-amber;
+      }
     }
 
     .draft-name {
       margin-right: spacing.calc-padding(spacing.$padding-medium);
+      font-size: font.calc-font-size(font.$font-size-18);
+      font-weight: 500;
     }
 
     .draft-description {
-      font-weight: 300;
+      font-size: font.calc-font-size(font.$font-size-base);
+      font-weight: 100;
     }
   }
 }

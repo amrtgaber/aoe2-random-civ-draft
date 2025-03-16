@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import './civ-pool-container.scss';
 import { CivPool } from '../civ-pool';
@@ -14,6 +14,23 @@ export const CivPoolContainer: FC<ICivPoolContainerProps> = (props) => {
   const { draft } = useAppSelector(selectDrafts);
   const civPoolCount = civPool.length > 0 ? civPool.length : allCivs.length;
 
+  const [editName, setEditName] = useState(draft?.name || '');
+  const [editDescription, setEditDescription] = useState(draft?.desc || '');
+
+  const handleEditName = (element: ChangeEvent<HTMLInputElement>) => {
+    const newName = element.target.value;
+    if (newName.length < 51) {
+      setEditName(newName);
+    }
+  };
+
+  const handleEditDescription = (element: ChangeEvent<HTMLInputElement>) => {
+    const newDescription = element.target.value;
+    if (newDescription.length < 127) {
+      setEditDescription(newDescription);
+    }
+  };
+
   return (
     <>
       <h2 className='civ-pool-title'>Draft Pool</h2>
@@ -27,8 +44,16 @@ export const CivPoolContainer: FC<ICivPoolContainerProps> = (props) => {
       <div className='civ-pool-container'>
         {draft && (
           <div className='draft-name-container'>
-            <h2 className='draft-name'>{draft?.name}</h2>
-            <p className='draft-description'>{draft?.desc}</p>
+            <input
+              className='draft-name'
+              value={editName}
+              onChange={handleEditName}
+            />
+            <input
+              className='draft-description'
+              value={editDescription}
+              onChange={handleEditDescription}
+            />
           </div>
         )}
         <CivPool />
