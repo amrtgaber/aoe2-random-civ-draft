@@ -1,0 +1,34 @@
+@use '../../shared-styles/lib/border';
+@use '../../shared-styles/lib/color';
+@use '../../shared-styles/lib/font';
+@use '../../shared-styles/lib/spacing';
+
+.draft-name-container {
+  .draft-name,
+  .draft-description {
+    width: 100%;
+    margin-top: spacing.calc-vertical-margin(spacing.$vertical-margin-tiny);
+    margin-bottom: spacing.calc-vertical-margin(spacing.$vertical-margin-small);
+    padding: spacing.calc-padding(spacing.$padding-medium);
+    background-color: transparent;
+    color: color.$white;
+    outline: none;
+    border: none;
+
+    &:focus {
+      border-bottom: border.$border-thickness-tiny solid
+        color.$primary-color-amber;
+    }
+  }
+
+  .draft-name {
+    margin-right: spacing.calc-padding(spacing.$padding-medium);
+    font-size: font.calc-font-size(font.$font-size-18);
+    font-weight: 500;
+  }
+
+  .draft-description {
+    font-size: font.calc-font-size(font.$font-size-base);
+    font-weight: 100;
+  }
+}
