@@ -1,31 +1,27 @@
 import { FC, ReactElement, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
 
+import { ICiv } from '../../api/civs/civs-api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  fetchCivs,
-  selectCivs,
-  setCivPool,
-} from '../../store/slices/civs-slice';
 import {
   isFulfilled,
   isInit,
   isLoading,
 } from '../../store/fetch-status-service';
-import { ICiv } from '../../api/civs/civs-api';
+import {
+  fetchCivs,
+  selectCivs,
+  setCivPool,
+} from '../../store/slices/civs-slice';
 import { Civ, ICivProps } from '../civ';
 import { Loading } from '../loading';
 
+import { selectDrafts } from '../../store/slices/drafts-slice';
 import './civ-pool.scss';
-import { draftGet, selectDrafts } from '../../store/slices/drafts-slice';
 
 export const CivPool: FC = () => {
   const { allCivs, civPool, civsStatus } = useAppSelector(selectCivs);
   const { draft } = useAppSelector(selectDrafts);
   const dispatch = useAppDispatch();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const draftId: string = searchParams.get('d') ?? '';
 
   useEffect(() => {
     initCivPool();
@@ -34,10 +30,6 @@ export const CivPool: FC = () => {
   const initCivPool = () => {
     if (isInit(civsStatus)) {
       dispatch(fetchCivs());
-    }
-
-    if (draftId && !draft) {
-      dispatch(draftGet(draftId));
     }
 
     if (isFulfilled(civsStatus) && draft) {
