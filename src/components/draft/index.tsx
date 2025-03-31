@@ -12,8 +12,8 @@ export const Draft: FC<IDraftProps> = (props) => {
   const [searchParams] = useSearchParams();
   const draftId: string = searchParams.get('d') ?? '';
 
-  const [nameValue, setNameValue] = useState(draft?.name || '');
-  const [descValue, setDescValue] = useState(draft?.desc || '');
+  const [nameValue, setNameValue] = useState(draft?.name ?? '');
+  const [descValue, setDescValue] = useState(draft?.desc ?? '');
 
   const dispatch = useAppDispatch();
 
